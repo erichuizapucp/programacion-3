@@ -1,0 +1,69 @@
+Tipo: R
+Codigo: 100001
+Nombre: Juan
+Apellido: Pérez
+Edad: 20
+Ciclo: 3
+Promedio: 16.0
+Año de ingreso: 2021
+---------------------------------------------
+Tipo: I
+Codigo: 100002
+Nombre: Sarah
+Apellido: Smith
+Edad: 22
+Ciclo: 2
+Promedio: 18.0
+Pais de Origen: Estados-Unidos
+Universidad: Universidad-de-California
+Duración: 6
+---------------------------------------------
+Tipo: R
+Codigo: 100003
+Nombre: Ana
+Apellido: Gómez
+Edad: 19
+Ciclo: 1
+Promedio: 12.0
+Año de ingreso: 2023
+---------------------------------------------
+Tipo: I
+Codigo: 100004
+Nombre: Marco
+Apellido: Rossi
+Edad: 21
+Ciclo: 4
+Promedio: 18.0
+Pais de Origen: Italia
+Universidad: Universidad-de-Roma
+Duración: 12
+---------------------------------------------
+Tipo: R
+Codigo: 100005
+Nombre: Luis
+Apellido: Martínez
+Edad: 22
+Ciclo: 5
+Promedio: 13.0
+Año de ingreso: 2020
+---------------------------------------------
+Tipo: I
+Codigo: 100006
+Nombre: Emily
+Apellido: Johnson
+Edad: 23
+Ciclo: 3
+Promedio: 12.0
+Pais de Origen: Francia
+Universidad: Universidad-de-Paris
+Duración: 4
+---------------------------------------------
+Tipo: R
+Codigo: 100007
+Nombre: Carlos
+Apellido: Lopez
+Edad: 20
+Ciclo: 2
+Promedio: 11.0
+Año de ingreso: 2022
+---------------------------------------------
