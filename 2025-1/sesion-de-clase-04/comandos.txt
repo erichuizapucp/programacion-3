@@ -1,0 +1,16 @@
+javac pe/edu/pucp/inf30/sesion04/entidades/*.java
+javac pe/edu/pucp/inf30/sesion04/*.java
+java pe/edu/pucp/inf30/sesion04/Bodega
+
+jar cvf entidades.jar pe/edu/pucp/inf30/sesion04/entidades/*.class
+
+javac -cp entidades.jar; pe/edu/pucp/inf30/sesion04/*.java
+
+jar cvfm bodega.jar MANIFEST.MF pe/edu/pucp/inf30/sesion04/*.class
+java -jar bodega.jar
+
+
+csc PUCP\Edu\Pe\Inf30\Sesion04\Entidades\*.cs PUCP\Edu\Pe\Inf30\Sesion04\*.cs 
+
+csc /out:entidades.dll /target:library PUCP\Edu\Pe\Inf30\Sesion04\Entidades\*.cs
+csc /out:bodega.exe /r:entidades.dll PUCP\Edu\Pe\Inf30\Sesion04\*.cs

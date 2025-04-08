@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: 21.0.6 (OpenJDK)
+Class-Path: entidades.jar
+Main-Class: pe/edu/pucp/inf30/sesion04/Bodega
