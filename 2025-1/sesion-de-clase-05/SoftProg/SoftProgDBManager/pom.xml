@@ -8,10 +8,10 @@
   </parent>
 
   <groupId>pe.edu.pucp.inf30</groupId>
-  <artifactId>SoftProgRRHHDA</artifactId>
+  <artifactId>SoftProgDBManager</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>SoftProgRRHHDA</name>
+  <name>SoftProgDBManager</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
@@ -32,7 +32,7 @@
     </dependencies>
   </dependencyManagement>
 
-  <dependencies>  
+  <dependencies>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -45,14 +45,9 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>pe.edu.pucp.inf30</groupId>
-      <artifactId>SoftProgDBManager</artifactId>
-      <version>1.0-SNAPSHOT</version>
-    </dependency>
-    <dependency>
-        <groupId>pe.edu.pucp.inf30</groupId>
-        <artifactId>SoftProgRRHHModel</artifactId>
-        <version>1.0-SNAPSHOT</version>
+      <groupId>com.mysql</groupId>
+      <artifactId>mysql-connector-j</artifactId>
+      <version>9.2.0</version>
     </dependency>
   </dependencies>
 
