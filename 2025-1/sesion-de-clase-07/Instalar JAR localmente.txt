@@ -1,0 +1,1 @@
+mvn install:install-file -Dfile=LogManager.jar -DgroupId=pe.edu.pucp.inf30.log -DartifactId=logmanager -Dversion=1.0.0 -Dpackaging=jar
