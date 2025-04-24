@@ -29,8 +29,11 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
                 + "VALUES"
                 +   "(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
-        try (Connection conn = DBManager.getInstance().getConnection();
-            PreparedStatement ps = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+        try (Connection conn = 
+                DBManager.getInstance().getConnection();
+            PreparedStatement ps = 
+                    conn.prepareStatement(sql, 
+                            Statement.RETURN_GENERATED_KEYS)) {
             
             ps.setInt(1, empleado.getArea().getId());
             ps.setInt(2, empleado.getCuentaUsuario().getId());
@@ -42,7 +45,9 @@ public class EmpleadoDAOImpl implements IEmpleadoDAO {
             // Convierte un java.util.Date en un java.sql.Date
             // Uso el nombre completo java.sql.Date para que se observe que se usa esa clase y no java.util.Date para 
             // el comando
-            java.sql.Date fechaNacimiento = new java.sql.Date(empleado.getFechaNacimiento().getTime());
+            java.sql.Date fechaNacimiento = 
+                    new java.sql.Date(
+                            empleado.getFechaNacimiento().getTime());
             ps.setDate(7, fechaNacimiento);
             //ps.setDate(7, new java.sql.Date(empleado.getFechaNacimiento().getTime()));
             

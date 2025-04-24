@@ -36,17 +36,10 @@
   
   
   <modules>
-              
-    
-    
-    <module>SoftProgRRHHModel</module>
-              
-    
-    
-    <module>SoftProgRRHHDA</module>
         
     <module>SoftProgDBManager</module>
-      
+    <module>SoftProgDA</module>
+    <module>SoftProgModel</module>
   </modules>
     
 
