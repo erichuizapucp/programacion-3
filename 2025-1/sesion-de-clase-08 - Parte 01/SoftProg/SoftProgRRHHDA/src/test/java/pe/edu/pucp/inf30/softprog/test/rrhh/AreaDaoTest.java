@@ -50,7 +50,8 @@ public class AreaDaoTest implements ICrudDaoTest {
         assertTrue(modifico);
         
         Area areaModificada = areaDao.buscar(this.testId);
-        assertEquals(areaModificada.getNombre(), "Area de Prueba Modificada");
+        assertEquals(areaModificada.getNombre(), 
+                "Area de Prueba Modificada");
         assertFalse(areaModificada.isActivo());
     }
     

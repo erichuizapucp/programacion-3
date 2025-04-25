@@ -9,20 +9,34 @@ import java.util.List;
 import pe.edu.pucp.inf30.softprog.config.DBManager;
 import pe.edu.pucp.inf30.softprog.rrhh.dao.ICrud;
 
-public abstract class BaseDAOImpl<T> implements ICrud<T> {
-    protected abstract PreparedStatement comandoInsertar(Connection conn, T modelo) throws SQLException;
-    protected abstract PreparedStatement comandoModificar(Connection conn, T modelo) throws SQLException;
-    protected abstract PreparedStatement comandoEliminar(Connection conn, int id) throws SQLException;
-    protected abstract PreparedStatement comandoBuscar(Connection conn, int id) throws SQLException;
-    protected abstract PreparedStatement comandoListar(Connection conn) throws SQLException;
+public abstract class BaseDAOImpl<T> 
+        implements ICrud<T> {
+    protected abstract PreparedStatement 
+        comandoInsertar(Connection conn, T modelo) 
+                throws SQLException;
+    protected abstract PreparedStatement 
+        comandoModificar(Connection conn, T modelo) 
+                throws SQLException;
+    protected abstract PreparedStatement 
+        comandoEliminar(Connection conn, int id) 
+                throws SQLException;
+    protected abstract PreparedStatement 
+        comandoBuscar(Connection conn, int id) 
+                throws SQLException;
+    protected abstract PreparedStatement 
+        comandoListar(Connection conn) 
+                throws SQLException;
     
-    protected abstract T mapearModelo(ResultSet rs) throws SQLException;
+    protected abstract T mapearModelo(ResultSet rs) 
+            throws SQLException;
     
     @Override
     public int insertar(T modelo) {
         try (
-            Connection conn = DBManager.getInstance().getConnection();
-            PreparedStatement cmd = this.comandoInsertar(conn, modelo);
+            Connection conn = 
+                    DBManager.getInstance().getConnection();
+            PreparedStatement cmd = 
+                    this.comandoInsertar(conn, modelo);
         ) {
             if (cmd.executeUpdate() == 0) {
                 System.err.println("El registro no se inserto.");
