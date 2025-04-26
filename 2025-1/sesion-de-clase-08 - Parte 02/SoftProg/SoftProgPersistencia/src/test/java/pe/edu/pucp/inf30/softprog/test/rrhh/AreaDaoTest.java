@@ -17,6 +17,7 @@ import pe.edu.pucp.inf30.softprog.rrhh.mysql.AreaDAOImpl;
 import pe.edu.pucp.inf30.softprog.rrhh.model.Area;
 import pe.edu.pucp.inf30.softprog.test.CrudDaoTest;
 
+
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class AreaDaoTest implements CrudDaoTest {

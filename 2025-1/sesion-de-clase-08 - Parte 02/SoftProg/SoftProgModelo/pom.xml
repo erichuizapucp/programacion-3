@@ -8,10 +8,10 @@
   </parent>
 
   <groupId>pe.edu.pucp.inf30</groupId>
-  <artifactId>SoftProgRRHHModel</artifactId>
+  <artifactId>SoftProgModelo</artifactId>
   <version>1.0-SNAPSHOT</version>
 
-  <name>SoftProgRRHHModel</name>
+  <name>SoftProgModelo</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
