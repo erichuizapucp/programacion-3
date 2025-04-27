@@ -1,0 +1,6 @@
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgModelo\bin\Debug\SoftProgModelo.dll
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgModelo\bin\Debug\SoftProgModelo.pdb
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgModelo\obj\Debug\SoftProgModelo.csproj.AssemblyReference.cache
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgModelo\obj\Debug\SoftProgModelo.csproj.CoreCompileInputs.cache
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgModelo\obj\Debug\SoftProgModelo.dll
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgModelo\obj\Debug\SoftProgModelo.pdb

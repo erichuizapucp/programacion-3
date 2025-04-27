@@ -1,0 +1,12 @@
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgPersistencia\bin\Debug\SoftProgPersistencia.dll
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgPersistencia\bin\Debug\SoftProgPersistencia.pdb
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgPersistencia\obj\Debug\SoftProgPersistencia.csproj.AssemblyReference.cache
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgPersistencia\obj\Debug\SoftProgPersistencia.csproj.CoreCompileInputs.cache
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgPersistencia\obj\Debug\SoftProgPersistencia.dll
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgPersistencia\obj\Debug\SoftProgPersistencia.pdb
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgPersistencia\bin\Debug\SoftProgPersistencia.dll.config
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgPersistencia\bin\Debug\SoftProgDBManager.dll
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgPersistencia\bin\Debug\SoftProgModelo.dll
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgPersistencia\bin\Debug\SoftProgDBManager.pdb
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgPersistencia\bin\Debug\SoftProgModelo.pdb
+C:\Users\eric\Documents\programacion-3\2025-1\sesion-de-clase-10\SoftProgPersistencia\obj\Debug\SoftProg.07F85B22.Up2Date
