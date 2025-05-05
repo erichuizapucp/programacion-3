@@ -6,16 +6,21 @@ using PUCP.Edu.Pe.SoftProg.Persistencia.DAO;
 
 namespace PUCP.Edu.Pe.SoftProg.Persistencia.DAOImpl {
     public abstract class BaseDAOImpl<T> : ICrud<T> {
-        protected abstract SqlCommand CommandoInsertar(SqlConnection conn, T modelo);
-        protected abstract SqlCommand CommandoModificar(SqlConnection conn, T modelo);
-        protected abstract SqlCommand CommandoEliminar(SqlConnection conn, int id);
-        protected abstract SqlCommand CommandoBuscar(SqlConnection conn, int id);
+        protected abstract SqlCommand CommandoInsertar(
+            SqlConnection conn, T modelo);
+        protected abstract SqlCommand CommandoModificar(
+            SqlConnection conn, T modelo);
+        protected abstract SqlCommand CommandoEliminar(
+            SqlConnection conn, int id);
+        protected abstract SqlCommand CommandoBuscar(
+            SqlConnection conn, int id);
         protected abstract SqlCommand CommandoListar(SqlConnection conn);
         protected abstract T mapearModelo(SqlDataReader reader);
 
         public int Insertar(T modelo) {
             try {
-                using (SqlConnection conn = DBManager.GetInstance().GetConnection())
+                using (SqlConnection conn = 
+                    DBManager.GetInstance().GetConnection())
                 using (SqlCommand cmd = this.CommandoInsertar(conn, modelo)) {
                     if (cmd.ExecuteNonQuery() == 0) {
                         Console.Error.WriteLine("El registro no se inserto");
@@ -36,7 +41,8 @@ namespace PUCP.Edu.Pe.SoftProg.Persistencia.DAOImpl {
 
         public bool Modificar(T modelo) {
             try {
-                using (SqlConnection conn = DBManager.GetInstance().GetConnection())
+                using (SqlConnection conn = 
+                    DBManager.GetInstance().GetConnection())
                 using (SqlCommand cmd = this.CommandoModificar(conn, modelo)) {
                     return cmd.ExecuteNonQuery() > 0;
                 }
@@ -94,7 +100,8 @@ namespace PUCP.Edu.Pe.SoftProg.Persistencia.DAOImpl {
 
         public List<T> Listar() {
             try {
-                using (SqlConnection conn = DBManager.GetInstance().GetConnection())
+                using (SqlConnection conn = 
+                    DBManager.GetInstance().GetConnection())
                 using (SqlCommand cmd = this.CommandoListar(conn))
                 using (SqlDataReader reader = cmd.ExecuteReader()) {
                     List<T> modelos = new List<T>();

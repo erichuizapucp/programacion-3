@@ -8,7 +8,7 @@
     <ProjectGuid>{5FD2F148-DC01-4A1B-B56F-41C81D3B5BD7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PUCP.Edu.Pe.SoftProg.Persistencia</RootNamespace>
+    <RootNamespace>PUCP.Edu.Pe.SoftProg.Tests</RootNamespace>
     <AssemblyName>SoftProgTests</AssemblyName>
     <TargetFrameworkVersion>v4.8.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

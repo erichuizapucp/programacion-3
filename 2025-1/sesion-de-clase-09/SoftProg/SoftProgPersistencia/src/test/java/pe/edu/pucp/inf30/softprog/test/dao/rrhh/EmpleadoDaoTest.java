@@ -25,11 +25,11 @@ import pe.edu.pucp.inf30.softprog.rrhh.model.Empleado;
 import pe.edu.pucp.inf30.softprog.daoimpl.rrhh.AreaDAOImpl;
 import pe.edu.pucp.inf30.softprog.daoimpl.rrhh.CuentaUsuarioDAOImpl;
 import pe.edu.pucp.inf30.softprog.daoimpl.rrhh.EmpleadoDAOImpl;
-import pe.edu.pucp.inf30.softprog.test.dao.CrudDaoTest;
+import pe.edu.pucp.inf30.softprog.test.dao.ICrudDaoTest;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class EmpleadoDaoTest implements CrudDaoTest {
+public class EmpleadoDaoTest implements ICrudDaoTest {
     private int testId;
     private int testAreaId;
     private int testCuentaUsuarioId;

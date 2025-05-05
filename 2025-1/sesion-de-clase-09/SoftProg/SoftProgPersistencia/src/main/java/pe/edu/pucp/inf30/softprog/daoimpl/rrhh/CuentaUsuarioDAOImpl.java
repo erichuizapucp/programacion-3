@@ -11,12 +11,18 @@ import pe.edu.pucp.inf30.softprog.rrhh.model.CuentaUsuario;
 
 public class CuentaUsuarioDAOImpl extends BaseDAOImpl<CuentaUsuario> implements ICuentaUsuarioDAO {    
     @Override
-    protected CallableStatement comandoInsertar(Connection conn, CuentaUsuario cuentaUsuario) throws SQLException {
-        String sql = "{CALL insertarCuentaUsuario(?, ?, ?, ?)}";
+    protected CallableStatement comandoInsertar(
+            Connection conn, CuentaUsuario cuentaUsuario) 
+            throws SQLException {
+        String sql = 
+                "{CALL insertarCuentaUsuario(?, ?, ?, ?)}";
         CallableStatement cmd = conn.prepareCall(sql);
-        cmd.setString("p_userName", cuentaUsuario.getUserName());
-        cmd.setString("p_password", cuentaUsuario.getPassword());
-        cmd.setBoolean("p_activo", cuentaUsuario.isActivo());
+        cmd.setString("p_userName", 
+                cuentaUsuario.getUserName());
+        cmd.setString("p_password", 
+                cuentaUsuario.getPassword());
+        cmd.setBoolean("p_activo", 
+                cuentaUsuario.isActivo());
         cmd.registerOutParameter("p_id", Types.INTEGER);
         return cmd;
     }

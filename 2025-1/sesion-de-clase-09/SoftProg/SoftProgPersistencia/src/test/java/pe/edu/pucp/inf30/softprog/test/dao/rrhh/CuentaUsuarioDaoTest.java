@@ -15,11 +15,11 @@ import org.junit.jupiter.api.TestMethodOrder;
 import pe.edu.pucp.inf30.softprog.dao.rrhh.ICuentaUsuarioDAO;
 import pe.edu.pucp.inf30.softprog.rrhh.model.CuentaUsuario;
 import pe.edu.pucp.inf30.softprog.daoimpl.rrhh.CuentaUsuarioDAOImpl;
-import pe.edu.pucp.inf30.softprog.test.dao.CrudDaoTest;
+import pe.edu.pucp.inf30.softprog.test.dao.ICrudDaoTest;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class CuentaUsuarioDaoTest implements CrudDaoTest {
+public class CuentaUsuarioDaoTest implements ICrudDaoTest {
     private int testId;
     private final int idIncorrecto = 99999;
     
