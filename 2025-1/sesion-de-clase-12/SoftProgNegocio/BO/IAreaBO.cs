@@ -1,0 +1,11 @@
+﻿using System.Collections.Generic;
+using PUCP.Edu.Pe.SoftProg.Modelo.RRHH;
+
+namespace PUCP.Edu.Pe.SoftProg.Negocio.BO {
+    public interface IAreaBO {
+        List<Area> Listar();
+        Area Obtener(int id);
+        void Eliminar(int id);
+        void Guardar(Area area, Estado estado);
+    }
+}

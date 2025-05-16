@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftProgModelo", "SoftProgM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftProgTests", "SoftProgTests\SoftProgTests.csproj", "{5FD2F148-DC01-4A1B-B56F-41C81D3B5BD7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoftProgNegocio", "SoftProgNegocio\SoftProgNegocio.csproj", "{3E9FE2EE-58B2-4F47-B46C-B19B65261544}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5FD2F148-DC01-4A1B-B56F-41C81D3B5BD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5FD2F148-DC01-4A1B-B56F-41C81D3B5BD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5FD2F148-DC01-4A1B-B56F-41C81D3B5BD7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3E9FE2EE-58B2-4F47-B46C-B19B65261544}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3E9FE2EE-58B2-4F47-B46C-B19B65261544}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3E9FE2EE-58B2-4F47-B46C-B19B65261544}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3E9FE2EE-58B2-4F47-B46C-B19B65261544}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

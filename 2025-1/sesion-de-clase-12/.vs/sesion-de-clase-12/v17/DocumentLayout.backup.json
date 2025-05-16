@@ -1,0 +1,137 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-12\\softprogweb\\gestionarareas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\gestionarareas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\softprogweb\\gestionarareas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\gestionarareas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\softprogweb\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\site.master||{B30AFBFF-D992-43B7-B62D-2642580A2883}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8F75A04-39C5-48F2-9FDF-7135EFCD4214}|SoftProgDBManager\\SoftProgDBManager.csproj|C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\softprogdbmanager\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8F75A04-39C5-48F2-9FDF-7135EFCD4214}|SoftProgDBManager\\SoftProgDBManager.csproj|solutionrelative:softprogdbmanager\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\softprogweb\\listarareas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\listarareas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\softprogweb\\listarareas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\listarareas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8F75A04-39C5-48F2-9FDF-7135EFCD4214}|SoftProgDBManager\\SoftProgDBManager.csproj|C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\softprogdbmanager\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{C8F75A04-39C5-48F2-9FDF-7135EFCD4214}|SoftProgDBManager\\SoftProgDBManager.csproj|solutionrelative:softprogdbmanager\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GestionarAreas.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgWeb\\GestionarAreas.aspx.cs",
+              "RelativeDocumentMoniker": "SoftProgWeb\\GestionarAreas.aspx.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgWeb\\GestionarAreas.aspx.cs",
+              "RelativeToolTip": "SoftProgWeb\\GestionarAreas.aspx.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAAADUAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T03:48:26.884Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "GestionarAreas.aspx",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgWeb\\GestionarAreas.aspx",
+              "RelativeDocumentMoniker": "SoftProgWeb\\GestionarAreas.aspx",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgWeb\\GestionarAreas.aspx",
+              "RelativeToolTip": "SoftProgWeb\\GestionarAreas.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-05-12T03:48:21.942Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Site.Master",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgWeb\\Site.Master",
+              "RelativeDocumentMoniker": "SoftProgWeb\\Site.Master",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgWeb\\Site.Master",
+              "RelativeToolTip": "SoftProgWeb\\Site.Master",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-05-12T03:34:23.477Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ListarAreas.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgWeb\\ListarAreas.aspx.cs",
+              "RelativeDocumentMoniker": "SoftProgWeb\\ListarAreas.aspx.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgWeb\\ListarAreas.aspx.cs",
+              "RelativeToolTip": "SoftProgWeb\\ListarAreas.aspx.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T03:45:55.914Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "app.config",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgDBManager\\app.config",
+              "RelativeDocumentMoniker": "SoftProgDBManager\\app.config",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgDBManager\\app.config",
+              "RelativeToolTip": "SoftProgDBManager\\app.config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-05-12T03:36:34.678Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DBManager.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgDBManager\\DBManager.cs",
+              "RelativeDocumentMoniker": "SoftProgDBManager\\DBManager.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgDBManager\\DBManager.cs",
+              "RelativeToolTip": "SoftProgDBManager\\DBManager.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T03:36:33.053Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ListarAreas.aspx",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgWeb\\ListarAreas.aspx",
+              "RelativeDocumentMoniker": "SoftProgWeb\\ListarAreas.aspx",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-12\\SoftProgWeb\\ListarAreas.aspx",
+              "RelativeToolTip": "SoftProgWeb\\ListarAreas.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-05-12T03:33:51.03Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
