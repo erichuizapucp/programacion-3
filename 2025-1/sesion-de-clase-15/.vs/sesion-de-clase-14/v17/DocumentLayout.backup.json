@@ -1,0 +1,139 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-14\\softprogweb\\listarareas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\listarareas.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-14\\softprogweb\\listarareas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\listarareas.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-14\\softprogweb\\gestionarempleados.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\gestionarempleados.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-14\\softprogpersistencia\\daoimpl\\rrhh\\empleadodaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\daoimpl\\rrhh\\empleadodaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-14\\softprogpersistencia\\dao\\rrhh\\iempleadodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\dao\\rrhh\\iempleadodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-14\\softprogmodelo\\rrhh\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|solutionrelative:softprogmodelo\\rrhh\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-14\\softprogmodelo\\persona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|solutionrelative:softprogmodelo\\persona.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ListarAreas.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgWeb\\ListarAreas.aspx.cs",
+              "RelativeDocumentMoniker": "SoftProgWeb\\ListarAreas.aspx.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgWeb\\ListarAreas.aspx.cs",
+              "RelativeToolTip": "SoftProgWeb\\ListarAreas.aspx.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAUwCIAAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T01:04:03.151Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ListarAreas.aspx",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgWeb\\ListarAreas.aspx",
+              "RelativeDocumentMoniker": "SoftProgWeb\\ListarAreas.aspx",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgWeb\\ListarAreas.aspx",
+              "RelativeToolTip": "SoftProgWeb\\ListarAreas.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-05-16T01:04:00.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "GestionarEmpleados.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgWeb\\GestionarEmpleados.aspx.cs",
+              "RelativeDocumentMoniker": "SoftProgWeb\\GestionarEmpleados.aspx.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgWeb\\GestionarEmpleados.aspx.cs",
+              "RelativeToolTip": "SoftProgWeb\\GestionarEmpleados.aspx.cs",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAUwEsAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T00:50:17.569Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EmpleadoDAOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgPersistencia\\DAOImpl\\RRHH\\EmpleadoDAOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAOImpl\\RRHH\\EmpleadoDAOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgPersistencia\\DAOImpl\\RRHH\\EmpleadoDAOImpl.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAOImpl\\RRHH\\EmpleadoDAOImpl.cs",
+              "ViewState": "AgIAAGMAAAAAAAAAAAAuwCUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T00:44:15.856Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IEmpleadoDAO.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgPersistencia\\DAO\\RRHH\\IEmpleadoDAO.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAO\\RRHH\\IEmpleadoDAO.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgPersistencia\\DAO\\RRHH\\IEmpleadoDAO.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAO\\RRHH\\IEmpleadoDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T00:44:02.149Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Empleado.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgModelo\\RRHH\\Empleado.cs",
+              "RelativeDocumentMoniker": "SoftProgModelo\\RRHH\\Empleado.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgModelo\\RRHH\\Empleado.cs",
+              "RelativeToolTip": "SoftProgModelo\\RRHH\\Empleado.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T00:43:43.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Persona.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgModelo\\Persona.cs",
+              "RelativeDocumentMoniker": "SoftProgModelo\\Persona.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-14\\SoftProgModelo\\Persona.cs",
+              "RelativeToolTip": "SoftProgModelo\\Persona.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T00:43:21.826Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

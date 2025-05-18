@@ -1,0 +1,173 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C8F75A04-39C5-48F2-9FDF-7135EFCD4214}|SoftProgDBManager\\SoftProgDBManager.csproj|C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\softprogdbmanager\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8F75A04-39C5-48F2-9FDF-7135EFCD4214}|SoftProgDBManager\\SoftProgDBManager.csproj|solutionrelative:softprogdbmanager\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-11\\softprogpersistencia\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3E9FE2EE-58B2-4F47-B46C-B19B65261544}|SoftProgNegocio\\SoftProgNegocio.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-11\\softprognegocio\\citasbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{3E9FE2EE-58B2-4F47-B46C-B19B65261544}|SoftProgNegocio\\SoftProgNegocio.csproj|solutionrelative:softprognegocio\\citasbl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\softprogpersistencia\\daoimpl\\basedaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\daoimpl\\basedaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2F148-DC01-4A1B-B56F-41C81D3B5BD7}|SoftProgTests\\SoftProgTests.csproj|C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\softprogtests\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{5FD2F148-DC01-4A1B-B56F-41C81D3B5BD7}|SoftProgTests\\SoftProgTests.csproj|solutionrelative:softprogtests\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\softprogpersistencia\\daoimpl\\rrhh\\areadaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\daoimpl\\rrhh\\areadaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2F148-DC01-4A1B-B56F-41C81D3B5BD7}|SoftProgTests\\SoftProgTests.csproj|C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\softprogtests\\rrhh\\areadaotest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5FD2F148-DC01-4A1B-B56F-41C81D3B5BD7}|SoftProgTests\\SoftProgTests.csproj|solutionrelative:softprogtests\\rrhh\\areadaotest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5FD2F148-DC01-4A1B-B56F-41C81D3B5BD7}|SoftProgTests\\SoftProgTests.csproj|C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\softprogtests\\app.runsettings||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{5FD2F148-DC01-4A1B-B56F-41C81D3B5BD7}|SoftProgTests\\SoftProgTests.csproj|solutionrelative:softprogtests\\app.runsettings||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\softprogpersistencia\\daoimpl\\rrhh\\cuentausuarioimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\daoimpl\\rrhh\\cuentausuarioimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "CitasBL.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgNegocio\\CitasBL.cs",
+              "RelativeDocumentMoniker": "SoftProgNegocio\\CitasBL.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgNegocio\\CitasBL.cs*",
+              "RelativeToolTip": "SoftProgNegocio\\CitasBL.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-07T01:18:57.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "App.Config",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgPersistencia\\App.Config",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\App.Config",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgPersistencia\\App.Config",
+              "RelativeToolTip": "SoftProgPersistencia\\App.Config",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-05-05T15:23:17.019Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "BaseDAOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgPersistencia\\DAOImpl\\BaseDAOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAOImpl\\BaseDAOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgPersistencia\\DAOImpl\\BaseDAOImpl.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAOImpl\\BaseDAOImpl.cs",
+              "ViewState": "AgIAABIAAAAAAAAAAAAowBYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T06:40:52.714Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "AreaDAOTest.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgTests\\RRHH\\AreaDAOTest.cs",
+              "RelativeDocumentMoniker": "SoftProgTests\\RRHH\\AreaDAOTest.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgTests\\RRHH\\AreaDAOTest.cs",
+              "RelativeToolTip": "SoftProgTests\\RRHH\\AreaDAOTest.cs",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAqwEgAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T06:38:53.796Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "DBManager.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgDBManager\\DBManager.cs",
+              "RelativeDocumentMoniker": "SoftProgDBManager\\DBManager.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgDBManager\\DBManager.cs",
+              "RelativeToolTip": "SoftProgDBManager\\DBManager.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAUwAsAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T14:55:55.251Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.Config",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgTests\\App.Config",
+              "RelativeDocumentMoniker": "SoftProgTests\\App.Config",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgTests\\App.Config",
+              "RelativeToolTip": "SoftProgTests\\App.Config",
+              "ViewState": "AgIAABMAAAAAAAAAAAAowA0AAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
+              "WhenOpened": "2025-05-05T15:23:07.075Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CuentaUsuarioImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgPersistencia\\DAOImpl\\RRHH\\CuentaUsuarioImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAOImpl\\RRHH\\CuentaUsuarioImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgPersistencia\\DAOImpl\\RRHH\\CuentaUsuarioImpl.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAOImpl\\RRHH\\CuentaUsuarioImpl.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T06:41:51.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AreaDAOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgPersistencia\\DAOImpl\\RRHH\\AreaDAOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAOImpl\\RRHH\\AreaDAOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgPersistencia\\DAOImpl\\RRHH\\AreaDAOImpl.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAOImpl\\RRHH\\AreaDAOImpl.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAwAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-05T06:41:53.173Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "app.runsettings",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgTests\\app.runsettings",
+              "RelativeDocumentMoniker": "SoftProgTests\\app.runsettings",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-11\\SoftProgTests\\app.runsettings",
+              "RelativeToolTip": "SoftProgTests\\app.runsettings",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-05-05T07:07:54.94Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

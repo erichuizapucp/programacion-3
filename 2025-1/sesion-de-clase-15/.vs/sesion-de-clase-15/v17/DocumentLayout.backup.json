@@ -1,0 +1,615 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogweb\\gestionarordenesventa.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\gestionarordenesventa.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprognegocio\\boimpl\\ordenventaboimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|solutionrelative:softprognegocio\\boimpl\\ordenventaboimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogpersistencia\\daoimpl\\logistica\\ventas\\lineaordenventadaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\daoimpl\\logistica\\ventas\\lineaordenventadaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogpersistencia\\daoimpl\\logistica\\ventas\\ordenventadaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\daoimpl\\logistica\\ventas\\ordenventadaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogweb\\gestionarordenesventa.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\gestionarordenesventa.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprognegocio\\boimpl\\clienteboimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|solutionrelative:softprognegocio\\boimpl\\clienteboimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprognegocio\\bo\\iclientebo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|solutionrelative:softprognegocio\\bo\\iclientebo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprognegocio\\bo\\iempleadobo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|solutionrelative:softprognegocio\\bo\\iempleadobo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogpersistencia\\dao\\clientes\\iclientedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\dao\\clientes\\iclientedao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogpersistencia\\daoimpl\\clientes\\clientedaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\daoimpl\\clientes\\clientedaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogpersistencia\\daoimpl\\basedaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\daoimpl\\basedaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogpersistencia\\daoimpl\\rrhh\\empleadodaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\daoimpl\\rrhh\\empleadodaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogpersistencia\\dao\\rrhh\\iempleadodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\dao\\rrhh\\iempleadodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogpersistencia\\dao\\logistica\\ventas\\iordenventadao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\dao\\logistica\\ventas\\iordenventadao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogpersistencia\\dao\\icrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\dao\\icrud.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{C8F75A04-39C5-48F2-9FDF-7135EFCD4214}|SoftProgDBManager\\SoftProgDBManager.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogdbmanager\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{C8F75A04-39C5-48F2-9FDF-7135EFCD4214}|SoftProgDBManager\\SoftProgDBManager.csproj|solutionrelative:softprogdbmanager\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprognegocio\\boimpl\\productoboimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|solutionrelative:softprognegocio\\boimpl\\productoboimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprognegocio\\bo\\iproductobo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|solutionrelative:softprognegocio\\bo\\iproductobo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogpersistencia\\daoimpl\\logistica\\almacen\\productodaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\daoimpl\\logistica\\almacen\\productodaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogpersistencia\\dao\\logistica\\almacen\\iproductodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\dao\\logistica\\almacen\\iproductodao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogmodelo\\logistica\\ventas\\ordenventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|solutionrelative:softprogmodelo\\logistica\\ventas\\ordenventa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogmodelo\\logistica\\almacen\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|solutionrelative:softprogmodelo\\logistica\\almacen\\producto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogmodelo\\clientes\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|solutionrelative:softprogmodelo\\clientes\\cliente.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogweb\\listarempleados.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\listarempleados.aspx.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprognegocio\\boimpl\\empleadoboimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|solutionrelative:softprognegocio\\boimpl\\empleadoboimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogweb\\listarempleados.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\listarempleados.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprognegocio\\bo\\ibasebo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B504BF65-E173-4AAB-8B2E-C2EFD07D154B}|SoftProgNegocio\\SoftProgNegocio.csproj|solutionrelative:softprognegocio\\bo\\ibasebo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogpersistencia\\daoimpl\\rrhh\\areadaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\daoimpl\\rrhh\\areadaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogpersistencia\\daoimpl\\rrhh\\cuentausuariodaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0122E4AC-19C6-4B52-9B00-9E704C8CC341}|SoftProgPersistencia\\SoftProgPersistencia.csproj|solutionrelative:softprogpersistencia\\daoimpl\\rrhh\\cuentausuariodaoimpl.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogweb\\gestionarordenesventa.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\gestionarordenesventa.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogmodelo\\clientes\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|solutionrelative:softprogmodelo\\clientes\\categoria.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogweb\\scripts\\softprog\\gestionarordenesventa.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\scripts\\softprog\\gestionarordenesventa.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogweb\\listarempleados.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\listarempleados.aspx.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogweb\\gestionarempleados.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}",
+      "RelativeMoniker": "D:0:0:{5F49D43A-7A55-4897-A461-3052ABA5BD39}|SoftProgWeb\\SoftProgWeb.csproj|solutionrelative:softprogweb\\gestionarempleados.aspx||{57312C73-6202-49E9-B1E1-40EA1A6DC1F6}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|c:\\users\\eric\\documents\\programacion-3\\2025-1\\sesion-de-clase-15\\softprogmodelo\\rrhh\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{BFA59DD4-DC66-43C2-ADCD-0268919391C0}|SoftProgModelo\\SoftProgModelo.csproj|solutionrelative:softprogmodelo\\rrhh\\empleado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 7,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "EmpleadoDAOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\RRHH\\EmpleadoDAOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAOImpl\\RRHH\\EmpleadoDAOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\RRHH\\EmpleadoDAOImpl.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAOImpl\\RRHH\\EmpleadoDAOImpl.cs",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAQwI8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T00:46:20.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IEmpleadoDAO.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAO\\RRHH\\IEmpleadoDAO.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAO\\RRHH\\IEmpleadoDAO.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAO\\RRHH\\IEmpleadoDAO.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAO\\RRHH\\IEmpleadoDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:47:00.918Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IClienteDAO.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAO\\Clientes\\IClienteDAO.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAO\\Clientes\\IClienteDAO.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAO\\Clientes\\IClienteDAO.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAO\\Clientes\\IClienteDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:03:40.711Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ClienteDAOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\Clientes\\ClienteDAOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAOImpl\\Clientes\\ClienteDAOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\Clientes\\ClienteDAOImpl.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAOImpl\\Clientes\\ClienteDAOImpl.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAIAzwA8AAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:31:09.277Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "IEmpleadoBO.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BO\\IEmpleadoBO.cs",
+              "RelativeDocumentMoniker": "SoftProgNegocio\\BO\\IEmpleadoBO.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BO\\IEmpleadoBO.cs",
+              "RelativeToolTip": "SoftProgNegocio\\BO\\IEmpleadoBO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAkAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T00:31:36.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IClienteBO.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BO\\IClienteBO.cs",
+              "RelativeDocumentMoniker": "SoftProgNegocio\\BO\\IClienteBO.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BO\\IClienteBO.cs",
+              "RelativeToolTip": "SoftProgNegocio\\BO\\IClienteBO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:05:51.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ClienteBOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BOImpl\\ClienteBOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgNegocio\\BOImpl\\ClienteBOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BOImpl\\ClienteBOImpl.cs",
+              "RelativeToolTip": "SoftProgNegocio\\BOImpl\\ClienteBOImpl.cs",
+              "ViewState": "AgIAABwAAAAAAAAAAAAzwCkAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:06:00.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GestionarOrdenesVenta.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\GestionarOrdenesVenta.aspx.cs",
+              "RelativeDocumentMoniker": "SoftProgWeb\\GestionarOrdenesVenta.aspx.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\GestionarOrdenesVenta.aspx.cs",
+              "RelativeToolTip": "SoftProgWeb\\GestionarOrdenesVenta.aspx.cs",
+              "ViewState": "AgIAAE8AAAAAAAAAAAAswF4AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T00:36:06.603Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrdenVentaBOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BOImpl\\OrdenVentaBOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgNegocio\\BOImpl\\OrdenVentaBOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BOImpl\\OrdenVentaBOImpl.cs",
+              "RelativeToolTip": "SoftProgNegocio\\BOImpl\\OrdenVentaBOImpl.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAuwCYAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:08:34.473Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "LineaOrdenVentaDAOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\Logistica\\Ventas\\LineaOrdenVentaDAOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAOImpl\\Logistica\\Ventas\\LineaOrdenVentaDAOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\Logistica\\Ventas\\LineaOrdenVentaDAOImpl.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAOImpl\\Logistica\\Ventas\\LineaOrdenVentaDAOImpl.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:29:46.161Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrdenVentaDAOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\Logistica\\Ventas\\OrdenVentaDAOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAOImpl\\Logistica\\Ventas\\OrdenVentaDAOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\Logistica\\Ventas\\OrdenVentaDAOImpl.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAOImpl\\Logistica\\Ventas\\OrdenVentaDAOImpl.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABYAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:05:39.144Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "GestionarOrdenesVenta.aspx",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\GestionarOrdenesVenta.aspx",
+              "RelativeDocumentMoniker": "SoftProgWeb\\GestionarOrdenesVenta.aspx",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\GestionarOrdenesVenta.aspx",
+              "RelativeToolTip": "SoftProgWeb\\GestionarOrdenesVenta.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-05-18T00:35:07.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "BaseDAOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\BaseDAOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAOImpl\\BaseDAOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\BaseDAOImpl.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAOImpl\\BaseDAOImpl.cs",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAUwGkAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:16:33.539Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "IOrdenVentaDAO.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAO\\Logistica\\Ventas\\IOrdenVentaDAO.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAO\\Logistica\\Ventas\\IOrdenVentaDAO.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAO\\Logistica\\Ventas\\IOrdenVentaDAO.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAO\\Logistica\\Ventas\\IOrdenVentaDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:22:24.664Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "DBManager.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgDBManager\\DBManager.cs",
+              "RelativeDocumentMoniker": "SoftProgDBManager\\DBManager.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgDBManager\\DBManager.cs",
+              "RelativeToolTip": "SoftProgDBManager\\DBManager.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAqwCEAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:18:42.195Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "ProductoBOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BOImpl\\ProductoBOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgNegocio\\BOImpl\\ProductoBOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BOImpl\\ProductoBOImpl.cs",
+              "RelativeToolTip": "SoftProgNegocio\\BOImpl\\ProductoBOImpl.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABMAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:06:18.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "IProductoBO.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BO\\IProductoBO.cs",
+              "RelativeDocumentMoniker": "SoftProgNegocio\\BO\\IProductoBO.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BO\\IProductoBO.cs",
+              "RelativeToolTip": "SoftProgNegocio\\BO\\IProductoBO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:05:54.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "IProductoDAO.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAO\\Logistica\\Almacen\\IProductoDAO.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAO\\Logistica\\Almacen\\IProductoDAO.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAO\\Logistica\\Almacen\\IProductoDAO.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAO\\Logistica\\Almacen\\IProductoDAO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:03:36.153Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "gestionarOrdenesVenta.js",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\Scripts\\softprog\\gestionarOrdenesVenta.js",
+              "RelativeDocumentMoniker": "SoftProgWeb\\Scripts\\softprog\\gestionarOrdenesVenta.js",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\Scripts\\softprog\\gestionarOrdenesVenta.js",
+              "RelativeToolTip": "SoftProgWeb\\Scripts\\softprog\\gestionarOrdenesVenta.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-18T00:51:22.605Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "ICrud.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAO\\ICrud.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAO\\ICrud.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAO\\ICrud.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAO\\ICrud.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAYAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:21:21.175Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "ProductoDAOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\Logistica\\Almacen\\ProductoDAOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAOImpl\\Logistica\\Almacen\\ProductoDAOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\Logistica\\Almacen\\ProductoDAOImpl.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAOImpl\\Logistica\\Almacen\\ProductoDAOImpl.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACAAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:28:58.152Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "IBaseBO.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BO\\IBaseBO.cs",
+              "RelativeDocumentMoniker": "SoftProgNegocio\\BO\\IBaseBO.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BO\\IBaseBO.cs",
+              "RelativeToolTip": "SoftProgNegocio\\BO\\IBaseBO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T00:31:23.124Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Cliente.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgModelo\\Clientes\\Cliente.cs",
+              "RelativeDocumentMoniker": "SoftProgModelo\\Clientes\\Cliente.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgModelo\\Clientes\\Cliente.cs",
+              "RelativeToolTip": "SoftProgModelo\\Clientes\\Cliente.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:00:29.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Producto.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgModelo\\Logistica\\Almacen\\Producto.cs",
+              "RelativeDocumentMoniker": "SoftProgModelo\\Logistica\\Almacen\\Producto.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgModelo\\Logistica\\Almacen\\Producto.cs",
+              "RelativeToolTip": "SoftProgModelo\\Logistica\\Almacen\\Producto.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:00:57.603Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "OrdenVenta.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgModelo\\Logistica\\Ventas\\OrdenVenta.cs",
+              "RelativeDocumentMoniker": "SoftProgModelo\\Logistica\\Ventas\\OrdenVenta.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgModelo\\Logistica\\Ventas\\OrdenVenta.cs",
+              "RelativeToolTip": "SoftProgModelo\\Logistica\\Ventas\\OrdenVenta.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:01:13.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "ListarEmpleados.aspx",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\ListarEmpleados.aspx",
+              "RelativeDocumentMoniker": "SoftProgWeb\\ListarEmpleados.aspx",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\ListarEmpleados.aspx",
+              "RelativeToolTip": "SoftProgWeb\\ListarEmpleados.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-05-18T00:30:14.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "EmpleadoBOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BOImpl\\EmpleadoBOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgNegocio\\BOImpl\\EmpleadoBOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgNegocio\\BOImpl\\EmpleadoBOImpl.cs",
+              "RelativeToolTip": "SoftProgNegocio\\BOImpl\\EmpleadoBOImpl.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAIAzwBQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:37:40.192Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ListarEmpleados.aspx.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\ListarEmpleados.aspx.cs",
+              "RelativeDocumentMoniker": "SoftProgWeb\\ListarEmpleados.aspx.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\ListarEmpleados.aspx.cs",
+              "RelativeToolTip": "SoftProgWeb\\ListarEmpleados.aspx.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAswCsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T00:30:55.065Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "AreaDAOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\RRHH\\AreaDAOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAOImpl\\RRHH\\AreaDAOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\RRHH\\AreaDAOImpl.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAOImpl\\RRHH\\AreaDAOImpl.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAABvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:24:50.867Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "CuentaUsuarioDAOImpl.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\RRHH\\CuentaUsuarioDAOImpl.cs",
+              "RelativeDocumentMoniker": "SoftProgPersistencia\\DAOImpl\\RRHH\\CuentaUsuarioDAOImpl.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgPersistencia\\DAOImpl\\RRHH\\CuentaUsuarioDAOImpl.cs",
+              "RelativeToolTip": "SoftProgPersistencia\\DAOImpl\\RRHH\\CuentaUsuarioDAOImpl.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAB0AAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T01:26:26.55Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "Categoria.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgModelo\\Clientes\\Categoria.cs",
+              "RelativeDocumentMoniker": "SoftProgModelo\\Clientes\\Categoria.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgModelo\\Clientes\\Categoria.cs",
+              "RelativeToolTip": "SoftProgModelo\\Clientes\\Categoria.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T00:54:08.87Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "GestionarOrdenesVenta.aspx.designer.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\GestionarOrdenesVenta.aspx.designer.cs",
+              "RelativeDocumentMoniker": "SoftProgWeb\\GestionarOrdenesVenta.aspx.designer.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\GestionarOrdenesVenta.aspx.designer.cs",
+              "RelativeToolTip": "SoftProgWeb\\GestionarOrdenesVenta.aspx.designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T00:36:13.424Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "ListarEmpleados.aspx.designer.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\ListarEmpleados.aspx.designer.cs",
+              "RelativeDocumentMoniker": "SoftProgWeb\\ListarEmpleados.aspx.designer.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\ListarEmpleados.aspx.designer.cs",
+              "RelativeToolTip": "SoftProgWeb\\ListarEmpleados.aspx.designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T00:36:03.283Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "Empleado.cs",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgModelo\\RRHH\\Empleado.cs",
+              "RelativeDocumentMoniker": "SoftProgModelo\\RRHH\\Empleado.cs",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgModelo\\RRHH\\Empleado.cs",
+              "RelativeToolTip": "SoftProgModelo\\RRHH\\Empleado.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-18T00:33:08.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "GestionarEmpleados.aspx",
+              "DocumentMoniker": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\GestionarEmpleados.aspx",
+              "RelativeDocumentMoniker": "SoftProgWeb\\GestionarEmpleados.aspx",
+              "ToolTip": "C:\\Users\\eric\\Documents\\programacion-3\\2025-1\\sesion-de-clase-15\\SoftProgWeb\\GestionarEmpleados.aspx",
+              "RelativeToolTip": "SoftProgWeb\\GestionarEmpleados.aspx",
+              "LogicalView": "7651a703-06e5-11d1-8ebd-00a0c90f26ea",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000195|",
+              "WhenOpened": "2025-05-18T00:30:25.124Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
