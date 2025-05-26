@@ -1,5 +1,0 @@
-<Project>
-  <PropertyGroup>
-    <MSTestAnalysisMode Condition="'$(MSTestAnalysisMode)' == ''">Default</MSTestAnalysisMode>
-  </PropertyGroup>
-</Project>

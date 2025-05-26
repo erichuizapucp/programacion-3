@@ -113,7 +113,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.Config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SoftProgDBManager\SoftProgDBManager.csproj">
@@ -125,6 +124,8 @@
       <Name>SoftProgModelo</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
