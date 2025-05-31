@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://services.softprog.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="AreaWS" targetNamespace="http://services.softprog.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/SoftProgWS/AreaWS?xsd=1" namespace="http://services.softprog.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="obtener">
+    <part name="parameters" element="tns:obtener" />
+  </message>
+  <message name="obtenerResponse">
+    <part name="parameters" element="tns:obtenerResponse" />
+  </message>
+  <message name="eliminar">
+    <part name="parameters" element="tns:eliminar" />
+  </message>
+  <message name="eliminarResponse">
+    <part name="parameters" element="tns:eliminarResponse" />
+  </message>
+  <message name="guardar">
+    <part name="parameters" element="tns:guardar" />
+  </message>
+  <message name="guardarResponse">
+    <part name="parameters" element="tns:guardarResponse" />
+  </message>
+  <message name="listar">
+    <part name="parameters" element="tns:listar" />
+  </message>
+  <message name="listarResponse">
+    <part name="parameters" element="tns:listarResponse" />
+  </message>
+  <portType name="AreaWS">
+    <operation name="obtener">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/obtenerRequest" message="tns:obtener" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/obtenerResponse" message="tns:obtenerResponse" />
+    </operation>
+    <operation name="eliminar">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/eliminarRequest" message="tns:eliminar" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/eliminarResponse" message="tns:eliminarResponse" />
+    </operation>
+    <operation name="guardar">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/guardarRequest" message="tns:guardar" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/guardarResponse" message="tns:guardarResponse" />
+    </operation>
+    <operation name="listar">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/listarRequest" message="tns:listar" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/listarResponse" message="tns:listarResponse" />
+    </operation>
+  </portType>
+  <binding name="AreaWSPortBinding" type="tns:AreaWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="obtener">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminar">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="guardar">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listar">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="AreaWS">
+    <port name="AreaWSPort" binding="tns:AreaWSPortBinding">
+      <soap:address location="http://localhost:8080/SoftProgWS/AreaWS" />
+    </port>
+  </service>
+</definitions>

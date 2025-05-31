@@ -1,0 +1,60 @@
+use prog3;
+
+DROP PROCEDURE IF EXISTS insertarOrdenVenta;
+DROP PROCEDURE IF EXISTS modificarOrdenVenta;
+DROP PROCEDURE IF EXISTS eliminarOrdenVenta;
+DROP PROCEDURE IF EXISTS buscarOrdenVentaPorId;
+DROP PROCEDURE IF EXISTS listarOrdenesVenta;
+
+DELIMITER //
+CREATE PROCEDURE insertarOrdenVenta(
+    IN p_idCliente INT, 
+    IN p_idEmpleado INT, 
+    IN p_total DECIMAL(5, 2),
+    IN p_activo BOOLEAN, 
+    OUT p_id INT)
+BEGIN
+    INSERT INTO ORDENVENTA (
+		idCliente, 
+		idEmpleado, 
+		total, 
+        activo) 
+    VALUES (
+		p_idCliente, 
+		p_idEmpleado, 
+		p_total, 
+		p_activo);
+        
+    SET p_id = LAST_INSERT_ID();
+END //
+
+CREATE PROCEDURE modificarOrdenVenta(
+	IN p_idCliente INT, 
+    IN p_idEmpleado INT, 
+    IN p_total DECIMAL(5, 2),
+    IN p_activo BOOLEAN, 
+    IN p_id INT)
+BEGIN
+	UPDATE ORDENVENTA
+    SET 
+		idCliente = p_idCliente, 
+		idEmpleado = p_idEmpleado, 
+		total = p_total,
+        activo = p_activo
+    WHERE id = p_id;
+END //
+
+CREATE PROCEDURE eliminarOrdenVenta(IN p_id INT)
+BEGIN
+	DELETE FROM ORDENVENTA WHERE id = p_id;
+END //
+
+CREATE PROCEDURE buscarOrdenVentaPorId(IN p_id INT)
+BEGIN
+	SELECT * FROM ORDENVENTA WHERE id = p_id;
+END //
+
+CREATE PROCEDURE listarOrdenesVenta()
+BEGIN
+	SELECT * FROM ORDENVENTA;
+END //
