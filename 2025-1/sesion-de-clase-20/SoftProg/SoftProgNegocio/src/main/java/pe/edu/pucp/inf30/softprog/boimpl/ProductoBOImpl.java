@@ -1,10 +1,10 @@
 package pe.edu.pucp.inf30.softprog.boimpl;
 
 import java.util.List;
-import pe.edu.pucp.inf30.softprog.bo.Estado;
 import pe.edu.pucp.inf30.softprog.bo.IProductoBO;
 import pe.edu.pucp.inf30.softprog.dao.logistica.almacen.IProductoDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.logistica.almacen.ProductoDAOImpl;
+import pe.edu.pucp.inf30.softprog.model.Estado;
 import pe.edu.pucp.inf30.softprog.model.logistica.almacen.Producto;
 
 /**

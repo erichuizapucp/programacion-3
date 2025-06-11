@@ -61,8 +61,8 @@ namespace PUCP.Edu.Pe.SoftProg.Web {
                 empleado.genero = 'M';
             else
                 empleado.genero = 'F';
-            empleado.fechaNacimiento =
-                DateTime.Parse(dtpFechaNacimiento.Value);
+            empleado.fechaNacimiento = DateTime.Parse(dtpFechaNacimiento.Value);
+            empleado.fechaNacimientoSpecified = true;
             empleado.cargo = txtCargo.Text;
             empleado.sueldo = Double.Parse(txtSueldo.Text);
 

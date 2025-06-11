@@ -1,10 +1,10 @@
 package pe.edu.pucp.inf30.softprog.boimpl;
 
 import java.util.List;
-import pe.edu.pucp.inf30.softprog.bo.Estado;
 import pe.edu.pucp.inf30.softprog.bo.IClienteBO;
 import pe.edu.pucp.inf30.softprog.dao.clientes.IClienteDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.clientes.ClienteDAOImpl;
+import pe.edu.pucp.inf30.softprog.model.Estado;
 import pe.edu.pucp.inf30.softprog.model.clientes.Cliente;
 
 /**

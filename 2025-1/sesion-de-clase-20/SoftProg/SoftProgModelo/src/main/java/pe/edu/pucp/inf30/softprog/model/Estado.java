@@ -1,4 +1,4 @@
-package pe.edu.pucp.inf30.softprog.bo;
+package pe.edu.pucp.inf30.softprog.model;
 
 /**
  *

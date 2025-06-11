@@ -5,11 +5,14 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftProgWS/OrdenVentaWS?xsd=1" namespace="http://services.softprog.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="listarOrdenesVenta">
-    <part name="parameters" element="tns:listarOrdenesVenta" />
+  <message name="guardarOrdenVenta">
+    <part name="parameters" element="tns:guardarOrdenVenta" />
   </message>
-  <message name="listarOrdenesVentaResponse">
-    <part name="parameters" element="tns:listarOrdenesVentaResponse" />
+  <message name="guardarOrdenVentaResponse">
+    <part name="parameters" element="tns:guardarOrdenVentaResponse" />
+  </message>
+  <message name="Exception">
+    <part name="fault" element="tns:Exception" />
   </message>
   <message name="eliminarOrdenVenta">
     <part name="parameters" element="tns:eliminarOrdenVenta" />
@@ -23,33 +26,37 @@
   <message name="obtenerOrdenVentaResponse">
     <part name="parameters" element="tns:obtenerOrdenVentaResponse" />
   </message>
-  <message name="guardarOrdenVenta">
-    <part name="parameters" element="tns:guardarOrdenVenta" />
+  <message name="listarOrdenesVenta">
+    <part name="parameters" element="tns:listarOrdenesVenta" />
   </message>
-  <message name="guardarOrdenVentaResponse">
-    <part name="parameters" element="tns:guardarOrdenVentaResponse" />
+  <message name="listarOrdenesVentaResponse">
+    <part name="parameters" element="tns:listarOrdenesVentaResponse" />
   </message>
   <portType name="OrdenVentaWS">
-    <operation name="listarOrdenesVenta">
-      <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaRequest" message="tns:listarOrdenesVenta" />
-      <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaResponse" message="tns:listarOrdenesVentaResponse" />
+    <operation name="guardarOrdenVenta">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaRequest" message="tns:guardarOrdenVenta" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaResponse" message="tns:guardarOrdenVentaResponse" />
+      <fault wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVenta/Fault/Exception" name="Exception" message="tns:Exception" />
     </operation>
     <operation name="eliminarOrdenVenta">
       <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/eliminarOrdenVentaRequest" message="tns:eliminarOrdenVenta" />
       <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/eliminarOrdenVentaResponse" message="tns:eliminarOrdenVentaResponse" />
+      <fault wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/eliminarOrdenVenta/Fault/Exception" name="Exception" message="tns:Exception" />
     </operation>
     <operation name="obtenerOrdenVenta">
       <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVentaRequest" message="tns:obtenerOrdenVenta" />
       <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVentaResponse" message="tns:obtenerOrdenVentaResponse" />
+      <fault wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVenta/Fault/Exception" name="Exception" message="tns:Exception" />
     </operation>
-    <operation name="guardarOrdenVenta">
-      <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaRequest" message="tns:guardarOrdenVenta" />
-      <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaResponse" message="tns:guardarOrdenVentaResponse" />
+    <operation name="listarOrdenesVenta">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaRequest" message="tns:listarOrdenesVenta" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaResponse" message="tns:listarOrdenesVentaResponse" />
+      <fault wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVenta/Fault/Exception" name="Exception" message="tns:Exception" />
     </operation>
   </portType>
   <binding name="OrdenVentaWSPortBinding" type="tns:OrdenVentaWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="listarOrdenesVenta">
+    <operation name="guardarOrdenVenta">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -57,6 +64,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
     </operation>
     <operation name="eliminarOrdenVenta">
       <soap:operation soapAction="" />
@@ -66,6 +76,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
     </operation>
     <operation name="obtenerOrdenVenta">
       <soap:operation soapAction="" />
@@ -75,8 +88,11 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
     </operation>
-    <operation name="guardarOrdenVenta">
+    <operation name="listarOrdenesVenta">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -84,6 +100,9 @@
       <output>
         <soap:body use="literal" />
       </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
     </operation>
   </binding>
   <service name="OrdenVentaWS">

@@ -1,10 +1,10 @@
 package pe.edu.pucp.inf30.softprog.boimpl;
 
 import java.util.List;
-import pe.edu.pucp.inf30.softprog.bo.Estado;
 import pe.edu.pucp.inf30.softprog.bo.ICuentaUsuarioBO;
 import pe.edu.pucp.inf30.softprog.dao.rrhh.ICuentaUsuarioDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.rrhh.CuentaUsuarioDAOImpl;
+import pe.edu.pucp.inf30.softprog.model.Estado;
 import pe.edu.pucp.inf30.softprog.model.rrhh.CuentaUsuario;
 
 /**

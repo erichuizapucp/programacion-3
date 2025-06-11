@@ -95,7 +95,7 @@ public class EmpleadoDAOImpl extends BaseDAOImpl<Empleado> implements IEmpleadoD
         empleado.setNombre(rs.getString("nombre"));
         empleado.setApellidoPaterno(rs.getString("apellidoPaterno"));
         empleado.setGenero(rs.getString("genero").charAt(0));
-        empleado.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+        empleado.setFechaNacimiento(rs.getTimestamp("fechaNacimiento"));
         empleado.setCargo(rs.getString("cargo"));
         empleado.setSueldo(rs.getDouble("sueldo"));
         empleado.setActivo(rs.getBoolean("activo"));

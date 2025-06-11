@@ -11,8 +11,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.util.List;
 import java.util.ResourceBundle;
-import pe.edu.pucp.inf30.softprog.bo.Estado;
-
+import pe.edu.pucp.inf30.softprog.model.Estado;
 import pe.edu.pucp.inf30.softprog.model.rrhh.Area;
 
 /**
@@ -26,7 +25,7 @@ public class AreaWS {
     private final ResourceBundle config;
     private final String urlBase;
     private final HttpClient client = HttpClient.newHttpClient();
-    private final String AREA_RESOURCE = "areas";
+    private final String NOMBRE_RECURSO = "areas";
     
     public AreaWS() {
         this.config = ResourceBundle.getBundle("app");
@@ -35,7 +34,7 @@ public class AreaWS {
     
     @WebMethod(operationName = "listarAreas")
     public List<Area> listarAreas() throws Exception {
-        String url = this.urlBase + "/" + this.AREA_RESOURCE;
+        String url = this.urlBase + "/" + this.NOMBRE_RECURSO;
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .GET()
@@ -51,7 +50,7 @@ public class AreaWS {
     
     @WebMethod(operationName = "obtenerArea")
     public Area obtenerArea(@WebParam(name = "id") int id) throws Exception {
-        String url = this.urlBase + "/" + this.AREA_RESOURCE + "/" + id;
+        String url = this.urlBase + "/" + this.NOMBRE_RECURSO + "/" + id;
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .GET()
@@ -67,7 +66,7 @@ public class AreaWS {
     
     @WebMethod(operationName = "eliminarArea")
     public void eliminarArea(@WebParam(name = "id") int id) throws Exception {
-        String url = this.urlBase + "/" + this.AREA_RESOURCE + "/" + id;
+        String url = this.urlBase + "/" + this.NOMBRE_RECURSO + "/" + id;
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
                 .DELETE()
@@ -84,14 +83,14 @@ public class AreaWS {
         HttpRequest request;
 
         if (estado == Estado.Nuevo) {
-            url = this.urlBase + "/" + this.AREA_RESOURCE;
+            url = this.urlBase + "/" + this.NOMBRE_RECURSO;
             request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
                     .header("Content-Type", "application/json")
                     .POST(HttpRequest.BodyPublishers.ofString(json))
                     .build();
         } else {
-            url = this.urlBase + "/" + this.AREA_RESOURCE + "/" + area.getId();
+            url = this.urlBase + "/" + this.NOMBRE_RECURSO + "/" + area.getId();
             request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
                     .header("Content-Type", "application/json")

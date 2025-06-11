@@ -44,6 +44,11 @@
       <artifactId>junit-jupiter-params</artifactId>
       <scope>test</scope>
     </dependency>
+    <dependency>
+        <groupId>jakarta.json.bind</groupId>
+        <artifactId>jakarta.json.bind-api</artifactId>
+        <version>3.0.0</version> <!-- or latest stable -->
+    </dependency>
   </dependencies>
 
   <build>

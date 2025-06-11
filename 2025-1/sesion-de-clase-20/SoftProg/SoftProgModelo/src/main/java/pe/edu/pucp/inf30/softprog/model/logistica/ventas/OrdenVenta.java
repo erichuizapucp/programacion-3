@@ -1,5 +1,6 @@
 package pe.edu.pucp.inf30.softprog.model.logistica.ventas;
 
+import jakarta.json.bind.annotation.JsonbDateFormat;
 import java.util.Date;
 import java.util.List;
 import pe.edu.pucp.inf30.softprog.model.ModeloBase;
@@ -15,6 +16,8 @@ public class OrdenVenta extends ModeloBase {
     private Empleado empleado;
     private List<LineaOrdenVenta> lineasOrdenVenta;
     private double total;
+    
+    @JsonbDateFormat("yyyy-MM-dd'T'HH:mm:ss")
     private Date fechaHora;
     
     public Cliente getCliente() {

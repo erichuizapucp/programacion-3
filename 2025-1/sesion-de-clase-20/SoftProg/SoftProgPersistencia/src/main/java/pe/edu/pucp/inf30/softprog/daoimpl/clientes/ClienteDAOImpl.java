@@ -81,7 +81,7 @@ public class ClienteDAOImpl extends BaseDAOImpl<Cliente> implements IClienteDAO 
         cliente.setNombre(rs.getString("nombre"));
         cliente.setApellidoPaterno(rs.getString("apellidoPaterno"));
         cliente.setGenero(rs.getString("genero").charAt(0));
-        cliente.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+        cliente.setFechaNacimiento(rs.getTimestamp("fechaNacimiento"));
         cliente.setCategoria(Categoria.valueOf(rs.getString("categoria")));
         cliente.setActivo(rs.getBoolean("activo"));
         return cliente;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://services.softprog.pucp.edu.pe/" targetNamespace="http://services.softprog.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Exception" type="tns:Exception" />
   <xs:element name="eliminarOrdenVenta" type="tns:eliminarOrdenVenta" />
   <xs:element name="eliminarOrdenVentaResponse" type="tns:eliminarOrdenVentaResponse" />
   <xs:element name="guardarOrdenVenta" type="tns:guardarOrdenVenta" />
@@ -114,12 +115,9 @@
       </xs:extension>
     </xs:complexContent>
   </xs:complexType>
-  <xs:complexType name="listarOrdenesVenta">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="listarOrdenesVentaResponse">
+  <xs:complexType name="Exception">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVenta" />
+      <xs:element minOccurs="0" name="message" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="guardarOrdenVenta">
@@ -130,6 +128,14 @@
   </xs:complexType>
   <xs:complexType name="guardarOrdenVentaResponse">
     <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarOrdenesVenta">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarOrdenesVentaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVenta" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="eliminarOrdenVenta">
     <xs:sequence>

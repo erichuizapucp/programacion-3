@@ -74,6 +74,7 @@ namespace PUCP.Edu.Pe.SoftProg.Web {
         protected void lbAgregarLOV_Click(object sender, EventArgs e) {
             ordenVenta ordenVenta = new ordenVenta();
             ordenVenta.fechaHora = DateTime.Now;
+            ordenVenta.fechaHoraSpecified = true;
 
             cliente cliente = this.clienteWS.buscarClientePorDni(txtDNICliente.Text);
             ordenVenta.cliente = cliente;

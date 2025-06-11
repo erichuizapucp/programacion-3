@@ -1,18 +1,14 @@
 package pe.edu.pucp.inf30.softprog.boimpl;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.List;
-import pe.edu.pucp.inf30.softprog.bo.Estado;
 import pe.edu.pucp.inf30.softprog.bo.IOrdenVentaBO;
 import pe.edu.pucp.inf30.softprog.bo.transaccion.TransaccionalBO;
 import pe.edu.pucp.inf30.softprog.bo.transaccion.comando.ComandoGuardarOrdenVenta;
-import pe.edu.pucp.inf30.softprog.config.DBManager;
 import pe.edu.pucp.inf30.softprog.dao.logistica.ventas.ILineaOrdenVentaDAO;
 import pe.edu.pucp.inf30.softprog.dao.logistica.ventas.IOrdenVentaDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.logistica.ventas.LineaOrdenVentaDAOImpl;
 import pe.edu.pucp.inf30.softprog.daoimpl.logistica.ventas.OrdenVentaDAOImpl;
+import pe.edu.pucp.inf30.softprog.model.Estado;
 import pe.edu.pucp.inf30.softprog.model.logistica.ventas.OrdenVenta;
 
 /**

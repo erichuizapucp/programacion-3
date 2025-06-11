@@ -9,14 +9,12 @@
   <xs:element name="listarAreasResponse" type="tns:listarAreasResponse" />
   <xs:element name="obtenerArea" type="tns:obtenerArea" />
   <xs:element name="obtenerAreaResponse" type="tns:obtenerAreaResponse" />
-  <xs:complexType name="obtenerArea">
-    <xs:sequence>
-      <xs:element name="id" type="xs:int" />
-    </xs:sequence>
+  <xs:complexType name="listarAreas">
+    <xs:sequence />
   </xs:complexType>
-  <xs:complexType name="obtenerAreaResponse">
+  <xs:complexType name="listarAreasResponse">
     <xs:sequence>
-      <xs:element minOccurs="0" name="return" type="tns:area" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:area" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="area">
@@ -39,12 +37,14 @@
       <xs:element minOccurs="0" name="message" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:complexType name="listarAreas">
-    <xs:sequence />
-  </xs:complexType>
-  <xs:complexType name="listarAreasResponse">
+  <xs:complexType name="obtenerArea">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:area" />
+      <xs:element name="id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerAreaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:area" />
     </xs:sequence>
   </xs:complexType>
   <xs:complexType name="eliminarArea">

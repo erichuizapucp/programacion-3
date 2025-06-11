@@ -1,6 +1,7 @@
 package pe.edu.pucp.inf30.softprog.bo;
 
 import java.util.List;
+import pe.edu.pucp.inf30.softprog.model.Estado;
 
 /**
  *

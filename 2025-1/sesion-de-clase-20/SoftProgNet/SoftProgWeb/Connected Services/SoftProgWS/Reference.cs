@@ -602,6 +602,8 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ClienteWS/buscarClientePorDniRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ClienteWS/buscarClientePorDniResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/ClienteWS/buscarClientePorDni/Fault/Exceptio" +
+            "n", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -612,6 +614,7 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ClienteWS/listarClientesRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ClienteWS/listarClientesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/ClienteWS/listarClientes/Fault/Exception", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -620,8 +623,19 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ClienteWS/listarClientesRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ClienteWS/listarClientesResponse")]
         System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarClientesResponse> listarClientesAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarClientesRequest request);
         
+        // CODEGEN: Parameter 'cliente' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ClienteWS/guardarClienteRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ClienteWS/guardarClienteResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/ClienteWS/guardarCliente/Fault/Exception", Name="Exception")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteResponse guardarCliente(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ClienteWS/guardarClienteRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ClienteWS/guardarClienteResponse")]
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteResponse> guardarClienteAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest request);
+        
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ClienteWS/obtenerClienteRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ClienteWS/obtenerClienteResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/ClienteWS/obtenerCliente/Fault/Exception", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -632,21 +646,13 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         
         // CODEGEN: Parameter 'id' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ClienteWS/eliminarClienteRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ClienteWS/eliminarClienteResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/ClienteWS/eliminarCliente/Fault/Exception", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
         PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarClienteResponse eliminarCliente(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarClienteRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ClienteWS/eliminarClienteRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ClienteWS/eliminarClienteResponse")]
         System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarClienteResponse> eliminarClienteAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarClienteRequest request);
-        
-        // CODEGEN: Parameter 'cliente' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ClienteWS/guardarClienteRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ClienteWS/guardarClienteResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteResponse guardarCliente(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ClienteWS/guardarClienteRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ClienteWS/guardarClienteResponse")]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteResponse> guardarClienteAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -713,6 +719,52 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         }
     }
     
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://services.softprog.pucp.edu.pe/")]
+    public enum estado {
+        
+        /// <remarks/>
+        Nuevo,
+        
+        /// <remarks/>
+        Modificar,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarCliente", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class guardarClienteRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.cliente cliente;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado;
+        
+        public guardarClienteRequest() {
+        }
+        
+        public guardarClienteRequest(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.cliente cliente, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
+            this.cliente = cliente;
+            this.estado = estado;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarClienteResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class guardarClienteResponse {
+        
+        public guardarClienteResponse() {
+        }
+    }
+    
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -774,52 +826,6 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
     public partial class eliminarClienteResponse {
         
         public eliminarClienteResponse() {
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9032.0")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://services.softprog.pucp.edu.pe/")]
-    public enum estado {
-        
-        /// <remarks/>
-        Nuevo,
-        
-        /// <remarks/>
-        Modificar,
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarCliente", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class guardarClienteRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.cliente cliente;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado;
-        
-        public guardarClienteRequest() {
-        }
-        
-        public guardarClienteRequest(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.cliente cliente, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
-            this.cliente = cliente;
-            this.estado = estado;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarClienteResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class guardarClienteResponse {
-        
-        public guardarClienteResponse() {
         }
     }
     
@@ -895,6 +901,30 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ClienteWS.guardarCliente(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest request) {
+            return base.Channel.guardarCliente(request);
+        }
+        
+        public void guardarCliente(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.cliente cliente, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest();
+            inValue.cliente = cliente;
+            inValue.estado = estado;
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ClienteWS)(this)).guardarCliente(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ClienteWS.guardarClienteAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest request) {
+            return base.Channel.guardarClienteAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteResponse> guardarClienteAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.cliente cliente, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest();
+            inValue.cliente = cliente;
+            inValue.estado = estado;
+            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ClienteWS)(this)).guardarClienteAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerClienteResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ClienteWS.obtenerCliente(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerClienteRequest request) {
             return base.Channel.obtenerCliente(request);
         }
@@ -938,30 +968,6 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
             inValue.id = id;
             return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ClienteWS)(this)).eliminarClienteAsync(inValue);
         }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ClienteWS.guardarCliente(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest request) {
-            return base.Channel.guardarCliente(request);
-        }
-        
-        public void guardarCliente(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.cliente cliente, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest();
-            inValue.cliente = cliente;
-            inValue.estado = estado;
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ClienteWS)(this)).guardarCliente(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ClienteWS.guardarClienteAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest request) {
-            return base.Channel.guardarClienteAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteResponse> guardarClienteAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.cliente cliente, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarClienteRequest();
-            inValue.cliente = cliente;
-            inValue.estado = estado;
-            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ClienteWS)(this)).guardarClienteAsync(inValue);
-        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -970,6 +976,8 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/buscarEmpleadoPorDniRequest", ReplyAction="http://services.softprog.pucp.edu.pe/EmpleadoWS/buscarEmpleadoPorDniResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/buscarEmpleadoPorDni/Fault/Except" +
+            "ion", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -980,6 +988,7 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/obtenerEmpleaedoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/EmpleadoWS/obtenerEmpleaedoResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/obtenerEmpleaedo/Fault/Exception", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -988,26 +997,9 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/obtenerEmpleaedoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/EmpleadoWS/obtenerEmpleaedoResponse")]
         System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerEmpleaedoResponse> obtenerEmpleaedoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerEmpleaedoRequest request);
         
-        // CODEGEN: Parameter 'empleado' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/guardarEmpleadoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/EmpleadoWS/guardarEmpleadoResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoResponse guardarEmpleado(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/guardarEmpleadoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/EmpleadoWS/guardarEmpleadoResponse")]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoResponse> guardarEmpleadoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest request);
-        
-        // CODEGEN: Parameter 'id' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarEmpleadoResponse eliminarEmpleado(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarEmpleadoRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoResponse")]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarEmpleadoResponse> eliminarEmpleadoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarEmpleadoRequest request);
-        
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/listarEmpleadosRequest", ReplyAction="http://services.softprog.pucp.edu.pe/EmpleadoWS/listarEmpleadosResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/listarEmpleados/Fault/Exception", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -1015,6 +1007,26 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/listarEmpleadosRequest", ReplyAction="http://services.softprog.pucp.edu.pe/EmpleadoWS/listarEmpleadosResponse")]
         System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosResponse> listarEmpleadosAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosRequest request);
+        
+        // CODEGEN: Parameter 'id' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/eliminarEmpleado/Fault/Exception", Name="Exception")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarEmpleadoResponse eliminarEmpleado(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarEmpleadoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoResponse")]
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarEmpleadoResponse> eliminarEmpleadoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarEmpleadoRequest request);
+        
+        // CODEGEN: Parameter 'empleado' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/guardarEmpleadoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/EmpleadoWS/guardarEmpleadoResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/guardarEmpleado/Fault/Exception", Name="Exception")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoResponse guardarEmpleado(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/guardarEmpleadoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/EmpleadoWS/guardarEmpleadoResponse")]
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoResponse> guardarEmpleadoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1092,33 +1104,28 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarEmpleado", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class guardarEmpleadoRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarEmpleados", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarEmpleadosRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado empleado;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado;
-        
-        public guardarEmpleadoRequest() {
-        }
-        
-        public guardarEmpleadoRequest(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado empleado, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
-            this.empleado = empleado;
-            this.estado = estado;
+        public listarEmpleadosRequest() {
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarEmpleadoResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class guardarEmpleadoResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarEmpleadosResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarEmpleadosResponse {
         
-        public guardarEmpleadoResponse() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado[] @return;
+        
+        public listarEmpleadosResponse() {
+        }
+        
+        public listarEmpleadosResponse(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado[] @return) {
+            this.@return = @return;
         }
     }
     
@@ -1153,28 +1160,33 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarEmpleados", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarEmpleadosRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarEmpleado", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class guardarEmpleadoRequest {
         
-        public listarEmpleadosRequest() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado empleado;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado;
+        
+        public guardarEmpleadoRequest() {
+        }
+        
+        public guardarEmpleadoRequest(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado empleado, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
+            this.empleado = empleado;
+            this.estado = estado;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarEmpleadosResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarEmpleadosResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarEmpleadoResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class guardarEmpleadoResponse {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado[] @return;
-        
-        public listarEmpleadosResponse() {
-        }
-        
-        public listarEmpleadosResponse(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado[] @return) {
-            this.@return = @return;
+        public guardarEmpleadoResponse() {
         }
     }
     
@@ -1252,27 +1264,24 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS.guardarEmpleado(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest request) {
-            return base.Channel.guardarEmpleado(request);
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS.listarEmpleados(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosRequest request) {
+            return base.Channel.listarEmpleados(request);
         }
         
-        public void guardarEmpleado(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado empleado, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest();
-            inValue.empleado = empleado;
-            inValue.estado = estado;
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS)(this)).guardarEmpleado(inValue);
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado[] listarEmpleados() {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosRequest();
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS)(this)).listarEmpleados(inValue);
+            return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS.guardarEmpleadoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest request) {
-            return base.Channel.guardarEmpleadoAsync(request);
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS.listarEmpleadosAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosRequest request) {
+            return base.Channel.listarEmpleadosAsync(request);
         }
         
-        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoResponse> guardarEmpleadoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado empleado, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest();
-            inValue.empleado = empleado;
-            inValue.estado = estado;
-            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS)(this)).guardarEmpleadoAsync(inValue);
+        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosResponse> listarEmpleadosAsync() {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosRequest();
+            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS)(this)).listarEmpleadosAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1298,24 +1307,27 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS.listarEmpleados(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosRequest request) {
-            return base.Channel.listarEmpleados(request);
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS.guardarEmpleado(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest request) {
+            return base.Channel.guardarEmpleado(request);
         }
         
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado[] listarEmpleados() {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosRequest();
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS)(this)).listarEmpleados(inValue);
-            return retVal.@return;
+        public void guardarEmpleado(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado empleado, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest();
+            inValue.empleado = empleado;
+            inValue.estado = estado;
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS)(this)).guardarEmpleado(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS.listarEmpleadosAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosRequest request) {
-            return base.Channel.listarEmpleadosAsync(request);
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS.guardarEmpleadoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest request) {
+            return base.Channel.guardarEmpleadoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosResponse> listarEmpleadosAsync() {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarEmpleadosRequest();
-            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS)(this)).listarEmpleadosAsync(inValue);
+        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoResponse> guardarEmpleadoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.empleado empleado, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarEmpleadoRequest();
+            inValue.empleado = empleado;
+            inValue.estado = estado;
+            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.EmpleadoWS)(this)).guardarEmpleadoAsync(inValue);
         }
     }
     
@@ -1323,26 +1335,16 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://services.softprog.pucp.edu.pe/", ConfigurationName="SoftProgWS.AreaWS")]
     public interface AreaWS {
         
-        // CODEGEN: Parameter 'id' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/AreaWS/eliminarAreaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/AreaWS/eliminarAreaResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/AreaWS/eliminarArea/Fault/Exception", Name="Exception")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaResponse eliminarArea(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/AreaWS/eliminarAreaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/AreaWS/eliminarAreaResponse")]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaResponse> eliminarAreaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest request);
-        
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/AreaWS/obtenerAreaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/AreaWS/obtenerAreaResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/AreaWS/obtenerArea/Fault/Exception", Name="Exception")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/AreaWS/listarAreasRequest", ReplyAction="http://services.softprog.pucp.edu.pe/AreaWS/listarAreasResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/AreaWS/listarAreas/Fault/Exception", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaResponse obtenerArea(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest request);
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasResponse listarAreas(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/AreaWS/obtenerAreaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/AreaWS/obtenerAreaResponse")]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaResponse> obtenerAreaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/AreaWS/listarAreasRequest", ReplyAction="http://services.softprog.pucp.edu.pe/AreaWS/listarAreasResponse")]
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasResponse> listarAreasAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest request);
         
         // CODEGEN: Parameter 'area' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/AreaWS/guardarAreaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/AreaWS/guardarAreaResponse")]
@@ -1355,42 +1357,85 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarAreaResponse> guardarAreaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarAreaRequest request);
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/AreaWS/listarAreasRequest", ReplyAction="http://services.softprog.pucp.edu.pe/AreaWS/listarAreasResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/AreaWS/listarAreas/Fault/Exception", Name="Exception")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/AreaWS/obtenerAreaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/AreaWS/obtenerAreaResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/AreaWS/obtenerArea/Fault/Exception", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasResponse listarAreas(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest request);
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaResponse obtenerArea(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/AreaWS/listarAreasRequest", ReplyAction="http://services.softprog.pucp.edu.pe/AreaWS/listarAreasResponse")]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasResponse> listarAreasAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/AreaWS/obtenerAreaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/AreaWS/obtenerAreaResponse")]
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaResponse> obtenerAreaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest request);
+        
+        // CODEGEN: Parameter 'id' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/AreaWS/eliminarAreaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/AreaWS/eliminarAreaResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/AreaWS/eliminarArea/Fault/Exception", Name="Exception")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaResponse eliminarArea(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/AreaWS/eliminarAreaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/AreaWS/eliminarAreaResponse")]
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaResponse> eliminarAreaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarArea", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class eliminarAreaRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarAreas", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarAreasRequest {
+        
+        public listarAreasRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarAreasResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarAreasResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.area[] @return;
+        
+        public listarAreasResponse() {
+        }
+        
+        public listarAreasResponse(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.area[] @return) {
+            this.@return = @return;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarArea", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class guardarAreaRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int id;
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.area area;
         
-        public eliminarAreaRequest() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado;
+        
+        public guardarAreaRequest() {
         }
         
-        public eliminarAreaRequest(int id) {
-            this.id = id;
+        public guardarAreaRequest(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.area area, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
+            this.area = area;
+            this.estado = estado;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarAreaResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class eliminarAreaResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarAreaResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class guardarAreaResponse {
         
-        public eliminarAreaResponse() {
+        public guardarAreaResponse() {
         }
     }
     
@@ -1433,61 +1478,28 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarArea", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class guardarAreaRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarArea", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class eliminarAreaRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.area area;
+        public int id;
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado;
-        
-        public guardarAreaRequest() {
+        public eliminarAreaRequest() {
         }
         
-        public guardarAreaRequest(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.area area, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
-            this.area = area;
-            this.estado = estado;
+        public eliminarAreaRequest(int id) {
+            this.id = id;
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarAreaResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class guardarAreaResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarAreaResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class eliminarAreaResponse {
         
-        public guardarAreaResponse() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarAreas", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarAreasRequest {
-        
-        public listarAreasRequest() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarAreasResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarAreasResponse {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.area[] @return;
-        
-        public listarAreasResponse() {
-        }
-        
-        public listarAreasResponse(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.area[] @return) {
-            this.@return = @return;
+        public eliminarAreaResponse() {
         }
     }
     
@@ -1519,48 +1531,24 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS.eliminarArea(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest request) {
-            return base.Channel.eliminarArea(request);
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS.listarAreas(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest request) {
+            return base.Channel.listarAreas(request);
         }
         
-        public void eliminarArea(int id) {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest();
-            inValue.id = id;
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS)(this)).eliminarArea(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS.eliminarAreaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest request) {
-            return base.Channel.eliminarAreaAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaResponse> eliminarAreaAsync(int id) {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest();
-            inValue.id = id;
-            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS)(this)).eliminarAreaAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS.obtenerArea(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest request) {
-            return base.Channel.obtenerArea(request);
-        }
-        
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.area obtenerArea(int id) {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest();
-            inValue.id = id;
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS)(this)).obtenerArea(inValue);
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.area[] listarAreas() {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest();
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS)(this)).listarAreas(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS.obtenerAreaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest request) {
-            return base.Channel.obtenerAreaAsync(request);
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS.listarAreasAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest request) {
+            return base.Channel.listarAreasAsync(request);
         }
         
-        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaResponse> obtenerAreaAsync(int id) {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest();
-            inValue.id = id;
-            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS)(this)).obtenerAreaAsync(inValue);
+        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasResponse> listarAreasAsync() {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest();
+            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS)(this)).listarAreasAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1588,24 +1576,48 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS.listarAreas(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest request) {
-            return base.Channel.listarAreas(request);
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS.obtenerArea(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest request) {
+            return base.Channel.obtenerArea(request);
         }
         
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.area[] listarAreas() {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest();
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS)(this)).listarAreas(inValue);
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.area obtenerArea(int id) {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest();
+            inValue.id = id;
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS)(this)).obtenerArea(inValue);
             return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS.listarAreasAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest request) {
-            return base.Channel.listarAreasAsync(request);
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS.obtenerAreaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest request) {
+            return base.Channel.obtenerAreaAsync(request);
         }
         
-        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasResponse> listarAreasAsync() {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarAreasRequest();
-            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS)(this)).listarAreasAsync(inValue);
+        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaResponse> obtenerAreaAsync(int id) {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerAreaRequest();
+            inValue.id = id;
+            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS)(this)).obtenerAreaAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS.eliminarArea(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest request) {
+            return base.Channel.eliminarArea(request);
+        }
+        
+        public void eliminarArea(int id) {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest();
+            inValue.id = id;
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS)(this)).eliminarArea(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS.eliminarAreaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest request) {
+            return base.Channel.eliminarAreaAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaResponse> eliminarAreaAsync(int id) {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarAreaRequest();
+            inValue.id = id;
+            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.AreaWS)(this)).eliminarAreaAsync(inValue);
         }
     }
     
@@ -1613,27 +1625,9 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://services.softprog.pucp.edu.pe/", ConfigurationName="SoftProgWS.ProductoWS")]
     public interface ProductoWS {
         
-        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ProductoWS/listarProductosRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ProductoWS/listarProductosResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosResponse listarProductos(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ProductoWS/listarProductosRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ProductoWS/listarProductosResponse")]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosResponse> listarProductosAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest request);
-        
-        // CODEGEN: Parameter 'id' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ProductoWS/eliminarProductoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ProductoWS/eliminarProductoResponse")]
-        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
-        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarProductoResponse eliminarProducto(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarProductoRequest request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ProductoWS/eliminarProductoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ProductoWS/eliminarProductoResponse")]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarProductoResponse> eliminarProductoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarProductoRequest request);
-        
         // CODEGEN: Parameter 'producto' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ProductoWS/guardarProductoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ProductoWS/guardarProductoResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/ProductoWS/guardarProducto/Fault/Exception", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
         PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoResponse guardarProducto(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest request);
@@ -1641,8 +1635,19 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ProductoWS/guardarProductoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ProductoWS/guardarProductoResponse")]
         System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoResponse> guardarProductoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest request);
         
+        // CODEGEN: Parameter 'id' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ProductoWS/eliminarProductoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ProductoWS/eliminarProductoResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/ProductoWS/eliminarProducto/Fault/Exception", Name="Exception")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarProductoResponse eliminarProducto(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarProductoRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ProductoWS/eliminarProductoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ProductoWS/eliminarProductoResponse")]
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarProductoResponse> eliminarProductoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarProductoRequest request);
+        
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ProductoWS/obtenerProductoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ProductoWS/obtenerProductoResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/ProductoWS/obtenerProducto/Fault/Exception", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -1650,62 +1655,17 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ProductoWS/obtenerProductoRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ProductoWS/obtenerProductoResponse")]
         System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerProductoResponse> obtenerProductoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerProductoRequest request);
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarProductos", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarProductosRequest {
         
-        public listarProductosRequest() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarProductosResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarProductosResponse {
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ProductoWS/listarProductosRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ProductoWS/listarProductosResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/ProductoWS/listarProductos/Fault/Exception", Name="Exception")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosResponse listarProductos(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest request);
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.producto[] @return;
-        
-        public listarProductosResponse() {
-        }
-        
-        public listarProductosResponse(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.producto[] @return) {
-            this.@return = @return;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarProducto", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class eliminarProductoRequest {
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public int id;
-        
-        public eliminarProductoRequest() {
-        }
-        
-        public eliminarProductoRequest(int id) {
-            this.id = id;
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarProductoResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class eliminarProductoResponse {
-        
-        public eliminarProductoResponse() {
-        }
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/ProductoWS/listarProductosRequest", ReplyAction="http://services.softprog.pucp.edu.pe/ProductoWS/listarProductosResponse")]
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosResponse> listarProductosAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
@@ -1738,6 +1698,34 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
     public partial class guardarProductoResponse {
         
         public guardarProductoResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarProducto", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class eliminarProductoRequest {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public int id;
+        
+        public eliminarProductoRequest() {
+        }
+        
+        public eliminarProductoRequest(int id) {
+            this.id = id;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="eliminarProductoResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class eliminarProductoResponse {
+        
+        public eliminarProductoResponse() {
         }
     }
     
@@ -1777,6 +1765,34 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarProductos", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarProductosRequest {
+        
+        public listarProductosRequest() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarProductosResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarProductosResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.producto[] @return;
+        
+        public listarProductosResponse() {
+        }
+        
+        public listarProductosResponse(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.producto[] @return) {
+            this.@return = @return;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface ProductoWSChannel : PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS, System.ServiceModel.IClientChannel {
     }
@@ -1805,24 +1821,27 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS.listarProductos(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest request) {
-            return base.Channel.listarProductos(request);
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS.guardarProducto(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest request) {
+            return base.Channel.guardarProducto(request);
         }
         
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.producto[] listarProductos() {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest();
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS)(this)).listarProductos(inValue);
-            return retVal.@return;
+        public void guardarProducto(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.producto producto, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest();
+            inValue.producto = producto;
+            inValue.estado = estado;
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS)(this)).guardarProducto(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS.listarProductosAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest request) {
-            return base.Channel.listarProductosAsync(request);
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS.guardarProductoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest request) {
+            return base.Channel.guardarProductoAsync(request);
         }
         
-        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosResponse> listarProductosAsync() {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest();
-            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS)(this)).listarProductosAsync(inValue);
+        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoResponse> guardarProductoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.producto producto, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest();
+            inValue.producto = producto;
+            inValue.estado = estado;
+            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS)(this)).guardarProductoAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1848,30 +1867,6 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS.guardarProducto(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest request) {
-            return base.Channel.guardarProducto(request);
-        }
-        
-        public void guardarProducto(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.producto producto, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest();
-            inValue.producto = producto;
-            inValue.estado = estado;
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS)(this)).guardarProducto(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS.guardarProductoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest request) {
-            return base.Channel.guardarProductoAsync(request);
-        }
-        
-        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoResponse> guardarProductoAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.producto producto, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarProductoRequest();
-            inValue.producto = producto;
-            inValue.estado = estado;
-            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS)(this)).guardarProductoAsync(inValue);
-        }
-        
-        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerProductoResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS.obtenerProducto(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerProductoRequest request) {
             return base.Channel.obtenerProducto(request);
         }
@@ -1893,24 +1888,48 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
             inValue.id = id;
             return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS)(this)).obtenerProductoAsync(inValue);
         }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS.listarProductos(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest request) {
+            return base.Channel.listarProductos(request);
+        }
+        
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.producto[] listarProductos() {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest();
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS)(this)).listarProductos(inValue);
+            return retVal.@return;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS.listarProductosAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest request) {
+            return base.Channel.listarProductosAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosResponse> listarProductosAsync() {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarProductosRequest();
+            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ProductoWS)(this)).listarProductosAsync(inValue);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(Namespace="http://services.softprog.pucp.edu.pe/", ConfigurationName="SoftProgWS.OrdenVentaWS")]
     public interface OrdenVentaWS {
         
-        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaResponse")]
+        // CODEGEN: Parameter 'ordenventa' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVenta/Fault/Excepti" +
+            "on", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
-        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaResponse listarOrdenesVenta(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest request);
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaResponse guardarOrdenVenta(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaResponse")]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaResponse> listarOrdenesVentaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaResponse")]
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaResponse> guardarOrdenVentaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest request);
         
         // CODEGEN: Parameter 'id' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/eliminarOrdenVentaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/OrdenVentaWS/eliminarOrdenVentaResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/eliminarOrdenVenta/Fault/Except" +
+            "ion", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
         PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarOrdenVentaResponse eliminarOrdenVenta(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.eliminarOrdenVentaRequest request);
@@ -1920,6 +1939,8 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         
         // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVentaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVentaResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVenta/Fault/Excepti" +
+            "on", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
         [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
@@ -1928,41 +1949,49 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVentaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVentaResponse")]
         System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerOrdenVentaResponse> obtenerOrdenVentaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.obtenerOrdenVentaRequest request);
         
-        // CODEGEN: Parameter 'ordenventa' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaResponse")]
+        // CODEGEN: Parameter 'return' requires additional schema information that cannot be captured using the parameter mode. The specific attribute is 'System.Xml.Serialization.XmlElementAttribute'.
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.Exception), Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVenta/Fault/Except" +
+            "ion", Name="Exception")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
         [System.ServiceModel.ServiceKnownTypeAttribute(typeof(modeloBase))]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaResponse guardarOrdenVenta(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest request);
+        [return: System.ServiceModel.MessageParameterAttribute(Name="return")]
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaResponse listarOrdenesVenta(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaResponse")]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaResponse> guardarOrdenVentaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaRequest", ReplyAction="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaResponse")]
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaResponse> listarOrdenesVentaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest request);
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarOrdenesVenta", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarOrdenesVentaRequest {
-        
-        public listarOrdenesVentaRequest() {
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="listarOrdenesVentaResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class listarOrdenesVentaResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarOrdenVenta", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class guardarOrdenVentaRequest {
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta[] @return;
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta ordenventa;
         
-        public listarOrdenesVentaResponse() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=1)]
+        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado;
+        
+        public guardarOrdenVentaRequest() {
         }
         
-        public listarOrdenesVentaResponse(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta[] @return) {
-            this.@return = @return;
+        public guardarOrdenVentaRequest(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta ordenventa, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
+            this.ordenventa = ordenventa;
+            this.estado = estado;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarOrdenVentaResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class guardarOrdenVentaResponse {
+        
+        public guardarOrdenVentaResponse() {
         }
     }
     
@@ -2033,33 +2062,28 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarOrdenVenta", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class guardarOrdenVentaRequest {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarOrdenesVenta", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarOrdenesVentaRequest {
         
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta ordenventa;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=1)]
-        [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado;
-        
-        public guardarOrdenVentaRequest() {
-        }
-        
-        public guardarOrdenVentaRequest(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta ordenventa, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
-            this.ordenventa = ordenventa;
-            this.estado = estado;
+        public listarOrdenesVentaRequest() {
         }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-    [System.ServiceModel.MessageContractAttribute(WrapperName="guardarOrdenVentaResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
-    public partial class guardarOrdenVentaResponse {
+    [System.ServiceModel.MessageContractAttribute(WrapperName="listarOrdenesVentaResponse", WrapperNamespace="http://services.softprog.pucp.edu.pe/", IsWrapped=true)]
+    public partial class listarOrdenesVentaResponse {
         
-        public guardarOrdenVentaResponse() {
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://services.softprog.pucp.edu.pe/", Order=0)]
+        [System.Xml.Serialization.XmlElementAttribute("return", Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta[] @return;
+        
+        public listarOrdenesVentaResponse() {
+        }
+        
+        public listarOrdenesVentaResponse(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta[] @return) {
+            this.@return = @return;
         }
     }
     
@@ -2091,24 +2115,27 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS.listarOrdenesVenta(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest request) {
-            return base.Channel.listarOrdenesVenta(request);
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS.guardarOrdenVenta(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest request) {
+            return base.Channel.guardarOrdenVenta(request);
         }
         
-        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta[] listarOrdenesVenta() {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest();
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS)(this)).listarOrdenesVenta(inValue);
-            return retVal.@return;
+        public void guardarOrdenVenta(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta ordenventa, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest();
+            inValue.ordenventa = ordenventa;
+            inValue.estado = estado;
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS)(this)).guardarOrdenVenta(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS.listarOrdenesVentaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest request) {
-            return base.Channel.listarOrdenesVentaAsync(request);
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS.guardarOrdenVentaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest request) {
+            return base.Channel.guardarOrdenVentaAsync(request);
         }
         
-        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaResponse> listarOrdenesVentaAsync() {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest();
-            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS)(this)).listarOrdenesVentaAsync(inValue);
+        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaResponse> guardarOrdenVentaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta ordenventa, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest();
+            inValue.ordenventa = ordenventa;
+            inValue.estado = estado;
+            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS)(this)).guardarOrdenVentaAsync(inValue);
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -2157,27 +2184,24 @@ namespace PUCP.Edu.Pe.SoftProg.Web.SoftProgWS {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS.guardarOrdenVenta(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest request) {
-            return base.Channel.guardarOrdenVenta(request);
+        PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaResponse PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS.listarOrdenesVenta(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest request) {
+            return base.Channel.listarOrdenesVenta(request);
         }
         
-        public void guardarOrdenVenta(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta ordenventa, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest();
-            inValue.ordenventa = ordenventa;
-            inValue.estado = estado;
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS)(this)).guardarOrdenVenta(inValue);
+        public PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta[] listarOrdenesVenta() {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest();
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaResponse retVal = ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS)(this)).listarOrdenesVenta(inValue);
+            return retVal.@return;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS.guardarOrdenVentaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest request) {
-            return base.Channel.guardarOrdenVentaAsync(request);
+        System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaResponse> PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS.listarOrdenesVentaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest request) {
+            return base.Channel.listarOrdenesVentaAsync(request);
         }
         
-        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaResponse> guardarOrdenVentaAsync(PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.ordenVenta ordenventa, PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.estado estado) {
-            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.guardarOrdenVentaRequest();
-            inValue.ordenventa = ordenventa;
-            inValue.estado = estado;
-            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS)(this)).guardarOrdenVentaAsync(inValue);
+        public System.Threading.Tasks.Task<PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaResponse> listarOrdenesVentaAsync() {
+            PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest inValue = new PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.listarOrdenesVentaRequest();
+            return ((PUCP.Edu.Pe.SoftProg.Web.SoftProgWS.OrdenVentaWS)(this)).listarOrdenesVentaAsync(inValue);
         }
     }
 }

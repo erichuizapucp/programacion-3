@@ -1,10 +1,10 @@
 package pe.edu.pucp.inf30.softprog.bo.transaccion.comando;
 
 import java.sql.Connection;
-import pe.edu.pucp.inf30.softprog.bo.Estado;
 import pe.edu.pucp.inf30.softprog.bo.transaccion.IComandoTransaccional;
 import pe.edu.pucp.inf30.softprog.dao.logistica.ventas.ILineaOrdenVentaDAO;
 import pe.edu.pucp.inf30.softprog.dao.logistica.ventas.IOrdenVentaDAO;
+import pe.edu.pucp.inf30.softprog.model.Estado;
 import pe.edu.pucp.inf30.softprog.model.logistica.ventas.LineaOrdenVenta;
 import pe.edu.pucp.inf30.softprog.model.logistica.ventas.OrdenVenta;
 

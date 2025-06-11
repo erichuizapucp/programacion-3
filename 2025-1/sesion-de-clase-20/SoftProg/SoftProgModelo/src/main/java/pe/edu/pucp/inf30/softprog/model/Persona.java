@@ -1,5 +1,6 @@
 package pe.edu.pucp.inf30.softprog.model;
 
+import jakarta.json.bind.annotation.JsonbDateFormat;
 import java.util.Date;
 
 public class Persona extends ModeloBase {
@@ -7,6 +8,8 @@ public class Persona extends ModeloBase {
     private String nombre;
     private String apellidoPaterno;
     private char genero;
+    
+    @JsonbDateFormat("yyyy-MM-dd'T'HH:mm:ss")
     private Date fechaNacimiento;
 
     public String getDni() {

@@ -13,9 +13,9 @@ import jakarta.ws.rs.core.Response;
 import java.net.URI;
 import java.util.List;
 import java.util.Map;
-import pe.edu.pucp.inf30.softprog.bo.Estado;
 import pe.edu.pucp.inf30.softprog.bo.IAreaBO;
 import pe.edu.pucp.inf30.softprog.boimpl.AreaBOImpl;
+import pe.edu.pucp.inf30.softprog.model.Estado;
 import pe.edu.pucp.inf30.softprog.model.rrhh.Area;
 
 /**
