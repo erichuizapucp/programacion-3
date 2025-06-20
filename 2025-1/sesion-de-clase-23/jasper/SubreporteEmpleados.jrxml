@@ -1,0 +1,88 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="SubreporteEmpleados" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a7b39521-02ae-492b-bae1-1e596364f030">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conexion DB Prog 3"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="id_area" class="java.lang.Integer"/>
+	<query language="sql"><![CDATA[SELECT 
+	E.dni, E.nombre, E.apellidoPaterno, E.sueldo
+FROM 
+	EMPLEADO AS E
+INNER JOIN 
+	AREA AS A
+	ON E.idArea = A.id
+WHERE 
+	A.id = $P{id_area} AND
+	A.activo = true
+
+]]></query>
+	<field name="dni" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dni"/>
+		<property name="com.jaspersoft.studio.field.label" value="dni"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="EMPLEADO"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="EMPLEADO"/>
+	</field>
+	<field name="apellidoPaterno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellidoPaterno"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellidoPaterno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="EMPLEADO"/>
+	</field>
+	<field name="sueldo" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="sueldo"/>
+		<property name="com.jaspersoft.studio.field.label" value="sueldo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="EMPLEADO"/>
+	</field>
+	<variable name="totalSueldos" calculation="Sum" class="java.math.BigDecimal">
+		<expression><![CDATA[$F{sueldo}]]></expression>
+	</variable>
+	<background splitType="Stretch"/>
+	<columnHeader height="32" splitType="Stretch">
+		<element kind="staticText" uuid="cf0395d1-0015-45ad-b01f-341ab246bd22" x="0" y="0" width="70" height="30" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[DNI]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="73968c6a-d249-42e7-9e9c-90eed55924a8"/>
+		</element>
+		<element kind="staticText" uuid="270ee72c-2916-4c55-b1d7-c49e6674340c" x="80" y="1" width="100" height="30" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[Nombre]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0ddf1bf7-baaf-43e0-b53e-e64d4449084c"/>
+		</element>
+		<element kind="staticText" uuid="970a56af-52c2-47a8-8761-64b48bfcb332" x="190" y="1" width="100" height="30" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[A. Paterno]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="28c97507-f609-4fb2-b732-a5d3b94948d0"/>
+		</element>
+		<element kind="staticText" uuid="46a9acdf-662b-46eb-9ebd-366dee8b7f30" x="300" y="1" width="70" height="30" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[Sueldo]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6b2b834d-f811-49e2-b669-5269fec4f79f"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<element kind="textField" uuid="a8cfb599-1239-4bd2-9058-935d88babc8c" x="0" y="1" width="70" height="30" hTextAlign="Center">
+				<expression><![CDATA[$F{dni}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="73968c6a-d249-42e7-9e9c-90eed55924a8"/>
+			</element>
+			<element kind="textField" uuid="23ded413-48bc-46b5-a4b4-d84f07958ac2" x="80" y="1" width="100" height="30">
+				<expression><![CDATA[$F{nombre}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="0ddf1bf7-baaf-43e0-b53e-e64d4449084c"/>
+			</element>
+			<element kind="textField" uuid="6466b698-4ff6-49fd-8f38-3b949db5213b" x="190" y="3" width="100" height="30">
+				<expression><![CDATA[$F{apellidoPaterno}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="28c97507-f609-4fb2-b732-a5d3b94948d0"/>
+			</element>
+			<element kind="textField" uuid="69c77ee0-d427-4c47-ae4b-9538e21ec2a4" x="300" y="1" width="70" height="30" pattern="¤#,##0.##;¤-#,##0.##" hTextAlign="Right">
+				<expression><![CDATA[$F{sueldo}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="6b2b834d-f811-49e2-b669-5269fec4f79f"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="60">
+		<element kind="staticText" uuid="733c9cc9-5015-4c1a-84fb-5f1197379238" x="220" y="14" width="70" height="16">
+			<text><![CDATA[Total Sueldos: ]]></text>
+		</element>
+		<element kind="textField" uuid="53a7c0cc-898c-40eb-b88d-f482cd910432" x="300" y="14" width="70" height="16" pattern="¤#,##0.##;¤-#,##0.##">
+			<expression><![CDATA[$V{totalSueldos}]]></expression>
+		</element>
+	</columnFooter>
+</jasperReport>

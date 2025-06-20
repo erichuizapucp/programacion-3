@@ -1,0 +1,83 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="OrdenVenta" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a6498afb-635d-4a89-adfb-471f34e0c282">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conexion DB Prog 3"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="logo" class="java.awt.Image"/>
+	<parameter name="id_orden" class="java.lang.Integer"/>
+	<parameter name="subreporte" class="java.lang.String"/>
+	<query language="sql"><![CDATA[Call reporteOrdenVenta($P{id_orden});]]></query>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ORDENVENTA"/>
+	</field>
+	<field name="dni" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="dni"/>
+		<property name="com.jaspersoft.studio.field.label" value="dni"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="CLIENTE"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="CLIENTE"/>
+	</field>
+	<field name="apellidoPaterno" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="apellidoPaterno"/>
+		<property name="com.jaspersoft.studio.field.label" value="apellidoPaterno"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="CLIENTE"/>
+	</field>
+	<field name="total" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="total"/>
+		<property name="com.jaspersoft.studio.field.label" value="total"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="ORDENVENTA"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="79" splitType="Stretch">
+		<element kind="staticText" uuid="f6531726-2769-49ef-8d3a-6a9a710fbd50" x="180" y="20" width="180" height="30" fontSize="22.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Orden de Venta]]></text>
+		</element>
+		<element kind="image" uuid="61fb31db-1e47-4148-8376-92fc3490fb0a" x="460" y="10" width="50" height="50">
+			<expression><![CDATA[$P{logo}]]></expression>
+		</element>
+	</title>
+	<pageHeader height="67" splitType="Stretch">
+		<element kind="staticText" uuid="792bb998-5c14-4c8e-bf5f-2efa4911880a" x="30" y="10" width="70" height="20" bold="true">
+			<text><![CDATA[DNI: ]]></text>
+		</element>
+		<element kind="staticText" uuid="01df9ac6-309d-4af5-a901-1b200b7fef9f" x="30" y="40" width="70" height="20" bold="true">
+			<text><![CDATA[Nombre: ]]></text>
+		</element>
+		<element kind="staticText" uuid="db8d365b-b6c7-4631-a216-39a4eac4823f" x="290" y="10" width="70" height="20" bold="true">
+			<text><![CDATA[Fecha: ]]></text>
+		</element>
+		<element kind="textField" uuid="5b7ffc87-3367-4c59-bdae-9333d73f982b" x="110" y="10" width="100" height="20">
+			<expression><![CDATA[$F{dni}]]></expression>
+		</element>
+		<element kind="textField" uuid="f7b3131f-205f-48e9-ae9c-ff1e35b9c6af" x="110" y="40" width="100" height="20">
+			<expression><![CDATA[$F{nombre} + " " + $F{apellidoPaterno}]]></expression>
+		</element>
+		<element kind="textField" uuid="e605b4ac-1cc1-41fc-a3e2-5474b45fe3ff" x="380" y="10" width="100" height="20" pattern="MMM d, yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+	</pageHeader>
+	<detail>
+		<band height="47" splitType="Stretch">
+			<element kind="subreport" uuid="b5c8027d-a858-4943-8d50-2b5390634d41" x="0" y="10" width="550" height="30">
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<expression><![CDATA[$P{subreporte}]]></expression>
+				<parameter name="id_orden">
+					<expression><![CDATA[$P{id_orden}]]></expression>
+				</parameter>
+			</element>
+		</band>
+	</detail>
+	<pageFooter height="60" splitType="Stretch">
+		<element kind="textField" uuid="5723cc74-b855-4939-a855-7204cbce1753" x="350" y="30" width="100" height="30" hTextAlign="Right">
+			<expression><![CDATA["Página " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="0790f1a5-7b87-4fe7-b5a9-a71b13f3be37" x="450" y="30" width="100" height="30" evaluationTime="Report" hTextAlign="Left">
+			<expression><![CDATA[" de " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+	</pageFooter>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>

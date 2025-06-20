@@ -1,0 +1,106 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="Reporte-Areas" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="98dbe3d4-da4c-4482-a0e7-e3ebe84be627">
+	<property name="com.jaspersoft.studio.data.sql.tables" value="YEFSRUFgICwxNSwxNSwyYzg2YzMwYi1mYzEwLTRmNzQtODE0ZC1lNDRkNzQxZGVhNjc7"/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conexion DB Prog 3"/>
+	<style name="estiloActivo">
+		<conditionalStyle backcolor="#0FD612">
+			<conditionExpression><![CDATA[$F{activo}==true]]></conditionExpression>
+		</conditionalStyle>
+		<conditionalStyle backcolor="#DB2D2A">
+			<conditionExpression><![CDATA[$F{activo}==false]]></conditionExpression>
+		</conditionalStyle>
+	</style>
+	<parameter name="autor" class="java.lang.String"/>
+	<parameter name="logo" class="java.awt.Image"/>
+	<parameter name="subreporte" class="java.lang.String"/>
+	<query language="SQL"><![CDATA[SELECT id,
+	nombre,
+	activo
+FROM `AREA`]]></query>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="AREA"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="AREA"/>
+	</field>
+	<field name="activo" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="activo"/>
+		<property name="com.jaspersoft.studio.field.label" value="activo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="AREA"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="120" splitType="Stretch">
+		<element kind="staticText" uuid="a236e94b-b388-417d-91b7-9b64f189491a" x="140" y="0" width="292" height="30" fontSize="22.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Reporte de Areas]]></text>
+		</element>
+		<element kind="staticText" uuid="92e5d6d2-3de5-45dd-9917-73f4b85c0fd4" x="30" y="70" width="100" height="16">
+			<text><![CDATA[Fecha de Generacion:]]></text>
+		</element>
+		<element kind="textField" uuid="1ec14979-7c9b-49f0-a844-41ff57e919ad" x="140" y="70" width="100" height="16" pattern="MMMMM dd, yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="staticText" uuid="ebc82b3e-7930-4c8c-a593-896de1e7a9f4" x="30" y="90" width="100" height="20">
+			<text><![CDATA[Elaborado por:]]></text>
+		</element>
+		<element kind="textField" uuid="9b8329af-6348-45ee-ade8-bd7ea9a3b806" x="140" y="90" width="100" height="20">
+			<expression><![CDATA[$P{autor}]]></expression>
+		</element>
+		<element kind="image" uuid="976c2c76-9eba-4c88-afcb-360f3c1a83fa" x="490" y="10" width="50" height="50">
+			<expression><![CDATA[$P{logo}]]></expression>
+		</element>
+	</title>
+	<pageHeader height="35" splitType="Stretch"/>
+	<columnHeader height="32" splitType="Stretch">
+		<element kind="staticText" uuid="8d18bff8-d3ab-412b-9d68-5266cffef751" x="44" y="0" width="100" height="30" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[Id Area]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5f2564de-6453-4c72-b531-272b4306aefa"/>
+		</element>
+		<element kind="staticText" uuid="55b245f1-9136-4e73-981f-6483f602eb21" x="219" y="0" width="100" height="30" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[Nombre del Area]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dfca1182-ac29-4ea2-9562-138f08e555f1"/>
+		</element>
+		<element kind="staticText" uuid="c6916615-9602-4a90-891b-5c9dfe6bc411" x="399" y="0" width="100" height="30" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[Activa]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="896b500a-bef0-456f-86f0-6f57bc7d2e44"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="89" splitType="Stretch">
+			<element kind="rectangle" uuid="72b093a7-e352-42c5-9be8-04e6b885d08f" x="399" y="-2" width="100" height="21" style="estiloActivo"/>
+			<element kind="textField" uuid="e02e7907-ad57-4e6f-944c-d07235fb2d42" x="44" y="0" width="100" height="20" hTextAlign="Center">
+				<expression><![CDATA[$F{id}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="5f2564de-6453-4c72-b531-272b4306aefa"/>
+			</element>
+			<element kind="textField" uuid="6d608890-f06a-4307-9636-1b91fccfa99e" x="219" y="0" width="100" height="20">
+				<expression><![CDATA[$F{nombre}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="dfca1182-ac29-4ea2-9562-138f08e555f1"/>
+			</element>
+			<element kind="textField" uuid="a8760d2f-ce73-44e4-aeb7-695e630eb6f7" x="399" y="0" width="100" height="20" hTextAlign="Center">
+				<expression><![CDATA[$F{activo}==true ? "Si" : "No"]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="896b500a-bef0-456f-86f0-6f57bc7d2e44"/>
+			</element>
+			<element kind="subreport" uuid="b8659a9f-4e52-4627-8b5b-de691ca00158" x="0" y="40" width="549" height="40" backcolor="#C1C7C7" overflowType="Stretch">
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<expression><![CDATA[$P{subreporte}]]></expression>
+				<parameter name="id_area">
+					<expression><![CDATA[$F{id}]]></expression>
+				</parameter>
+			</element>
+			<element kind="line" uuid="48a590dd-6ef2-431f-81f9-9b554d150a65" x="44" y="30" width="455" height="1"/>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch">
+		<element kind="textField" uuid="8b980af1-c3ba-46fe-8560-143516b88e7f" x="319" y="22" width="154" height="30" hTextAlign="Right">
+			<expression><![CDATA["Página " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="de140569-9711-4d91-9b53-b8b36c585c51" x="473" y="22" width="100" height="30" evaluationTime="Report" hTextAlign="Left">
+			<expression><![CDATA[" de " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+	</pageFooter>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>

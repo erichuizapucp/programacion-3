@@ -1,0 +1,72 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="Reporte-Areas-V2" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bbdba335-d5fe-419e-9358-4038fb098039">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="Conexion DB Prog3 v2"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="autor" class="java.lang.String"/>
+	<query language="sql"><![CDATA[ SELECT id, nombre, activo
+ FROM AREA]]></query>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="AREA"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="AREA"/>
+	</field>
+	<field name="activo" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="activo"/>
+		<property name="com.jaspersoft.studio.field.label" value="activo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="AREA"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="151" splitType="Stretch">
+		<element kind="staticText" uuid="f8f2340c-42d5-45f0-aaca-22899a91aecc" x="132" y="24" width="290" height="30" fontSize="22.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Mi Primer Reporte]]></text>
+		</element>
+		<element kind="staticText" uuid="07dbb8f8-d9fa-4986-82cb-0bd92ebcf065" x="20" y="80" width="100" height="20">
+			<text><![CDATA[Fecha de generacion: ]]></text>
+		</element>
+		<element kind="textField" uuid="72cb273a-8fc1-4886-a2fa-01218e58ffa8" x="140" y="80" width="100" height="20" pattern="MMMMM dd, yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="staticText" uuid="829e88c7-7f87-46a5-8a17-31ae4017c33b" x="20" y="110" width="100" height="20">
+			<text><![CDATA[Elaborado por:]]></text>
+		</element>
+		<element kind="textField" uuid="fd7ab375-bab7-4d03-95bf-b14eaba69a72" x="140" y="110" width="100" height="20">
+			<expression><![CDATA[$P{autor}]]></expression>
+		</element>
+	</title>
+	<pageHeader height="35" splitType="Stretch"/>
+	<columnHeader height="24" splitType="Stretch">
+		<element kind="staticText" uuid="149f05d6-1773-4cce-9474-c62a72bc3f36" x="20" y="0" width="100" height="20" fontSize="14.0" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[Id Area]]></text>
+		</element>
+		<element kind="staticText" uuid="b631451c-8094-4920-b592-75af3bb28690" x="180" y="0" width="100" height="20" fontSize="14.0" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[Nombre]]></text>
+		</element>
+		<element kind="staticText" uuid="242a4b8c-a36f-4f4f-b584-7e423e4b8444" x="340" y="0" width="100" height="20" fontSize="14.0" bold="true" underline="true" hTextAlign="Center">
+			<text><![CDATA[Activa]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<element kind="textField" uuid="f19a04ce-811a-4b04-9699-d8b142acad8a" x="20" y="0" width="100" height="20">
+				<expression><![CDATA[$F{id}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="faec5000-c981-4115-87c4-465a5fd81800"/>
+			</element>
+			<element kind="textField" uuid="75b53092-a3ab-4a18-b8aa-3c5da29018f5" x="180" y="0" width="100" height="20">
+				<expression><![CDATA[$F{nombre}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="b72e8804-4805-4e56-a2d5-9f984a8b9117"/>
+			</element>
+			<element kind="textField" uuid="7b31300c-7841-48ca-823f-14e7739ff7bc" x="340" y="0" width="100" height="20">
+				<expression><![CDATA[$F{activo}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="4e9d4147-70b2-4cf7-9aad-7197a1193403"/>
+			</element>
+		</band>
+	</detail>
+	<columnFooter height="45" splitType="Stretch"/>
+	<pageFooter height="54" splitType="Stretch"/>
+	<summary height="42" splitType="Stretch"/>
+</jasperReport>

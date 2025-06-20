@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://services.softprog.pucp.edu.pe/" targetNamespace="http://services.softprog.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Exception" type="tns:Exception" />
+  <xs:element name="eliminarArea" type="tns:eliminarArea" />
+  <xs:element name="eliminarAreaResponse" type="tns:eliminarAreaResponse" />
+  <xs:element name="guardarArea" type="tns:guardarArea" />
+  <xs:element name="guardarAreaResponse" type="tns:guardarAreaResponse" />
+  <xs:element name="listarAreas" type="tns:listarAreas" />
+  <xs:element name="listarAreasResponse" type="tns:listarAreasResponse" />
+  <xs:element name="obtenerArea" type="tns:obtenerArea" />
+  <xs:element name="obtenerAreaResponse" type="tns:obtenerAreaResponse" />
+  <xs:complexType name="listarAreas">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarAreasResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:area" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="area">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:modeloBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="nombre" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="modeloBase">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element name="id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerArea">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerAreaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:area" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarArea">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarAreaResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="guardarArea">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="area" type="tns:area" />
+      <xs:element minOccurs="0" name="estado" type="tns:estado" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="guardarAreaResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:simpleType name="estado">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Nuevo" />
+      <xs:enumeration value="Modificar" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>

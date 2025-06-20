@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://services.softprog.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="OrdenVentaWS" targetNamespace="http://services.softprog.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/SoftProgWS/OrdenVentaWS?xsd=1" namespace="http://services.softprog.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="guardarOrdenVenta">
+    <part name="parameters" element="tns:guardarOrdenVenta" />
+  </message>
+  <message name="guardarOrdenVentaResponse">
+    <part name="parameters" element="tns:guardarOrdenVentaResponse" />
+  </message>
+  <message name="Exception">
+    <part name="fault" element="tns:Exception" />
+  </message>
+  <message name="eliminarOrdenVenta">
+    <part name="parameters" element="tns:eliminarOrdenVenta" />
+  </message>
+  <message name="eliminarOrdenVentaResponse">
+    <part name="parameters" element="tns:eliminarOrdenVentaResponse" />
+  </message>
+  <message name="obtenerOrdenVenta">
+    <part name="parameters" element="tns:obtenerOrdenVenta" />
+  </message>
+  <message name="obtenerOrdenVentaResponse">
+    <part name="parameters" element="tns:obtenerOrdenVentaResponse" />
+  </message>
+  <message name="listarOrdenesVenta">
+    <part name="parameters" element="tns:listarOrdenesVenta" />
+  </message>
+  <message name="listarOrdenesVentaResponse">
+    <part name="parameters" element="tns:listarOrdenesVentaResponse" />
+  </message>
+  <portType name="OrdenVentaWS">
+    <operation name="guardarOrdenVenta">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaRequest" message="tns:guardarOrdenVenta" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaResponse" message="tns:guardarOrdenVentaResponse" />
+      <fault wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVenta/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="eliminarOrdenVenta">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/eliminarOrdenVentaRequest" message="tns:eliminarOrdenVenta" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/eliminarOrdenVentaResponse" message="tns:eliminarOrdenVentaResponse" />
+      <fault wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/eliminarOrdenVenta/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="obtenerOrdenVenta">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVentaRequest" message="tns:obtenerOrdenVenta" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVentaResponse" message="tns:obtenerOrdenVentaResponse" />
+      <fault wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVenta/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="listarOrdenesVenta">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaRequest" message="tns:listarOrdenesVenta" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaResponse" message="tns:listarOrdenesVentaResponse" />
+      <fault wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVenta/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+  </portType>
+  <binding name="OrdenVentaWSPortBinding" type="tns:OrdenVentaWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="guardarOrdenVenta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="eliminarOrdenVenta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="obtenerOrdenVenta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="listarOrdenesVenta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="OrdenVentaWS">
+    <port name="OrdenVentaWSPort" binding="tns:OrdenVentaWSPortBinding">
+      <soap:address location="http://localhost:8080/SoftProgWS/OrdenVentaWS" />
+    </port>
+  </service>
+</definitions>
