@@ -3,20 +3,20 @@ package pe.edu.pucp.inf30.softprog.config;
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class DBManager {
+public abstract class DBManager {
     private static DBManager dbManager;
     
-    private String host;
-    private int puerto;
-    private String esquema;
-    private String usuario;
-    private String password;
+    protected String host;
+    protected int puerto;
+    protected String esquema;
+    protected String usuario;
+    protected String password;
+    protected TipoDB tipo;
     
-    private DBManager() throws IOException {
+    protected DBManager() throws IOException {
         cargarProperties();
     }
     
@@ -27,26 +27,27 @@ public class DBManager {
         return dbManager;
     }
     
-    private static void createInstance() throws IOException {
-        dbManager = new DBManager();
+    public TipoDB getTipo() {
+        return tipo;
     }
     
-    public Connection getConnection() throws SQLException, ClassNotFoundException {
-        try {
-            /* 
-            Por ahora creamos una conexion cada vez que se necesita acceder a la base de datos, 
-            por ser una aplicacion academica es una practica aceptable, en un sistema productivo
-            se debe usar un pool de conexiones.
-            */
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            String cadenaConexion = cadenaConexion(host, puerto, esquema);
-            return DriverManager.getConnection(cadenaConexion, usuario, password);
-        }
-        catch (ClassNotFoundException | SQLException e) {
-            System.err.println(e);
-            throw e;
+    private static void createInstance() throws IOException {
+        Properties properties = new Properties();
+        try (InputStream input = DBManager.class.getClassLoader().getResourceAsStream("db.properties")) {
+            if (input == null) {
+                throw new IOException("No se pudo abrir el archivo db.properties");
+            }
+            properties.load(input);
+
+            TipoDB tipo = TipoDB.valueOf(properties.getProperty("db.tipo"));
+            switch(tipo) {
+                case MySQL -> dbManager = new MySQLDBManager();
+                case MSSQL -> dbManager = new MSSQLDBManager();
+            }
         }
     }
+    
+    public abstract Connection getConnection() throws SQLException, ClassNotFoundException;
     
     private void cargarProperties() throws IOException {
         Properties properties = new Properties();
@@ -63,6 +64,7 @@ public class DBManager {
             esquema = properties.getProperty("db.esquema");
             usuario = properties.getProperty("db.usuario");
             password = properties.getProperty("db.password");
+            tipo = TipoDB.valueOf(properties.getProperty("db.tipo"));
         }
         catch (IOException e) {
             System.err.println("No se pudo cargar el archivo db.properties");
@@ -70,7 +72,5 @@ public class DBManager {
         }
     }
     
-    private String cadenaConexion(String host, int puerto, String esquema) {
-        return String.format("jdbc:mysql://%s:%d/%s?useSSL=false&allowPublicKeyRetrieval=true", host, puerto, esquema);
-    }
+    protected abstract String cadenaConexion(String host, int puerto, String esquema);
 }

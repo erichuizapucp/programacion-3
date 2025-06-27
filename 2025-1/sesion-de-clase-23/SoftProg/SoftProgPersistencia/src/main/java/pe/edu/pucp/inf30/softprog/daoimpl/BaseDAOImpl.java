@@ -1,5 +1,6 @@
 package pe.edu.pucp.inf30.softprog.daoimpl;
 
+import java.io.IOException;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import pe.edu.pucp.inf30.softprog.config.DBManager;
+import pe.edu.pucp.inf30.softprog.config.TipoDB;
 import pe.edu.pucp.inf30.softprog.dao.ICrud;
 
 public abstract class BaseDAOImpl<T> implements ICrud<T> {
@@ -19,6 +21,15 @@ public abstract class BaseDAOImpl<T> implements ICrud<T> {
     
     protected abstract T mapearModelo(ResultSet rs) 
             throws SQLException;
+    
+    protected String getPrefijoLlamada() {
+        try {
+            return DBManager.getInstance().getTipo() == TipoDB.MySQL ? "CALL" : "EXEC";
+        }
+        catch (IOException ex) {
+            throw new RuntimeException("Error: ", ex);
+        }
+    }
     
     @Override
     public int insertar(T modelo) {

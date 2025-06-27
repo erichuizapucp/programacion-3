@@ -18,6 +18,7 @@ import pe.edu.pucp.inf30.softprog.model.clientes.Categoria;
 public class ClienteDAOImpl extends BaseDAOImpl<Cliente> implements IClienteDAO {
     @Override
     protected CallableStatement comandoInsertar(Connection conn, Cliente modelo) throws SQLException {
+//        String call = getPrefijoLlamada();
         String sql = "{CALL insertarCliente(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
         CallableStatement cmd = conn.prepareCall(sql);
         cmd.setNull("p_idCuentaUsuario", Types.INTEGER);
