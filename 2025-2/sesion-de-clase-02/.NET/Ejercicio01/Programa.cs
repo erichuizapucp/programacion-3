@@ -12,7 +12,8 @@ namespace Ejercicio01 {
             //Console.WriteLine(persona);
             persona.Imprimir();
 
-            IPracticable practicable = (IPracticable)new Alumno.AlumnoBuilder()
+            IPracticable practicable = 
+                (IPracticable)new Alumno.AlumnoBuilder()
                 .ConActividad(TipoActividad.Deporte)
                 .ConNombre("Ana")
                 .ConEdad(21)

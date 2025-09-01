@@ -4,7 +4,7 @@ namespace Ejercicio01 {
     public class Alumno : Persona, IPracticable {
         public TipoActividad Actividad { get; set; }
 
-        public Alumno() {
+        public Alumno() : base() {
             this.Actividad = TipoActividad.Ninguna;
             Console.WriteLine("Constructor: Alumno");
         }

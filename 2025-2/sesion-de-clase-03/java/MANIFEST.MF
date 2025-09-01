@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: Eric Huiza
+Class-Path: softprog-config.jar
+Main-Class: pe/edu/pucp/inf30/softprog/Principal
