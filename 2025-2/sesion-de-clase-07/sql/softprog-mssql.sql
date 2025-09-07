@@ -1,0 +1,123 @@
+USE softprog;
+GO
+
+IF OBJECT_ID('dbo.AREA', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.AREA (
+        id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+        nombre VARCHAR(50) NOT NULL,
+        activo BIT NOT NULL DEFAULT 0
+    );
+END
+GO
+
+IF OBJECT_ID('dbo.CUENTA_USUARIO', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.CUENTA_USUARIO (
+        id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+        userName VARCHAR(50) NOT NULL,
+        password VARCHAR(50) NOT NULL,
+        activo BIT NOT NULL DEFAULT 0
+    );
+END
+GO
+
+IF OBJECT_ID('dbo.EMPLEADO', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.EMPLEADO (
+        id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+        idArea INT NOT NULL,
+        idCuentaUsuario INT NULL,
+        dni CHAR(8) NOT NULL,
+        nombre VARCHAR(50) NOT NULL,
+        apellidoPaterno VARCHAR(50) NOT NULL,
+        genero CHAR(1) NOT NULL,
+        fechaNacimiento DATE NOT NULL,
+        cargo VARCHAR(50) NOT NULL,
+        sueldo DECIMAL(10,2) NOT NULL,
+        activo BIT NOT NULL DEFAULT 0
+    );
+
+    ALTER TABLE dbo.EMPLEADO
+        ADD CONSTRAINT FK_EMPLEADO_AREA
+        FOREIGN KEY (idArea) REFERENCES dbo.AREA(id);
+
+    ALTER TABLE dbo.EMPLEADO
+        ADD CONSTRAINT FK_EMPLEADO_CUENTA_USUARIO
+        FOREIGN KEY (idCuentaUsuario) REFERENCES dbo.CUENTA_USUARIO(id);
+END
+GO
+
+IF OBJECT_ID('dbo.CLIENTE', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.CLIENTE (
+        id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+        idCuentaUsuario INT NULL,
+        dni CHAR(8) NOT NULL,
+        nombre VARCHAR(50) NOT NULL,
+        apellidoPaterno VARCHAR(50) NOT NULL,
+        genero CHAR(1) NOT NULL,
+        fechaNacimiento DATE NOT NULL,
+        categoria VARCHAR(50) NOT NULL,
+        lineaCredito DECIMAL(10,2) NULL,
+        activo BIT NOT NULL DEFAULT 0
+    );
+
+    ALTER TABLE dbo.CLIENTE
+        ADD CONSTRAINT FK_CLIENTE_CUENTA_USUARIO
+        FOREIGN KEY (idCuentaUsuario) REFERENCES dbo.CUENTA_USUARIO(id);
+END
+GO
+
+IF OBJECT_ID('dbo.PRODUCTO', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.PRODUCTO (
+        id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+        nombre VARCHAR(100) NOT NULL,
+        unidadMedida VARCHAR(10) NOT NULL,
+        precio DECIMAL(10,2) NOT NULL,
+        activo BIT NOT NULL DEFAULT 0
+    );
+END
+GO
+
+IF OBJECT_ID('dbo.ORDENVENTA', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.ORDENVENTA (
+        id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+        idCliente INT NOT NULL,
+        idEmpleado INT NULL,
+        total DECIMAL(10,2) NOT NULL,
+        activo BIT NOT NULL DEFAULT 1
+    );
+
+    ALTER TABLE dbo.ORDENVENTA
+        ADD CONSTRAINT FK_CLIENTE_ORDENVENTA
+        FOREIGN KEY (idCliente) REFERENCES dbo.CLIENTE(id);
+
+    ALTER TABLE dbo.ORDENVENTA
+        ADD CONSTRAINT FK_EMPLEADO_ORDENVENTA
+        FOREIGN KEY (idEmpleado) REFERENCES dbo.EMPLEADO(id);
+END
+GO
+
+IF OBJECT_ID('dbo.LINEAORDENVENTA', 'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.LINEAORDENVENTA (
+        id INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+        idOrdenVenta INT NOT NULL,
+        idProducto INT NOT NULL,
+        cantidad INT NOT NULL,
+        subTotal DECIMAL(10,2) NOT NULL,
+        activo BIT NOT NULL DEFAULT 1
+    );
+
+    ALTER TABLE dbo.LINEAORDENVENTA
+        ADD CONSTRAINT FK_LINEAORDENVENTA_ORDENVENTA
+        FOREIGN KEY (idOrdenVenta) REFERENCES dbo.ORDENVENTA(id);
+
+    ALTER TABLE dbo.LINEAORDENVENTA
+        ADD CONSTRAINT FK_LINEAORDENVENTA_PRODUCTO
+        FOREIGN KEY (idProducto) REFERENCES dbo.PRODUCTO(id);
+END
+GO
