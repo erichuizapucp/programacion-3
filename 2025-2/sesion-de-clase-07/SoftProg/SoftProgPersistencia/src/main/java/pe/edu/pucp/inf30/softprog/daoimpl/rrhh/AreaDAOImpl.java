@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import pe.edu.pucp.inf30.softprog.dao.rrhh.AreaDAO;
+import pe.edu.pucp.inf30.softprog.daoimpl.BaseDAO;
 import pe.edu.pucp.inf30.softprog.modelo.rrhh.Area;
 
 /**

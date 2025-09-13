@@ -1,6 +1,6 @@
 package pe.edu.pucp.inf30.softprog.pruebas;
 
-import java.sql.SQLException;
+import java.util.List;
 import pe.edu.pucp.inf30.softprog.modelo.rrhh.Area;
 import pe.edu.pucp.inf30.softprog.dao.rrhh.AreaDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.rrhh.AreaDAOImpl;
@@ -11,17 +11,25 @@ import pe.edu.pucp.inf30.softprog.daoimpl.rrhh.AreaDAOImpl;
  */
 public class SoftProgPruebas {
 
-    public static void main(
-            String[] args) throws SQLException, ClassNotFoundException {
-        
-        Area modelo = new Area();
-        modelo.setNombre("Recursos Humanos");
-        modelo.setActivo(true);
+    public static void main(String[] args) {
+        Area area = new Area();
+        area.setNombre("Recursos Humanos");
+        area.setActivo(true);
         
         AreaDAO areaDao = new AreaDAOImpl();
-        int id = areaDao.crear(modelo);
-        modelo.setId(id);
+        int id = areaDao.crear(area);
+        area.setId(id);
         
-        System.out.println(modelo);
+        area.setNombre("Ventas");
+        areaDao.actualizar(area);
+        
+        List<Area> areas = areaDao.leerTodos();
+        for (Area a : areas) {
+            System.out.println("Id: " + a.getId());
+            System.out.println("Nombre: " + a.getNombre());
+            System.out.println("Activo: " + a.isActivo());
+        }
+        
+        areaDao.eliminar(area.getId());
     }
 }
