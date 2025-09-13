@@ -8,4 +8,5 @@ import pe.edu.pucp.inf30.softprog.modelo.clientes.Cliente;
  * @author eric
  */
 public interface ClienteDAO extends Persistible<Cliente, Integer> {
+    Cliente buscarPorDni(String dni);
 }

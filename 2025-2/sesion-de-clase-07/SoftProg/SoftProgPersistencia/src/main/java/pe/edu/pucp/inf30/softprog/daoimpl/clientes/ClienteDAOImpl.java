@@ -161,4 +161,45 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
         
         return cliente;
     }
+
+    protected PreparedStatement comandoBuscarPorDni(Connection conn, String dni) 
+            throws SQLException {
+        
+        String sql = 
+                "SELECT "
+                + " id, "
+                + " idCuentaUsuario, "
+                + " dni, "
+                + " nombr, "
+                + " apellidoPaterno, "
+                + " genero, "
+                + " fechaNacimiento, "
+                + " categoria, "
+                + " lineaCredito, "
+                + " activo) "
+                + "FROM CLIENTE "
+                + "WHERE dni = ?";
+        
+        PreparedStatement cmd = conn.prepareStatement(sql);
+        cmd.setString(1, dni);
+        
+        return cmd;
+    }
+    
+    @Override
+    public Cliente buscarPorDni(String dni) {
+        return ejecutarComando(conn -> {
+            try (PreparedStatement cmd = this.comandoBuscarPorDni(conn, dni)) {
+                ResultSet rs = cmd.executeQuery();
+
+                if (!rs.next()) {
+                    System.err.println("No se encontro el registro con "
+                            + "dni: " + dni);
+                    return null;
+                }
+
+                return this.mapearModelo(rs);
+            }
+        });
+    }
 }

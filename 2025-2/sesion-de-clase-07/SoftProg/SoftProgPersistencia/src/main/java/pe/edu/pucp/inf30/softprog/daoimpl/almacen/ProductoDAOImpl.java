@@ -14,7 +14,9 @@ import pe.edu.pucp.inf30.softprog.modelo.almacen.UnidadMedida;
  *
  * @author eric
  */
-public class ProductoDAOImpl extends BaseDAO<Producto> implements ProductoDAO {
+public class ProductoDAOImpl extends BaseDAO<Producto> 
+        implements ProductoDAO {
+    
     @Override
     protected PreparedStatement comandoCrear(Connection conn, Producto modelo) 
             throws SQLException {
