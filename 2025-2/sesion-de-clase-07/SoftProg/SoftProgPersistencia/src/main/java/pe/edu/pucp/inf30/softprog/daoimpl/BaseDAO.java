@@ -50,7 +50,7 @@ public abstract class BaseDAO<T> implements Persistible<T, Integer> {
     @Override
     public Integer crear(T modelo) {
         return ejecutarComando(conn -> {
-            try (PreparedStatement cmd = comandoCrear(conn, modelo)) {
+            try (PreparedStatement cmd = this.comandoCrear(conn, modelo)) {
                 if (cmd.executeUpdate() == 0) {
                     return null;
                 }

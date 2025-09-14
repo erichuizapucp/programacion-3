@@ -26,4 +26,14 @@ public class CuentaUsuario extends Registro {
         this.password = password;
     }
     
+    @Override
+    public String toString() {
+        return "CuentaUsuario{" +
+                "id=" + getId() +
+                ", activo=" + isActivo() +
+                ", userName='" + userName + '\'' +
+                ", password='" + (password != null ? 
+                    "*".repeat(password.length()) : null) + '\'' +
+                '}';
+    }
 }

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import pe.edu.pucp.inf30.softprog.dao.clientes.ClienteDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.BaseDAO;
+import pe.edu.pucp.inf30.softprog.daoimpl.rrhh.CuentaUsuarioDAOImpl;
 import pe.edu.pucp.inf30.softprog.modelo.Genero;
 import pe.edu.pucp.inf30.softprog.modelo.clientes.CategoriaCliente;
 import pe.edu.pucp.inf30.softprog.modelo.clientes.Cliente;
@@ -21,7 +22,7 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
             throws SQLException {
         
         String sql = 
-                "INSERT INTO CLIENTE("
+                "INSERT INTO CLIENTE ("
                 + " idCuentaUsuario, "
                 + " dni, "
                 + " nombre, "
@@ -31,7 +32,7 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
                 + " categoria, "
                 + " lineaCredito, "
                 + " activo) "
-                + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         
         PreparedStatement cmd = conn.prepareStatement(sql, 
                 Statement.RETURN_GENERATED_KEYS);
@@ -55,7 +56,7 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
         
         String sql = 
                 "UPDATE CLIENTE "
-                + "SET"
+                + "SET "
                 + " idCuentaUsuario = ?, "
                 + " dni = ?, "
                 + " nombre = ?, "
@@ -64,7 +65,7 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
                 + " fechaNacimiento = ?, "
                 + " categoria = ?, "
                 + " lineaCredito = ?, "
-                + " activo = ?) "
+                + " activo = ? "
                 + "WHERE "
                 + " id = ?";
         
@@ -107,13 +108,13 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
                 + " id, "
                 + " idCuentaUsuario, "
                 + " dni, "
-                + " nombr, "
+                + " nombre, "
                 + " apellidoPaterno, "
                 + " genero, "
                 + " fechaNacimiento, "
                 + " categoria, "
                 + " lineaCredito, "
-                + " activo) "
+                + " activo "
                 + "FROM CLIENTE "
                 + "WHERE id = ?";
         
@@ -132,13 +133,13 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
                 + " id, "
                 + " idCuentaUsuario, "
                 + " dni, "
-                + " nombr, "
+                + " nombre, "
                 + " apellidoPaterno, "
                 + " genero, "
                 + " fechaNacimiento, "
                 + " categoria, "
                 + " lineaCredito, "
-                + " activo) "
+                + " activo "
                 + "FROM CLIENTE";
         
         PreparedStatement cmd = conn.prepareStatement(sql);
@@ -150,6 +151,8 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
     protected Cliente mapearModelo(ResultSet rs) throws SQLException {
         Cliente cliente = new Cliente();
         cliente.setId(rs.getInt("id"));
+        cliente.setCuentaUsuario(
+                new CuentaUsuarioDAOImpl().leer(rs.getInt("idCuentaUsuario")));
         cliente.setDni(rs.getString("dni"));
         cliente.setNombre(rs.getString("nombre"));
         cliente.setApellidoPaterno(rs.getString("apellidoPaterno"));
@@ -176,7 +179,7 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
                 + " fechaNacimiento, "
                 + " categoria, "
                 + " lineaCredito, "
-                + " activo) "
+                + " activo "
                 + "FROM CLIENTE "
                 + "WHERE dni = ?";
         

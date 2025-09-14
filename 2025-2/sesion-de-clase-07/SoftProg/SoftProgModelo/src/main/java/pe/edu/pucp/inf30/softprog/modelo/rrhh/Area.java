@@ -16,4 +16,13 @@ public class Area extends Registro {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    
+    @Override
+    public String toString() {
+        return "Area{" +
+                "id=" + getId() +
+                ", activo=" + isActivo() +
+                ", nombre='" + nombre + '\'' +
+                '}';
+    }
 }

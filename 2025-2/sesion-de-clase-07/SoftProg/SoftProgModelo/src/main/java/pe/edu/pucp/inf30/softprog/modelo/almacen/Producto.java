@@ -35,4 +35,14 @@ public class Producto extends Registro {
         this.precio = precio;
     }
     
+    @Override
+    public String toString() {
+        return "Producto{" +
+                "id=" + getId() +
+                ", activo=" + isActivo() +
+                ", nombre='" + nombre + '\'' +
+                ", unidadMedida=" + unidadMedida +
+                ", precio=" + precio +
+                '}';
+    }
 }

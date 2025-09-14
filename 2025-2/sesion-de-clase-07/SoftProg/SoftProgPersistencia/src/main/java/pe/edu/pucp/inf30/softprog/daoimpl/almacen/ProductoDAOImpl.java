@@ -46,8 +46,8 @@ public class ProductoDAOImpl extends BaseDAO<Producto>
                 + "SET "
                 + " nombre = ?, "
                 + " unidadMedida = ?, "
-                + " precio = ? "
-                + " activo = ?) "
+                + " precio = ?, "
+                + " activo = ? "
                 + "WHERE "
                 + " id = ?";
         PreparedStatement cmd = conn.prepareStatement(sql);
@@ -78,7 +78,7 @@ public class ProductoDAOImpl extends BaseDAO<Producto>
                 + " nombre,"
                 + " unidadMedida,"
                 + " precio, "
-                + " activo"
+                + " activo "
                 + "FROM PRODUCTO "
                 + "WHERE "
                 + " id = ?";
@@ -95,7 +95,7 @@ public class ProductoDAOImpl extends BaseDAO<Producto>
                 + " nombre,"
                 + " unidadMedida,"
                 + " precio, "
-                + " activo"
+                + " activo "
                 + "FROM PRODUCTO";
         PreparedStatement cmd = conn.prepareStatement(sql);
         return cmd;

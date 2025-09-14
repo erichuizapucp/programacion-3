@@ -36,4 +36,19 @@ public class Cliente extends Persona {
         this.categoria = categoria;
     }
     
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id=" + getId() +
+                ", activo=" + isActivo() +
+                ", dni='" + getDni() + '\'' +
+                ", nombre='" + getNombre() + '\'' +
+                ", apellidoPaterno='" + getApellidoPaterno() + '\'' +
+                ", genero=" + getGenero() +
+                ", fechaNacimiento=" + getFechaNacimiento() +
+                ", lineaCredito=" + lineaCredito +
+                ", categoria=" + categoria +
+                ", cuentaUsuario=" + cuentaUsuario +
+                '}';
+    }
 }

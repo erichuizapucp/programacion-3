@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
+import pe.edu.pucp.inf30.softprog.dao.rrhh.EmpleadoDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.BaseDAO;
 import pe.edu.pucp.inf30.softprog.modelo.Genero;
 import pe.edu.pucp.inf30.softprog.modelo.rrhh.Cargo;
@@ -16,14 +17,14 @@ import pe.edu.pucp.inf30.softprog.modelo.rrhh.Empleado;
  *
  * @author eric
  */
-public class EmpleadoDAOImpl extends BaseDAO<Empleado> {
+public class EmpleadoDAOImpl extends BaseDAO<Empleado> implements EmpleadoDAO {
 
     @Override
     protected PreparedStatement comandoCrear(Connection conn, Empleado modelo) 
             throws SQLException {
         
         String sql = 
-                "INSERT INTO EMPLEADO("
+                "INSERT INTO EMPLEADO ("
                 + " idArea, "
                 + " idCuentaUsuario, "
                 + " dni, "
@@ -63,7 +64,7 @@ public class EmpleadoDAOImpl extends BaseDAO<Empleado> {
             Empleado modelo) throws SQLException {
         
         String sql = 
-                "UPDATE EMPLEADO ("
+                "UPDATE EMPLEADO "
                 + "SET "
                 + " idArea = ?, "
                 + " idCuentaUsuario = ?, "
@@ -74,7 +75,7 @@ public class EmpleadoDAOImpl extends BaseDAO<Empleado> {
                 + " fechaNacimiento = ?, "
                 + " cargo = ?, "
                 + " sueldo = ?, "
-                + " activo = ?) "
+                + " activo = ? "
                 + "WHERE "
                 + " id = ?";
         
@@ -105,8 +106,8 @@ public class EmpleadoDAOImpl extends BaseDAO<Empleado> {
             throws SQLException {
         
         String sql = 
-                "DELETE"
-                + "FROM EMPLEADO"
+                "DELETE "
+                + "FROM EMPLEADO "
                 + "WHERE id = ?";
         PreparedStatement cmd = conn.prepareStatement(sql);
         cmd.setInt(1, id);
@@ -116,7 +117,23 @@ public class EmpleadoDAOImpl extends BaseDAO<Empleado> {
     @Override
     protected PreparedStatement comandoLeer(Connection conn, Integer id) 
             throws SQLException {
-        String sql = "{CALL buscarEmpleadoPorId(?)}";
+        
+        String sql = 
+                "SELECT "
+                + " id, "
+                + " idArea, "
+                + " idCuentaUsuario, "
+                + " dni, "
+                + " nombre, "
+                + " apellidoPaterno, "
+                + " genero, "
+                + " fechaNacimiento, "
+                + " cargo, "
+                + " sueldo, "
+                + " activo "
+                + "FROM EMPLEADO "
+                + "WHERE id = ?";
+        
         PreparedStatement cmd = conn.prepareStatement(sql);
         cmd.setInt(1, id);
         return cmd;
@@ -139,9 +156,10 @@ public class EmpleadoDAOImpl extends BaseDAO<Empleado> {
                 + " cargo, "
                 + " sueldo, "
                 + " activo "
-                + "FROM EMPLEADO"
-                + "WHERE id = ?";
+                + "FROM EMPLEADO";
+        
         PreparedStatement cmd = conn.prepareStatement(sql);
+        
         return cmd;
     }
 

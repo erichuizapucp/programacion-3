@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import pe.edu.pucp.inf30.softprog.dao.rrhh.CuentaUsuarioDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.BaseDAO;
 import pe.edu.pucp.inf30.softprog.modelo.rrhh.CuentaUsuario;
@@ -20,13 +21,14 @@ public class CuentaUsuarioDAOImpl extends BaseDAO<CuentaUsuario>
             CuentaUsuario modelo) throws SQLException {
         
         String sql = 
-                "INSER INTO CUENTA_USUARIO ("
-                + " userName, "
+                "INSERT INTO CUENTA_USUARIO ("
+                + "userName, "
                 + " password, "
                 + " activo) "
                 + "VALUES (?, ?, ?)";
         
-        PreparedStatement cmd = conn.prepareStatement(sql);
+        PreparedStatement cmd = conn.prepareStatement(sql, 
+                Statement.RETURN_GENERATED_KEYS);
         cmd.setString(1, modelo.getUserName());
         cmd.setString(2, modelo.getPassword());
         cmd.setBoolean(3, modelo.isActivo());
