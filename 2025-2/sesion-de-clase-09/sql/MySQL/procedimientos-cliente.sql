@@ -16,7 +16,7 @@ CREATE PROCEDURE insertarCliente(
     IN p_genero VARCHAR(10), 
     IN p_fechaNacimiento DATE, 
     IN p_categoria VARCHAR(50), 
-    IN p_lineaCredito DECIMAL(5, 2), 
+    IN p_lineaCredito DECIMAL(10, 2), 
     IN p_activo BOOLEAN, 
     OUT p_id INT)
 BEGIN
@@ -31,7 +31,6 @@ BEGIN
 		lineaCredito, 
 		activo) 
     VALUES (
-		p_idArea, 
 		p_idCuentaUsuario, 
 		p_dni, 
 		p_nombre, 
@@ -53,7 +52,7 @@ CREATE PROCEDURE modificarCliente(
     IN p_genero VARCHAR(10), 
     IN p_fechaNacimiento DATE, 
     IN p_categoria VARCHAR(50), 
-    IN p_lineaCredito DECIMAL(5, 2), 
+    IN p_lineaCredito DECIMAL(10, 2), 
     IN p_activo BOOLEAN, 
     IN p_id INT)
 BEGIN

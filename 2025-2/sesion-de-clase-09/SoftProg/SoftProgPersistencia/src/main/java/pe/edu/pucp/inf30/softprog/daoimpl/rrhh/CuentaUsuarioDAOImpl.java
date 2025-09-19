@@ -1,10 +1,11 @@
 package pe.edu.pucp.inf30.softprog.daoimpl.rrhh;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.Types;
 import pe.edu.pucp.inf30.softprog.dao.rrhh.CuentaUsuarioDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.BaseDAO;
 import pe.edu.pucp.inf30.softprog.modelo.rrhh.CuentaUsuario;
@@ -20,18 +21,13 @@ public class CuentaUsuarioDAOImpl extends BaseDAO<CuentaUsuario>
     protected PreparedStatement comandoCrear(Connection conn, 
             CuentaUsuario modelo) throws SQLException {
         
-        String sql = 
-                "INSERT INTO CUENTA_USUARIO ("
-                + "userName, "
-                + " password, "
-                + " activo) "
-                + "VALUES (?, ?, ?)";
+        String sql = "{call insertarCuentaUsuario(?, ?, ?, ?)}";
         
-        PreparedStatement cmd = conn.prepareStatement(sql, 
-                Statement.RETURN_GENERATED_KEYS);
-        cmd.setString(1, modelo.getUserName());
-        cmd.setString(2, modelo.getPassword());
-        cmd.setBoolean(3, modelo.isActivo());
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setString("p_userName", modelo.getUserName());
+        cmd.setString("p_password", modelo.getPassword());
+        cmd.setBoolean("p_activo", modelo.isActivo());
+        cmd.registerOutParameter("p_id", Types.INTEGER);
         
         return cmd;
     }
@@ -40,20 +36,13 @@ public class CuentaUsuarioDAOImpl extends BaseDAO<CuentaUsuario>
     protected PreparedStatement comandoActualizar(Connection conn, 
             CuentaUsuario modelo) throws SQLException {
         
-        String sql = 
-                "UPDATE CUENTA_USUARIO "
-                + "SET "
-                + " userName = ?, "
-                + " password = ?, "
-                + " activo = ? "
-                + "WHERE "
-                + " id = ?";
+        String sql = "{call modificarCuentaUsuario(?, ?, ?, ?)}";
         
-        PreparedStatement cmd = conn.prepareStatement(sql);
-        cmd.setString(1, modelo.getUserName());
-        cmd.setString(2, modelo.getPassword());
-        cmd.setBoolean(3, modelo.isActivo());
-        cmd.setInt(4, modelo.getId());
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setString("p_userName", modelo.getUserName());
+        cmd.setString("p_password", modelo.getPassword());
+        cmd.setBoolean("p_activo", modelo.isActivo());
+        cmd.setInt("p_id", modelo.getId());
         
         return cmd;
     }
@@ -62,13 +51,10 @@ public class CuentaUsuarioDAOImpl extends BaseDAO<CuentaUsuario>
     protected PreparedStatement comandoEliminar(Connection conn, 
             Integer id) throws SQLException {
         
-        String sql = 
-                "DELETE "
-                + "FROM CUENTA_USUARIO "
-                + "WHERE id = ?";
+        String sql = "{call eliminarCuentaUsuario(?)}";
         
-        PreparedStatement cmd = conn.prepareStatement(sql);
-        cmd.setInt(1, id);
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setInt("p_id", id);
         
         return cmd;
     }
@@ -77,18 +63,10 @@ public class CuentaUsuarioDAOImpl extends BaseDAO<CuentaUsuario>
     protected PreparedStatement comandoLeer(Connection conn, 
             Integer id) throws SQLException {
         
-        String sql = 
-                "SELECT "
-                + " id, "
-                + " userName, "
-                + " password, "
-                + " activo "
-                + "FROM CUENTA_USUARIO "
-                + "WHERE "
-                + " id = ?";
+        String sql = "{call buscarCuentaUsuarioPorId(?)}";
         
-        PreparedStatement cmd = conn.prepareStatement(sql);
-        cmd.setInt(1, id);
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setInt("p_id", id);
         
         return cmd;
     }
@@ -97,15 +75,9 @@ public class CuentaUsuarioDAOImpl extends BaseDAO<CuentaUsuario>
     protected PreparedStatement comandoLeerTodos(Connection conn) 
             throws SQLException {
         
-        String sql = 
-                "SELECT "
-                + " id, "
-                + " userName, "
-                + " password, "
-                + " activo "
-                + "FROM CUENTA_USUARIO";
+        String sql = "{call listarCuentaUsuarios()}";
                 
-        PreparedStatement cmd = conn.prepareStatement(sql);
+        CallableStatement cmd = conn.prepareCall(sql);
         
         return cmd;
     }

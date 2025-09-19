@@ -1,11 +1,11 @@
 package pe.edu.pucp.inf30.softprog.daoimpl.rrhh;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.sql.Types;
 import pe.edu.pucp.inf30.softprog.dao.rrhh.EmpleadoDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.BaseDAO;
@@ -23,38 +23,27 @@ public class EmpleadoDAOImpl extends BaseDAO<Empleado> implements EmpleadoDAO {
     protected PreparedStatement comandoCrear(Connection conn, Empleado modelo) 
             throws SQLException {
         
-        String sql = 
-                "INSERT INTO EMPLEADO ("
-                + " idArea, "
-                + " idCuentaUsuario, "
-                + " dni, "
-                + " nombre, "
-                + " apellidoPaterno, "
-                + " genero, "
-                + " fechaNacimiento, "
-                + " cargo, "
-                + " sueldo, "
-                + " activo) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        PreparedStatement cmd = conn.prepareStatement(sql, 
-                Statement.RETURN_GENERATED_KEYS);   
-        cmd.setInt(1, modelo.getArea().getId());
+        String sql = "{call insertarEmpleado(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
+        CallableStatement cmd = conn.prepareCall(sql);   
+        cmd.setInt("p_idArea", modelo.getArea().getId());
         
         if (modelo.getCuentaUsuario() != null) {
-            cmd.setInt(2, modelo.getCuentaUsuario().getId());
+            cmd.setInt("p_idCuentaUsuario", modelo.getCuentaUsuario().getId());
         }
         else {
-            cmd.setNull(2, Types.INTEGER);
+            cmd.setNull("p_idCuentaUsuario", Types.INTEGER);
         }
         
-        cmd.setString(3, modelo.getDni());
-        cmd.setString(4, modelo.getNombre());
-        cmd.setString(5, modelo.getApellidoPaterno());
-        cmd.setString(6, String.valueOf(modelo.getGenero()));
-        cmd.setDate(7, new Date(modelo.getFechaNacimiento().getTime()));
-        cmd.setString(8, String.valueOf(modelo.getCargo()));
-        cmd.setDouble(9, modelo.getSueldo());
-        cmd.setBoolean(10, modelo.isActivo());
+        cmd.setString("p_dni", modelo.getDni());
+        cmd.setString("p_nombre", modelo.getNombre());
+        cmd.setString("p_apellidoPaterno", modelo.getApellidoPaterno());
+        cmd.setString("p_genero", String.valueOf(modelo.getGenero()));
+        cmd.setDate("p_fechaNacimiento", 
+                new Date(modelo.getFechaNacimiento().getTime()));
+        cmd.setString("p_cargo", String.valueOf(modelo.getCargo()));
+        cmd.setDouble("p_sueldo", modelo.getSueldo());
+        cmd.setBoolean("p_activo", modelo.isActivo());
+        cmd.registerOutParameter("p_id", Types.INTEGER);
         
         return cmd;
     }
@@ -64,40 +53,29 @@ public class EmpleadoDAOImpl extends BaseDAO<Empleado> implements EmpleadoDAO {
             Empleado modelo) throws SQLException {
         
         String sql = 
-                "UPDATE EMPLEADO "
-                + "SET "
-                + " idArea = ?, "
-                + " idCuentaUsuario = ?, "
-                + " dni = ?, "
-                + " nombre = ?, "
-                + " apellidoPaterno = ?, "
-                + " genero = ?, "
-                + " fechaNacimiento = ?, "
-                + " cargo = ?, "
-                + " sueldo = ?, "
-                + " activo = ? "
-                + "WHERE "
-                + " id = ?";
+                "{call modificarEmpleado(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
         
-        PreparedStatement cmd = conn.prepareCall(sql);
-        cmd.setInt(1, modelo.getArea().getId());
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setInt("p_idArea", modelo.getArea().getId());
         
         if (modelo.getCuentaUsuario() != null) {
-            cmd.setInt(2, modelo.getCuentaUsuario().getId());
+            cmd.setInt("p_idCuentaUsuario", modelo.getCuentaUsuario().getId());
         }
         else {
-            cmd.setNull(2, Types.INTEGER);
+            cmd.setNull("p_idCuentaUsuario", Types.INTEGER);
         }
         
-        cmd.setString(3, modelo.getDni());
-        cmd.setString(4, modelo.getNombre());
-        cmd.setString(5, modelo.getApellidoPaterno());
-        cmd.setString(6, String.valueOf(modelo.getGenero()));
-        cmd.setDate(7, new Date(modelo.getFechaNacimiento().getTime()));
-        cmd.setString(8, String.valueOf(modelo.getCargo()));
-        cmd.setDouble(9, modelo.getSueldo());
-        cmd.setBoolean(10, modelo.isActivo());
-        cmd.setInt(11, modelo.getId());
+        cmd.setString("p_dni", modelo.getDni());
+        cmd.setString("p_nombre", modelo.getNombre());
+        cmd.setString("p_apellidoPaterno", modelo.getApellidoPaterno());
+        cmd.setString("p_genero", String.valueOf(modelo.getGenero()));
+        cmd.setDate("p_fechaNacimiento", 
+                new Date(modelo.getFechaNacimiento().getTime()));
+        cmd.setString("p_cargo", String.valueOf(modelo.getCargo()));
+        cmd.setDouble("p_sueldo", modelo.getSueldo());
+        cmd.setBoolean("p_activo", modelo.isActivo());
+        cmd.setInt("p_id", modelo.getId());
+        
         return cmd;
     }
 
@@ -105,12 +83,9 @@ public class EmpleadoDAOImpl extends BaseDAO<Empleado> implements EmpleadoDAO {
     protected PreparedStatement comandoEliminar(Connection conn, Integer id) 
             throws SQLException {
         
-        String sql = 
-                "DELETE "
-                + "FROM EMPLEADO "
-                + "WHERE id = ?";
-        PreparedStatement cmd = conn.prepareStatement(sql);
-        cmd.setInt(1, id);
+        String sql = "{call eliminarEmpleado(?)}";
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setInt("p_id", id);
         return cmd;
     }
 
@@ -118,24 +93,10 @@ public class EmpleadoDAOImpl extends BaseDAO<Empleado> implements EmpleadoDAO {
     protected PreparedStatement comandoLeer(Connection conn, Integer id) 
             throws SQLException {
         
-        String sql = 
-                "SELECT "
-                + " id, "
-                + " idArea, "
-                + " idCuentaUsuario, "
-                + " dni, "
-                + " nombre, "
-                + " apellidoPaterno, "
-                + " genero, "
-                + " fechaNacimiento, "
-                + " cargo, "
-                + " sueldo, "
-                + " activo "
-                + "FROM EMPLEADO "
-                + "WHERE id = ?";
+        String sql = "{call buscarEmpleadoPorId(?)}";
         
-        PreparedStatement cmd = conn.prepareStatement(sql);
-        cmd.setInt(1, id);
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setInt("p_id", id);
         return cmd;
     }
 
@@ -143,22 +104,9 @@ public class EmpleadoDAOImpl extends BaseDAO<Empleado> implements EmpleadoDAO {
     protected PreparedStatement comandoLeerTodos(Connection conn) 
             throws SQLException {
         
-        String sql = 
-                "SELECT "
-                + " id, "
-                + " idArea, "
-                + " idCuentaUsuario, "
-                + " dni, "
-                + " nombre, "
-                + " apellidoPaterno, "
-                + " genero, "
-                + " fechaNacimiento, "
-                + " cargo, "
-                + " sueldo, "
-                + " activo "
-                + "FROM EMPLEADO";
+        String sql = "{call listarEmpleados()}";
         
-        PreparedStatement cmd = conn.prepareStatement(sql);
+        CallableStatement cmd = conn.prepareCall(sql);
         
         return cmd;
     }

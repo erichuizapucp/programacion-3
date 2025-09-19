@@ -1,10 +1,11 @@
 package pe.edu.pucp.inf30.softprog.daoimpl.clientes;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.Types;
 import pe.edu.pucp.inf30.softprog.dao.clientes.ClienteDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.BaseDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.rrhh.CuentaUsuarioDAOImpl;
@@ -21,31 +22,20 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
     protected PreparedStatement comandoCrear(Connection conn, Cliente modelo) 
             throws SQLException {
         
-        String sql = 
-                "INSERT INTO CLIENTE ("
-                + " idCuentaUsuario, "
-                + " dni, "
-                + " nombre, "
-                + " apellidoPaterno, "
-                + " genero, "
-                + " fechaNacimiento, "
-                + " categoria, "
-                + " lineaCredito, "
-                + " activo) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "{call insertarCliente(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
         
-        PreparedStatement cmd = conn.prepareStatement(sql, 
-                Statement.RETURN_GENERATED_KEYS);
-        cmd.setInt(1, modelo.getCuentaUsuario().getId());
-        cmd.setString(2, modelo.getDni());
-        cmd.setString(3, modelo.getNombre());
-        cmd.setString(4, modelo.getApellidoPaterno());
-        cmd.setString(5, String.valueOf(modelo.getGenero()));
-        cmd.setDate(6, new java.sql.Date(
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setInt("p_idCuentaUsuario", modelo.getCuentaUsuario().getId());
+        cmd.setString("p_dni", modelo.getDni());
+        cmd.setString("p_nombre", modelo.getNombre());
+        cmd.setString("p_apellidoPaterno", modelo.getApellidoPaterno());
+        cmd.setString("p_genero", String.valueOf(modelo.getGenero()));
+        cmd.setDate("p_fechaNacimiento", new java.sql.Date(
                 modelo.getFechaNacimiento().getTime()));
-        cmd.setString(7, modelo.getCategoria().name());
-        cmd.setDouble(8, modelo.getLineaCredito());
-        cmd.setBoolean(9, modelo.isActivo());
+        cmd.setString("p_categoria", modelo.getCategoria().name());
+        cmd.setDouble("p_lineaCredito", modelo.getLineaCredito());
+        cmd.setBoolean("p_activo", modelo.isActivo());
+        cmd.registerOutParameter("p_id", Types.INTEGER);
         
         return cmd;
     }
@@ -54,32 +44,20 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
     protected PreparedStatement comandoActualizar(Connection conn, 
             Cliente modelo) throws SQLException {
         
-        String sql = 
-                "UPDATE CLIENTE "
-                + "SET "
-                + " idCuentaUsuario = ?, "
-                + " dni = ?, "
-                + " nombre = ?, "
-                + " apellidoPaterno = ?, "
-                + " genero = ?, "
-                + " fechaNacimiento = ?, "
-                + " categoria = ?, "
-                + " lineaCredito = ?, "
-                + " activo = ? "
-                + "WHERE "
-                + " id = ?";
+        String sql = "{call modificarCliente(?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}";
         
-        PreparedStatement cmd = conn.prepareStatement(sql);
-        cmd.setInt(1, modelo.getCuentaUsuario().getId());
-        cmd.setString(2, modelo.getDni());
-        cmd.setString(3, modelo.getNombre());
-        cmd.setString(4, modelo.getApellidoPaterno());
-        cmd.setString(5, String.valueOf(modelo.getGenero()));
-        cmd.setDate(6, new java.sql.Date(modelo.getFechaNacimiento().getTime()));
-        cmd.setString(7, modelo.getCategoria().name());
-        cmd.setDouble(8, modelo.getLineaCredito());
-        cmd.setBoolean(9, modelo.isActivo());
-        cmd.setInt(10, modelo.getId());
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setInt("p_idCuentaUsuario", modelo.getCuentaUsuario().getId());
+        cmd.setString("p_dni", modelo.getDni());
+        cmd.setString("p_nombre", modelo.getNombre());
+        cmd.setString("p_apellidoPaterno", modelo.getApellidoPaterno());
+        cmd.setString("p_genero", String.valueOf(modelo.getGenero()));
+        cmd.setDate("p_fechaNacimiento", 
+                new java.sql.Date(modelo.getFechaNacimiento().getTime()));
+        cmd.setString("p_categoria", modelo.getCategoria().name());
+        cmd.setDouble("p_lineaCredito", modelo.getLineaCredito());
+        cmd.setBoolean("p_activo", modelo.isActivo());
+        cmd.setInt("p_id", modelo.getId());
         
         return cmd;
     }
@@ -88,13 +66,10 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
     protected PreparedStatement comandoEliminar(Connection conn, Integer id) 
             throws SQLException {
         
-        String sql = 
-                "DELETE "
-                + "FROM CLIENTE "
-                + "WHERE id = ?";
+        String sql = "{call eliminarCliente(?)}";
         
-        PreparedStatement cmd = conn.prepareStatement(sql);
-        cmd.setInt(1, id);
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setInt("p_id", id);
         
         return cmd;
     }
@@ -103,23 +78,10 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
     protected PreparedStatement comandoLeer(Connection conn, Integer id) 
             throws SQLException {
         
-        String sql = 
-                "SELECT "
-                + " id, "
-                + " idCuentaUsuario, "
-                + " dni, "
-                + " nombre, "
-                + " apellidoPaterno, "
-                + " genero, "
-                + " fechaNacimiento, "
-                + " categoria, "
-                + " lineaCredito, "
-                + " activo "
-                + "FROM CLIENTE "
-                + "WHERE id = ?";
+        String sql = "{call buscarClientePorId(?)}";
         
-        PreparedStatement cmd = conn.prepareStatement(sql);
-        cmd.setInt(1, id);
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setInt("p_id", id);
         
         return cmd;
     }
@@ -128,21 +90,9 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
     protected PreparedStatement comandoLeerTodos(Connection conn) 
             throws SQLException {
         
-        String sql = 
-                "SELECT "
-                + " id, "
-                + " idCuentaUsuario, "
-                + " dni, "
-                + " nombre, "
-                + " apellidoPaterno, "
-                + " genero, "
-                + " fechaNacimiento, "
-                + " categoria, "
-                + " lineaCredito, "
-                + " activo "
-                + "FROM CLIENTE";
+        String sql = "{call listarClientes()}";
         
-        PreparedStatement cmd = conn.prepareStatement(sql);
+        CallableStatement cmd = conn.prepareCall(sql);
         
         return cmd;
     }
@@ -158,6 +108,7 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
         cliente.setApellidoPaterno(rs.getString("apellidoPaterno"));
         cliente.setGenero(Genero.valueOf(rs.getString("genero")));
         cliente.setFechaNacimiento(rs.getTimestamp("fechaNacimiento"));
+        cliente.setLineaCredito(rs.getDouble("lineaCredito"));
         cliente.setCategoria(
                 CategoriaCliente.valueOf(rs.getString("categoria")));
         cliente.setActivo(rs.getBoolean("activo"));
@@ -168,23 +119,10 @@ public class ClienteDAOImpl extends BaseDAO<Cliente> implements ClienteDAO {
     protected PreparedStatement comandoBuscarPorDni(Connection conn, String dni) 
             throws SQLException {
         
-        String sql = 
-                "SELECT "
-                + " id, "
-                + " idCuentaUsuario, "
-                + " dni, "
-                + " nombr, "
-                + " apellidoPaterno, "
-                + " genero, "
-                + " fechaNacimiento, "
-                + " categoria, "
-                + " lineaCredito, "
-                + " activo "
-                + "FROM CLIENTE "
-                + "WHERE dni = ?";
+        String sql = "{call buscarClientePorDni(?)}";
         
-        PreparedStatement cmd = conn.prepareStatement(sql);
-        cmd.setString(1, dni);
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setString("p_dni", dni);
         
         return cmd;
     }

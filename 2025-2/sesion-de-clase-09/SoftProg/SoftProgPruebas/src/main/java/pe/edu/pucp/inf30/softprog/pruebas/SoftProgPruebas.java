@@ -232,10 +232,10 @@ public class SoftProgPruebas {
     }
     
     public static void main(String[] args) {
-//        probarArea();
+        probarArea();
         probarProducto();
-//        probarCuentaUsuario();
-//        probarCliente();
-//        probarEmpleado();
+        probarCuentaUsuario();
+        probarCliente();
+        probarEmpleado();
     }
 }

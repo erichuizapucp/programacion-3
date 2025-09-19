@@ -34,7 +34,7 @@ CREATE PROCEDURE dbo.insertarCliente
     @p_genero NVARCHAR(10), 
     @p_fechaNacimiento DATE, 
     @p_categoria NVARCHAR(50), 
-    @p_lineaCredito DECIMAL(5,2), 
+    @p_lineaCredito DECIMAL(10,2), 
     @p_activo BIT, 
     @p_id INT OUTPUT
 AS
@@ -75,7 +75,7 @@ CREATE PROCEDURE dbo.modificarCliente
     @p_genero NVARCHAR(10), 
     @p_fechaNacimiento DATE, 
     @p_categoria NVARCHAR(50), 
-    @p_lineaCredito DECIMAL(5,2), 
+    @p_lineaCredito DECIMAL(10,2), 
     @p_activo BIT, 
     @p_id INT
 AS

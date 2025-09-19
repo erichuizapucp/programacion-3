@@ -1,7 +1,5 @@
 package pe.edu.pucp.inf30.softprog.test.dao.rrhh;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -71,7 +69,8 @@ public class EmpleadoDaoTest implements PersistibleProbable {
         EmpleadoDAO empladoDao = new EmpleadoDAOImpl();
         Empleado empleado = new Empleado();
         empleado.setArea(new AreaDAOImpl().leer(this.testAreaId));
-        empleado.setCuentaUsuario(new CuentaUsuarioDAOImpl().leer(this.testCuentaUsuarioId));
+        empleado.setCuentaUsuario(
+                new CuentaUsuarioDAOImpl().leer(this.testCuentaUsuarioId));
         empleado.setDni("12345678");
         empleado.setNombre("Nombre de prueba");
         empleado.setApellidoPaterno("Apellido de prueba");
@@ -95,7 +94,8 @@ public class EmpleadoDaoTest implements PersistibleProbable {
         Empleado empleado = new Empleado();
         empleado.setId(this.testId);
         empleado.setArea(new AreaDAOImpl().leer(this.testAreaId));
-        empleado.setCuentaUsuario(new CuentaUsuarioDAOImpl().leer(this.testCuentaUsuarioId));
+        empleado.setCuentaUsuario(
+                new CuentaUsuarioDAOImpl().leer(this.testCuentaUsuarioId));
         empleado.setDni("87654321");
         empleado.setNombre("Nombre de prueba Modificado");
         empleado.setApellidoPaterno("Apellido de prueba Modificado");
@@ -111,11 +111,14 @@ public class EmpleadoDaoTest implements PersistibleProbable {
 
         Empleado empleadoModificado = empleadoDao.leer(this.testId);
         assertEquals(empleadoModificado.getDni(), "87654321");
-        assertEquals(empleadoModificado.getNombre(), "Nombre de prueba Modificado");
-        assertEquals(empleadoModificado.getApellidoPaterno(), "Apellido de prueba Modificado");
+        assertEquals(empleadoModificado.getNombre(), 
+                "Nombre de prueba Modificado");
+        assertEquals(empleadoModificado.getApellidoPaterno(), 
+                "Apellido de prueba Modificado");
         assertEquals(empleadoModificado.getGenero(), Genero.MASCULINO);
-        assertEquals(empleadoModificado.getFechaNacimiento(), new GregorianCalendar(2000, 
-                Calendar.JULY, 28).getTime());
+        assertEquals(empleadoModificado.getFechaNacimiento().getTime(), 
+                new GregorianCalendar(2000, Calendar.JULY, 28).getTime()
+                        .getTime());
         assertEquals(empleadoModificado.getCargo(), Cargo.TECNICO);
         assertEquals(empleadoModificado.getSueldo(), 1200.00);
         assertFalse(empleadoModificado.isActivo());
@@ -129,7 +132,8 @@ public class EmpleadoDaoTest implements PersistibleProbable {
         Empleado empleado = new Empleado();
         empleado.setId(this.idIncorrecto);
         empleado.setArea(new AreaDAOImpl().leer(this.testAreaId));
-        empleado.setCuentaUsuario(new CuentaUsuarioDAOImpl().leer(this.testCuentaUsuarioId));
+        empleado.setCuentaUsuario(
+                new CuentaUsuarioDAOImpl().leer(this.testCuentaUsuarioId));
         empleado.setDni("87654321");
         empleado.setNombre("Nombre de prueba Modificado");
         empleado.setApellidoPaterno("Apellido de prueba Modificado");

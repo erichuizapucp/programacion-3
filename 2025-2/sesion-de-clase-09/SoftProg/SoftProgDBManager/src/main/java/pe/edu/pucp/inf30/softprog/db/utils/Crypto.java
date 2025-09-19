@@ -7,8 +7,6 @@ package pe.edu.pucp.inf30.softprog.db.utils;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
-import java.util.Properties;
-import java.io.FileInputStream;
 
 public class Crypto {
     // Esta clave esta fija solo con el proposito academico
