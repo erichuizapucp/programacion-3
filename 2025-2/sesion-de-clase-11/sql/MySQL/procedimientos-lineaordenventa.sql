@@ -5,7 +5,6 @@ DROP PROCEDURE IF EXISTS modificarLineaOrdenVenta;
 DROP PROCEDURE IF EXISTS eliminarLineaOrdenVenta;
 DROP PROCEDURE IF EXISTS buscarLineaOrdenVentaPorId;
 DROP PROCEDURE IF EXISTS listarLineasOrdenVenta;
-DROP PROCEDURE IF EXISTS listarLineasPorOrdenVenta;
 
 DELIMITER //
 CREATE PROCEDURE insertarLineaOrdenVenta(

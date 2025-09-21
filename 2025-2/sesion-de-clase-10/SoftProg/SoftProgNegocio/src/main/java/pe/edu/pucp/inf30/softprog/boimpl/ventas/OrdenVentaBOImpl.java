@@ -37,7 +37,8 @@ public class OrdenVentaBOImpl implements Gestionable<OrdenVenta> {
         OrdenVenta orden = ordenVentaDao.leer(id);
         if (orden == null) return null;
         
-        List<LineaOrdenVenta> lineas = lineaOrdenVentaDao.leerTodosPorOrden(id);
+        List<LineaOrdenVenta> lineas = 
+                lineaOrdenVentaDao.leerTodosPorOrden(id);
         orden.setLineas(lineas);
         return orden;
     }

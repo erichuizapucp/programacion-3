@@ -46,8 +46,8 @@ public class DBFactoryProvider {
             String usuario = properties.getString("db.usuario");
             String password = properties.getString("db.password");
 
-            return new MySQLDBManagerFactory().crearDBManager(host, puerto, esquema, usuario, 
-                                               password);
+            return new MySQLDBManagerFactory().crearDBManager(host, puerto, 
+                    esquema, usuario, password);
         }
         
         return instancia;
@@ -63,8 +63,8 @@ public class DBFactoryProvider {
             String usuario = properties.getString("db.usuario");
             String password = properties.getString("db.password");
 
-            return new MSSQLDBManagerFactory().crearDBManager(host, puerto, esquema, usuario, 
-                                               password);
+            return new MSSQLDBManagerFactory().crearDBManager(host, puerto, 
+                    esquema, usuario, password);
         }
         
         return instancia;
