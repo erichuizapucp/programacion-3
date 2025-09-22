@@ -143,7 +143,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICrudDAOTest.cs" />
+    <Compile Include="IPersistibleTest.cs" />
     <Compile Include="RRHH\AreaDAOTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

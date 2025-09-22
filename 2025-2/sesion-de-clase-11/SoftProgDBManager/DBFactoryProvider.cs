@@ -11,7 +11,7 @@ namespace PUCP.SoftProg.Db {
                 if (instancia == null) {
                     string host = ConfigurationManager.AppSettings["db.host"];
                     int puerto = int.Parse(ConfigurationManager.AppSettings["db.puerto"]);
-                    string esquema = ConfigurationManager.AppSettings["db.esquema"];
+                    string esquema = ConfigurationManager.AppSettings["db.basedatos"];
                     string usuario = ConfigurationManager.AppSettings["db.usuario"];
                     string password = ConfigurationManager.AppSettings["db.password"];
                     string provider = ConfigurationManager.AppSettings["db.provider"];

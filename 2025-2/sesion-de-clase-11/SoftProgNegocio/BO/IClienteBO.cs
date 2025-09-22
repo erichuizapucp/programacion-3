@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PUCP.Edu.Pe.SoftProg.Modelo.Clientes;
-using PUCP.Edu.Pe.SoftProg.Modelo.RRHH;
+﻿using PUCP.SoftProg.Modelo.Clientes;
 
-namespace PUCP.Edu.Pe.SoftProg.Negocio.BO {
+namespace PUCP.SoftProg.Negocio.BO {
     public interface IClienteBO : IBaseBO<Cliente> {
         Cliente BuscarPorDni(string dni);
     }

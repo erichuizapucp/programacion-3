@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using PUCP.Edu.Pe.SoftProg.Persistencia.DAO.RRHH;
-using PUCP.Edu.Pe.SoftProg.Persistencia.DAOImpl.RRHH;
-using PUCP.Edu.Pe.SoftProg.Modelo.RRHH;
+using PUCP.SoftProg.Persistencia.DAO.RRHH;
+using PUCP.SoftProg.Persistencia.DAOImpl.RRHH;
+using PUCP.SoftProg.Modelo.RRHH;
 
 namespace PUCP.Edu.Pe.SoftProg.Tests.Persistencia.RRHH {
     [TestClass]
-    public class AreaDAOTest : ICrudDAOTest{
+    public class AreaDAOTest : IPersistibleTest{
         private static int testId;
         private readonly int idIncorrecto = 99999;
 
@@ -18,7 +18,7 @@ namespace PUCP.Edu.Pe.SoftProg.Tests.Persistencia.RRHH {
                 IsActive = true
             };
 
-            testId = areaDao.Insertar(area);
+            testId = areaDao.Crear(area);
         }
 
         [ClassCleanup]
@@ -39,10 +39,10 @@ namespace PUCP.Edu.Pe.SoftProg.Tests.Persistencia.RRHH {
                 IsActive = false
             };
             
-            bool modifico = areaDao.Modificar(area);
+            bool modifico = areaDao.Actualizar(area);
             Assert.IsTrue(modifico);
 
-            Area areaModificada = areaDao.Buscar(testId);
+            Area areaModificada = areaDao.Leer(testId);
             Assert.AreEqual(areaModificada.Nombre, "Area de Prueba Modificada");
             Assert.IsFalse(areaModificada.IsActive);
         }
@@ -56,7 +56,7 @@ namespace PUCP.Edu.Pe.SoftProg.Tests.Persistencia.RRHH {
                 IsActive = false
             };
 
-            bool modifico = areaDao.Modificar(area);
+            bool modifico = areaDao.Actualizar(area);
             Assert.IsFalse(modifico);
         }
 
@@ -70,21 +70,21 @@ namespace PUCP.Edu.Pe.SoftProg.Tests.Persistencia.RRHH {
         [TestMethod]
         public void Test5DebeEncontrarSiIdExiste() {
             IAreaDAO areaDao = new AreaDAOImpl();
-            Area area = areaDao.Buscar(testId);
+            Area area = areaDao.Leer(testId);
             Assert.IsNotNull(area);
         }
 
         [TestMethod]
         public void Test6NoDebeEncontrarSiIdNoExiste() {
             IAreaDAO areaDao = new AreaDAOImpl();
-            Area area = areaDao.Buscar(this.idIncorrecto);
+            Area area = areaDao.Leer(this.idIncorrecto);
             Assert.IsNull(area);
         }
 
         [TestMethod]
         public void Test7DebeListar() {
             IAreaDAO areaDao = new AreaDAOImpl();
-            List<Area> areas = areaDao.Listar();
+            List<Area> areas = areaDao.LeerTodos();
 
             Assert.IsNotNull(areas);
             Assert.IsTrue(areas.Count > 0);

@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PUCP.Edu.Pe.SoftProg.Modelo.RRHH;
-using PUCP.Edu.Pe.SoftProg.Negocio.BO;
-using PUCP.Edu.Pe.SoftProg.Persistencia.DAO.RRHH;
-using PUCP.Edu.Pe.SoftProg.Persistencia.DAOImpl.RRHH;
+using PUCP.SoftProg.Modelo;
+using PUCP.SoftProg.Modelo.RRHH;
+using PUCP.SoftProg.Negocio.BO;
+using PUCP.SoftProg.Persistencia.DAO.RRHH;
+using PUCP.SoftProg.Persistencia.DAOImpl.RRHH;
 
-namespace PUCP.Edu.Pe.SoftProg.Negocio.BOImpl {
+namespace PUCP.SoftProg.Negocio.BOImpl {
     public class AreaBOImpl : IAreaBO {
         private readonly IAreaDAO areaDAO;
 
@@ -24,19 +22,19 @@ namespace PUCP.Edu.Pe.SoftProg.Negocio.BOImpl {
 
         public void Guardar(Area area, Estado estado) {
             if (estado == Estado.Nuevo) {
-                this.areaDAO.Insertar(area);
+                this.areaDAO.Crear(area);
             }
-            else if (estado == Estado.Modificar) { 
-                this.areaDAO.Modificar(area);
+            else if (estado == Estado.Modificado) { 
+                this.areaDAO.Crear(area);
             }
         }
 
         public List<Area> Listar() {
-            return this.areaDAO.Listar();
+            return this.areaDAO.LeerTodos();
         }
 
         public Area Obtener(int id) {
-            return this.areaDAO.Buscar(id);
+            return this.areaDAO.Leer(id);
         }
     }
 }

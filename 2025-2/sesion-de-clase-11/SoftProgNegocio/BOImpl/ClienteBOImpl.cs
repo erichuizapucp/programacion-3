@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PUCP.Edu.Pe.SoftProg.Modelo.Clientes;
-using PUCP.Edu.Pe.SoftProg.Negocio.BO;
-using PUCP.Edu.Pe.SoftProg.Persistencia.DAO.Clientes;
-using PUCP.Edu.Pe.SoftProg.Persistencia.DAOImpl.Clientes;
+﻿using System.Collections.Generic;
+using PUCP.SoftProg.Modelo;
+using PUCP.SoftProg.Modelo.Clientes;
+using PUCP.SoftProg.Negocio.BO;
+using PUCP.SoftProg.Persistencia.DAO.Clientes;
+using PUCP.SoftProg.Persistencia.DAOImpl.Clientes;
 
-namespace PUCP.Edu.Pe.SoftProg.Negocio.BOImpl {
+namespace PUCP.SoftProg.Negocio.BOImpl {
     public class ClienteBOImpl : IClienteBO {
         private readonly IClienteDAO clienteDAO;
 
@@ -18,10 +15,10 @@ namespace PUCP.Edu.Pe.SoftProg.Negocio.BOImpl {
 
         public void Guardar(Cliente cliente, Estado estado) {
             if (estado == Estado.Nuevo) {
-                this.clienteDAO.Insertar(cliente);
+                this.clienteDAO.Crear(cliente);
             }
             else {
-                this.clienteDAO.Modificar(cliente);
+                this.clienteDAO.Actualizar(cliente);
             }
         }
 
@@ -30,11 +27,11 @@ namespace PUCP.Edu.Pe.SoftProg.Negocio.BOImpl {
         }
 
         public Cliente Obtener(int id) {
-            return this.clienteDAO.Buscar(id);
+            return this.clienteDAO.Leer(id);
         }
 
         public List<Cliente> Listar() {
-            return this.clienteDAO.Listar();
+            return this.clienteDAO.LeerTodos();
         }
 
         public Cliente BuscarPorDni(string dni)

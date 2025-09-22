@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using PUCP.Edu.Pe.SoftProg.Config;
-using PUCP.Edu.Pe.SoftProg.Modelo.Logistica.Ventas;
-using PUCP.Edu.Pe.SoftProg.Negocio.BO;
-using PUCP.Edu.Pe.SoftProg.Persistencia.DAO.Logistica.Ventas;
-using PUCP.Edu.Pe.SoftProg.Persistencia.DAOImpl.Logistica.Ventas;
+using PUCP.SoftProg.Db;
+using PUCP.SoftProg.Modelo;
+using PUCP.SoftProg.Modelo.Ventas;
+using PUCP.SoftProg.Negocio.BO;
+using PUCP.SoftProg.Persistencia.DAO.Ventas;
+using PUCP.SoftProg.Persistencia.DAOImpl.Ventas;
 
-namespace PUCP.Edu.Pe.SoftProg.Negocio.BOImpl {
+namespace PUCP.SoftProg.Negocio.BOImpl {
     public class OrdenVentaBOImpl : IOrdenVentaBO {
         private readonly IOrdenVentaDAO ordenVentaDAO;
         private readonly ILineaOrdenVentaDAO lineaOrdenVentaDAO;
@@ -21,77 +19,76 @@ namespace PUCP.Edu.Pe.SoftProg.Negocio.BOImpl {
         }
 
         public void Guardar(OrdenVenta ordenVenta, Estado estado) {
-            if (estado == Estado.Nuevo) {
-                DbTransaction transaction = null;
-                using (DbConnection conexion = DBManager.GetInstance().GetConnection()) {
-                    try {
-                        transaction = conexion.BeginTransaction();
+            using (DbConnection conexion = DBFactoryProvider.GetManager().GetConnection()) {
+                conexion.Open();
+                DbTransaction transaction = conexion.BeginTransaction();
+                try {
+                    switch (estado) {
+                        case Estado.Nuevo:
+                            int idOrden = this.ordenVentaDAO.Crear(ordenVenta, transaction);
+                            ordenVenta.Id = idOrden;
 
-                        int idOrden = this.ordenVentaDAO.Insertar(ordenVenta, conexion, transaction);
+                            foreach (LineaOrdenVenta linea in ordenVenta.LineasOrdenVenta) {
+                                linea.OrdenVenta = new OrdenVenta { Id = idOrden };
+                                this.lineaOrdenVentaDAO.Crear(linea, transaction);
+                            }
+                            break;
 
-                        foreach (LineaOrdenVenta linea in ordenVenta.LineasOrdenVenta) {
-                            linea.OrdenVenta = new OrdenVenta {
-                                Id = idOrden,
-                            };
-                            this.lineaOrdenVentaDAO.Insertar(linea, conexion, transaction);
-                        }
+                        case Estado.Modificado:
+                            this.ordenVentaDAO.Actualizar(ordenVenta, transaction);
 
-                        transaction.Commit();
+                            foreach (LineaOrdenVenta linea in ordenVenta.LineasOrdenVenta) {
+                                if (linea.Id == 0) {
+                                    linea.OrdenVenta = new OrdenVenta { Id = ordenVenta.Id };
+                                    this.lineaOrdenVentaDAO.Crear(linea, transaction);
+                                }
+                                else {
+                                    this.lineaOrdenVentaDAO.Actualizar(linea, transaction);
+                                }
+                            }
+                            break;
                     }
-                    catch (Exception) {
-                        transaction.Rollback();
-                    }
+
+                    transaction.Commit();
                 }
-            }
-            else {
-                DbTransaction transaction = null;
-                using (DbConnection conexion = DBManager.GetInstance().GetConnection()) {
-                    try {
-                        transaction = conexion.BeginTransaction();
-
-                        this.ordenVentaDAO.Modificar(ordenVenta);
-
-                        foreach (LineaOrdenVenta linea in ordenVenta.LineasOrdenVenta) {
-                            this.lineaOrdenVentaDAO.Modificar(linea);
-                        }
-
-                        transaction.Commit();
-                    }
-                    catch (Exception) {
-                        transaction.Rollback();
-                    }
+                catch (Exception ex) {
+                    Console.Error.WriteLine("Error al guardar la OrdenVenta: " + ex.Message);
+                    transaction.Rollback();
+                    throw;
                 }
             }
         }
 
         public void Eliminar(int id) {
-            DbTransaction transaction = null;
-            using (DbConnection conexion = DBManager.GetInstance().GetConnection()) {
+            using (DbConnection conexion = DBFactoryProvider.GetManager().GetConnection()) {
+                conexion.Open();
+                DbTransaction transaction = conexion.BeginTransaction();
                 try {
-                    transaction = conexion.BeginTransaction();
-
-                    OrdenVenta ordenVenta = this.ordenVentaDAO.Buscar(id);
-
-                    foreach (LineaOrdenVenta linea in ordenVenta.LineasOrdenVenta) {
-                        this.lineaOrdenVentaDAO.Eliminar(linea.Id);
+                    List<LineaOrdenVenta> lineas = this.lineaOrdenVentaDAO.LeerTodosPorOrden(id, transaction);
+                    foreach (LineaOrdenVenta linea in lineas) {
+                        this.lineaOrdenVentaDAO.Eliminar(linea.Id, transaction);
                     }
 
-                    this.ordenVentaDAO.Eliminar(ordenVenta.Id);
+                    if (!this.ordenVentaDAO.Eliminar(id, transaction)) {
+                        throw new Exception("La OrdenVenta no se pudo eliminar.");
+                    }
 
                     transaction.Commit();
                 }
-                catch (Exception e) {
+                catch (Exception ex) {
+                    Console.Error.WriteLine("Error al eliminar la OrdenVenta: " + ex.Message);
                     transaction.Rollback();
+                    throw;
                 }
             }
         }
 
         public OrdenVenta Obtener(int id) {
-            return this.ordenVentaDAO.Buscar(id);
+            return this.ordenVentaDAO.Leer(id);
         }
 
         public List<OrdenVenta> Listar() {
-            return this.ordenVentaDAO.Listar();
+            return this.ordenVentaDAO.LeerTodos();
         }
     }
 }

@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using PUCP.Edu.Pe.SoftProg.Modelo.Logistica.Almacen;
-using PUCP.Edu.Pe.SoftProg.Negocio.BO;
-using PUCP.Edu.Pe.SoftProg.Persistencia.DAO.Logistica.Almacen;
-using PUCP.Edu.Pe.SoftProg.Persistencia.DAOImpl.Logistica.Almacen;
+using PUCP.SoftProg.Modelo.Almacen;
+using PUCP.SoftProg.Negocio.BO;
+using PUCP.SoftProg.Persistencia.DAO.Almacen;
+using PUCP.SoftProg.Persistencia.DAOImpl.Almacen;
+using PUCP.SoftProg.Modelo;
 
-namespace PUCP.Edu.Pe.SoftProg.Negocio.BOImpl {
+namespace PUCP.SoftProg.Negocio.BOImpl {
     public class ProductoBOImpl : IProductoBO {
         private readonly IProductoDAO productoDAO;
 
@@ -18,10 +19,10 @@ namespace PUCP.Edu.Pe.SoftProg.Negocio.BOImpl {
 
         public void Guardar(Producto producto, Estado estado) {
             if (estado == Estado.Nuevo) {
-                this.productoDAO.Insertar(producto);
+                this.productoDAO.Crear(producto);
             }
             else { 
-                this.productoDAO.Modificar(producto);
+                this.productoDAO.Actualizar(producto);
             }
         }
 
@@ -30,11 +31,11 @@ namespace PUCP.Edu.Pe.SoftProg.Negocio.BOImpl {
         }
 
         public Producto Obtener(int id) {
-            return this.productoDAO.Buscar(id);
+            return this.productoDAO.Leer(id);
         }
 
         public List<Producto> Listar() {
-            return this.productoDAO.Listar();
+            return this.productoDAO.LeerTodos();
         }        
     }
 }

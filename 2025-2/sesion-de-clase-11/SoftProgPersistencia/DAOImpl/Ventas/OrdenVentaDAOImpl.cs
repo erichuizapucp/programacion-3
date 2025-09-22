@@ -2,7 +2,7 @@
 using System.Data;
 using System.Data.Common;
 using PUCP.SoftProg.Modelo.Ventas;
-using PUCP.SoftProg.Persistencia.DAO.Logistica.Ventas;
+using PUCP.SoftProg.Persistencia.DAO.Ventas;
 using PUCP.SoftProg.Persistencia.DAOImpl.Clientes;
 using PUCP.SoftProg.Persistencia.DAOImpl.RRHH;
 

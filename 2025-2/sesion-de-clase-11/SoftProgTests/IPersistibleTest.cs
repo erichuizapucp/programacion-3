@@ -1,5 +1,5 @@
 ﻿namespace PUCP.Edu.Pe.SoftProg.Tests.Persistencia {
-    public interface ICrudDAOTest {
+    public interface IPersistibleTest {
         void Test1DebeInsertar();
         void Test2DebeModificarSiIdExiste();
         void Test3NoDebeModificarSiIdNoExiste();

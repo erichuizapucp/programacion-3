@@ -35,6 +35,7 @@ namespace PUCP.SoftProg.Persistencia.DAOImpl {
             DBManager dBManager = DBFactoryProvider.GetManager();
             using (DbConnection conn = dBManager.GetConnection()) {
                 try {
+                    conn.Open();
                     return comando(conn);
                 }
                 catch (DbException e) {

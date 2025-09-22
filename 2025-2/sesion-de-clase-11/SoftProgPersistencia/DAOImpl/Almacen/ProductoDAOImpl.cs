@@ -2,9 +2,9 @@
 using System.Data;
 using System.Data.Common;
 using PUCP.SoftProg.Modelo.Almacen;
-using PUCP.SoftProg.Persistencia.DAO.Logistica.Almacen;
+using PUCP.SoftProg.Persistencia.DAO.Almacen;
 
-namespace PUCP.SoftProg.Persistencia.DAOImpl.Logistica.Almacen {
+namespace PUCP.SoftProg.Persistencia.DAOImpl.Almacen {
     public class ProductoDAOImpl : BaseDAOImpl<Producto>, IProductoDAO {
         protected override DbCommand ComandoCrear(DbConnection conn, Producto producto) {
             DbCommand cmd = conn.CreateCommand();

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
 using PUCP.SoftProg.Modelo.Ventas;
-using PUCP.SoftProg.Persistencia.DAO.Logistica.Ventas;
-using PUCP.SoftProg.Persistencia.DAOImpl.Logistica.Almacen;
+using PUCP.SoftProg.Persistencia.DAO.Ventas;
+using PUCP.SoftProg.Persistencia.DAOImpl.Almacen;
 
 namespace PUCP.SoftProg.Persistencia.DAOImpl.Ventas {
     public class LineaOrdenVentaDAOImpl : TransactionalBaseDAOImpl<LineaOrdenVenta>, ILineaOrdenVentaDAO {

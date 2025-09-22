@@ -1,10 +1,7 @@
-﻿using System;
+﻿using PUCP.SoftProg.Modelo;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace PUCP.Edu.Pe.SoftProg.Negocio.BO {
+namespace PUCP.SoftProg.Negocio.BO {
     public interface IBaseBO<T> {
         List<T> Listar();
         T Obtener(int id);

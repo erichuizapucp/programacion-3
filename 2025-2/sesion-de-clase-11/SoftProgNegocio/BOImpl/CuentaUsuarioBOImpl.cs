@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using PUCP.Edu.Pe.SoftProg.Modelo.RRHH;
-using PUCP.Edu.Pe.SoftProg.Negocio.BO;
-using PUCP.Edu.Pe.SoftProg.Persistencia.DAO.RRHH;
-using PUCP.Edu.Pe.SoftProg.Persistencia.DAOImpl.RRHH;
+﻿using System.Collections.Generic;
+using PUCP.SoftProg.Modelo;
+using PUCP.SoftProg.Modelo.RRHH;
+using PUCP.SoftProg.Negocio.BO;
+using PUCP.SoftProg.Persistencia.DAO.RRHH;
+using PUCP.SoftProg.Persistencia.DAOImpl.RRHH;
 
-namespace PUCP.Edu.Pe.SoftProg.Negocio.BOImpl {
+namespace PUCP.SoftProg.Negocio.BOImpl {
     public class CuentaUsuarioBOImpl : ICuentaUsuarioBO {
         private ICuentaUsuarioDAO cuentausuarioDAO;
 
@@ -24,19 +19,19 @@ namespace PUCP.Edu.Pe.SoftProg.Negocio.BOImpl {
 
         public void Guardar(CuentaUsuario cuentaUsuario, Estado estado) {
             if (estado == Estado.Nuevo) {
-                this.cuentausuarioDAO.Insertar(cuentaUsuario);
+                this.cuentausuarioDAO.Crear(cuentaUsuario);
             }
-            else if (estado == Estado.Modificar) {
-                this.cuentausuarioDAO.Modificar(cuentaUsuario);
+            else if (estado == Estado.Modificado) {
+                this.cuentausuarioDAO.Actualizar(cuentaUsuario);
             }
         }
 
         public List<CuentaUsuario> Listar() {
-            return this.cuentausuarioDAO.Listar();
+            return this.cuentausuarioDAO.LeerTodos();
         }
 
         public CuentaUsuario Obtener(int id) {
-            return this.cuentausuarioDAO.Buscar(id);
+            return this.cuentausuarioDAO.Leer(id);
         }
     }
 }

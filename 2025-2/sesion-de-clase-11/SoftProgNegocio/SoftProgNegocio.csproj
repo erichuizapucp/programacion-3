@@ -54,7 +54,6 @@
     <Compile Include="BO\IEmpleadoBO.cs" />
     <Compile Include="BO\IOrdenVentaBO.cs" />
     <Compile Include="BO\IProductoBO.cs" />
-    <Compile Include="Estado.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
