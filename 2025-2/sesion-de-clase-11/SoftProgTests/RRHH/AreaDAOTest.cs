@@ -4,7 +4,7 @@ using PUCP.SoftProg.Persistencia.DAO.RRHH;
 using PUCP.SoftProg.Persistencia.DAOImpl.RRHH;
 using PUCP.SoftProg.Modelo.RRHH;
 
-namespace PUCP.Edu.Pe.SoftProg.Tests.Persistencia.RRHH {
+namespace PUCP.SoftProg.Tests.Persistencia.RRHH {
     [TestClass]
     public class AreaDAOTest : IPersistibleTest{
         private static int testId;

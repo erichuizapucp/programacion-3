@@ -1,4 +1,4 @@
-﻿namespace PUCP.Edu.Pe.SoftProg.Tests.Persistencia {
+﻿namespace PUCP.SoftProg.Tests.Persistencia {
     public interface IPersistibleTest {
         void Test1DebeInsertar();
         void Test2DebeModificarSiIdExiste();
