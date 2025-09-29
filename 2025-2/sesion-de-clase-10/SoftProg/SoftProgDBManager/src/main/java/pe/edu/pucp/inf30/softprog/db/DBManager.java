@@ -38,7 +38,7 @@ public abstract class DBManager {
                                                       ClassNotFoundException;
     
     protected String cadenaConexion() {
-        CadenaConexion cadena = new CadenaConexion.Builder()
+        var cadena = new CadenaConexion.Builder()
                 .tipoDB(this.tipoDB)
                 .servidor(this.host)
                 .puerto(this.puerto)

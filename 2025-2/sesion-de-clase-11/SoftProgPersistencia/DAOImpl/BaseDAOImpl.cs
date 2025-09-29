@@ -14,7 +14,9 @@ namespace PUCP.SoftProg.Persistencia.DAOImpl {
         protected abstract DbCommand ComandoLeerTodos(DbConnection conn);
         protected abstract T MapearModelo(DbDataReader reader);
 
-        protected void AgregarParametroEntrada(DbCommand cmd, string nombre, DbType tipo, object dato) {
+        protected void AgregarParametroEntrada(DbCommand cmd, 
+            string nombre, DbType tipo, object dato) {
+
             DbParameter param = cmd.CreateParameter();
             param.ParameterName = nombre;
             param.DbType = tipo;
@@ -78,7 +80,10 @@ namespace PUCP.SoftProg.Persistencia.DAOImpl {
 
         
         public bool Actualizar(T modelo) {
-            return EjecutarComando(conn => EjecutarComandoActualizar(conn, modelo));
+            return EjecutarComando(
+                conn => EjecutarComandoActualizar(
+                    conn, modelo
+                    ));
         }
 
         public bool Eliminar(int id) {

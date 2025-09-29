@@ -11,10 +11,14 @@ namespace PUCP.SoftProg.Persistencia.DAOImpl.Almacen {
             cmd.CommandText = "insertarProducto";
             cmd.CommandType = CommandType.StoredProcedure;
 
-            this.AgregarParametroEntrada(cmd, "@p_nombre", DbType.String, producto.Nombre);
-            this.AgregarParametroEntrada(cmd, "@p_unidadMedida", DbType.String, producto.UnidadMedida);
-            this.AgregarParametroEntrada(cmd, "@p_precio", DbType.Double, producto.Precio);
-            this.AgregarParametroEntrada(cmd, "@p_activo", DbType.Boolean, producto.IsActive);
+            this.AgregarParametroEntrada(cmd, "@p_nombre", 
+                DbType.String, producto.Nombre);
+            this.AgregarParametroEntrada(cmd, "@p_unidadMedida", 
+                DbType.String, producto.UnidadMedida);
+            this.AgregarParametroEntrada(cmd, "@p_precio", 
+                DbType.Double, producto.Precio);
+            this.AgregarParametroEntrada(cmd, "@p_activo", 
+                DbType.Boolean, producto.IsActive);
             this.AgregarParametroSalida(cmd, "@p_id", DbType.Int32);
 
             return cmd;
@@ -65,7 +69,8 @@ namespace PUCP.SoftProg.Persistencia.DAOImpl.Almacen {
             return new Producto {
                 Id = Convert.ToInt32(reader["id"]),
                 Nombre = Convert.ToString(reader["nombre"]),
-                UnidadMedida = (UnidadMedida)Enum.Parse(typeof(UnidadMedida), 
+                UnidadMedida = (UnidadMedida)Enum.Parse(
+                    typeof(UnidadMedida), 
                     Convert.ToString(reader["unidadMedida"])), 
                 Precio = Convert.ToDouble(reader["precio"]), 
                 IsActive = Convert.ToBoolean(reader["activo"])

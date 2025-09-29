@@ -106,7 +106,8 @@ namespace PUCP.SoftProg.Persistencia.DAOImpl.RRHH {
                 Cargo = (Cargo)Enum.Parse(typeof(Cargo), Convert.ToString(reader["cargo"])), 
                 Sueldo = Convert.ToDouble(reader["sueldo"]), 
                 IsActive = (bool)reader["activo"],
-                Area = new AreaDAOImpl().Leer(Convert.ToInt32(reader["idArea"]))
+                Area = new AreaDAOImpl().Leer(
+                    Convert.ToInt32(reader["idArea"]))
             };
         }
 
