@@ -40,6 +40,7 @@ namespace PUCP.SoftProg.Web {
                 lblTitulo.Text = "Modificar Empleado";
                 estado = Estado.Modificado;
                 empleado = (Empleado)Session["empleado"];
+                hdnIdEmpleado.Value = empleado.Id.ToString();
                 txtDNIEmpleado.Text = empleado.Dni;
                 ddlCargo.SelectedValue = empleado.Cargo.ToString();
                 txtApellidoPaterno.Text = empleado.ApellidoPaterno;
@@ -58,10 +59,14 @@ namespace PUCP.SoftProg.Web {
             }
         }
 
-        protected void guardar_empleado(object sender, EventArgs e) {
+        protected void GuardarEmpleado(object sender, EventArgs e) {
             empleadoBO = new EmpleadoBOImpl();
 
             //Asignamos los valores
+            if (estado == Estado.Modificado) {
+                empleado.Id = int.Parse(hdnIdEmpleado.Value);
+            }
+
             empleado.Dni = txtDNIEmpleado.Text;
             empleado.Nombre = txtNombre.Text;
             empleado.ApellidoPaterno = txtApellidoPaterno.Text;

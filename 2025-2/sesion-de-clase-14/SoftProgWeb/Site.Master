@@ -29,22 +29,32 @@
             <hr />
             <ul class="mynav nav nav-pills flex-column mb-auto">
                 <li class="nav-item mb-1">
-                    <a href="GestionarAreas.aspx"><i class="fa-solid fa-building pe-2"></i>
+                    <a href="<%= ResolveUrl("~/GestionarAreas.aspx") %>"><i class="fa-solid fa-building pe-2"></i>
                         Gestionar Areas
                     </a>
                 </li>
                 <li class="nav-item mb-1">
-                    <a href="ListarAreas.aspx"><i class="fa-solid fa-building pe-2"></i>
+                    <a href="<%= ResolveUrl("~/ListarAreas.aspx") %>"><i class="fa-solid fa-building pe-2"></i>
                         Listar Areas
                     </a>
                 </li>
                 <li class="nav-item mb-1">
-                    <a href="GestionarEmpleados.aspx"><i class="fa-solid fa-people-group pe-2"></i>
+                    <a href="<%= ResolveUrl("~/GestionarProductos.aspx") %>"><i class="fa-solid fa-building pe-2"></i>
+                        Gestionar Productos
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="<%= ResolveUrl("~/ListarProductos.aspx") %>"><i class="fa-solid fa-building pe-2"></i>
+                        Listar Productos
+                    </a>
+                </li>
+                <li class="nav-item mb-1">
+                    <a href="<%= ResolveUrl("~/GestionarEmpleados.aspx") %>"><i class="fa-solid fa-people-group pe-2"></i>
                         Gestionar Empleados
                     </a>
                 </li>
                 <li class="nav-item mb-1">
-                    <a href="ListarEmpleados.aspx"><i class="fa-solid fa-people-group pe-2"></i>
+                    <a href="<%= ResolveUrl("~/ListarEmpleados.aspx") %>"><i class="fa-solid fa-people-group pe-2"></i>
                         Listar Empleados
                     </a>
                 </li>
@@ -54,7 +64,7 @@
                     </a>
                     <ul id="settings" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
                         <li class="sidebar-item">
-                            <a href="GestionarOrdenesVenta.aspx" class="sidebar-link"><i class="fa-solid fa-cash-register pe-2"></i>
+                            <a href="<%= ResolveUrl("~/GestionarOrdenesVenta.aspx") %>" class="sidebar-link"><i class="fa-solid fa-cash-register pe-2"></i>
                                 <span class="topic">Registrar</span>
                             </a>
                         </li>

@@ -137,6 +137,7 @@
     <Content Include="GestionarAreas.aspx" />
     <Content Include="GestionarEmpleados.aspx" />
     <Content Include="GestionarOrdenesVenta.aspx" />
+    <Content Include="GestionarProductos.aspx" />
     <Content Include="Home.aspx" />
     <Content Include="Images\pucp.png" />
     <Content Include="ListarAreas.aspx" />
@@ -177,6 +178,7 @@
     <Content Include="Content\fonts\webfonts\fa-thin-100.woff2" />
     <Content Include="Content\fonts\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Content\fonts\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="ListarProductos.aspx" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.esm.js" />
@@ -233,6 +235,13 @@
     <Compile Include="GestionarOrdenesVenta.aspx.designer.cs">
       <DependentUpon>GestionarOrdenesVenta.aspx</DependentUpon>
     </Compile>
+    <Compile Include="GestionarProductos.aspx.cs">
+      <DependentUpon>GestionarProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GestionarProductos.aspx.designer.cs">
+      <DependentUpon>GestionarProductos.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Home.aspx.cs">
       <DependentUpon>Home.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -253,6 +262,13 @@
     </Compile>
     <Compile Include="ListarEmpleados.aspx.designer.cs">
       <DependentUpon>ListarEmpleados.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ListarProductos.aspx.cs">
+      <DependentUpon>ListarProductos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ListarProductos.aspx.designer.cs">
+      <DependentUpon>ListarProductos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListarEmpleados.aspx.cs" Inherits="PUCP.SoftProg.Web.ListarEmpleados" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="cphTitulo" runat="server">
+    Listar Empleados
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="cphScripts" runat="server">
 </asp:Content>
