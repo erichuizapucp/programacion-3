@@ -139,13 +139,13 @@ namespace PUCP.SoftProg.Web {
         protected global::System.Web.UI.WebControls.Label lblCargo;
 
         /// <summary>
-        /// txtCargo control.
+        /// ddlCargo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCargo;
+        protected global::System.Web.UI.WebControls.DropDownList ddlCargo;
 
         /// <summary>
         /// lblSueldo control.

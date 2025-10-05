@@ -27,13 +27,13 @@
                 OnPageIndexChanging="dgvEmpleados_PageIndexChanging" PageSize="5"
                 CssClass="table table-hover table-responsive table-striped">
                 <Columns>
-                    <asp:BoundField HeaderText="DNI" />
-                    <asp:BoundField HeaderText="Nombre Completo" />
-                    <asp:BoundField HeaderText="Area" />
+                    <asp:BoundField HeaderText="DNI" DataField="Dni" />
+                    <asp:BoundField HeaderText="Nombre Completo" DataField="Nombre" />
+                    <asp:BoundField HeaderText="Area" DataField="Area.Nombre" />
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:LinkButton runat="server" Text="<i class='fa-solid fa-edit'></i> Modificar" CssClass="btn btn-warning" OnClick="lbModificar_Click" CommandArgument='<%# Eval("id") %>'/>
-                            <asp:LinkButton runat="server" Text="<i class='fa-solid fa-trash'></i> Eliminar" CssClass="btn btn-danger" OnClick="lbEliminar_Click" CommandArgument='<%# Eval("id") %>'/>
+                            <asp:LinkButton runat="server" Text="<i class='fa-solid fa-edit'></i> Modificar" CssClass="btn btn-warning" OnClick="lbModificar_Click" CommandArgument='<%# Eval("Id") %>'/>
+                            <asp:LinkButton runat="server" Text="<i class='fa-solid fa-trash'></i> Eliminar" CssClass="btn btn-danger" OnClick="lbEliminar_Click" CommandArgument='<%# Eval("Id") %>'/>
                         </ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

@@ -41,7 +41,7 @@ namespace PUCP.SoftProg.Web {
                 estado = Estado.Modificado;
                 empleado = (Empleado)Session["empleado"];
                 txtDNIEmpleado.Text = empleado.Dni;
-                txtCargo.Text = empleado.Cargo.ToString();
+                ddlCargo.SelectedValue = empleado.Cargo.ToString();
                 txtApellidoPaterno.Text = empleado.ApellidoPaterno;
                 txtNombre.Text = empleado.Nombre;
 
@@ -65,20 +65,22 @@ namespace PUCP.SoftProg.Web {
             empleado.Dni = txtDNIEmpleado.Text;
             empleado.Nombre = txtNombre.Text;
             empleado.ApellidoPaterno = txtApellidoPaterno.Text;
-            empleado.Area = new Area();
-            empleado.Area.Id = Int32.Parse(ddlAreas.SelectedValue);
+            empleado.Area = new Area {
+                Id = int.Parse(ddlAreas.SelectedValue)
+            };
+
             if (rbMasculino.Checked) {
                 empleado.Genero = Genero.MASCULINO;
             }
             else {
                 empleado.Genero = Genero.FEMENINO;
             }
+
             empleado.FechaNacimiento = DateTime.Parse(dtpFechaNacimiento.Value);
-            empleado.Cargo = (Cargo)Enum.Parse(typeof(Cargo), txtCargo.Text);
+            empleado.Cargo = (Cargo)Enum.Parse(typeof(Cargo), ddlCargo.SelectedItem.Value);
             empleado.Sueldo = double.Parse(txtSueldo.Text);
 
             empleadoBO.Guardar(empleado, estado);
-
             Response.Redirect("ListarEmpleados.aspx");
         }
     }

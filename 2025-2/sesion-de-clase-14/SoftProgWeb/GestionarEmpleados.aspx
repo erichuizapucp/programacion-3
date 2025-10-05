@@ -61,7 +61,13 @@
             <div class="mb-3 row">
                 <asp:Label id="lblCargo" runat="server" Text="Cargo: " CssClass="col-sm-2 col-form-label"></asp:Label>
                 <div class="col-sm-8">
-                    <asp:TextBox id="txtCargo" runat="server" CssClass="form-control"></asp:TextBox>
+                    <asp:DropDownList ID="ddlCargo" runat="server">
+                        <asp:ListItem Value="GERENTE">GERENTE</asp:ListItem>
+                        <asp:ListItem Value="DIRECTOR">DIRECTOR</asp:ListItem>
+                        <asp:ListItem Value="SUBDIRECTOR">SUBDIRECTOR</asp:ListItem>
+                        <asp:ListItem Value="ASISTENTE">ASISTENTE</asp:ListItem>
+                        <asp:ListItem Value="TECNICO">TECNICO</asp:ListItem>
+                    </asp:DropDownList>
                 </div>
             </div>
             <div class="mb-3 row">
