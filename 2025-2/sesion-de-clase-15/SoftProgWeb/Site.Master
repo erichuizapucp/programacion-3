@@ -94,7 +94,7 @@
                     <form class="d-flex">
                         <div id="pnlPerfilLinks" runat="server" class="dropdown ps-3">
                             <button class="btn btn-outline-light dropdown-toggle" id="btnUsuario" data-bs-toggle="dropdown" type="button" aria-expanded="false">
-                                <i class="fas fa-user me-2"></i><asp:Label ID="lblCuenta" runat="server">Juan Perez</asp:Label>
+                                <i class="fas fa-user me-2"></i><asp:Label ID="lblCuenta" runat="server"></asp:Label>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="btnUsuario">
                                 <li><a id="lnkPerfilCliente" runat="server" class="dropdown-item" href='<%# ResolveUrl("~/PerfilCliente.aspx") %>'>Perfil</a></li>

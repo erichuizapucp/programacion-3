@@ -19,8 +19,10 @@ namespace PUCP.SoftProg.Web {
         protected void Page_Load(object sender, EventArgs e) {
             productos = new BindingList<Producto>(productoBO.Listar());
 
-            gvProductos.DataSource = productos;
-            gvProductos.DataBind();
+            if (!IsPostBack) {
+                gvProductos.DataSource = productos;
+                gvProductos.DataBind();
+            }
         }
 
         protected void lbRegistrar_Click(object sender, EventArgs e) {

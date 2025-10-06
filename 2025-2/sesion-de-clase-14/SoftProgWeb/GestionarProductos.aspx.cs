@@ -39,6 +39,10 @@ namespace PUCP.SoftProg.Web {
         protected void GuardarProducto(object sender, EventArgs e) {
             productoBO = new ProductoBOImpl();
 
+            if (Session["producto"] == null) {
+                producto = new Producto();
+            }
+
             //Asignamos los valores
             if (estado == Estado.Modificado) {
                 producto.Id = int.Parse(txtIDProducto.Text);
