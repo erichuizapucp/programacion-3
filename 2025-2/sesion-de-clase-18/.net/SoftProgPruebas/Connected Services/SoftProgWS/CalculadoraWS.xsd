@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://services.softprog.pucp.edu.pe/" targetNamespace="http://services.softprog.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="multiplicar" type="tns:multiplicar" />
+  <xs:element name="multiplicarResponse" type="tns:multiplicarResponse" />
+  <xs:element name="restar" type="tns:restar" />
+  <xs:element name="restarResponse" type="tns:restarResponse" />
+  <xs:element name="sumar" type="tns:sumar" />
+  <xs:element name="sumarResponse" type="tns:sumarResponse" />
+  <xs:complexType name="restar">
+    <xs:sequence>
+      <xs:element name="a" type="xs:int" />
+      <xs:element name="b" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="restarResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="multiplicar">
+    <xs:sequence>
+      <xs:element name="a" type="xs:int" />
+      <xs:element name="b" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="multiplicarResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sumar">
+    <xs:sequence>
+      <xs:element name="a" type="xs:int" />
+      <xs:element name="b" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="sumarResponse">
+    <xs:sequence>
+      <xs:element name="return" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

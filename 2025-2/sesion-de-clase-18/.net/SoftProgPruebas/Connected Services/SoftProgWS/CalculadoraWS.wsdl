@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://services.softprog.pucp.edu.pe/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="CalculadoraWS" targetNamespace="http://services.softprog.pucp.edu.pe/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8080/SoftProgWS/CalculadoraWS?xsd=1" namespace="http://services.softprog.pucp.edu.pe/" />
+    </xsd:schema>
+  </types>
+  <message name="sumar">
+    <part name="parameters" element="tns:sumar" />
+  </message>
+  <message name="sumarResponse">
+    <part name="parameters" element="tns:sumarResponse" />
+  </message>
+  <message name="restar">
+    <part name="parameters" element="tns:restar" />
+  </message>
+  <message name="restarResponse">
+    <part name="parameters" element="tns:restarResponse" />
+  </message>
+  <message name="multiplicar">
+    <part name="parameters" element="tns:multiplicar" />
+  </message>
+  <message name="multiplicarResponse">
+    <part name="parameters" element="tns:multiplicarResponse" />
+  </message>
+  <portType name="CalculadoraWS">
+    <operation name="sumar">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/CalculadoraWS/sumarRequest" message="tns:sumar" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/CalculadoraWS/sumarResponse" message="tns:sumarResponse" />
+    </operation>
+    <operation name="restar">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/CalculadoraWS/restarRequest" message="tns:restar" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/CalculadoraWS/restarResponse" message="tns:restarResponse" />
+    </operation>
+    <operation name="multiplicar">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/CalculadoraWS/multiplicarRequest" message="tns:multiplicar" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/CalculadoraWS/multiplicarResponse" message="tns:multiplicarResponse" />
+    </operation>
+  </portType>
+  <binding name="CalculadoraWSPortBinding" type="tns:CalculadoraWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="sumar">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="restar">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="multiplicar">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+  </binding>
+  <service name="CalculadoraWS">
+    <port name="CalculadoraWSPort" binding="tns:CalculadoraWSPortBinding">
+      <soap:address location="http://localhost:8080/SoftProgWS/CalculadoraWS" />
+    </port>
+  </service>
+</definitions>
