@@ -4,11 +4,11 @@ import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import java.util.List;
-import pe.edu.pucp.inf30.softprog.bo.Estado;
-import pe.edu.pucp.inf30.softprog.bo.IAreaBO;
-import pe.edu.pucp.inf30.softprog.boimpl.AreaBOImpl;
+import pe.edu.pucp.inf30.softprog.modelo.Estado;
+import pe.edu.pucp.inf30.softprog.bo.rrhh.AreaBO;
+import pe.edu.pucp.inf30.softprog.boimpl.rrhh.AreaBOImpl;
 
-import pe.edu.pucp.inf30.softprog.model.rrhh.Area;
+import pe.edu.pucp.inf30.softprog.modelo.rrhh.Area;
 
 /**
  *
@@ -18,7 +18,7 @@ import pe.edu.pucp.inf30.softprog.model.rrhh.Area;
         serviceName = "AreaWS", 
         targetNamespace = "http://services.softprog.pucp.edu.pe/")
 public class AreaWS {
-    private final IAreaBO areaBO;
+    private final AreaBO areaBO;
     
     public AreaWS() {
         this.areaBO = new AreaBOImpl();

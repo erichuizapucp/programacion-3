@@ -4,10 +4,10 @@ import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import java.util.List;
-import pe.edu.pucp.inf30.softprog.bo.Estado;
-import pe.edu.pucp.inf30.softprog.bo.IOrdenVentaBO;
-import pe.edu.pucp.inf30.softprog.boimpl.OrdenVentaBOImpl;
-import pe.edu.pucp.inf30.softprog.model.logistica.ventas.OrdenVenta;
+import pe.edu.pucp.inf30.softprog.modelo.Estado;
+import pe.edu.pucp.inf30.softprog.bo.ventas.OrdenVentaBO;
+import pe.edu.pucp.inf30.softprog.boimpl.ventas.OrdenVentaBOImpl;
+import pe.edu.pucp.inf30.softprog.modelo.ventas.OrdenVenta;
 
 /**
  *
@@ -16,7 +16,7 @@ import pe.edu.pucp.inf30.softprog.model.logistica.ventas.OrdenVenta;
 @WebService(serviceName = "OrdenVentaWS", 
         targetNamespace = "http://services.softprog.pucp.edu.pe/")
 public class OrdenVentaWS {
-    private final IOrdenVentaBO ordenVentaBO;
+    private final OrdenVentaBO ordenVentaBO;
     
     public OrdenVentaWS() {
         this.ordenVentaBO = new OrdenVentaBOImpl();

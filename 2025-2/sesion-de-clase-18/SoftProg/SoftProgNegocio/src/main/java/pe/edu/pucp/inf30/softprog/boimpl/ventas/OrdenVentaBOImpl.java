@@ -3,7 +3,7 @@ package pe.edu.pucp.inf30.softprog.boimpl.ventas;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import pe.edu.pucp.inf30.softprog.bo.Gestionable;
+import pe.edu.pucp.inf30.softprog.bo.ventas.OrdenVentaBO;
 import pe.edu.pucp.inf30.softprog.dao.ventas.LineaOrdenVentaDAO;
 import pe.edu.pucp.inf30.softprog.dao.ventas.OrdenVentaDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.ventas.LineaOrdenVentaDAOImpl;
@@ -18,7 +18,7 @@ import pe.edu.pucp.inf30.softprog.modelo.ventas.LineaOrdenVenta;
  *
  * @author eric
  */
-public class OrdenVentaBOImpl implements Gestionable<OrdenVenta> {
+public class OrdenVentaBOImpl implements OrdenVentaBO {
     private final OrdenVentaDAO ordenVentaDao;
     private final LineaOrdenVentaDAO lineaOrdenVentaDao;
     

@@ -4,18 +4,19 @@ import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import java.util.List;
-import pe.edu.pucp.inf30.softprog.bo.Estado;
-import pe.edu.pucp.inf30.softprog.bo.IProductoBO;
-import pe.edu.pucp.inf30.softprog.boimpl.ProductoBOImpl;
-import pe.edu.pucp.inf30.softprog.model.logistica.almacen.Producto;
+import pe.edu.pucp.inf30.softprog.modelo.Estado;
+import pe.edu.pucp.inf30.softprog.bo.almacen.ProductoBO;
+import pe.edu.pucp.inf30.softprog.boimpl.almacen.ProductoBOImpl;
+import pe.edu.pucp.inf30.softprog.modelo.almacen.Producto;
 
 /**
  *
  * @author eric
  */
-@WebService(serviceName = "ProductoWS", targetNamespace = "http://services.softprog.pucp.edu.pe/")
+@WebService(serviceName = "ProductoWS", 
+        targetNamespace = "http://services.softprog.pucp.edu.pe/")
 public class ProductoWS {
-    private final IProductoBO productoBO;
+    private final ProductoBO productoBO;
     
     public ProductoWS() {
         this.productoBO = new ProductoBOImpl();

@@ -47,4 +47,9 @@ public class ClienteBOImpl implements ClienteBO {
             this.clienteDao.actualizar(modelo);
         }
     }
+
+    @Override
+    public Cliente buscarPorCuenta(String cuenta) {
+        return this.clienteDao.buscarPorCuenta(cuenta);
+    }
 }

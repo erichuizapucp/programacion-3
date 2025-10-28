@@ -5,13 +5,13 @@ import pe.edu.pucp.inf30.softprog.dao.rrhh.EmpleadoDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.rrhh.EmpleadoDAOImpl;
 import pe.edu.pucp.inf30.softprog.modelo.Estado;
 import pe.edu.pucp.inf30.softprog.modelo.rrhh.Empleado;
-import pe.edu.pucp.inf30.softprog.bo.Gestionable;
+import pe.edu.pucp.inf30.softprog.bo.rrhh.EmpleadoBO;
 
 /**
  *
  * @author eric
  */
-public class EmpleadoBOImpl implements Gestionable<Empleado> {
+public class EmpleadoBOImpl implements EmpleadoBO {
 
     private final EmpleadoDAO empleadoDao;
     
@@ -42,5 +42,10 @@ public class EmpleadoBOImpl implements Gestionable<Empleado> {
         else {
             this.empleadoDao.actualizar(modelo);
         }
+    }
+
+    @Override
+    public Empleado buscarPorDni(String dni) {
+        return this.empleadoDao.buscarPorDni(dni);
     }
 }

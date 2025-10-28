@@ -4,18 +4,19 @@ import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import java.util.List;
-import pe.edu.pucp.inf30.softprog.bo.Estado;
-import pe.edu.pucp.inf30.softprog.bo.IEmpleadoBO;
-import pe.edu.pucp.inf30.softprog.boimpl.EmpleadoBOImpl;
-import pe.edu.pucp.inf30.softprog.model.rrhh.Empleado;
+import pe.edu.pucp.inf30.softprog.modelo.Estado;
+import pe.edu.pucp.inf30.softprog.bo.rrhh.EmpleadoBO;
+import pe.edu.pucp.inf30.softprog.boimpl.rrhh.EmpleadoBOImpl;
+import pe.edu.pucp.inf30.softprog.modelo.rrhh.Empleado;
 
 /**
  *
  * @author eric
  */
-@WebService(serviceName = "EmpleadoWS", targetNamespace = "http://services.softprog.pucp.edu.pe/")
+@WebService(serviceName = "EmpleadoWS", 
+        targetNamespace = "http://services.softprog.pucp.edu.pe/")
 public class EmpleadoWS {
-    private final IEmpleadoBO empleadoBO;
+    private final EmpleadoBO empleadoBO;
     
     public EmpleadoWS() {
         this.empleadoBO = new EmpleadoBOImpl();

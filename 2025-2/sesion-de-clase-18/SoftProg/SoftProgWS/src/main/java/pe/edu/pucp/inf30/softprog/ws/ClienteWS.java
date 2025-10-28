@@ -4,10 +4,10 @@ import jakarta.jws.WebService;
 import jakarta.jws.WebMethod;
 import jakarta.jws.WebParam;
 import java.util.List;
-import pe.edu.pucp.inf30.softprog.bo.Estado;
-import pe.edu.pucp.inf30.softprog.bo.IClienteBO;
-import pe.edu.pucp.inf30.softprog.boimpl.ClienteBOImpl;
-import pe.edu.pucp.inf30.softprog.model.clientes.Cliente;
+import pe.edu.pucp.inf30.softprog.modelo.Estado;
+import pe.edu.pucp.inf30.softprog.bo.clientes.ClienteBO;
+import pe.edu.pucp.inf30.softprog.boimpl.clientes.ClienteBOImpl;
+import pe.edu.pucp.inf30.softprog.modelo.clientes.Cliente;
 
 /**
  *
@@ -16,7 +16,7 @@ import pe.edu.pucp.inf30.softprog.model.clientes.Cliente;
 @WebService(serviceName = "ClienteWS", 
         targetNamespace = "http://services.softprog.pucp.edu.pe/")
 public class ClienteWS {
-    private final IClienteBO clienteBO;
+    private final ClienteBO clienteBO;
     
     public ClienteWS() {
         this.clienteBO = new ClienteBOImpl();
@@ -52,5 +52,10 @@ public class ClienteWS {
     @WebMethod(operationName = "buscarClientePorDni")
     public Cliente buscarClientePorDni(@WebParam(name = "dni") String dni) {
         return this.clienteBO.buscarPorDni(dni);
+    }
+    
+    @WebMethod(operationName = "buscarClientePorCuenta")
+    public Cliente buscarClientePorCuenta(@WebParam(name = "cuenta") String cuenta) {
+        return this.clienteBO.buscarPorCuenta(cuenta);
     }
 }

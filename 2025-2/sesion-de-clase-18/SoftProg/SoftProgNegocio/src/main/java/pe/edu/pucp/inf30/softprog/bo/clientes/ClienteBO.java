@@ -9,4 +9,5 @@ import pe.edu.pucp.inf30.softprog.bo.Gestionable;
  */
 public interface ClienteBO extends Gestionable<Cliente> {
     Cliente buscarPorDni(String dni);
+    Cliente buscarPorCuenta(String cuenta);
 }
