@@ -41,5 +41,10 @@ public class CuentaUsuarioBOImpl implements CuentaUsuarioBO {
         else {
             this.cuentaUsuarioDao.actualizar(modelo);
         }
-    }    
+    }
+
+    @Override
+    public boolean login(String userName, String password) {
+        return this.cuentaUsuarioDao.login(userName, password);
+    }
 }

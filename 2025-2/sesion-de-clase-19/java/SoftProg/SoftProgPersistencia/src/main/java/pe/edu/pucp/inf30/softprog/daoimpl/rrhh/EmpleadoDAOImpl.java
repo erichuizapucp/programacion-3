@@ -133,4 +133,31 @@ public class EmpleadoDAOImpl extends BaseDAO<Empleado> implements EmpleadoDAO {
 
         return empleado;
     }
+
+    protected PreparedStatement comandoBuscarPorDni(Connection conn, String dni)
+        throws SQLException {
+        String sql = "{call buscarEmpleadoPorDni(?)}";
+        
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setString("p_dni", dni);
+        
+        return cmd;
+    }
+    
+    @Override
+    public Empleado buscarPorDni(String dni) {
+        return ejecutarComando(conn -> {
+            try (PreparedStatement cmd = this.comandoBuscarPorDni(conn, dni)) {
+                ResultSet rs = cmd.executeQuery();
+
+                if (!rs.next()) {
+                    System.err.println("No se encontro el registro con "
+                            + "dni: " + dni);
+                    return null;
+                }
+
+                return this.mapearModelo(rs);
+            }
+        });
+    }
 }

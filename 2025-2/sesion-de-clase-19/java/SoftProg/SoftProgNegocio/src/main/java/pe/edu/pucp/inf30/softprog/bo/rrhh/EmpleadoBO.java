@@ -8,5 +8,5 @@ import pe.edu.pucp.inf30.softprog.bo.Gestionable;
  * @author eric
  */
 public interface EmpleadoBO extends Gestionable<Empleado> {
-    
+    Empleado buscarPorDni(String dni);
 }
