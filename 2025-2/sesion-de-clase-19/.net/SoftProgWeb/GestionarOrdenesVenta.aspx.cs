@@ -146,7 +146,7 @@ namespace PUCP.SoftProg.Web {
             double total = subtotal + igv;
 
             ordenVenta ordenVenta = new ordenVenta {
-                cliente = clienteWS.buscarClientePorCuenta(txtDNICliente.Text),
+                cliente = clienteWS.buscarClientePorDni(txtDNICliente.Text),
                 activo = true,
                 lineas = lineas.ToArray(),
                 total = total

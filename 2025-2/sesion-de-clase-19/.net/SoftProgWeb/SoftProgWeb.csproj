@@ -215,6 +215,9 @@
     <Content Include="Connected Services\SoftProgWS\PUCP.SoftProg.Web.SoftProgWS.buscarClientePorCuentaResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
+    <Content Include="Connected Services\SoftProgWS\PUCP.SoftProg.Web.SoftProgWS.listarOrdenesVentaPorCuentaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
     <None Include="Connected Services\SoftProgWS\servicios.disco" />
     <None Include="Connected Services\SoftProgWS\configuration91.svcinfo" />
     <None Include="Connected Services\SoftProgWS\configuration.svcinfo" />

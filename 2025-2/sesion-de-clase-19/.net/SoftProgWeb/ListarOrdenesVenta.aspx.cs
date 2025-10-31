@@ -17,7 +17,7 @@ namespace PUCP.SoftProg.Web {
         private void CargarOrdenes() {
             string cuenta = Page.User.Identity.Name;
 
-            BindingList<ordenVenta> ordenes = new BindingList<ordenVenta>(ordenVentaWS.listarOrdenesVenta(cuenta));
+            BindingList<ordenVenta> ordenes = new BindingList<ordenVenta>(ordenVentaWS.listarOrdenesVentaPorCuenta(cuenta));
             gvOrdenes.DataSource = ordenes;
             gvOrdenes.DataBind();
         }

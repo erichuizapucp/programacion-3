@@ -11,12 +11,6 @@
   <message name="listarOrdenesVentaResponse">
     <part name="parameters" element="tns:listarOrdenesVentaResponse" />
   </message>
-  <message name="obtenerOrdenVenta">
-    <part name="parameters" element="tns:obtenerOrdenVenta" />
-  </message>
-  <message name="obtenerOrdenVentaResponse">
-    <part name="parameters" element="tns:obtenerOrdenVentaResponse" />
-  </message>
   <message name="eliminarOrdenVenta">
     <part name="parameters" element="tns:eliminarOrdenVenta" />
   </message>
@@ -29,14 +23,22 @@
   <message name="guardarOrdenVentaResponse">
     <part name="parameters" element="tns:guardarOrdenVentaResponse" />
   </message>
+  <message name="obtenerOrdenVenta">
+    <part name="parameters" element="tns:obtenerOrdenVenta" />
+  </message>
+  <message name="obtenerOrdenVentaResponse">
+    <part name="parameters" element="tns:obtenerOrdenVentaResponse" />
+  </message>
+  <message name="listarOrdenesVentaPorCuenta">
+    <part name="parameters" element="tns:listarOrdenesVentaPorCuenta" />
+  </message>
+  <message name="listarOrdenesVentaPorCuentaResponse">
+    <part name="parameters" element="tns:listarOrdenesVentaPorCuentaResponse" />
+  </message>
   <portType name="OrdenVentaWS">
     <operation name="listarOrdenesVenta">
       <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaRequest" message="tns:listarOrdenesVenta" />
       <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaResponse" message="tns:listarOrdenesVentaResponse" />
-    </operation>
-    <operation name="obtenerOrdenVenta">
-      <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVentaRequest" message="tns:obtenerOrdenVenta" />
-      <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVentaResponse" message="tns:obtenerOrdenVentaResponse" />
     </operation>
     <operation name="eliminarOrdenVenta">
       <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/eliminarOrdenVentaRequest" message="tns:eliminarOrdenVenta" />
@@ -45,6 +47,14 @@
     <operation name="guardarOrdenVenta">
       <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaRequest" message="tns:guardarOrdenVenta" />
       <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/guardarOrdenVentaResponse" message="tns:guardarOrdenVentaResponse" />
+    </operation>
+    <operation name="obtenerOrdenVenta">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVentaRequest" message="tns:obtenerOrdenVenta" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/obtenerOrdenVentaResponse" message="tns:obtenerOrdenVentaResponse" />
+    </operation>
+    <operation name="listarOrdenesVentaPorCuenta">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaPorCuentaRequest" message="tns:listarOrdenesVentaPorCuenta" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/OrdenVentaWS/listarOrdenesVentaPorCuentaResponse" message="tns:listarOrdenesVentaPorCuentaResponse" />
     </operation>
   </portType>
   <binding name="OrdenVentaWSPortBinding" type="tns:OrdenVentaWS">
@@ -58,15 +68,6 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="obtenerOrdenVenta">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
     <operation name="eliminarOrdenVenta">
       <soap:operation soapAction="" />
       <input>
@@ -77,6 +78,24 @@
       </output>
     </operation>
     <operation name="guardarOrdenVenta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="obtenerOrdenVenta">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="listarOrdenesVentaPorCuenta">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

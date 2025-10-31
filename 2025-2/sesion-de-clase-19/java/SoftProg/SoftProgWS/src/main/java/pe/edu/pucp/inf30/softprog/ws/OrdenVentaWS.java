@@ -48,4 +48,9 @@ public class OrdenVentaWS {
     ) {
         this.ordenVentaBO.guardar(ordenVenta, estado);
     }
+    
+    @WebMethod(operationName = "listarOrdenesVentaPorCuenta")
+    public List<OrdenVenta> listarOrdenesVentaPorCuenta(String cuenta) {
+        return this.ordenVentaBO.listarOrdenesVentaPorCuenta(cuenta);
+    }
 }

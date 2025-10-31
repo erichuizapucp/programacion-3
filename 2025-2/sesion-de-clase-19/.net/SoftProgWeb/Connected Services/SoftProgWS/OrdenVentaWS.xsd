@@ -5,6 +5,8 @@
   <xs:element name="guardarOrdenVenta" type="tns:guardarOrdenVenta" />
   <xs:element name="guardarOrdenVentaResponse" type="tns:guardarOrdenVentaResponse" />
   <xs:element name="listarOrdenesVenta" type="tns:listarOrdenesVenta" />
+  <xs:element name="listarOrdenesVentaPorCuenta" type="tns:listarOrdenesVentaPorCuenta" />
+  <xs:element name="listarOrdenesVentaPorCuentaResponse" type="tns:listarOrdenesVentaPorCuentaResponse" />
   <xs:element name="listarOrdenesVentaResponse" type="tns:listarOrdenesVentaResponse" />
   <xs:element name="obtenerOrdenVenta" type="tns:obtenerOrdenVenta" />
   <xs:element name="obtenerOrdenVentaResponse" type="tns:obtenerOrdenVentaResponse" />
@@ -131,6 +133,16 @@
   </xs:complexType>
   <xs:complexType name="guardarOrdenVentaResponse">
     <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarOrdenesVentaPorCuenta">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarOrdenesVentaPorCuentaResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:ordenVenta" />
+    </xs:sequence>
   </xs:complexType>
   <xs:complexType name="eliminarOrdenVenta">
     <xs:sequence>

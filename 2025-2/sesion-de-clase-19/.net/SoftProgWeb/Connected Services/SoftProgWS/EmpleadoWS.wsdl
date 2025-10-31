@@ -11,17 +11,11 @@
   <message name="buscarEmpleadoPorDniResponse">
     <part name="parameters" element="tns:buscarEmpleadoPorDniResponse" />
   </message>
-  <message name="eliminarEmpleado">
-    <part name="parameters" element="tns:eliminarEmpleado" />
+  <message name="listarEmpleados">
+    <part name="parameters" element="tns:listarEmpleados" />
   </message>
-  <message name="eliminarEmpleadoResponse">
-    <part name="parameters" element="tns:eliminarEmpleadoResponse" />
-  </message>
-  <message name="obtenerEmpleaedo">
-    <part name="parameters" element="tns:obtenerEmpleaedo" />
-  </message>
-  <message name="obtenerEmpleaedoResponse">
-    <part name="parameters" element="tns:obtenerEmpleaedoResponse" />
+  <message name="listarEmpleadosResponse">
+    <part name="parameters" element="tns:listarEmpleadosResponse" />
   </message>
   <message name="guardarEmpleado">
     <part name="parameters" element="tns:guardarEmpleado" />
@@ -29,32 +23,38 @@
   <message name="guardarEmpleadoResponse">
     <part name="parameters" element="tns:guardarEmpleadoResponse" />
   </message>
-  <message name="listarEmpleados">
-    <part name="parameters" element="tns:listarEmpleados" />
+  <message name="obtenerEmpleaedo">
+    <part name="parameters" element="tns:obtenerEmpleaedo" />
   </message>
-  <message name="listarEmpleadosResponse">
-    <part name="parameters" element="tns:listarEmpleadosResponse" />
+  <message name="obtenerEmpleaedoResponse">
+    <part name="parameters" element="tns:obtenerEmpleaedoResponse" />
+  </message>
+  <message name="eliminarEmpleado">
+    <part name="parameters" element="tns:eliminarEmpleado" />
+  </message>
+  <message name="eliminarEmpleadoResponse">
+    <part name="parameters" element="tns:eliminarEmpleadoResponse" />
   </message>
   <portType name="EmpleadoWS">
     <operation name="buscarEmpleadoPorDni">
       <input wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/buscarEmpleadoPorDniRequest" message="tns:buscarEmpleadoPorDni" />
       <output wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/buscarEmpleadoPorDniResponse" message="tns:buscarEmpleadoPorDniResponse" />
     </operation>
-    <operation name="eliminarEmpleado">
-      <input wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoRequest" message="tns:eliminarEmpleado" />
-      <output wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoResponse" message="tns:eliminarEmpleadoResponse" />
-    </operation>
-    <operation name="obtenerEmpleaedo">
-      <input wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/obtenerEmpleaedoRequest" message="tns:obtenerEmpleaedo" />
-      <output wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/obtenerEmpleaedoResponse" message="tns:obtenerEmpleaedoResponse" />
+    <operation name="listarEmpleados">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/listarEmpleadosRequest" message="tns:listarEmpleados" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/listarEmpleadosResponse" message="tns:listarEmpleadosResponse" />
     </operation>
     <operation name="guardarEmpleado">
       <input wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/guardarEmpleadoRequest" message="tns:guardarEmpleado" />
       <output wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/guardarEmpleadoResponse" message="tns:guardarEmpleadoResponse" />
     </operation>
-    <operation name="listarEmpleados">
-      <input wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/listarEmpleadosRequest" message="tns:listarEmpleados" />
-      <output wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/listarEmpleadosResponse" message="tns:listarEmpleadosResponse" />
+    <operation name="obtenerEmpleaedo">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/obtenerEmpleaedoRequest" message="tns:obtenerEmpleaedo" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/obtenerEmpleaedoResponse" message="tns:obtenerEmpleaedoResponse" />
+    </operation>
+    <operation name="eliminarEmpleado">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoRequest" message="tns:eliminarEmpleado" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/EmpleadoWS/eliminarEmpleadoResponse" message="tns:eliminarEmpleadoResponse" />
     </operation>
   </portType>
   <binding name="EmpleadoWSPortBinding" type="tns:EmpleadoWS">
@@ -68,16 +68,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="eliminarEmpleado">
-      <soap:operation soapAction="" />
-      <input>
-        <soap:body use="literal" />
-      </input>
-      <output>
-        <soap:body use="literal" />
-      </output>
-    </operation>
-    <operation name="obtenerEmpleaedo">
+    <operation name="listarEmpleados">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -95,7 +86,16 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarEmpleados">
+    <operation name="obtenerEmpleaedo">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+    </operation>
+    <operation name="eliminarEmpleado">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

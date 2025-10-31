@@ -5,11 +5,11 @@
       <xsd:import schemaLocation="http://localhost:8080/SoftProgWS/AreaWS?xsd=1" namespace="http://services.softprog.pucp.edu.pe/" />
     </xsd:schema>
   </types>
-  <message name="guardarArea">
-    <part name="parameters" element="tns:guardarArea" />
+  <message name="obtenerArea">
+    <part name="parameters" element="tns:obtenerArea" />
   </message>
-  <message name="guardarAreaResponse">
-    <part name="parameters" element="tns:guardarAreaResponse" />
+  <message name="obtenerAreaResponse">
+    <part name="parameters" element="tns:obtenerAreaResponse" />
   </message>
   <message name="eliminarArea">
     <part name="parameters" element="tns:eliminarArea" />
@@ -17,39 +17,39 @@
   <message name="eliminarAreaResponse">
     <part name="parameters" element="tns:eliminarAreaResponse" />
   </message>
+  <message name="guardarArea">
+    <part name="parameters" element="tns:guardarArea" />
+  </message>
+  <message name="guardarAreaResponse">
+    <part name="parameters" element="tns:guardarAreaResponse" />
+  </message>
   <message name="listarAreas">
     <part name="parameters" element="tns:listarAreas" />
   </message>
   <message name="listarAreasResponse">
     <part name="parameters" element="tns:listarAreasResponse" />
   </message>
-  <message name="obtenerArea">
-    <part name="parameters" element="tns:obtenerArea" />
-  </message>
-  <message name="obtenerAreaResponse">
-    <part name="parameters" element="tns:obtenerAreaResponse" />
-  </message>
   <portType name="AreaWS">
-    <operation name="guardarArea">
-      <input wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/guardarAreaRequest" message="tns:guardarArea" />
-      <output wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/guardarAreaResponse" message="tns:guardarAreaResponse" />
+    <operation name="obtenerArea">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/obtenerAreaRequest" message="tns:obtenerArea" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/obtenerAreaResponse" message="tns:obtenerAreaResponse" />
     </operation>
     <operation name="eliminarArea">
       <input wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/eliminarAreaRequest" message="tns:eliminarArea" />
       <output wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/eliminarAreaResponse" message="tns:eliminarAreaResponse" />
     </operation>
+    <operation name="guardarArea">
+      <input wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/guardarAreaRequest" message="tns:guardarArea" />
+      <output wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/guardarAreaResponse" message="tns:guardarAreaResponse" />
+    </operation>
     <operation name="listarAreas">
       <input wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/listarAreasRequest" message="tns:listarAreas" />
       <output wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/listarAreasResponse" message="tns:listarAreasResponse" />
     </operation>
-    <operation name="obtenerArea">
-      <input wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/obtenerAreaRequest" message="tns:obtenerArea" />
-      <output wsam:Action="http://services.softprog.pucp.edu.pe/AreaWS/obtenerAreaResponse" message="tns:obtenerAreaResponse" />
-    </operation>
   </portType>
   <binding name="AreaWSPortBinding" type="tns:AreaWS">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <operation name="guardarArea">
+    <operation name="obtenerArea">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -67,7 +67,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="listarAreas">
+    <operation name="guardarArea">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />
@@ -76,7 +76,7 @@
         <soap:body use="literal" />
       </output>
     </operation>
-    <operation name="obtenerArea">
+    <operation name="listarAreas">
       <soap:operation soapAction="" />
       <input>
         <soap:body use="literal" />

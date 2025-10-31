@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.util.ArrayList;
+import java.util.List;
 import pe.edu.pucp.inf30.softprog.dao.ventas.OrdenVentaDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.TransaccionalBaseDAO;
 import pe.edu.pucp.inf30.softprog.daoimpl.clientes.ClienteDAOImpl;
@@ -130,5 +132,31 @@ public class OrdenVentaDAOImpl extends TransaccionalBaseDAO<OrdenVenta>
         ordenVenta.setActivo(rs.getBoolean("activo"));
         
         return ordenVenta;
+    }
+
+    protected PreparedStatement comandoListarOrdenesVentaPorCuenta(
+            Connection conn, String cuenta) throws SQLException {
+        String sql = "{call listarOrdenesVentaPorCuenta(?)}";
+        
+        CallableStatement cmd = conn.prepareCall(sql);
+        cmd.setString("p_cuenta", cuenta);
+        return cmd;
+    }
+    
+    @Override
+    public List<OrdenVenta> listarOrdenesVentaPorCuenta(String cuenta) {
+        return ejecutarComando(conn -> {
+            try (PreparedStatement cmd = 
+                    this.comandoListarOrdenesVentaPorCuenta(conn, cuenta)) {
+                ResultSet rs = cmd.executeQuery();
+
+                List<OrdenVenta> modelos = new ArrayList<>();
+                while (rs.next()) {
+                    modelos.add(this.mapearModelo(rs));
+                }
+
+                return modelos;
+            }
+        });
     }
 }

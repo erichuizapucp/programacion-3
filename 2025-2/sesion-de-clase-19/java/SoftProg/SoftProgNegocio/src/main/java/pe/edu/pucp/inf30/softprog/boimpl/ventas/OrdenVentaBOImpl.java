@@ -113,4 +113,9 @@ public class OrdenVentaBOImpl implements OrdenVentaBO {
                     + "", e);
         }
     }
+
+    @Override
+    public List<OrdenVenta> listarOrdenesVentaPorCuenta(String cuenta) {
+        return this.ordenVentaDao.listarOrdenesVentaPorCuenta(cuenta);
+    }
 }
