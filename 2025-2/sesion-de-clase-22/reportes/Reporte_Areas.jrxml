@@ -1,0 +1,88 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="Reporte_Areas" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3b6e7cc2-8510-4c96-877e-01d9c5c79cce">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SoftProg"/>
+	<style name="estiloActivo">
+		<conditionalStyle backcolor="#08FC59">
+			<conditionExpression><![CDATA[$F{activo} == true]]></conditionExpression>
+		</conditionalStyle>
+		<conditionalStyle backcolor="#ED100C">
+			<conditionExpression><![CDATA[$F{activo} == false]]></conditionExpression>
+		</conditionalStyle>
+	</style>
+	<parameter name="autor" class="java.lang.String"/>
+	<parameter name="logo" class="java.awt.Image"/>
+	<query language="SQL"><![CDATA[call listarAreas();]]></query>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="AREA"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="AREA"/>
+	</field>
+	<field name="activo" class="java.lang.Boolean">
+		<property name="com.jaspersoft.studio.field.name" value="activo"/>
+		<property name="com.jaspersoft.studio.field.label" value="activo"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="AREA"/>
+	</field>
+	<background splitType="Stretch"/>
+	<title height="121" splitType="Stretch">
+		<element kind="staticText" uuid="fa030280-836b-4bc9-aa69-fa9d08d04ed8" x="180" y="0" width="200" height="30" fontSize="22.0" bold="true" hTextAlign="Center">
+			<text><![CDATA[Reporte de Areas]]></text>
+		</element>
+		<element kind="staticText" uuid="28b3c6b8-48fd-481a-86a9-78feb1d91601" x="20" y="50" width="110" height="20">
+			<text><![CDATA[Fecha de Generacion: ]]></text>
+		</element>
+		<element kind="staticText" uuid="f52723b4-213d-42f9-9598-539b747b3d3e" x="20" y="80" width="110" height="20">
+			<text><![CDATA[Elaborado Por: ]]></text>
+		</element>
+		<element kind="textField" uuid="490329e5-6e98-43aa-88ab-0b2a1fcc1ffa" x="140" y="50" width="100" height="20" pattern="MMMMM dd, yyyy">
+			<expression><![CDATA[new java.util.Date()]]></expression>
+		</element>
+		<element kind="textField" uuid="490150a1-fa55-4f8a-bdb5-cef25fab864a" x="140" y="80" width="100" height="20">
+			<expression><![CDATA[$P{autor}]]></expression>
+		</element>
+		<element kind="image" uuid="eb1b6561-374e-43cf-afce-15d5595f5775" x="480" y="0" width="50" height="50">
+			<expression><![CDATA[$P{logo}]]></expression>
+		</element>
+	</title>
+	<columnHeader height="61" splitType="Stretch">
+		<element kind="staticText" uuid="506d12a6-6b42-45e6-9b6d-452b977f9e7a" x="20" y="15" width="100" height="30" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Codigo]]></text>
+		</element>
+		<element kind="staticText" uuid="296beb42-f168-49ae-907c-a9849d4a1725" x="180" y="15" width="200" height="30" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Nombre]]></text>
+		</element>
+		<element kind="staticText" uuid="396b871c-30eb-4df3-9d84-e7481de8978e" x="430" y="15" width="100" height="30" fontSize="14.0" bold="true" hTextAlign="Center" vTextAlign="Middle">
+			<text><![CDATA[Activo]]></text>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="36" splitType="Stretch">
+			<element kind="rectangle" uuid="3be30e71-e572-4dbc-b8f5-60ede48827e9" x="430" y="0" width="100" height="20" style="estiloActivo"/>
+			<element kind="textField" uuid="a523819c-b0d0-46d8-81a0-471425d11b3f" x="20" y="0" width="100" height="20" hTextAlign="Center">
+				<expression><![CDATA[String.format("%04d", $F{id});]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="964d3230-4a30-4a13-a2f2-b5b78e11bb07"/>
+			</element>
+			<element kind="textField" uuid="e7e9bfc7-a87a-4f8e-acb2-83d3a3d63cb0" x="180" y="0" width="200" height="20">
+				<expression><![CDATA[$F{nombre}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="9ad9e874-cd82-4398-9569-abf9ad325e50"/>
+			</element>
+			<element kind="textField" uuid="2d76780d-211c-47b4-821a-13a69864273b" x="430" y="0" width="100" height="20" hTextAlign="Center">
+				<expression><![CDATA[$F{activo} ? "Si" : "No";]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2dccf1d4-4951-4765-b4d3-2f1ea1ffc5e2"/>
+			</element>
+		</band>
+	</detail>
+	<pageFooter height="54" splitType="Stretch">
+		<element kind="textField" uuid="8bbded0c-8e03-4019-bb0a-21625f7e8e93" x="320" y="21" width="100" height="30" hTextAlign="Right">
+			<expression><![CDATA["Pagina " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+		<element kind="textField" uuid="fbb92c59-2694-4516-9f35-f437ccec1cf1" x="430" y="21" width="100" height="30" evaluationTime="Report" hTextAlign="Left">
+			<expression><![CDATA[" de " + $V{PAGE_NUMBER}]]></expression>
+		</element>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,122 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.Master.cs" Inherits="PUCP.SoftProg.Web.SiteMaster" %>
+<!DOCTYPE html>
+<html lang="es">
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+   
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/estilo.css" rel="stylesheet" />
+    <link href="Content/Fonts/css/all.css" rel="stylesheet" />
+
+    <script src="Scripts/bootstrap.js"></script>
+    <script src="Scripts/bootstrap.bundle.js"></script>
+    <script src="Scripts/jquery-3.7.1.js"></script>
+
+    <title>
+        <asp:ContentPlaceHolder ID="cphTitulo" runat="server"></asp:ContentPlaceHolder>
+    </title>
+    <asp:ContentPlaceHolder ID="cphScripts" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <div class="container-fluid d-flex p-0 h-100">
+        <!--Menu Lateral-->
+        <div id="bdSidebar" class="d-flex flex-column flex-shrink-0 p-3 bg-primary text-white offcanvas-md offcanvas-start">
+            <a href="#" class="navbar-brand">
+                <img src="Images/pucp.png" width="150" />
+            </a>
+            <hr />
+            <ul class="mynav nav nav-pills flex-column mb-auto">
+                <li id="lnkGestionarAreas" runat="server" class="nav-item mb-1">
+                    <a href="<%= ResolveUrl("~/GestionarAreas.aspx") %>"><i class="fa-solid fa-building pe-2"></i>
+                        Gestionar Areas
+                    </a>
+                </li>
+                <li id="lnkListarAreas" runat="server" class="nav-item mb-1">
+                    <a href="<%= ResolveUrl("~/ListarAreas.aspx") %>"><i class="fa-solid fa-building pe-2"></i>
+                        Listar Areas
+                    </a>
+                </li>
+                <li id="lnkGestionarProductos" runat="server" class="nav-item mb-1">
+                    <a href="<%= ResolveUrl("~/GestionarProductos.aspx") %>"><i class="fa-solid fa-building pe-2"></i>
+                        Gestionar Productos
+                    </a>
+                </li>
+                <li id="lnkListarProductos" runat="server" class="nav-item mb-1">
+                    <a href="<%= ResolveUrl("~/ListarProductos.aspx") %>"><i class="fa-solid fa-building pe-2"></i>
+                        Listar Productos
+                    </a>
+                </li>
+                <li id="lnkGestionarEmpleados" runat="server" class="nav-item mb-1">
+                    <a href="<%= ResolveUrl("~/GestionarEmpleados.aspx") %>"><i class="fa-solid fa-people-group pe-2"></i>
+                        Gestionar Empleados
+                    </a>
+                </li>
+                <li id="lnkListarEmpleados" runat="server" class="nav-item mb-1">
+                    <a href="<%= ResolveUrl("~/ListarEmpleados.aspx") %>"><i class="fa-solid fa-people-group pe-2"></i>
+                        Listar Empleados
+                    </a>
+                </li>
+                <li class="sidebar-item  nav-item mb-1">
+                    <a href="#" class="sidebar-link collapsed" data-bs-toggle="collapse" data-bs-target="#settings" aria-expanded="false" aria-controls="settings"> <i class="fa-solid fa-money-bill pe-2"></i>
+                        <span class="topic">Ordenes Venta</span>
+                    </a>
+                    <ul id="settings" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                        <li id="lnkGestionarOrdenesVenta" runat="server" class="sidebar-item">
+                            <a href="<%= ResolveUrl("~/GestionarOrdenesVenta.aspx") %>" class="sidebar-link"><i class="fa-solid fa-cash-register pe-2"></i>
+                                <span class="topic">Registrar</span>
+                            </a>
+                        </li>
+                        <li id="lnkListarOrdenesVenta" runat="server" class="sidebar-item">
+                            <a href="<%= ResolveUrl("~/ListarOrdenesVenta.aspx") %>" class="sidebar-link"><i class="fa-solid fa-cash-register pe-2"></i>
+                                <span class="topic">Listar</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <hr />
+            <div class="d-flex">
+                <i class="fa-solid fa-book me-2"></i>
+                <h6 class="mt-1 mb-0">PUCP - Programación 3</h6>
+            </div>
+        </div>
+        <!--Contenido de la Derecha-->
+        <div class="bg-light flex-fill overflow-auto">
+            <!-- Barra superior para dispositivos móviles -->
+            <div class="p-2 d-md-none d-flex text-white bg-primary">
+                <a data-bs-toggle="offcanvas" data-bs-target="#bdSidebar" class="text-white" href="#">
+                    <i class="fa-solid fa-bars"></i>
+                </a>
+            </div>
+            <!-- Barra de Usuario -->
+            <nav class="navbar navbar-dark bg-primary" >
+                <div class="container-fluid">
+                    <a class="navbar-brand d-sm-none d-md-block d-none d-sm-block">
+                        Software para el Curso de Programación 3
+                    </a>
+                    <form class="d-flex">
+                        <div id="pnlPerfilLinks" runat="server" class="dropdown ps-3">
+                            <button class="btn btn-outline-light dropdown-toggle" id="btnUsuario" data-bs-toggle="dropdown" type="button" aria-expanded="false">
+                                <i class="fas fa-user me-2"></i><asp:Label ID="lblCuenta" runat="server"></asp:Label>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="btnUsuario">
+                                <li id="lnkPerfilCliente" runat="server"><a class="dropdown-item" href='<%= ResolveUrl("~/PerfilCliente.aspx") %>'>Perfil</a></li>
+                                <li id="lnkCambiarContrasena" runat="server"><a class="dropdown-item" href='<%= ResolveUrl("~/CambiarContrasena.aspx") %>'>Cambiar Contraseña</a></li>
+                                <li id="lnkLogout" runat="server"><a class="dropdown-item" href='<%= ResolveUrl("~/Logout.aspx") %>'>Cerrar Sesión</a></li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+            </nav>
+            <!-- Contenido -->
+            <div class="p-4">
+                <form runat="server">
+                    <asp:ContentPlaceHolder ID="cphContenido" runat="server"></asp:ContentPlaceHolder>
+                </form>
+            </div>
+        </div>
+    </div>   
+</body>
+</html>
