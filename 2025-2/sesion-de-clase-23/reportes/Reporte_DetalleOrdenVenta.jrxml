@@ -1,0 +1,108 @@
+<!-- Created with Jaspersoft Studio version 7.0.3.final using JasperReports Library version 7.0.3-41034ca841d452f3305ba55b9042260aaa1ab5dd  -->
+<jasperReport name="Reporte_DetalleOrdenVenta" language="java" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="e261bdfd-595b-4055-95ce-708176c5d5f1">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="SoftProg"/>
+	<parameter name="id_orden" class="java.lang.Integer"/>
+	<query language="SQL"><![CDATA[call reporteDetalleOrdenVenta($P{id_orden});]]></query>
+	<field name="id" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="id"/>
+		<property name="com.jaspersoft.studio.field.label" value="id"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="LINEAORDENVENTA"/>
+	</field>
+	<field name="nombre" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.label" value="nombre"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="PRODUCTO"/>
+	</field>
+	<field name="precio" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="precio"/>
+		<property name="com.jaspersoft.studio.field.label" value="precio"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="PRODUCTO"/>
+	</field>
+	<field name="cantidad" class="java.lang.Integer">
+		<property name="com.jaspersoft.studio.field.name" value="cantidad"/>
+		<property name="com.jaspersoft.studio.field.label" value="cantidad"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="LINEAORDENVENTA"/>
+	</field>
+	<field name="subTotal" class="java.math.BigDecimal">
+		<property name="com.jaspersoft.studio.field.name" value="subTotal"/>
+		<property name="com.jaspersoft.studio.field.label" value="subTotal"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="LINEAORDENVENTA"/>
+	</field>
+	<variable name="SUBTOTAL" calculation="Sum" class="java.math.BigDecimal">
+		<expression><![CDATA[$F{subTotal}]]></expression>
+	</variable>
+	<variable name="IGV" class="java.math.BigDecimal">
+		<expression><![CDATA[$V{SUBTOTAL}.multiply(new java.math.BigDecimal("0.18"))]]></expression>
+	</variable>
+	<variable name="TOTAL" class="java.math.BigDecimal">
+		<expression><![CDATA[$V{SUBTOTAL}.add($V{IGV})]]></expression>
+	</variable>
+	<background splitType="Stretch"/>
+	<columnHeader height="28" splitType="Stretch">
+		<element kind="staticText" uuid="471096a1-b983-43cd-9626-f025b6ee08db" x="0" y="0" width="60" height="20" fontSize="12.0" underline="true" bold="true" hTextAlign="Center">
+			<text><![CDATA[ID]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="32c12cbb-8e15-430f-90f5-d4cb5ba21e8c"/>
+		</element>
+		<element kind="staticText" uuid="92e51bf4-631d-4142-9bb6-2614cadae33b" x="70" y="0" width="160" height="20" fontSize="12.0" underline="true" italic="false" bold="true" hTextAlign="Center">
+			<text><![CDATA[Producto]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1bb5c311-2e46-4ab0-a6ab-eaf570a3a9bb"/>
+		</element>
+		<element kind="staticText" uuid="bd5f6c65-9ec7-42c8-a09e-ecf19491a95a" x="240" y="0" width="100" height="20" fontSize="12.0" underline="true" bold="true" hTextAlign="Center">
+			<text><![CDATA[Precio U.]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2a20f996-6639-4f6c-a9e9-142dbff6745f"/>
+		</element>
+		<element kind="staticText" uuid="ef408263-2450-4eea-9c44-175b741cab84" x="360" y="0" width="76" height="20" fontSize="12.0" underline="true" bold="true" hTextAlign="Center">
+			<text><![CDATA[Cantidad]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="02a24f14-e906-419c-8d89-b047f6d41484"/>
+		</element>
+		<element kind="staticText" uuid="9c1fb881-9bfb-4f8e-8f29-1d21c93bac7f" x="440" y="0" width="95" height="20" fontSize="12.0" underline="true" bold="true" hTextAlign="Center">
+			<text><![CDATA[Sub Total]]></text>
+			<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a99c8efd-f0e8-4f03-a182-ba611651cbdd"/>
+		</element>
+	</columnHeader>
+	<detail>
+		<band height="27" splitType="Stretch">
+			<element kind="textField" uuid="54094800-5a9c-47b6-8f3d-08c48dc9846f" x="0" y="0" width="60" height="20" hTextAlign="Center">
+				<expression><![CDATA[String.format("%04d", $F{id});]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="32c12cbb-8e15-430f-90f5-d4cb5ba21e8c"/>
+			</element>
+			<element kind="textField" uuid="1d035e2c-4090-4110-a4e0-e9739dfc6679" x="70" y="0" width="160" height="20">
+				<expression><![CDATA[$F{nombre}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="1bb5c311-2e46-4ab0-a6ab-eaf570a3a9bb"/>
+			</element>
+			<element kind="textField" uuid="30545c3b-65cb-4ef8-9937-99e3fc17aaf2" x="240" y="0" width="100" height="20" hTextAlign="Right">
+				<expression><![CDATA[$F{precio}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="2a20f996-6639-4f6c-a9e9-142dbff6745f"/>
+			</element>
+			<element kind="textField" uuid="c93aef26-d24e-4002-a8a9-7be6fb80e837" x="356" y="0" width="80" height="20" hTextAlign="Center">
+				<expression><![CDATA[$F{cantidad}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="02a24f14-e906-419c-8d89-b047f6d41484"/>
+			</element>
+			<element kind="textField" uuid="0756e3a5-5a14-4614-ab41-3d348b860ba2" x="440" y="3" width="95" height="20" hTextAlign="Right">
+				<expression><![CDATA[$F{subTotal}]]></expression>
+				<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="a99c8efd-f0e8-4f03-a182-ba611651cbdd"/>
+			</element>
+		</band>
+	</detail>
+	<summary height="104" splitType="Stretch">
+		<element kind="staticText" uuid="537b9cd7-22fd-4829-940e-ac3f0d64181f" x="336" y="10" width="100" height="20" fontSize="14.0" bold="true" hTextAlign="Right">
+			<text><![CDATA[SUBTOTAL: ]]></text>
+		</element>
+		<element kind="staticText" uuid="4b92eef1-4098-4ac7-8295-c37d13895504" x="336" y="40" width="100" height="20" fontSize="14.0" bold="true" hTextAlign="Right">
+			<text><![CDATA[IGV:]]></text>
+		</element>
+		<element kind="staticText" uuid="a4075e24-822b-4e28-98c2-5f369897432f" x="336" y="70" width="100" height="20" fontSize="14.0" bold="true" hTextAlign="Right">
+			<text><![CDATA[TOTAL: ]]></text>
+		</element>
+		<element kind="textField" uuid="294a6ad4-da01-4fd9-a7e5-61347e9853ec" x="440" y="10" width="100" height="20" hTextAlign="Right">
+			<expression><![CDATA[$V{SUBTOTAL}]]></expression>
+		</element>
+		<element kind="textField" uuid="73a91e18-d683-4955-88ab-ee2109c833f8" x="437" y="40" width="100" height="20" hTextAlign="Right">
+			<expression><![CDATA[$V{IGV}]]></expression>
+		</element>
+		<element kind="textField" uuid="23cde4c8-1392-4313-acf5-c0fd0d5729dc" x="440" y="70" width="100" height="20" hTextAlign="Right">
+			<expression><![CDATA[$V{TOTAL}]]></expression>
+		</element>
+	</summary>
+</jasperReport>

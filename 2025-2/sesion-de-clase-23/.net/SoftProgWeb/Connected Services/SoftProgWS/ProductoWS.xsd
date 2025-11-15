@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://services.softprog.pucp.edu.pe/" targetNamespace="http://services.softprog.pucp.edu.pe/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="eliminarProducto" type="tns:eliminarProducto" />
+  <xs:element name="eliminarProductoResponse" type="tns:eliminarProductoResponse" />
+  <xs:element name="guardarProducto" type="tns:guardarProducto" />
+  <xs:element name="guardarProductoResponse" type="tns:guardarProductoResponse" />
+  <xs:element name="listarProductos" type="tns:listarProductos" />
+  <xs:element name="listarProductosResponse" type="tns:listarProductosResponse" />
+  <xs:element name="obtenerProducto" type="tns:obtenerProducto" />
+  <xs:element name="obtenerProductoResponse" type="tns:obtenerProductoResponse" />
+  <xs:complexType name="obtenerProducto">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="obtenerProductoResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="return" type="tns:producto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="producto">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:registro">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="nombre" type="xs:string" />
+          <xs:element name="precio" type="xs:double" />
+          <xs:element minOccurs="0" name="unidadMedida" type="tns:unidadMedida" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="registro" abstract="true">
+    <xs:sequence>
+      <xs:element name="activo" type="xs:boolean" />
+      <xs:element name="id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="listarProductos">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="listarProductosResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:producto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="guardarProducto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="producto" type="tns:producto" />
+      <xs:element minOccurs="0" name="estado" type="tns:estado" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="guardarProductoResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="eliminarProducto">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="eliminarProductoResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:simpleType name="unidadMedida">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Unidad" />
+      <xs:enumeration value="Kilos" />
+      <xs:enumeration value="Onzas" />
+      <xs:enumeration value="Litros" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="estado">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Nuevo" />
+      <xs:enumeration value="Modificado" />
+      <xs:enumeration value="Eliminado" />
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
