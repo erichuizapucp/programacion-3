@@ -4,9 +4,9 @@
  */
 public class Deposito implements Runnable {
     private final double monto;
-    private final ICuentaBancaria cuenta;
+    private final Transaccionable cuenta;
     
-    public Deposito(ICuentaBancaria cuenta, double monto) {
+    public Deposito(Transaccionable cuenta, double monto) {
         this.monto = monto;
         this.cuenta = cuenta;
     }

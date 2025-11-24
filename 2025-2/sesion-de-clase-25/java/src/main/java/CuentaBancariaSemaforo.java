@@ -1,55 +1,57 @@
-
 import java.util.concurrent.Semaphore;
 
+public class CuentaBancariaSemaforo implements Transaccionable {
 
-/**
- *
- * @author eric
- */
-public class CuentaBancariaSemaforo implements ICuentaBancaria {
     private double saldo;
-    private final Semaphore semaforo = new Semaphore(1); 
-    
-    public CuentaBancariaSemaforo(double saldo) {
-        this.saldo = saldo;
+    private final Semaphore mutex = new Semaphore(1);
+    private final Semaphore saldoSuficiente = new Semaphore(0);
+
+    public CuentaBancariaSemaforo(double saldoInicial) {
+        this.saldo = saldoInicial;
+        if (saldoInicial > 0) {
+            saldoSuficiente.release();
+        }
     }
-    
+
     @Override
     public void retirar(String nombreCliente, double monto) {
         try {
-            semaforo.acquire();
-            if (saldo >= monto) {
-                System.out.println("El cliente " + nombreCliente + " va a retirar " + monto);
+            while (true) {
+                saldoSuficiente.acquire();
 
-                this.saldo -= monto;
-                System.out.println(nombreCliente + " completo el retiro, queda " + this.saldo);
+                mutex.acquire();
+                if (saldo >= monto) {
+                    System.out.println(nombreCliente + " retira " + monto);
+                    saldo -= monto;
+                    System.out.println("Saldo queda: " + saldo);
+
+                    if (saldo > 0) saldoSuficiente.release();
+
+                    mutex.release();
+                    return;
+                }
+                mutex.release();
             }
-            else {
-                System.out.println(nombreCliente + " quiere retirar " + monto + " pero no hay sificiente, esperando...");
-            }
-        }
-        catch (InterruptedException ex) {
+        } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-        finally {
-            semaforo.release();
-        }
     }
-    
+
     @Override
     public void depositar(String nombreCliente, double monto) {
         try {
-            semaforo.acquire();
-            System.out.println("El cliente " + nombreCliente + " deposito " + monto);
-            
+            mutex.acquire();
+
+            System.out.println(nombreCliente + " deposita " + monto);
             saldo += monto;
-            System.out.println("Saldo despues del deposito: " + this.saldo);
-        }
-        catch (InterruptedException ex) {
+            System.out.println("Saldo queda: " + saldo);
+
+            saldoSuficiente.release();
+
+        } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-        }
-        finally {
-            semaforo.release();
+        } finally {
+            mutex.release();
         }
     }
 }

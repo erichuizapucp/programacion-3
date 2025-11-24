@@ -19,12 +19,6 @@ public class CuentaBancaria {
         }
                
         System.out.println("El cliente " + nombreCliente + " va a retirar " + monto);
-//        try {
-//            Thread.sleep(1000);
-//        }
-//        catch (InterruptedException ex) {
-//            Thread.currentThread().interrupt();
-//        }
 
         this.saldo -= monto;
         System.out.println(nombreCliente + " completo el retiro, queda " + this.saldo);
@@ -32,14 +26,6 @@ public class CuentaBancaria {
     
     public synchronized void depositar(String nombreCliente, double monto) {
         System.out.println("El cliente " + nombreCliente + " deposito " + monto);
-        
-//        try {
-//            Thread.sleep(5000);
-//        }
-//        catch (InterruptedException ex) {
-//            Thread.currentThread().interrupt();
-//        }
-        
         saldo += monto;
         System.out.println("Saldo despues del deposito: " + this.saldo);
         notifyAll();

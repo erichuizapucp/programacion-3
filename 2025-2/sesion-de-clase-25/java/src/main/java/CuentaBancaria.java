@@ -9,7 +9,7 @@ import java.util.concurrent.locks.ReentrantLock;
  *
  * @author eric
  */
-public class CuentaBancaria implements ICuentaBancaria{
+public class CuentaBancaria implements Transaccionable{
     private double saldo;
     private final Lock lock = new ReentrantLock();
     private final Condition fondosSuficientes = lock.newCondition();
