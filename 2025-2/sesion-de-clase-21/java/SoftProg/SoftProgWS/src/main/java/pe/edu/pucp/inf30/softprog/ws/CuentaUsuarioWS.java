@@ -124,6 +124,7 @@ public class CuentaUsuarioWS {
         String url = this.urlBase + "/" + this.NOMBRE_RESOURCE + "/login";
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(url))
+                .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .build();
         

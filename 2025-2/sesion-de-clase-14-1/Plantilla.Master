@@ -1,0 +1,50 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Plantilla.Master.cs" Inherits="sesion_de_clase_14_1.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div class="container">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="<%= ResolveUrl("~/Home.aspx") %>">Inicio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= ResolveUrl("~/Areas.aspx") %>">Areas</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="<%= ResolveUrl("~/Empleados.aspx") %>">Empleados</a>
+              </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<%= ResolveUrl("~/Clientes.aspx") %>">Clientes</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="<%= ResolveUrl("~/Productos.aspx") %>">Productos</a>
+                </li>
+            </ul>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            </asp:ContentPlaceHolder>
+            <asp:ContentPlaceHolder ID="ContentPlaceHolder3" runat="server">
+            </asp:ContentPlaceHolder>
+            <footer>
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Terminos y Condiciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Enlaces Legales</a>
+                    </li>
+                </ul>
+            </footer>
+        </div>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
