@@ -1,34 +1,44 @@
-.DS_Store
+# Ignorar archivos específicos del IDE
+*.suo
+*.user
+*.cache*.dbcache.json
+*.suo
+*.user
+
+# Ignorar artefactos de compilación
 *.exe
 *.class
 *.jar
 *.dll
 target
-/2025-1/sesion-de-clase-07/LogManager/nbproject/private/
-/2025-1/sesion-de-clase-07/LogManager/build/
-/2025-1/sesion-de-clase-07/LogManager/dist/
-/2025-1/sesion-de-clase-08/SoftProg/SoftProgRRHHDA/src/main/resources/db.properties
 bin
 .vs
 obj
-.vsidx
-*.cache*.dbcache.json
-*.suo
-*.user
+
+# Ignorar carpetas privadas de proyectos NetBeans
+*/nbproject/private/
+
+# Ignorar carpetas de compilación y distribución
+*/build/
+*/dist/
+
+# Ignorar .properties en cualquier carpeta
+**/*.properties
+
+# Ignorar carpetas específicas de sesiones dinámicamente
+*/sesion-de-clase-*/**/nbproject/private/
+*/sesion-de-clase-*/**/build/
+*/sesion-de-clase-*/**/dist/
+
+# Ignorar otras carpetas específicas
 packages
 */packages/*
-/2025-2/sesion-de-clase-04/java/SoftProgAccesoDatos/nbproject/private/
-/2025-2/sesion-de-clase-04/java/AplicacionDePrueba/nbproject/private/
-/2025-2/sesion-de-clase-04/java/SoftProgAccesoDatos/dist/
-/2025-2/sesion-de-clase-04/java/SoftProgAccesoDatos/build/
-/2025-2/sesion-de-clase-04/java/AplicacionDePrueba/build/
-/2025-2/sesion-de-clase-04/java/AplicacionDePrueba/dist/
-/2025-2/sesion-de-clase-04/java-ant/SoftProgModelo/nbproject/private/
-/2025-2/sesion-de-clase-04/java-ant/SoftProgDAO/nbproject/private/
-/2025-2/sesion-de-clase-04/java-ant/SoftProgBO/nbproject/private/
-/2025-2/sesion-de-clase-04/java-ant/SoftProgDBManager/nbproject/private/
-/2025-2/sesion-de-clase-04/java-ant/SoftProgPruebas/nbproject/private/
-/2025-2/sesion-de-clase-05/ejercicio01/AppPruebaAnt/nbproject/private/
-/2025-2/sesion-de-clase-05/ejercicio01/AppPruebaAnt/build/
-/2025-2/sesion-de-clase-05/ejercicio01/AppPruebaAnt/dist/
-/2025-2/BK/
+.vsidx
+
+# Ignorar configuración de GitHub y JetBrains IDEs en cualquier carpeta
+**/.github/
+**/.idea/
+.DS_Store
+2026-1/proyecto-final
+2026-1/SoftProg/
+2026-1/SoftProg.zip
