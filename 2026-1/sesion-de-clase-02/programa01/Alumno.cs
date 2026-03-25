@@ -9,7 +9,6 @@ public class Alumno : Persona, IGrabable
     public Alumno(int codigo, string nombre, double craest) : base(nombre)
     {
         Codigo = codigo;
-        Nombre = nombre;
         CRAEST = craest;
     }
 
