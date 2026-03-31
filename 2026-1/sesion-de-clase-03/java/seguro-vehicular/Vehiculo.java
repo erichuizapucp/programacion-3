@@ -4,6 +4,12 @@ public class Vehiculo {
     private Marca marca;
     private int antiguedad;
 
+    public Vehiculo(Marca marca, int antiguedad) {
+        this.marca = marca;
+        this.antiguedad = antiguedad;
+
+    }
+
     public Marca getMarca() {
         return marca;
     }
