@@ -1,9 +1,5 @@
 package pe.edu.pucp.softprog.modelo;
 
-/**
- *
- * @author eric
- */
 public abstract class Registro {
     private int id;
     private boolean activo;

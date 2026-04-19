@@ -4,10 +4,6 @@ import pe.edu.pucp.softprog.modelo.rrhh.Area;
 
 import java.util.List;
 
-/**
- *
- * @author eric
- */
 public interface AreaDAO {
     Integer crear(Area modelo);
     boolean actualizar(Area modelo);

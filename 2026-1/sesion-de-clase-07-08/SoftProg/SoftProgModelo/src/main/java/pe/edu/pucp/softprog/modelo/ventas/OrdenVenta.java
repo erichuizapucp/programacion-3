@@ -6,10 +6,6 @@ import pe.edu.pucp.softprog.modelo.Registro;
 import pe.edu.pucp.softprog.modelo.clientes.Cliente;
 import pe.edu.pucp.softprog.modelo.rrhh.Empleado;
 
-/**
- *
- * @author eric
- */
 public class OrdenVenta extends Registro {
     private double total;
     private Date fecha;
@@ -56,6 +52,17 @@ public class OrdenVenta extends Registro {
     public void setEmpleado(Empleado empleado) {
         this.empleado = empleado;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "OrdenVenta{" +
+                "id=" + getId() +
+                ", activo=" + isActivo() +
+                ", total=" + total +
+                ", fecha=" + fecha +
+                ", cliente=" + (cliente != null ? cliente.getId() : null) +
+                ", empleado=" + (empleado != null ? empleado.getId() : null) +
+                ", lineas=" + lineas +
+                '}';
+    }
 }

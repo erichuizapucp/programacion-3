@@ -1,25 +1,21 @@
-package pe.edu.pucp.softprog.daoimpl.rrhh;
+package pe.edu.pucp.softprog.dao.almacen;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import pe.edu.pucp.softprog.db.DBFactoryProvider;
+import pe.edu.pucp.softprog.db.DBManager;
+import pe.edu.pucp.softprog.modelo.almacen.Producto;
+import pe.edu.pucp.softprog.modelo.almacen.UnidadMedida;
+
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import pe.edu.pucp.softprog.dao.rrhh.AreaDAO;
-import pe.edu.pucp.softprog.db.DBFactoryProvider;
-import pe.edu.pucp.softprog.db.DBManager;
-import pe.edu.pucp.softprog.modelo.rrhh.Area;
+public class ProductoDAOImpl implements ProductoDAO {
 
-
-public class AreaDAOImpl implements AreaDAO {
     @Override
-    public Integer crear(Area modelo) {
+    public Integer crear(Producto modelo) {
         DBManager dbManager = DBFactoryProvider.getManager();
         try (Connection conn = dbManager.getConnection();
-            PreparedStatement cmd = this.comandoCrear(conn, modelo)){
+             PreparedStatement cmd = this.comandoCrear(conn, modelo)){
             if (cmd.executeUpdate() == 0) {
                 return null;
             }
@@ -38,10 +34,10 @@ public class AreaDAOImpl implements AreaDAO {
     }
 
     @Override
-    public boolean actualizar(Area modelo) {
+    public boolean actualizar(Producto modelo) {
         DBManager dbManager = DBFactoryProvider.getManager();
         try (Connection conn = dbManager.getConnection();
-            PreparedStatement cmd = this.comandoActualizar(conn, modelo)) {
+             PreparedStatement cmd = this.comandoActualizar(conn, modelo)) {
             return cmd.executeUpdate() > 0;
         }
         catch (SQLException e) {
@@ -58,7 +54,7 @@ public class AreaDAOImpl implements AreaDAO {
     public boolean eliminar(int id) {
         DBManager dbManager = DBFactoryProvider.getManager();
         try (Connection conn = dbManager.getConnection();
-            PreparedStatement cmd = this.comandoEliminar(conn, id)) {
+             PreparedStatement cmd = this.comandoEliminar(conn, id)) {
             return cmd.executeUpdate() > 0;
         }
         catch (SQLException e) {
@@ -72,7 +68,7 @@ public class AreaDAOImpl implements AreaDAO {
     }
 
     @Override
-    public Area leer(int id) {
+    public Producto leer(int id) {
         DBManager dbManager = DBFactoryProvider.getManager();
         try (Connection conn = dbManager.getConnection();
              PreparedStatement cmd = this.comandoLeer(conn, id)) {
@@ -97,13 +93,13 @@ public class AreaDAOImpl implements AreaDAO {
     }
 
     @Override
-    public List<Area> leerTodos() {
+    public java.util.List<Producto> leerTodos() {
         DBManager dbManager = DBFactoryProvider.getManager();
         try (Connection conn = dbManager.getConnection();
-            PreparedStatement cmd = this.comandoLeerTodos(conn)) {
+             PreparedStatement cmd = this.comandoLeerTodos(conn)) {
             ResultSet rs = cmd.executeQuery();
 
-            List<Area> modelos = new ArrayList<>();
+            List<Producto> modelos = new ArrayList<>();
             while (rs.next()) {
                 modelos.add(this.mapearModelo(rs));
             }
@@ -121,33 +117,52 @@ public class AreaDAOImpl implements AreaDAO {
     }
 
     protected PreparedStatement comandoCrear(Connection conn,
-            Area modelo) throws SQLException {
+                                             Producto modelo) throws SQLException {
+        String sql = """
+            INSERT INTO PRODUCTO (
+                nombre,
+                unidadMedida,
+                precio,
+                activo
+            ) VALUES (?, ?, ?, ?)
+            """;
 
-        String sql = "INSERT INTO AREA (nombre, activo) VALUES (?, ?)";
         PreparedStatement cmd = conn.prepareStatement(sql,
                 Statement.RETURN_GENERATED_KEYS);
         cmd.setString(1, modelo.getNombre());
-        cmd.setBoolean(2, modelo.isActivo());
+        cmd.setString(2,modelo.getUnidadMedida().name());
+        cmd.setDouble(3, modelo.getPrecio());
+        cmd.setBoolean(4, modelo.isActivo());
 
         return cmd;
     }
 
     protected PreparedStatement comandoActualizar(Connection conn,
-            Area modelo) throws SQLException {
+                                                  Producto modelo) throws SQLException {
+        String sql = """
+            UPDATE PRODUCTO
+            SET nombre = ?,
+                unidadMedida = ?,
+                precio = ?,
+                activo = ?
+            WHERE id = ?
+            """;
 
-        String sql = "UPDATE AREA SET nombre = ?, activo = ? WHERE id = ?";
         PreparedStatement cmd = conn.prepareStatement(sql);
         cmd.setString(1, modelo.getNombre());
-        cmd.setBoolean(2, modelo.isActivo());
-        cmd.setInt(3, modelo.getId());
+        cmd.setString(2, modelo.getUnidadMedida().name());
+        cmd.setDouble(3, modelo.getPrecio());
+        cmd.setBoolean(4, modelo.isActivo());
+        cmd.setInt(5, modelo.getId());
 
         return cmd;
     }
 
     protected PreparedStatement comandoEliminar(Connection conn,
-            Integer id) throws SQLException {
-
-        String sql = "DELETE FROM AREA WHERE id = ?";
+                                                Integer id) throws SQLException {
+        String sql = """
+            DELETE FROM PRODUCTO WHERE id = ?
+            """;
         PreparedStatement cmd = conn.prepareStatement(sql);
         cmd.setInt(1, id);
 
@@ -155,30 +170,30 @@ public class AreaDAOImpl implements AreaDAO {
     }
 
     protected PreparedStatement comandoLeer(Connection conn,
-            Integer id) throws SQLException {
-
-        String sql = "SELECT * FROM AREA WHERE id = ?";
+                                            Integer id) throws SQLException {
+        String sql = """
+            SELECT * FROM PRODUCTO WHERE id = ?
+            """;
         PreparedStatement cmd = conn.prepareStatement(sql);
         cmd.setInt(1, id);
-
         return cmd;
     }
 
-    protected PreparedStatement comandoLeerTodos(
-            Connection conn) throws SQLException {
-
-        String sql = "SELECT * FROM AREA";
-        PreparedStatement cmd = conn.prepareStatement(sql);
-
-        return cmd;
+    protected PreparedStatement comandoLeerTodos(Connection conn) throws SQLException {
+        String sql = """
+            SELECT * FROM PRODUCTO
+            """;
+        return conn.prepareStatement(sql);
     }
 
-    protected Area mapearModelo(ResultSet rs) throws SQLException {
-        Area modelo = new Area();
-        modelo.setId(rs.getInt(1));
-        modelo.setNombre(rs.getString(2));
-        modelo.setActivo(rs.getBoolean(3));
-
-        return modelo;
+    protected Producto mapearModelo(ResultSet rs) throws SQLException {
+        Producto producto = new Producto();
+        producto.setId(rs.getInt("id"));
+        producto.setNombre(rs.getString("nombre"));
+        producto.setUnidadMedida(
+                UnidadMedida.valueOf(rs.getString("unidadMedida")));
+        producto.setPrecio(rs.getDouble("precio"));
+        producto.setActivo(rs.getBoolean("activo"));
+        return producto;
     }
 }

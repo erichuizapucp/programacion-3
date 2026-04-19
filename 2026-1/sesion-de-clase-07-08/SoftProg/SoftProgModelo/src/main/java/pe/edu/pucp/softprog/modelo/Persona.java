@@ -2,10 +2,6 @@ package pe.edu.pucp.softprog.modelo;
 
 import java.util.Date;
 
-/**
- *
- * @author eric
- */
 public abstract class Persona extends Registro {
     private String dni;
     private String nombre;

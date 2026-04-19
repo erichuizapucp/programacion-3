@@ -2,10 +2,6 @@ package pe.edu.pucp.softprog.modelo.rrhh;
 
 import pe.edu.pucp.softprog.modelo.Registro;
 
-/**
- *
- * @author eric
- */
 public class Area extends Registro {
     private String nombre;
 

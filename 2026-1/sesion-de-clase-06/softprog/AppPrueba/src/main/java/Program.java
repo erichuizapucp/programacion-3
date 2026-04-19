@@ -15,7 +15,8 @@ public class Program {
 
         String url = "jdbc:mysql://" + host + ":" + port + "/" + esquema;
 
-        try (Connection connection = DriverManager.getConnection(url, usuario, password)) {
+        try (Connection connection =
+                     DriverManager.getConnection(url, usuario, password)) {
             if (connection != null && !connection.isClosed()) {
                 System.out.println("Conexión con la base de datos exitosa!");
             }

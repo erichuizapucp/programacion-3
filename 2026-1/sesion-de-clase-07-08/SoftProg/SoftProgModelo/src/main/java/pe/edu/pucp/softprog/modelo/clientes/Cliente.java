@@ -3,10 +3,6 @@ package pe.edu.pucp.softprog.modelo.clientes;
 import pe.edu.pucp.softprog.modelo.Persona;
 import pe.edu.pucp.softprog.modelo.rrhh.CuentaUsuario;
 
-/**
- *
- * @author eric
- */
 public class Cliente extends Persona {
     private double lineaCredito;
     private CategoriaCliente categoria;

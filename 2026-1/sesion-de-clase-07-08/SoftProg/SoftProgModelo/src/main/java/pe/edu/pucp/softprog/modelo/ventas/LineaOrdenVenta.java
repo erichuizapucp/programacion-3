@@ -3,10 +3,6 @@ package pe.edu.pucp.softprog.modelo.ventas;
 import pe.edu.pucp.softprog.modelo.Registro;
 import pe.edu.pucp.softprog.modelo.almacen.Producto;
 
-/**
- *
- * @author eric
- */
 public class LineaOrdenVenta extends Registro {
     private Producto producto;
     private int cantidad;
@@ -35,5 +31,15 @@ public class LineaOrdenVenta extends Registro {
     public void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
     }
-    
+
+    @Override
+    public String toString() {
+        return "LineaOrdenVenta{" +
+                "id=" + getId() +
+                ", activo=" + isActivo() +
+                ", producto=" + (producto != null ? producto.getId() : null) +
+                ", cantidad=" + cantidad +
+                ", subTotal=" + subTotal +
+                '}';
+    }
 }

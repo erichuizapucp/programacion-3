@@ -2,10 +2,6 @@ package pe.edu.pucp.softprog.modelo.rrhh;
 
 import pe.edu.pucp.softprog.modelo.Persona;
 
-/**
- *
- * @author eric
- */
 public class Empleado extends Persona {
     private Cargo cargo;
     private double sueldo;

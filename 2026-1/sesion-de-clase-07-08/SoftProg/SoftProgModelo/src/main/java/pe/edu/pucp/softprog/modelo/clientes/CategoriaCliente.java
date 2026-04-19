@@ -6,5 +6,8 @@ package pe.edu.pucp.softprog.modelo.clientes;
  */
 public enum CategoriaCliente {
     ESTANDARD, 
-    PREMIUM
+    PREMIUM,
+    ORO,
+    PLATA,
+    BRONCE
 }

@@ -49,12 +49,12 @@ INSERT INTO EMPLEADO (
     id, idArea, idCuentaUsuario, dni, nombre, apellidoPaterno,
     genero, fechaNacimiento, cargo, sueldo, activo
 ) VALUES
-(1, 1, 2, '45678912', 'Martin', 'Quiroz',   'MASCULINO', '1990-03-15', 'Vendedor Senior',        3200.00, TRUE),
-(2, 1, 3, '50123456', 'Rosa',   'Valdez',   'FEMENINO',  '1993-07-20', 'Ejecutiva Comercial',    2900.00, TRUE),
-(3, 2, 4, '47890123', 'Lucia',  'Paredes',  'FEMENINO',  '1988-11-02', 'Analista RRHH',          3400.00, TRUE),
-(4, 3, 5, '48901234', 'Carlos', 'Montes',   'MASCULINO', '1991-01-28', 'Encargado de Almacen',   3000.00, TRUE),
-(5, 4, 6, '46789012', 'Andrea', 'Gomez',    'FEMENINO',  '1987-06-10', 'Contadora',              3800.00, TRUE),
-(6, 5, 7, '51234567', 'Jorge',  'Torres',   'MASCULINO', '1994-09-18', 'Desarrollador Backend',  4200.00, TRUE);
+(1, 1, 2, '45678912', 'Martin', 'Quiroz',   'MASCULINO', '1990-03-15', 'VENDEDOR_SENIOR',        3200.00, TRUE),
+(2, 1, 3, '50123456', 'Rosa',   'Valdez',   'FEMENINO',  '1993-07-20', 'EJECUTIVO_COMERCIAL',    2900.00, TRUE),
+(3, 2, 4, '47890123', 'Lucia',  'Paredes',  'FEMENINO',  '1988-11-02', 'ANALISTA_RRHH',          3400.00, TRUE),
+(4, 3, 5, '48901234', 'Carlos', 'Montes',   'MASCULINO', '1991-01-28', 'ENCARGADO_ALMACEN',   3000.00, TRUE),
+(5, 4, 6, '46789012', 'Andrea', 'Gomez',    'FEMENINO',  '1987-06-10', 'CONTADOR',              3800.00, TRUE),
+(6, 5, 7, '51234567', 'Jorge',  'Torres',   'MASCULINO', '1994-09-18', 'TECNICO',  4200.00, TRUE);
 
 -- =========================
 -- CLIENTE
