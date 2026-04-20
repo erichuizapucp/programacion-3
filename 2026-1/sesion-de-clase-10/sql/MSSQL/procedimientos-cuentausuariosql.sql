@@ -21,6 +21,10 @@ IF OBJECT_ID('listarCuentaUsuarios', 'P') IS NOT NULL
     DROP PROCEDURE listarCuentaUsuarios;
 GO
 
+IF OBJECT_ID('loginUsuario', 'P') IS NOT NULL
+    DROP PROCEDURE loginUsuario;
+GO
+
 CREATE PROCEDURE insertarCuentaUsuario
     @p_userName NVARCHAR(50),
     @p_password NVARCHAR(50),
@@ -71,5 +75,27 @@ CREATE PROCEDURE listarCuentaUsuarios
 AS
 BEGIN
     SELECT * FROM CUENTA_USUARIO;
+END
+GO
+
+CREATE PROCEDURE loginUsuario
+    @p_username NVARCHAR(50),
+    @p_password NVARCHAR(50),
+    @p_valido BIT OUTPUT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @v_count INT;
+
+    SELECT @v_count = COUNT(*)
+    FROM CUENTA_USUARIO
+    WHERE userName = @p_username
+      AND password = @p_password;
+
+    IF @v_count > 0
+        SET @p_valido = 1;
+    ELSE
+        SET @p_valido = 0;
 END
 GO
