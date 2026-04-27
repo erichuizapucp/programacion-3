@@ -4,5 +4,4 @@
   <Project Path="SoftProgModelo/SoftProgModelo.csproj" />
   <Project Path="SoftProgNegocio/SoftProgNegocio.csproj" />
   <Project Path="SoftProgPersistencia/SoftProgPersistencia.csproj" />
-  <Project Path="SoftProgTests/SoftProgTests.csproj" />
 </Solution>
