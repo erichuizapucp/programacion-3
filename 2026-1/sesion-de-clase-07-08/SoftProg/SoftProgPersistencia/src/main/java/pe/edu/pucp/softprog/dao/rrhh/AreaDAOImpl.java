@@ -121,7 +121,9 @@ public class AreaDAOImpl implements AreaDAO {
     protected PreparedStatement comandoCrear(Connection conn,
             Area modelo) throws SQLException {
 
-        String sql = "INSERT INTO AREA (nombre, activo) VALUES (?, ?)";
+        String sql = """
+            INSERT INTO AREA (nombre, activo) VALUES (?, ?)
+            """;
         PreparedStatement cmd = conn.prepareStatement(sql,
                 Statement.RETURN_GENERATED_KEYS);
         cmd.setString(1, modelo.getNombre());
@@ -133,7 +135,9 @@ public class AreaDAOImpl implements AreaDAO {
     protected PreparedStatement comandoActualizar(Connection conn,
             Area modelo) throws SQLException {
 
-        String sql = "UPDATE AREA SET nombre = ?, activo = ? WHERE id = ?";
+        String sql = """
+            UPDATE AREA SET nombre = ?, activo = ? WHERE id = ?
+            """;
         PreparedStatement cmd = conn.prepareStatement(sql);
         cmd.setString(1, modelo.getNombre());
         cmd.setBoolean(2, modelo.isActivo());
@@ -145,7 +149,9 @@ public class AreaDAOImpl implements AreaDAO {
     protected PreparedStatement comandoEliminar(Connection conn,
             Integer id) throws SQLException {
 
-        String sql = "DELETE FROM AREA WHERE id = ?";
+        String sql = """
+            DELETE FROM AREA WHERE id = ?
+            """;
         PreparedStatement cmd = conn.prepareStatement(sql);
         cmd.setInt(1, id);
 
@@ -155,7 +161,9 @@ public class AreaDAOImpl implements AreaDAO {
     protected PreparedStatement comandoLeer(Connection conn,
             Integer id) throws SQLException {
 
-        String sql = "SELECT * FROM AREA WHERE id = ?";
+        String sql = """
+            SELECT * FROM AREA WHERE id = ?
+            """;
         PreparedStatement cmd = conn.prepareStatement(sql);
         cmd.setInt(1, id);
 
@@ -165,7 +173,9 @@ public class AreaDAOImpl implements AreaDAO {
     protected PreparedStatement comandoLeerTodos(
             Connection conn) throws SQLException {
 
-        String sql = "SELECT * FROM AREA";
+        String sql = """
+            SELECT * FROM AREA
+            """;
         PreparedStatement cmd = conn.prepareStatement(sql);
 
         return cmd;

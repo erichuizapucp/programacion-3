@@ -4,9 +4,9 @@ import pe.edu.pucp.softprog.modelo.Estado;
 
 import java.util.List;
 
-public interface Gestionable<T> {
-    List<T> listar();
-    T obtener(int id);
+public interface Gestionable<M> {
+    List<M> listar();
+    M obtener(int id);
     void eliminar(int id);
-    void guardar(T modelo, Estado estado);
+    void guardar(M modelo, Estado estado);
 }

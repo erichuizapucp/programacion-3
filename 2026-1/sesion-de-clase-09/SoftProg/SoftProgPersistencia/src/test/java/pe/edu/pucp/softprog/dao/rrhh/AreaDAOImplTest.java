@@ -26,7 +26,8 @@ class AreaDAOImplTest {
         ResultSet keys = mock(ResultSet.class);
 
         when(manager.getConnection()).thenReturn(conn);
-        when(conn.prepareStatement(anyString(), eq(Statement.RETURN_GENERATED_KEYS))).thenReturn(cmd);
+        when(conn.prepareStatement(anyString(),
+                eq(Statement.RETURN_GENERATED_KEYS))).thenReturn(cmd);
         when(cmd.executeUpdate()).thenReturn(1);
         when(cmd.getGeneratedKeys()).thenReturn(keys);
         when(keys.next()).thenReturn(true);
