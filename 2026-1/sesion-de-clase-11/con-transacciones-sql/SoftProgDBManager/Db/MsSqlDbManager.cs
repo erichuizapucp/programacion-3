@@ -7,14 +7,14 @@ public sealed class MsSqlDbManager : DbManager
 {
     private static MsSqlDbManager? _instancia;
 
-    private MsSqlDbManager(string connectionStringBase, string? usuario, string? passwordCifrado)
-        : base(connectionStringBase, usuario, passwordCifrado)
+    private MsSqlDbManager(string connectionStringBase)
+        : base(connectionStringBase)
     {
     }
 
-    public static MsSqlDbManager GetInstance(string connectionStringBase, string? usuario, string? passwordCifrado)
+    public static MsSqlDbManager GetInstance(string connectionStringBase)
     {
-        _instancia ??= new MsSqlDbManager(connectionStringBase, usuario, passwordCifrado);
+        _instancia ??= new MsSqlDbManager(connectionStringBase);
         return _instancia;
     }
 
@@ -22,14 +22,9 @@ public sealed class MsSqlDbManager : DbManager
     {
         var builder = new SqlConnectionStringBuilder(ConnectionStringBase);
 
-        if (!string.IsNullOrWhiteSpace(Usuario))
+        if (!string.IsNullOrWhiteSpace(builder.Password))
         {
-            builder.UserID = Usuario;
-        }
-
-        if (!string.IsNullOrWhiteSpace(Password))
-        {
-            builder.Password = Password;
+            builder.Password = ResolvePassword(builder.Password) ?? string.Empty;
         }
 
         return new SqlConnection(builder.ConnectionString);

@@ -1,0 +1,8 @@
+{
+    "ConnectionStrings": {
+        "SoftProgDb": "Server=localhost,1433;Database=softprog;User Id=sa;Password=TuPassword123;Encrypt=False;TrustServerCertificate=True;"
+    },
+    "DbSettings": {
+        "Tipo": "MSSQL"
+    }
+}

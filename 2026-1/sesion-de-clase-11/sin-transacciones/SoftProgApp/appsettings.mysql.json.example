@@ -1,0 +1,8 @@
+{
+    "ConnectionStrings": {
+        "SoftProgDb": "Server=localhost;Port=3306;Database=softprog;User Id=root;Password=;"
+    },
+    "DbSettings": {
+        "Tipo": "MySQL"
+    }
+}

@@ -6,19 +6,15 @@ namespace SoftProgDBManager.Db;
 public abstract class DbManager
 {
     protected string ConnectionStringBase { get; }
-    protected string? Usuario { get; }
-    protected string? Password { get; }
 
-    protected DbManager(string connectionStringBase, string? usuario, string? passwordCifrado)
+    protected DbManager(string connectionStringBase)
     {
         ConnectionStringBase = connectionStringBase;
-        Usuario = string.IsNullOrWhiteSpace(usuario) ? null : usuario;
-        Password = ResolvePassword(passwordCifrado);
     }
 
     public abstract DbConnection GetConnection();
 
-    private static string? ResolvePassword(string? passwordCifrado)
+    protected static string? ResolvePassword(string? passwordCifrado)
     {
         if (string.IsNullOrWhiteSpace(passwordCifrado))
         {

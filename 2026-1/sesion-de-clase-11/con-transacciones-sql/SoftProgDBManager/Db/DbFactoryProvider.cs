@@ -23,12 +23,6 @@ public static class DbFactoryProvider
         var connectionStringBase = config.GetConnectionString("SoftProgDb")
             ?? throw new InvalidOperationException("No se encontro ConnectionStrings:SoftProgDb en la configuracion.");
 
-        var usuario = config["DbSettings:Usuario"]
-            ?? string.Empty;
-
-        var passwordCifrado = config["DbSettings:Password"]
-            ?? string.Empty;
-
         DbManagerFactory factory = tipo switch
         {
             TipoDb.MSSQL => new MsSqlDbManagerFactory(),
@@ -36,7 +30,7 @@ public static class DbFactoryProvider
             _ => throw new ArgumentOutOfRangeException(nameof(tipo), tipo, "Tipo de DB no soportado")
         };
 
-        _instancia = factory.CrearDbManager(connectionStringBase, usuario, passwordCifrado);
+        _instancia = factory.CrearDbManager(connectionStringBase);
         return _instancia;
     }
 }

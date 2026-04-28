@@ -7,14 +7,14 @@ public sealed class MySqlDbManager : DbManager
 {
     private static MySqlDbManager? _instancia;
 
-    private MySqlDbManager(string connectionStringBase, string? usuario, string? passwordCifrado)
-        : base(connectionStringBase, usuario, passwordCifrado)
+    private MySqlDbManager(string connectionStringBase)
+        : base(connectionStringBase)
     {
     }
 
-    public static MySqlDbManager GetInstance(string connectionStringBase, string? usuario, string? passwordCifrado)
+    public static MySqlDbManager GetInstance(string connectionStringBase)
     {
-        _instancia ??= new MySqlDbManager(connectionStringBase, usuario, passwordCifrado);
+        _instancia ??= new MySqlDbManager(connectionStringBase);
         return _instancia;
     }
 
@@ -22,14 +22,9 @@ public sealed class MySqlDbManager : DbManager
     {
         var builder = new MySqlConnectionStringBuilder(ConnectionStringBase);
 
-        if (!string.IsNullOrWhiteSpace(Usuario))
+        if (!string.IsNullOrWhiteSpace(builder.Password))
         {
-            builder.UserID = Usuario;
-        }
-
-        if (!string.IsNullOrWhiteSpace(Password))
-        {
-            builder.Password = Password;
+            builder.Password = ResolvePassword(builder.Password) ?? string.Empty;
         }
 
         return new MySqlConnection(builder.ConnectionString);
