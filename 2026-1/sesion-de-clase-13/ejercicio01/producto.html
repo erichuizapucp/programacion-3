@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Productos</title>
+        <meta charset="UTF-8">
+        <meta name="description" content="Página de productos">
+        <meta name="keywords" content="Productos, Tienda, Comprar">
+        <meta name="author" content="Tu Nombre">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    </head>
+    <body>
+        <div class="container-sm">
+            <h1>Producto ####</h1>
+            <form method="post" action="grabar.html">
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre del producto:</label><br>
+                    <input type="text" id="nombre" name="nombre" class="form-control"><br><br>
+                </div>
+                <div class="mb-3">
+                    <label for="precio" class="form-label">Precio:</label><br>
+                    <input type="number" id="precio" name="precio" step="1" min="0" class="form-control"><br><br>
+                </div>
+                <div class="mb-3">
+                    <label for="unidadMedida" class="form-label">Unidad de Medida:</label><br>
+                    <select id="unidadMedida" name="unidadMedida" class="form-select">
+                        <option value="kg">Kilogramo</option>
+                        <option value="l" selected>Litro</option>
+                        <option value="u">Unidad</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label for="descripcion" class="form-label">Descripción:</label><br>
+                    <textarea id="descripcion" name="descripcion" class="form-control"></textarea><br><br>
+                </div>
+                <input type="submit" value="Guardar">
+            </form>
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        </div>
+    </body>
+</html> 

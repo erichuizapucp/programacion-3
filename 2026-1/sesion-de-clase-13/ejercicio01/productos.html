@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Listado de Productos</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script type="text/javascript">
+            function modificarProducto() {
+                alert("Función para modificar el producto");
+            }
+
+            function eliminarProducto() {
+                alert("Función para eliminar el producto");
+            }
+
+        </script>
+    </head>
+    <body>
+        <h1 class="text-center">Listado de Productos</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Producto 1</td>
+                    <td>S/ 10.00</td>
+                    <td>Descripción del producto 1</td>
+                    <td>
+                        <button class="btn btn-primary" onclick="modificarProducto()">Modificar</button>
+                        <button class="btn btn-danger" onclick="eliminarProducto()">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Producto 2</td>
+                    <td>S/ 20.00</td>
+                    <td>Descripción del producto 2</td>
+                    <td>
+                        <button class="btn btn-primary">Modificar</button>
+                        <button class="btn btn-danger">Eliminar</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Producto 3</td>
+                    <td>S/ 30.00</td>
+                    <td>Descripción del producto 3</td>
+                    <td>
+                        <button class="btn btn-primary">Modificar</button>
+                        <button class="btn btn-danger">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    </body>
+</html>
