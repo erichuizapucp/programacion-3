@@ -1,0 +1,26 @@
+﻿<th scope="row">
+    @Id.ToString().PadLeft(4, '0')
+</th>
+<td>
+    @Nombre
+</td>
+<td>
+    @Precio.ToString("C2")
+</td>
+<td>
+    <button @onclick="() => OnModificar.InvokeAsync(Id)" class="btn btn-secondary">Modificar</button>
+    <button @onclick="() => OnEliminar.InvokeAsync(Id)" class="btn btn-danger">Eliminar</button>
+</td>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+    [Parameter]
+    public string Nombre { get; set; }
+    [Parameter]
+    public double Precio { get; set; }
+    [Parameter]
+    public EventCallback<int> OnEliminar { get; set; }
+    [Parameter]
+    public EventCallback<int> OnModificar { get; set; }
+}

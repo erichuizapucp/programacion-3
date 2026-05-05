@@ -1,0 +1,72 @@
+﻿@page "/productos/{Categoria?}"
+@using MiPrimeraBlazorApp.Components.Shared
+@using MiPrimeraBlazorApp.Modelo
+@using MiPrimeraBlazorApp.Servicios
+
+@inject NavigationManager Nav
+@inject ProductoService ProductoService;
+
+<h3 class="text-center">@Titulo</h3>
+
+<div class="container-sm">
+    @if (Productos.Count > 0)
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var producto in Productos)
+                {
+                    <tr>
+                        <Tarjeta Id="@producto.Id"
+                                 Nombre="@producto.Nombre"
+                                 Precio="@producto.Precio"
+                                 OnEliminar="EliminarProducto"
+                                 OnModificar="ModificarProducto">
+                        </Tarjeta>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
+
+@code {
+    [SupplyParameterFromQuery(Name = "q")]
+    public string Termino { get; set; } = "";
+
+    [Parameter]
+    public string? Categoria { get; set; }
+
+    public string Titulo => !string.IsNullOrEmpty(Categoria) ? $"Productos de la categoria: {Categoria}" : "Todos los productos";
+
+    public List<Producto> Productos { get; set; } = [];
+
+    protected override Task OnInitializedAsync()
+    {
+        Productos = ProductoService.Productos;
+
+        if (Termino != null)
+        {
+            Productos = Productos.Where(p => p.Nombre.Contains(Termino)).ToList();
+        }
+
+        return Task.CompletedTask;
+    }
+
+    public void EliminarProducto(int codigo)
+    {
+        ProductoService.Productos.RemoveAll(producto => producto.Id == codigo);
+    }
+
+    public void ModificarProducto(int codigo)
+    {
+        Nav.NavigateTo($"/producto/{codigo}");
+    }
+}

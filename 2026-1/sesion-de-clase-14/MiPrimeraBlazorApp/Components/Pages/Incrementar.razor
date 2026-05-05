@@ -1,0 +1,15 @@
+﻿@page "/incrementar"
+
+<button @onclick="Inc">Incrementar</button>
+<span>Contador: @Contador</span>
+<br />
+
+@code {
+    public int Contador { get; set; } = 0;
+
+    public void Inc()
+    {
+        Contador++;
+    }
+}
+

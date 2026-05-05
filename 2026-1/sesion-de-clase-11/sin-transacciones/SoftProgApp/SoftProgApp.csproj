@@ -7,9 +7,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SoftProgDBManager\SoftProgDBManager.csproj" />
     <ProjectReference Include="..\SoftProgNegocio\SoftProgNegocio.csproj" />
-    <ProjectReference Include="..\SoftProgModelo\SoftProgModelo.csproj" />
   </ItemGroup>
 
   <ItemGroup>

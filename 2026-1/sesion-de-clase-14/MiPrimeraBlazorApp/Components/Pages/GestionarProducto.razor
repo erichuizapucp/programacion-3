@@ -1,0 +1,57 @@
+﻿@page "/producto/{ProductoId:int}"
+@using MiPrimeraBlazorApp.Modelo
+@using MiPrimeraBlazorApp.Servicios
+
+@inject ProductoService ProductoService
+@inject NavigationManager Nav
+
+<div class="container-sm">
+    <h3 class="text-center">Producto: @ProductoId</h3>
+
+    @if (Producto != null)
+    {
+        <EditForm Model="@Producto" OnValidSubmit="Guardar">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="mb-3">
+                <label class="form-label">Id: </label>
+                <InputNumber @bind-Value="Producto.Id" class="form-control" readonly disabled></InputNumber>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Nombre: </label>
+                <InputText @bind-Value="Producto.Nombre" class="form-control"></InputText>
+                <ValidationMessage For="@(() => Producto.Nombre)" />
+            </div>
+
+            <div class="mb-3">
+                <label>Precio: </label>
+                <InputNumber @bind-Value="Producto.Precio" class="form-control"></InputNumber>
+                <ValidationMessage For="@(() => Producto.Precio)" />
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-3">Guardar Cambios</button>
+        </EditForm>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int ProductoId { get; set; }
+
+    public Producto Producto { get; set; } = new();
+
+    protected override Task OnInitializedAsync()
+    {
+        Producto = ProductoService.Productos.FirstOrDefault(p => p.Id == ProductoId);
+        if (Producto == null) Nav.NavigateTo("/productos");
+
+        return Task.CompletedTask;
+    }
+
+    public void Guardar()
+    {
+        Nav.NavigateTo("/productos");
+    }
+}
