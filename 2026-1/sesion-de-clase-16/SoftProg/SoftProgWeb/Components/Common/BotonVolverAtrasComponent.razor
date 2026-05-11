@@ -1,0 +1,20 @@
+@inject IJSRuntime Js
+@inject NavigationManager NavigationManager
+
+<button class="btn btn-outline-secondary" type="button" @onclick="VolverAtras">
+    Volver
+</button>
+
+@code {
+    private async Task VolverAtras()
+    {
+        try
+        {
+            await Js.InvokeVoidAsync("history.back");
+        }
+        catch
+        {
+            NavigationManager.NavigateTo("/Home");
+        }
+    }
+}

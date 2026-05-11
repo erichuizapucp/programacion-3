@@ -1,0 +1,15 @@
+<h5 class="mb-3">Cuenta de usuario</h5>
+
+<div class="mb-3">
+    <label class="form-label">Usuario</label>
+    <input class="form-control" data-testid="register-usuario-input" @bind="Formulario.Usuario" />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Contrasena</label>
+    <input class="form-control" type="password" data-testid="register-contrasena-input" @bind="Formulario.Contrasena" />
+</div>
+
+@code {
+    [Parameter, EditorRequired] public RegistroClienteFormulario Formulario { get; set; } = default!;
+}

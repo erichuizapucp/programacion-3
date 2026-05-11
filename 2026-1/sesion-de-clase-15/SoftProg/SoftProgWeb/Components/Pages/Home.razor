@@ -1,0 +1,19 @@
+@page "/"
+@page "/Home"
+
+<section class="home-dashboard" data-testid="home-dashboard">
+    <div class="dashboard-header app-panel">
+        <h2>@TituloDashboard</h2>
+        <p>@DescripcionDashboard</p>
+    </div>
+
+    <div class="quick-actions app-panel mt-3">
+        <h3>Vistas de clase</h3>
+        <div class="quick-actions-grid">
+            @foreach (var accion in AccesosRapidos)
+            {
+                <a class="btn btn-outline-primary" href="@accion.Ruta" data-testid="@accion.DataTestId">@accion.Texto</a>
+            }
+        </div>
+    </div>
+</section>

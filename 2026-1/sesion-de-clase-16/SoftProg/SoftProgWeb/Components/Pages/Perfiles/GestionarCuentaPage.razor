@@ -1,0 +1,64 @@
+@page "/GestionarCuenta"
+@attribute [Authorize(Roles = "Admin")]
+
+<TituloPaginaComponent Texto="Cuenta de usuario" />
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>@Titulo</h2>
+        </div>
+        <EditForm Model="CuentaViewModel" OnValidSubmit="Guardar" FormName="GestionarCuentaForm">
+            <DataAnnotationsValidator />
+            <div class="card-body">
+                <ValidationSummary />
+
+                <div class="mb-3 row">
+                    <label for="idCuenta" class="col-sm-2 col-form-label">ID:</label>
+                    <div class="col-sm-4">
+                        <InputNumber id="idCuenta" class="form-control" @bind-Value="CuentaViewModel.Id" disabled />
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="usuario" class="col-sm-2 col-form-label">Usuario:</label>
+                    <div class="col-sm-8">
+                        <InputText id="usuario" class="form-control" @bind-Value="CuentaViewModel.UserName" />
+                        <ValidationMessage For="@(() => CuentaViewModel.UserName)" />
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="password" class="col-sm-2 col-form-label">Contrasena:</label>
+                    <div class="col-sm-8">
+                        <InputText id="password" class="form-control" type="password"
+                                   @bind-Value="CuentaViewModel.Password" />
+                        <ValidationMessage For="@(() => CuentaViewModel.Password)" />
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="confirmarPassword" class="col-sm-2 col-form-label">Confirmar contrasena:</label>
+                    <div class="col-sm-8">
+                        <InputText id="confirmarPassword" class="form-control" type="password"
+                                   @bind-Value="CuentaViewModel.ConfirmarPassword" />
+                        <ValidationMessage For="@(() => CuentaViewModel.ConfirmarPassword)" />
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <div class="col-sm-4 offset-sm-2 form-check">
+                        <InputCheckbox id="activo" class="form-check-input" @bind-Value="CuentaViewModel.Activo" />
+                        <label for="activo" class="form-check-label">Activo</label>
+                    </div>
+                </div>
+
+                <AlertaOperacionComponent Mensaje="@MensajeResultado" Exito="OperacionExitosa" />
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-outline-secondary" href="@RutaRetorno" data-testid="account-back-btn">Volver</a>
+                <button class="float-end btn btn-primary" type="submit">Guardar</button>
+            </div>
+        </EditForm>
+    </div>
+</div>

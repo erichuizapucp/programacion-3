@@ -1,0 +1,74 @@
+﻿<nav class="app-nav">
+    <div class="app-nav-shell">
+        <a class="app-nav-brand" href="/" data-testid="nav-brand">SoftProg</a>
+
+        <button class="app-nav-toggle" @onclick="ToggleMenu" title="Menu de navegacion" aria-expanded="@MenuAbierto"
+                aria-controls="main-navigation" data-testid="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div id="main-navigation" class="app-nav-links @(MenuAbierto ? "open" : "")">
+            <NavLink class="app-nav-link" href="/" @onclick="CloseAllMenus" data-testid="nav-home">
+                Inicio
+            </NavLink>
+
+            <div class="app-nav-dropdown">
+                <button class="app-nav-dropdown-trigger" type="button" aria-haspopup="menu"
+                        aria-expanded="@MenuGestionAbierto" aria-controls="menu-gestion" @onclick="ToggleMenuGestion"
+                        data-testid="nav-gestion-toggle">
+                    Gestion
+                </button>
+
+                @if (MenuGestionAbierto)
+                {
+                    <div id="menu-gestion" class="app-nav-dropdown-menu" role="menu">
+                        <NavLink class="app-nav-dropdown-link" href="/ListarAreas" @onclick="CloseAllMenus"
+                                 data-testid="nav-listar-areas">Listar areas</NavLink>
+                        <NavLink class="app-nav-dropdown-link" href="/ListarEmpleados" @onclick="CloseAllMenus"
+                                 data-testid="nav-listar-empleados">Listar empleados</NavLink>
+                        <NavLink class="app-nav-dropdown-link" href="/ListarClientes" @onclick="CloseAllMenus"
+                                 data-testid="nav-listar-clientes">Listar clientes</NavLink>
+                        <NavLink class="app-nav-dropdown-link" href="/ListarCuentas" @onclick="CloseAllMenus"
+                                 data-testid="nav-listar-cuentas">Cuenta de usuario
+                        </NavLink>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+
+    @if (MostrarBackdrop)
+    {
+        <button class="app-nav-backdrop" type="button" @onclick="CloseAllMenus" aria-label="Close menus"></button>
+    }
+</nav>
+
+@code {
+    private bool MenuAbierto { get; set; }
+    private bool MenuGestionAbierto { get; set; }
+    private bool MostrarBackdrop => MenuAbierto || MenuGestionAbierto;
+
+    private void ToggleMenu()
+    {
+        MenuAbierto = !MenuAbierto;
+        if (!MenuAbierto)
+        {
+            MenuGestionAbierto = false;
+        }
+    }
+
+    private void ToggleMenuGestion()
+    {
+        MenuGestionAbierto = !MenuGestionAbierto;
+    }
+
+    private void CloseAllMenus()
+    {
+        MenuAbierto = false;
+        MenuGestionAbierto = false;
+    }
+
+}

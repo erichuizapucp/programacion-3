@@ -1,0 +1,46 @@
+@page "/PerfilCliente"
+@attribute [Authorize(Roles = "Cliente,Admin")]
+
+<TituloPaginaComponent Texto="Perfil de cliente" />
+
+<div class="container" data-testid="client-profile-page">
+    <div class="card app-panel">
+        <div class="card-header">
+            <h2>Datos del cliente</h2>
+        </div>
+        <div class="card-body">
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">ID:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" value="@Cliente.Id" disabled />
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">DNI:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" @bind="Cliente.Dni" />
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Nombre:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" data-testid="client-profile-name" @bind="Cliente.Nombre" />
+                </div>
+            </div>
+            <div class="mb-3 row">
+                <label class="col-sm-2 col-form-label">Apellido paterno:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" @bind="Cliente.ApellidoPaterno" />
+                </div>
+            </div>
+
+            <AlertaOperacionComponent Mensaje="@MensajeResultado" Exito="OperacionExitosa" />
+        </div>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+            <button class="btn btn-outline-secondary" data-testid="client-profile-back"
+                    @onclick="Volver">Volver</button>
+            <button class="btn btn-primary" data-testid="client-profile-save" @onclick="Guardar">Actualizar
+                perfil</button>
+            </div>
+        </div>
+    </div>

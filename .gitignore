@@ -14,6 +14,9 @@ target
 bin
 .vs
 obj
+.github
+.vscode
+.idea
 
 # Ignorar carpetas privadas de proyectos NetBeans
 */nbproject/private/
