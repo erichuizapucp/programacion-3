@@ -17,6 +17,7 @@ obj
 .github
 .vscode
 .idea
+.editorconfig
 
 # Ignorar carpetas privadas de proyectos NetBeans
 */nbproject/private/
