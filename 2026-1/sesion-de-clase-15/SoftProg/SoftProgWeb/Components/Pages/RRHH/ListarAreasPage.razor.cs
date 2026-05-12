@@ -7,7 +7,8 @@ namespace SoftProgWeb.Components.Pages.RRHH;
 
 public partial class ListarAreasPage : ComponentBase {
     [Inject] private IAreaBo AreaBo { get; set; } = default!;
-    [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+    [Inject] private NavigationManager 
+        NavigationManager { get; set; } = default!;
 
     private List<AreaViewModel> Areas { get; set; } = [];
     private string MensajeResultado { get; set; } = string.Empty;

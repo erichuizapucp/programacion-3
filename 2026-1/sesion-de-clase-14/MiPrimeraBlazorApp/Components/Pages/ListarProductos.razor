@@ -44,7 +44,9 @@
     [Parameter]
     public string? Categoria { get; set; }
 
-    public string Titulo => !string.IsNullOrEmpty(Categoria) ? $"Productos de la categoria: {Categoria}" : "Todos los productos";
+    public string Titulo => !string.IsNullOrEmpty(Categoria) 
+        ? $"Productos de la categoria: {Categoria}" 
+        : "Todos los productos";
 
     public List<Producto> Productos { get; set; } = [];
 

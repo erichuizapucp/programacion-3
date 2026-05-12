@@ -1,0 +1,15 @@
+{
+  "ConnectionStrings": {
+    "SoftProgDb": "Server=<servidor>;Port=<puerto>;Database=<basedatos>;User Id=<usuario>;Password=<password-encriptado>"
+  },
+  "DbSettings": {
+    "Tipo": "MySQL"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
