@@ -21,7 +21,21 @@ public partial class ListarAreasPage : ComponentBase {
     private void CargarAreas() {
         try {
             var areas = AreaBo.Listar();
-            Areas = [.. areas.Select(AreaViewModelMapper.ToViewModel)];
+            foreach (var area in areas) {
+                Areas.Add(new AreaViewModel()
+                {
+                    Id = area.Id,
+                    Nombre = area.Nombre,
+                    Activo = area.Activo,
+                });
+            }
+
+            //Areas = 
+            //    areas.Select(
+            //        a => AreaViewModelMapper.ToViewModel(a))
+            //    .ToList();
+
+            //Areas = [.. areas.Select(AreaViewModelMapper.ToViewModel)];
         }
         catch {
             Areas = [];

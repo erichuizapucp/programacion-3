@@ -1,0 +1,24 @@
+﻿@page "/minuevapagina"
+
+<h3>MiNuevoComponentePage</h3>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Activo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var area in Areas)
+        {
+            <tr>
+                <td>@area.Id</td>
+                <td>@area.Nombre</td>
+                <td>@area.Activo</td>
+            </tr>
+        }
+    </tbody>
+</table>
+

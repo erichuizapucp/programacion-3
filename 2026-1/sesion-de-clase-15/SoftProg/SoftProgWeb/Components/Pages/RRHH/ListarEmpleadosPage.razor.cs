@@ -25,7 +25,8 @@ public partial class ListarEmpleadosPage : ComponentBase {
     private void CargarEmpleados() {
         try {
             var empleados = EmpleadoBo.Listar();
-            Empleados = [.. empleados.Select(empleado => EmpleadoViewModelMapper.ToViewModel(empleado))];
+            Empleados = [.. empleados.Select(
+                empleado => EmpleadoViewModelMapper.ToViewModel(empleado))];
             MensajeResultado = string.Empty;
         }
         catch {

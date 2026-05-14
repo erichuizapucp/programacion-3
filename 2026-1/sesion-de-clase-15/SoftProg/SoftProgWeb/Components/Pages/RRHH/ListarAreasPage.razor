@@ -44,8 +44,21 @@
                                     <td>@area.Id</td>
                                     <td>@area.Nombre</td>
                                     <td>
-                                        <AccionesComponent Id="@area.Id" OnModificar="ModificarArea"
-                                                           OnEliminar="EliminarArea" />
+                                        <div class="app-row-actions">
+                                            <button class="btn btn-sm btn-outline-primary" 
+                                                @onclick="() => ModificarArea(area.Id)">
+                                                Modificar
+                                            </button>
+                                            <button class="btn btn-sm btn-outline-danger" 
+                                                @onclick="() => EliminarArea(area.Id)">
+                                                Elminar
+                                            </button>
+                                        </div>
+                                        
+
+                                        @* <AccionesComponent Id="@area.Id" 
+                                            OnModificar="ModificarArea"
+                                            OnEliminar="EliminarArea" /> *@
                                     </td>
                                 </tr>
                             }
