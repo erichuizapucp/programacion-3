@@ -1,8 +1,11 @@
 @page "/ListarAreas"
+@using SoftProgNegocio.Bo.Rrhh
+@using SoftProgWeb.ViewModels
 
 <div class="container py-3" data-testid="areas-list-page">
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <TituloPaginaComponent Texto="Listar areas" />
+        <h1>Listar areas</h1>
+        @* <TituloPaginaComponent Texto="Listar areas" /> *@
         <BotonVolverAtrasComponent />
     </div>
 
@@ -34,6 +37,7 @@
                             <tr>
                                 <th>ID area</th>
                                 <th>Area</th>
+                                <th>Activo</th>
                                 <th>Acciones</th>
                             </tr>
                         </thead>
@@ -43,6 +47,9 @@
                                 <tr data-testid="@(value: $"area-row-{area.Id}")">
                                     <td>@area.Id</td>
                                     <td>@area.Nombre</td>
+                                    <td>
+                                        <InputCheckbox @bind-Value="@area.Activo" disabled />
+                                    </td>
                                     <td>
                                         <div class="app-row-actions">
                                             <button class="btn btn-sm btn-outline-primary" 
@@ -73,3 +80,81 @@
         </div>
     </div>
 </div>
+
+@code {
+    //Sin inyeccion de dependencias
+    // private IAreaBo AreaBo { get; set; } = new AreaBoImpl();
+
+    // Con inyeccion de dependecias
+    [Inject] 
+    IAreaBo AreaBo { get; set; } = default!;
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; } = default!;
+
+    private List<AreaViewModel> Areas { get; set; } = [];
+    private string MensajeResultado { get; set; } = string.Empty;
+    private bool OperacionExitosa { get; set; }
+
+    protected override void OnInitialized()
+    {
+        CargarAreas();
+    }
+
+    private void CargarAreas()
+    {
+        try
+        {
+            var areas = AreaBo.Listar();
+            foreach (var area in areas)
+            {
+                Areas.Add(new AreaViewModel()
+                {
+                    Id = area.Id,
+                    Nombre = area.Nombre,
+                    Activo = area.Activo,
+                });
+            }
+
+            //Areas =
+            //    areas.Select(
+            //        a => AreaViewModelMapper.ToViewModel(a))
+            //    .ToList();
+
+            //Areas = [.. areas.Select(AreaViewModelMapper.ToViewModel)];
+        }
+        catch
+        {
+            Areas = [];
+            OperacionExitosa = false;
+            MensajeResultado = "No se pudo completar la operacion.";
+        }
+    }
+
+    private void EliminarArea(int idArea)
+    {
+        if (idArea <= 0)
+        {
+            return;
+        }
+
+        try
+        {
+            AreaBo.Eliminar(idArea);
+            OperacionExitosa = true;
+            MensajeResultado = "Operacion realizada correctamente.";
+
+            CargarAreas();
+        }
+        catch
+        {
+            OperacionExitosa = false;
+            MensajeResultado = "No se pudo completar la operacion.";
+        }
+    }
+
+    private void ModificarArea(int idArea)
+    {
+        NavigationManager.NavigateTo($"/GestionarAreas?id={idArea}");
+    }
+}

@@ -6,12 +6,15 @@ using SoftProgWeb.Components;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Esto lo agrega el alumno
 ConfigurationContext.Initialize(builder.Configuration);
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 builder.Services.AddHttpContextAccessor();
+
+// Esto lo agrega el alumno
 builder.Services.AddScoped<ICuentaUsuarioBo, CuentaUsuarioBoImpl>();
 builder.Services.AddScoped<IAreaBo, AreaBoImpl>();
 builder.Services.AddScoped<IEmpleadoBo, EmpleadoBoImpl>();
