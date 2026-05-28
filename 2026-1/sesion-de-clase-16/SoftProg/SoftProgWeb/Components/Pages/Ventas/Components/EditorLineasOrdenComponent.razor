@@ -62,9 +62,9 @@
 </div>
 
 @code {
-    [Parameter, EditorRequired] public List<LineaOrdenVentaViewModel> Lineas { get; set; } = [];
-    [Parameter, EditorRequired] public LineaOrdenVentaViewModel LineaTemporal { get; set; } = new();
-    [Parameter, EditorRequired] public IReadOnlyList<ProductoViewModel> Productos { get; set; } = [];
+    [Parameter] public List<LineaOrdenVentaViewModel> Lineas { get; set; } = [];
+    [Parameter] public LineaOrdenVentaViewModel LineaTemporal { get; set; } = new();
+    [Parameter] public IReadOnlyList<ProductoViewModel> Productos { get; set; } = [];
     [Parameter] public EventCallback AgregarLinea { get; set; }
     [Parameter] public EventCallback<LineaOrdenVentaViewModel> QuitarLinea { get; set; }
     [Parameter] public double Total { get; set; }

@@ -28,14 +28,18 @@
 </div>
 
 @code {
-    [Parameter, EditorRequired] public IReadOnlyList<ClienteViewModel> Clientes { get; set; } = [];
+    [Parameter] public IReadOnlyList<ClienteViewModel> Clientes { get; set; } = [];
     [Parameter] public ClienteViewModel? ClienteSeleccionado { get; set; }
     [Parameter] public int ClienteIdSeleccionado { get; set; }
     [Parameter] public EventCallback<int> ClienteIdSeleccionadoChanged { get; set; }
 
     private int ClienteIdLocal
     {
-        get => ClienteIdSeleccionado;
-        set => ClienteIdSeleccionadoChanged.InvokeAsync(value);
+        get {
+            return ClienteIdSeleccionado;
+        }
+        set {
+            ClienteIdSeleccionadoChanged.InvokeAsync(value);
+        }
     }
 }
