@@ -1,8 +1,8 @@
-using SoftProgModelo.Modelos;
+using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Base;
 
-public interface ICrudService<TViewModel> where TViewModel : class {
+public interface IServiceBase<TViewModel> where TViewModel : class {
     List<TViewModel> Listar();
     TViewModel? Obtener(int id);
     void Guardar(TViewModel modelo, Estado estado);

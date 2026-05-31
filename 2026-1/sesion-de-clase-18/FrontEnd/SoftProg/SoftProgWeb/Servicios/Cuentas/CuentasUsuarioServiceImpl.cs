@@ -1,11 +1,10 @@
 ﻿using SoftProgWS.CuentasUsuario;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Servicios.Cuentas;
 
-public class CuentasUsuarioServiceImpl : SoapServiceBase, ICuentasUsuarioService {
+public class CuentasUsuarioServiceImpl : SoapServiceBase<CuentaUsuarioViewModel, cuentaUsuario>, ICuentasUsuarioService {
     private const string EndpointSetting = "SoapEndpoints:CuentasUsuario";
 
     public CuentasUsuarioServiceImpl(IConfiguration configuration)
@@ -23,8 +22,7 @@ public class CuentasUsuarioServiceImpl : SoapServiceBase, ICuentasUsuarioService
 
         var respuesta = new List<CuentaUsuarioViewModel>();
         foreach (var item in cuentas) {
-            var viewModel = ToViewModel(ToDomain(item), includePassword: false);
-            respuesta.Add(viewModel);
+            respuesta.Add(ToViewModel(item, includePassword: false));
         }
 
         return respuesta;
@@ -33,7 +31,7 @@ public class CuentasUsuarioServiceImpl : SoapServiceBase, ICuentasUsuarioService
     public CuentaUsuarioViewModel? Obtener(int id) {
         var clienteWs = CrearClienteWs();
         var cuenta = clienteWs.obtenerCuentaUsuario(id);
-        return cuenta is null ? null : ToViewModel(ToDomain(cuenta), includePassword: true);
+        return cuenta is null ? null : ToViewModel(cuenta, includePassword: true);
     }
 
     public CuentaUsuarioViewModel? ObtenerPorUsername(string username) {
@@ -41,7 +39,7 @@ public class CuentasUsuarioServiceImpl : SoapServiceBase, ICuentasUsuarioService
         var cuenta = (clienteWs.listarCuentasUsuario() ?? [])
             .FirstOrDefault(actual => string.Equals(actual.userName, username, StringComparison.OrdinalIgnoreCase));
 
-        return cuenta is null ? null : ToViewModel(ToDomain(cuenta), includePassword: true);
+        return cuenta is null ? null : ToViewModel(cuenta, includePassword: true);
     }
 
     public void Guardar(CuentaUsuarioViewModel cuenta, Estado estado) {
@@ -53,8 +51,7 @@ public class CuentasUsuarioServiceImpl : SoapServiceBase, ICuentasUsuarioService
             fallback = cuentaActual?.Password ?? string.Empty;
         }
 
-        var domain = CuentaUsuarioViewModelMapper.ToDomain(cuenta, fallback);
-        clienteWs.guardarCuentaUsuario(ToSoap(domain), ParseEstado<estado>(estado));
+        clienteWs.guardarCuentaUsuario(ToSoap(cuenta, fallback), ParseEstado<estado>(estado));
     }
 
     public void Eliminar(int id) {
@@ -77,30 +74,33 @@ public class CuentasUsuarioServiceImpl : SoapServiceBase, ICuentasUsuarioService
         return new CuentasUsuarioWSClient(endpoint, url);
     }
 
-    private static CuentaUsuario ToDomain(cuentaUsuario source) {
-        return new CuentaUsuario {
-            Id = source.id,
-            Activo = source.activo,
-            UserName = source.userName ?? string.Empty,
-            Password = source.password ?? string.Empty
-        };
+    protected override CuentaUsuarioViewModel ToViewModel(cuentaUsuario source) {
+        return ToViewModel(source, includePassword: false);
     }
 
-    private static cuentaUsuario ToSoap(CuentaUsuario source) {
+    protected override cuentaUsuario ToSoap(CuentaUsuarioViewModel source) {
+        return ToSoap(source, string.Empty);
+    }
+
+    private cuentaUsuario ToSoap(CuentaUsuarioViewModel source, string passwordFallback) {
+        var password = string.IsNullOrWhiteSpace(source.Password) ? passwordFallback : source.Password;
+
         return new cuentaUsuario {
             id = source.Id,
             activo = source.Activo,
-            userName = source.UserName,
-            password = source.Password
+            userName = source.UserName.Trim(),
+            password = password
         };
     }
 
-    private static CuentaUsuarioViewModel ToViewModel(CuentaUsuario source, bool includePassword) {
-        var viewModel = CuentaUsuarioViewModelMapper.ToViewModel(source);
-        if (includePassword) {
-            viewModel.Password = source.Password;
-        }
-        return viewModel;
+    private CuentaUsuarioViewModel ToViewModel(cuentaUsuario source, bool includePassword) {
+        return new CuentaUsuarioViewModel {
+            Id = source.id,
+            Activo = source.activo,
+            UserName = source.userName ?? string.Empty,
+            Password = includePassword ? source.password ?? string.Empty : string.Empty,
+            ConfirmarPassword = string.Empty
+        };
     }
 
 }

@@ -1,11 +1,10 @@
 ﻿using SoftProgWS.Areas;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Servicios.Rrhh;
 
-public class AreasServiceImpl : SoapServiceBase, IAreaService {
+public class AreasServiceImpl : SoapServiceBase<AreaViewModel, area>, IAreaService {
     private const string EndpointSetting = "SoapEndpoints:Areas";
 
     public AreasServiceImpl(IConfiguration configuration)
@@ -18,8 +17,7 @@ public class AreasServiceImpl : SoapServiceBase, IAreaService {
 
         var respuesta = new List<AreaViewModel>();
         foreach (var item in areas) {
-            var viewModel = AreaViewModelMapper.ToViewModel(ToDomain(item));
-            respuesta.Add(viewModel);
+            respuesta.Add(ToViewModel(item));
         }
 
         return respuesta;
@@ -28,13 +26,12 @@ public class AreasServiceImpl : SoapServiceBase, IAreaService {
     public AreaViewModel? Obtener(int id) {
         var clienteWs = CrearClienteWs();
         var area = clienteWs.obtenerArea(id);
-        return area is null ? null : AreaViewModelMapper.ToViewModel(ToDomain(area));
+        return area is null ? null : ToViewModel(area);
     }
 
     public void Guardar(AreaViewModel area, Estado estado) {
         var clienteWs = CrearClienteWs();
-        var domain = AreaViewModelMapper.ToDomain(area);
-        clienteWs.guardarArea(ToSoap(domain), ParseEstado<estado>(estado));
+        clienteWs.guardarArea(ToSoap(area), ParseEstado<estado>(estado));
     }
 
     public void Eliminar(int id) {
@@ -57,19 +54,19 @@ public class AreasServiceImpl : SoapServiceBase, IAreaService {
         return new AreasWSClient(endpoint, url);
     }
 
-    private static Area ToDomain(area source) {
-        return new Area {
+    protected override AreaViewModel ToViewModel(area source) {
+        return new AreaViewModel {
             Id = source.id,
             Activo = source.activo,
             Nombre = source.nombre ?? string.Empty
         };
     }
 
-    private static area ToSoap(Area source) {
+    protected override area ToSoap(AreaViewModel source) {
         return new area {
             id = source.Id,
             activo = source.Activo,
-            nombre = source.Nombre
+            nombre = source.Nombre.Trim()
         };
     }
 

@@ -1,11 +1,10 @@
 ﻿using SoftProgWS.Productos;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Servicios.Almacen;
 
-public class ProductosServiceImpl : SoapServiceBase, IProductosService {
+public class ProductosServiceImpl : SoapServiceBase<ProductoViewModel, producto>, IProductosService {
     private const string EndpointSetting = "SoapEndpoints:Productos";
 
     public ProductosServiceImpl(IConfiguration configuration)
@@ -18,8 +17,7 @@ public class ProductosServiceImpl : SoapServiceBase, IProductosService {
 
         var respuesta = new List<ProductoViewModel>();
         foreach (var item in productos) {
-            var viewModel = ProductoViewModelMapper.ToViewModel(ToDomain(item));
-            respuesta.Add(viewModel);
+            respuesta.Add(ToViewModel(item));
         }
 
         return respuesta;
@@ -28,13 +26,12 @@ public class ProductosServiceImpl : SoapServiceBase, IProductosService {
     public ProductoViewModel? Obtener(int id) {
         var clienteWs = CrearClienteWs();
         var producto = clienteWs.obtenerProducto(id);
-        return producto is null ? null : ProductoViewModelMapper.ToViewModel(ToDomain(producto));
+        return producto is null ? null : ToViewModel(producto);
     }
 
     public void Guardar(ProductoViewModel producto, Estado estado) {
         var clienteWs = CrearClienteWs();
-        var domain = ProductoViewModelMapper.ToDomain(producto);
-        clienteWs.guardarProducto(ToSoap(domain), ParseEstado<estado>(estado));
+        clienteWs.guardarProducto(ToSoap(producto), ParseEstado<estado>(estado));
     }
 
     public void Eliminar(int id) {
@@ -57,24 +54,44 @@ public class ProductosServiceImpl : SoapServiceBase, IProductosService {
         return new ProductosWSClient(endpoint, url);
     }
 
-    private static Producto ToDomain(producto source) {
-        return new Producto {
+    protected override ProductoViewModel ToViewModel(producto source) {
+        return new ProductoViewModel {
             Id = source.id,
             Activo = source.activo,
             Nombre = source.nombre ?? string.Empty,
-            Precio = source.precio,
-            UnidadMedida = ParseEnum(source.unidadMedida, UnidadMedida.UND)
+            Precio = Convert.ToDecimal(source.precio),
+            UnidadMedida = ToViewModelUnidadMedida(source.unidadMedida)
         };
     }
 
-    private static producto ToSoap(Producto source) {
+    protected override producto ToSoap(ProductoViewModel source) {
         return new producto {
             id = source.Id,
             activo = source.Activo,
-            nombre = source.Nombre,
-            precio = source.Precio,
-            unidadMedida = ParseEnum(source.UnidadMedida, unidadMedida.UND),
+            nombre = source.Nombre.Trim(),
+            precio = Convert.ToDouble(source.Precio),
+            unidadMedida = ToSoapUnidadMedida(source.UnidadMedida),
             unidadMedidaSpecified = true
+        };
+    }
+
+    private static UnidadMedidaEnum ToViewModelUnidadMedida(unidadMedida source) {
+        return source switch {
+            unidadMedida.UND => UnidadMedidaEnum.Unidad,
+            unidadMedida.Kilos => UnidadMedidaEnum.Kilos,
+            unidadMedida.Onzas => UnidadMedidaEnum.Onzas,
+            unidadMedida.Litros => UnidadMedidaEnum.Litros,
+            _ => UnidadMedidaEnum.Unidad
+        };
+    }
+
+    private static unidadMedida ToSoapUnidadMedida(UnidadMedidaEnum source) {
+        return source switch {
+            UnidadMedidaEnum.Unidad => unidadMedida.UND,
+            UnidadMedidaEnum.Kilos => unidadMedida.Kilos,
+            UnidadMedidaEnum.Onzas => unidadMedida.Onzas,
+            UnidadMedidaEnum.Litros => unidadMedida.Litros,
+            _ => unidadMedida.UND
         };
     }
 }

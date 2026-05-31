@@ -1,8 +1,8 @@
-using SoftProgModelo.Modelos;
+using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Base;
 
-public abstract class SoapServiceBase {
+public abstract class SoapServiceBase<TViewModel, TSoapModel> {
     protected IConfiguration Configuration { get; }
 
     protected SoapServiceBase(IConfiguration configuration) {
@@ -10,6 +10,8 @@ public abstract class SoapServiceBase {
     }
 
     protected abstract object CreateClient();
+    protected abstract TViewModel ToViewModel(TSoapModel source);
+    protected abstract TSoapModel ToSoap(TViewModel source);
 
     protected static TTarget ParseEnum<TSource, TTarget>(TSource value, TTarget fallback)
         where TSource : struct, Enum

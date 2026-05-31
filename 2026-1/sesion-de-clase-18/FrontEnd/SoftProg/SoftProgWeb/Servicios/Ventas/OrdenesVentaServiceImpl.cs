@@ -1,11 +1,10 @@
 ﻿using SoftProgWS.OrdenesVenta;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Servicios.Ventas;
 
-public class OrdenesVentaServiceImpl : SoapServiceBase, IOrdenesVentaService {
+public class OrdenesVentaServiceImpl : SoapServiceBase<OrdenVentaViewModel, ordenVenta>, IOrdenesVentaService {
     private const string EndpointSetting = "SoapEndpoints:OrdenesVenta";
 
     public OrdenesVentaServiceImpl(IConfiguration configuration)
@@ -18,8 +17,7 @@ public class OrdenesVentaServiceImpl : SoapServiceBase, IOrdenesVentaService {
 
         var respuesta = new List<OrdenVentaViewModel>();
         foreach (var item in ordenes) {
-            var viewModel = OrdenVentaViewModelMapper.ToViewModel(ToDomain(item));
-            respuesta.Add(viewModel);
+            respuesta.Add(ToViewModel(item));
         }
 
         return respuesta;
@@ -31,8 +29,7 @@ public class OrdenesVentaServiceImpl : SoapServiceBase, IOrdenesVentaService {
 
         var respuesta = new List<OrdenVentaViewModel>();
         foreach (var item in ordenes) {
-            var viewModel = OrdenVentaViewModelMapper.ToViewModel(ToDomain(item));
-            respuesta.Add(viewModel);
+            respuesta.Add(ToViewModel(item));
         }
 
         return respuesta;
@@ -41,13 +38,12 @@ public class OrdenesVentaServiceImpl : SoapServiceBase, IOrdenesVentaService {
     public OrdenVentaViewModel? Obtener(int id) {
         var clienteWs = CrearClienteWs();
         var orden = clienteWs.obtenerOrdenVenta(id);
-        return orden is null ? null : OrdenVentaViewModelMapper.ToViewModel(ToDomain(orden));
+        return orden is null ? null : ToViewModel(orden);
     }
 
     public void Guardar(OrdenVentaViewModel ordenVenta, Estado estado) {
         var clienteWs = CrearClienteWs();
-        var domain = OrdenVentaViewModelMapper.ToDomain(ordenVenta);
-        clienteWs.guardarOrdenVenta(ToSoap(domain), ParseEstado<estado>(estado));
+        clienteWs.guardarOrdenVenta(ToSoap(ordenVenta), ParseEstado<estado>(estado));
     }
 
     public void Eliminar(int id) {
@@ -70,160 +66,139 @@ public class OrdenesVentaServiceImpl : SoapServiceBase, IOrdenesVentaService {
         return new OrdenesVentaWSClient(endpoint, url);
     }
 
-    private static OrdenVenta ToDomain(ordenVenta source) {
-        return new OrdenVenta {
+    protected override OrdenVentaViewModel ToViewModel(ordenVenta source) {
+        return new OrdenVentaViewModel {
             Id = source.id,
             Activo = source.activo,
-            Fecha = source.fechaSpecified ? source.fecha : DateTime.Today,
-            Total = source.total,
-            Cliente = source.cliente is null ? null : ToDomain(source.cliente),
-            Empleado = source.empleado is null ? null : ToDomain(source.empleado),
+            FechaRegistro = source.fechaSpecified ? source.fecha : DateTime.Today,
+            Cliente = source.cliente is null ? null : ToViewModel(source.cliente),
+            ClienteIdSeleccionado = source.cliente?.id ?? 0,
             Lineas = MapearLineas(source.lineas)
         };
     }
 
-    private static List<LineaOrdenVenta> MapearLineas(lineaOrdenVenta[]? lineasSoap) {
-        var lineas = new List<LineaOrdenVenta>();
+    private static List<LineaOrdenVentaViewModel> MapearLineas(lineaOrdenVenta[]? lineasSoap) {
+        var lineas = new List<LineaOrdenVentaViewModel>();
         if (lineasSoap is null) {
             return lineas;
         }
 
         foreach (var linea in lineasSoap) {
-            lineas.Add(ToDomain(linea));
+            lineas.Add(ToViewModel(linea));
         }
 
         return lineas;
     }
 
-    private static Cliente ToDomain(cliente source) {
-        return new Cliente {
+    private static ClienteViewModel ToViewModel(cliente source) {
+        return new ClienteViewModel {
             Id = source.id,
             Activo = source.activo,
             Dni = source.dni ?? string.Empty,
             Nombre = source.nombre ?? string.Empty,
             ApellidoPaterno = source.apellidoPaterno ?? string.Empty,
-            Genero = ParseEnum(source.genero, SoftProgModelo.Modelos.Genero.MASCULINO),
+            ApellidoMaterno = string.Empty,
+            Correo = string.Empty,
+            Telefono = string.Empty,
+            Genero = ParseEnum(source.genero, genero.MASCULINO).ToString(),
             FechaNacimiento = source.fechaNacimientoSpecified ? source.fechaNacimiento : DateTime.Today,
-            Categoria = ParseEnum(source.categoria, CategoriaCliente.ESTANDARD),
-            LineaCredito = source.lineaCredito,
+            Categoria = ParseEnum(source.categoria, categoriaCliente.ESTANDARD).ToString(),
+            LineaCredito = Convert.ToDecimal(source.lineaCredito),
             CuentaUsuario = source.cuentaUsuario is null
                 ? null
-                : new CuentaUsuario {
+                : new CuentaUsuarioViewModel {
                     Id = source.cuentaUsuario.id,
                     Activo = source.cuentaUsuario.activo,
                     UserName = source.cuentaUsuario.userName ?? string.Empty,
-                    Password = source.cuentaUsuario.password ?? string.Empty
+                    Password = string.Empty
                 }
         };
     }
 
-    private static Empleado ToDomain(empleado source) {
-        return new Empleado {
-            Id = source.id,
-            Activo = source.activo,
-            Dni = source.dni ?? string.Empty,
-            Nombre = source.nombre ?? string.Empty,
-            ApellidoPaterno = source.apellidoPaterno ?? string.Empty,
-            Genero = ParseEnum(source.genero, SoftProgModelo.Modelos.Genero.MASCULINO),
-            FechaNacimiento = source.fechaNacimientoSpecified ? source.fechaNacimiento : DateTime.Today,
-            Cargo = ParseEnum(source.cargo, Cargo.ASISTENTE),
-            Sueldo = source.sueldo,
-            Area = source.area is null
-                ? null
-                : new Area {
-                    Id = source.area.id,
-                    Activo = source.area.activo,
-                    Nombre = source.area.nombre ?? string.Empty
-                },
-            CuentaUsuario = source.cuentaUsuario is null
-                ? null
-                : new CuentaUsuario {
-                    Id = source.cuentaUsuario.id,
-                    Activo = source.cuentaUsuario.activo,
-                    UserName = source.cuentaUsuario.userName ?? string.Empty,
-                    Password = source.cuentaUsuario.password ?? string.Empty
-                }
-        };
-    }
+    private static LineaOrdenVentaViewModel ToViewModel(lineaOrdenVenta source) {
+        var precioUnitario = source.cantidad <= 0 ? 0 : source.subTotal / source.cantidad;
 
-    private static LineaOrdenVenta ToDomain(lineaOrdenVenta source) {
-        return new LineaOrdenVenta {
+        return new LineaOrdenVentaViewModel {
             Id = source.id,
-            Activo = source.activo,
+            ProductoId = source.producto?.id ?? 0,
+            ProductoNombre = source.producto?.nombre ?? string.Empty,
             Cantidad = source.cantidad,
-            SubTotal = source.subTotal,
-            Producto = source.producto is null
-                ? null
-                : new Producto {
-                    Id = source.producto.id,
-                    Activo = source.producto.activo,
-                    Nombre = source.producto.nombre ?? string.Empty,
-                    Precio = source.producto.precio,
-                    UnidadMedida = ParseEnum(source.producto.unidadMedida, UnidadMedida.UND)
-                }
+            PrecioUnitario = precioUnitario
         };
     }
 
-    private static ordenVenta ToSoap(OrdenVenta source) {
+    protected override ordenVenta ToSoap(OrdenVentaViewModel source) {
+        var clienteSoap = source.Cliente is null
+            ? (source.ClienteIdSeleccionado > 0
+                ? new cliente {
+                    id = source.ClienteIdSeleccionado,
+                    activo = true
+                }
+                : null)
+            : ToSoap(source.Cliente);
+
         return new ordenVenta {
             id = source.Id,
             activo = source.Activo,
-            fecha = source.Fecha,
+            fecha = source.FechaRegistro,
             fechaSpecified = true,
-            total = source.Total,
-            cliente = source.Cliente is null
-                ? null
-                : new SoftProgWS.OrdenesVenta.cliente {
-                    id = source.Cliente.Id,
-                    activo = source.Cliente.Activo,
-                    dni = source.Cliente.Dni,
-                    nombre = source.Cliente.Nombre,
-                    apellidoPaterno = source.Cliente.ApellidoPaterno,
-                    fechaNacimiento = source.Cliente.FechaNacimiento,
-                    fechaNacimientoSpecified = true,
-                    genero = ParseEnum(source.Cliente.Genero, genero.MASCULINO),
-                    generoSpecified = true,
-                    categoria = ParseEnum(source.Cliente.Categoria, categoriaCliente.ESTANDARD),
-                    categoriaSpecified = true,
-                    lineaCredito = source.Cliente.LineaCredito
-                },
-            empleado = source.Empleado is null
-                ? null
-                : new SoftProgWS.OrdenesVenta.empleado {
-                    id = source.Empleado.Id,
-                    activo = source.Empleado.Activo,
-                    dni = source.Empleado.Dni,
-                    nombre = source.Empleado.Nombre,
-                    apellidoPaterno = source.Empleado.ApellidoPaterno,
-                    fechaNacimiento = source.Empleado.FechaNacimiento,
-                    fechaNacimientoSpecified = true,
-                    genero = ParseEnum(source.Empleado.Genero, genero.MASCULINO),
-                    generoSpecified = true,
-                    cargo = ParseEnum(source.Empleado.Cargo, cargo.ASISTENTE),
-                    cargoSpecified = true,
-                    sueldo = source.Empleado.Sueldo
-                },
+            total = source.Subtotal,
+            cliente = clienteSoap,
+            empleado = null,
             lineas = ToSoapLineas(source.Lineas)
         };
     }
 
-    private static SoftProgWS.OrdenesVenta.lineaOrdenVenta[] ToSoapLineas(List<LineaOrdenVenta> lineasDomain) {
+    private static cliente ToSoap(ClienteViewModel source) {
+        var generoCliente = Enum.TryParse<genero>(source.Genero, true, out var generoParseado)
+            ? generoParseado
+            : genero.MASCULINO;
+
+        var categoria = Enum.TryParse<categoriaCliente>(source.Categoria, true, out var categoriaParseada)
+            ? categoriaParseada
+            : categoriaCliente.ESTANDARD;
+
+        return new cliente {
+            id = source.Id,
+            activo = source.Activo,
+            dni = source.Dni.Trim(),
+            nombre = source.Nombre.Trim(),
+            apellidoPaterno = source.ApellidoPaterno.Trim(),
+            fechaNacimiento = source.FechaNacimiento ?? DateTime.Today,
+            fechaNacimientoSpecified = true,
+            genero = generoCliente,
+            generoSpecified = true,
+            categoria = categoria,
+            categoriaSpecified = true,
+            lineaCredito = Convert.ToDouble(source.LineaCredito),
+            cuentaUsuario = source.CuentaUsuario is null
+                ? null
+                : new cuentaUsuario {
+                    id = source.CuentaUsuario.Id,
+                    activo = source.CuentaUsuario.Activo,
+                    userName = source.CuentaUsuario.UserName,
+                    password = source.CuentaUsuario.Password
+                }
+        };
+    }
+
+    private static SoftProgWS.OrdenesVenta.lineaOrdenVenta[] ToSoapLineas(List<LineaOrdenVentaViewModel> lineasDomain) {
         var lineasSoap = new List<SoftProgWS.OrdenesVenta.lineaOrdenVenta>();
 
         foreach (var linea in lineasDomain) {
             lineasSoap.Add(new SoftProgWS.OrdenesVenta.lineaOrdenVenta {
                 id = linea.Id,
-                activo = linea.Activo,
+                activo = true,
                 cantidad = linea.Cantidad,
                 subTotal = linea.SubTotal,
-                producto = linea.Producto is null
+                producto = linea.ProductoId <= 0
                     ? null
                     : new SoftProgWS.OrdenesVenta.producto {
-                        id = linea.Producto.Id,
-                        activo = linea.Producto.Activo,
-                        nombre = linea.Producto.Nombre,
-                        precio = linea.Producto.Precio,
-                        unidadMedida = ParseEnum(linea.Producto.UnidadMedida, unidadMedida.UND),
+                        id = linea.ProductoId,
+                        activo = true,
+                        nombre = linea.ProductoNombre,
+                        precio = linea.PrecioUnitario,
+                        unidadMedida = unidadMedida.UND,
                         unidadMedidaSpecified = true
                     }
             });

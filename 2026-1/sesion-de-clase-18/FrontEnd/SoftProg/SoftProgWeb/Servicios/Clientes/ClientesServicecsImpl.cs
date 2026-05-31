@@ -1,11 +1,10 @@
 ﻿using SoftProgWS.Clientes;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Servicios.Clientes;
 
-public class ClientesServicecsImpl : SoapServiceBase, IClientesService {
+public class ClientesServicecsImpl : SoapServiceBase<ClienteViewModel, cliente>, IClientesService {
     private const string EndpointSetting = "SoapEndpoints:Clientes";
 
     public ClientesServicecsImpl(IConfiguration configuration)
@@ -18,8 +17,7 @@ public class ClientesServicecsImpl : SoapServiceBase, IClientesService {
 
         var respuesta = new List<ClienteViewModel>();
         foreach (var item in clientes) {
-            var viewModel = ClienteViewModelMapper.ToViewModel(ToDomain(item));
-            respuesta.Add(viewModel);
+            respuesta.Add(ToViewModel(item));
         }
 
         return respuesta;
@@ -28,25 +26,24 @@ public class ClientesServicecsImpl : SoapServiceBase, IClientesService {
     public ClienteViewModel? Obtener(int id) {
         var clienteWs = CrearClienteWs();
         var cliente = clienteWs.obtenerCliente(id);
-        return cliente is null ? null : ClienteViewModelMapper.ToViewModel(ToDomain(cliente));
+        return cliente is null ? null : ToViewModel(cliente);
     }
 
     public ClienteViewModel? BuscarPorDni(string dni) {
         var clienteWs = CrearClienteWs();
         var cliente = clienteWs.buscarClientePorDni(dni);
-        return cliente is null ? null : ClienteViewModelMapper.ToViewModel(ToDomain(cliente));
+        return cliente is null ? null : ToViewModel(cliente);
     }
 
     public ClienteViewModel? BuscarPorCuenta(string cuenta) {
         var clienteWs = CrearClienteWs();
         var cliente = clienteWs.buscarClientePorCuenta(cuenta);
-        return cliente is null ? null : ClienteViewModelMapper.ToViewModel(ToDomain(cliente));
+        return cliente is null ? null : ToViewModel(cliente);
     }
 
     public void Guardar(ClienteViewModel cliente, Estado estado) {
         var clienteWs = CrearClienteWs();
-        var domain = ClienteViewModelMapper.ToDomain(cliente);
-        clienteWs.guardarCliente(ToSoap(domain), ParseEstado<estado>(estado));
+        clienteWs.guardarCliente(ToSoap(cliente), ParseEstado<estado>(estado));
     }
 
     public void Eliminar(int id) {
@@ -69,48 +66,59 @@ public class ClientesServicecsImpl : SoapServiceBase, IClientesService {
         return new ClientesWSClient(endpoint, url);
     }
 
-    private static Cliente ToDomain(cliente source) {
-        return new Cliente {
+    protected override ClienteViewModel ToViewModel(cliente source) {
+        return new ClienteViewModel {
             Id = source.id,
             Activo = source.activo,
             Dni = source.dni ?? string.Empty,
             Nombre = source.nombre ?? string.Empty,
             ApellidoPaterno = source.apellidoPaterno ?? string.Empty,
-            Genero = ParseEnum(source.genero, Genero.MASCULINO),
+            ApellidoMaterno = string.Empty,
+            Correo = string.Empty,
+            Telefono = string.Empty,
+            Genero = ParseEnum(source.genero, genero.MASCULINO).ToString(),
             FechaNacimiento = source.fechaNacimientoSpecified ? source.fechaNacimiento : DateTime.Today,
-            Categoria = ParseEnum(source.categoria, CategoriaCliente.ESTANDARD),
-            LineaCredito = source.lineaCredito,
+            Categoria = ParseEnum(source.categoria, categoriaCliente.ESTANDARD).ToString(),
+            LineaCredito = Convert.ToDecimal(source.lineaCredito),
             CuentaUsuario = source.cuentaUsuario is null
                 ? null
-                : new CuentaUsuario {
+                : new CuentaUsuarioViewModel {
                     Id = source.cuentaUsuario.id,
                     Activo = source.cuentaUsuario.activo,
                     UserName = source.cuentaUsuario.userName ?? string.Empty,
-                    Password = source.cuentaUsuario.password ?? string.Empty
+                    Password = string.Empty
                 }
         };
     }
 
-    private static cliente ToSoap(Cliente source) {
+    protected override cliente ToSoap(ClienteViewModel source) {
+        var generoCliente = Enum.TryParse<genero>(source.Genero, true, out var generoParseado)
+            ? generoParseado
+            : genero.MASCULINO;
+
+        var categoria = Enum.TryParse<categoriaCliente>(source.Categoria, true, out var categoriaParseada)
+            ? categoriaParseada
+            : categoriaCliente.ESTANDARD;
+
         return new cliente {
             id = source.Id,
             activo = source.Activo,
-            dni = source.Dni,
-            nombre = source.Nombre,
-            apellidoPaterno = source.ApellidoPaterno,
-            genero = ParseEnum(source.Genero, genero.MASCULINO),
+            dni = source.Dni.Trim(),
+            nombre = source.Nombre.Trim(),
+            apellidoPaterno = source.ApellidoPaterno.Trim(),
+            genero = generoCliente,
             generoSpecified = true,
-            fechaNacimiento = source.FechaNacimiento,
+            fechaNacimiento = source.FechaNacimiento ?? DateTime.Today,
             fechaNacimientoSpecified = true,
-            categoria = ParseEnum(source.Categoria, categoriaCliente.ESTANDARD),
+            categoria = categoria,
             categoriaSpecified = true,
-            lineaCredito = source.LineaCredito,
+            lineaCredito = Convert.ToDouble(source.LineaCredito),
             cuentaUsuario = source.CuentaUsuario is null
                 ? null
                 : new SoftProgWS.Clientes.cuentaUsuario {
                     id = source.CuentaUsuario.Id,
                     activo = source.CuentaUsuario.Activo,
-                    userName = source.CuentaUsuario.UserName,
+                    userName = source.CuentaUsuario.UserName.Trim(),
                     password = source.CuentaUsuario.Password
                 }
         };

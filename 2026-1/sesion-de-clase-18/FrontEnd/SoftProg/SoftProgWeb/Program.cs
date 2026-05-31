@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
-using SoftProgDBManager.Db;
 using SoftProgWeb.Components;
 using SoftProgWeb.Extensiones;
 using SoftProgWeb.Servicios.Almacen;
@@ -9,8 +8,6 @@ using SoftProgWeb.Servicios.Rrhh;
 using SoftProgWeb.Servicios.Ventas;
 
 var builder = WebApplication.CreateBuilder(args);
-
-ConfigurationContext.Initialize(builder.Configuration);
 
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();

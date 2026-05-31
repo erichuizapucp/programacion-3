@@ -1,7 +1,6 @@
-﻿using SoftProgModelo.Modelos;
-using SoftProgWeb.Servicios.Base;
+﻿using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Rrhh;
 
-public interface IAreaService : ICrudService<AreaViewModel>;
+public interface IAreaService : IServiceBase<AreaViewModel>;

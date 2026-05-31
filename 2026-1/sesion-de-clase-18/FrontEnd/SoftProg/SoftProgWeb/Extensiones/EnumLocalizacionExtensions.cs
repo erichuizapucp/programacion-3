@@ -1,5 +1,4 @@
 using SoftProgWeb.ViewModels;
-using SoftProgModelo.Modelos.Almacen;
 
 namespace SoftProgWeb.Extensiones;
 
@@ -10,16 +9,6 @@ public static class EnumLocalizacionExtensions {
             UnidadMedidaEnum.Kilos => "Kilos",
             UnidadMedidaEnum.Onzas => "Onzas",
             UnidadMedidaEnum.Litros => "Litros",
-            _ => valor.ToString()
-        };
-    }
-
-    public static string ToLocalizedText(this UnidadMedida valor) {
-        return valor switch {
-            UnidadMedida.UND => "Unidad",
-            UnidadMedida.Kilos => "Kilos",
-            UnidadMedida.Onzas => "Onzas",
-            UnidadMedida.Litros => "Litros",
             _ => valor.ToString()
         };
     }

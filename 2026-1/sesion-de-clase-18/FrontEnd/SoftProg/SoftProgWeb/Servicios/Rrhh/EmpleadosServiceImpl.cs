@@ -1,11 +1,10 @@
 ﻿using SoftProgWS.Empleados;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Servicios.Rrhh;
 
-public class EmpleadosServiceImpl : SoapServiceBase, IEmpleadosService {
+public class EmpleadosServiceImpl : SoapServiceBase<EmpleadoViewModel, empleado>, IEmpleadosService {
     private const string EndpointSetting = "SoapEndpoints:Empleados";
 
     public EmpleadosServiceImpl(IConfiguration configuration)
@@ -18,8 +17,7 @@ public class EmpleadosServiceImpl : SoapServiceBase, IEmpleadosService {
 
         var respuesta = new List<EmpleadoViewModel>();
         foreach (var item in empleados) {
-            var viewModel = EmpleadoViewModelMapper.ToViewModel(ToDomain(item));
-            respuesta.Add(viewModel);
+            respuesta.Add(ToViewModel(item));
         }
 
         return respuesta;
@@ -28,24 +26,18 @@ public class EmpleadosServiceImpl : SoapServiceBase, IEmpleadosService {
     public EmpleadoViewModel? Obtener(int id) {
         var clienteWs = CrearClienteWs();
         var empleado = clienteWs.obtenerEmpleaedo(id);
-        return empleado is null ? null : EmpleadoViewModelMapper.ToViewModel(ToDomain(empleado));
+        return empleado is null ? null : ToViewModel(empleado);
     }
 
     public EmpleadoViewModel? BuscarPorDni(string dni) {
         var clienteWs = CrearClienteWs();
         var empleado = clienteWs.buscarEmpleadoPorDni(dni);
-        return empleado is null ? null : EmpleadoViewModelMapper.ToViewModel(ToDomain(empleado));
+        return empleado is null ? null : ToViewModel(empleado);
     }
 
     public void Guardar(EmpleadoViewModel empleado, Estado estado) {
         var clienteWs = CrearClienteWs();
-        var areaDomain = new Area {
-            Id = empleado.AreaIdSeleccionada,
-            Nombre = empleado.AreaNombre,
-            Activo = true
-        };
-        var domain = EmpleadoViewModelMapper.ToDomain(empleado, areaDomain);
-        clienteWs.guardarEmpleado(ToSoap(domain), ParseEstado<estado>(estado));
+        clienteWs.guardarEmpleado(ToSoap(empleado), ParseEstado<estado>(estado));
     }
 
     public void Eliminar(int id) {
@@ -68,64 +60,48 @@ public class EmpleadosServiceImpl : SoapServiceBase, IEmpleadosService {
         return new EmpleadosWSClient(endpoint, url);
     }
 
-    private static Empleado ToDomain(empleado source) {
-        return new Empleado {
+    protected override EmpleadoViewModel ToViewModel(empleado source) {
+        var nombre = source.nombre ?? string.Empty;
+        var apellidoPaterno = source.apellidoPaterno ?? string.Empty;
+
+        return new EmpleadoViewModel {
             Id = source.id,
             Activo = source.activo,
             Dni = source.dni ?? string.Empty,
-            Nombre = source.nombre ?? string.Empty,
-            ApellidoPaterno = source.apellidoPaterno ?? string.Empty,
-            Genero = ParseEnum(source.genero, SoftProgModelo.Modelos.Genero.MASCULINO),
+            Nombre = nombre,
+            ApellidoPaterno = apellidoPaterno,
+            Genero = ParseEnum(source.genero, Genero.MASCULINO),
             FechaNacimiento = source.fechaNacimientoSpecified ? source.fechaNacimiento : DateTime.Today,
-            Cargo = ParseEnum(source.cargo, Cargo.ASISTENTE),
+            Cargo = ParseEnum(source.cargo, SoftProgWeb.ViewModels.Cargo.ASISTENTE),
             Sueldo = source.sueldo,
-            Area = source.area is null
-                ? null
-                : new Area {
-                    Id = source.area.id,
-                    Activo = source.area.activo,
-                    Nombre = source.area.nombre ?? string.Empty
-                },
-            CuentaUsuario = source.cuentaUsuario is null
-                ? null
-                : new CuentaUsuario {
-                    Id = source.cuentaUsuario.id,
-                    Activo = source.cuentaUsuario.activo,
-                    UserName = source.cuentaUsuario.userName ?? string.Empty,
-                    Password = source.cuentaUsuario.password ?? string.Empty
-                }
+            AreaIdSeleccionada = source.area?.id ?? 0,
+            AreaNombre = source.area?.nombre ?? string.Empty,
+            NombreCompleto = $"{nombre} {apellidoPaterno}".Trim()
         };
     }
 
-    private static empleado ToSoap(Empleado source) {
+    protected override empleado ToSoap(EmpleadoViewModel source) {
         return new empleado {
             id = source.Id,
             activo = source.Activo,
-            dni = source.Dni,
-            nombre = source.Nombre,
-            apellidoPaterno = source.ApellidoPaterno,
+            dni = source.Dni.Trim(),
+            nombre = source.Nombre.Trim(),
+            apellidoPaterno = source.ApellidoPaterno.Trim(),
             genero = ParseEnum(source.Genero, genero.MASCULINO),
             generoSpecified = true,
-            fechaNacimiento = source.FechaNacimiento,
+            fechaNacimiento = source.FechaNacimiento ?? DateTime.Today,
             fechaNacimientoSpecified = true,
             cargo = ParseEnum(source.Cargo, cargo.ASISTENTE),
             cargoSpecified = true,
             sueldo = source.Sueldo,
-            area = source.Area is null
+            area = source.AreaIdSeleccionada <= 0
                 ? null
                 : new SoftProgWS.Empleados.area {
-                    id = source.Area.Id,
-                    activo = source.Area.Activo,
-                    nombre = source.Area.Nombre
+                    id = source.AreaIdSeleccionada,
+                    activo = true,
+                    nombre = source.AreaNombre
                 },
-            cuentaUsuario = source.CuentaUsuario is null
-                ? null
-                : new SoftProgWS.Empleados.cuentaUsuario {
-                    id = source.CuentaUsuario.Id,
-                    activo = source.CuentaUsuario.Activo,
-                    userName = source.CuentaUsuario.UserName,
-                    password = source.CuentaUsuario.Password
-                }
+            cuentaUsuario = null
         };
     }
 
