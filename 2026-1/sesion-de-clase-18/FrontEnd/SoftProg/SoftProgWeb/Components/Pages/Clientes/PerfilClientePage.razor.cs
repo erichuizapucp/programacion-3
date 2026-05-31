@@ -1,28 +1,35 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using SoftProgWeb.Servicios.Clientes;
 using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Components.Pages.Clientes;
 
 public partial class PerfilClientePage : ComponentBase {
+    [CascadingParameter] private Task<AuthenticationState>? AuthenticationStateTask { get; set; }
     [Inject] private IClientesServiceClient ClienteServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
-
-    [SupplyParameterFromQuery(Name = "id")]
-    public int? Id { get; set; }
-
     [SupplyParameterFromQuery(Name = "returnUrl")]
     public string? ReturnUrl { get; set; }
 
+    private string UsuarioActual { get; set; } = string.Empty;
     private ClienteViewModel Cliente { get; set; } = new();
     private string MensajeResultado { get; set; } = string.Empty;
     private bool OperacionExitosa { get; set; }
     private string RutaRetorno => ObtenerRutaRetorno("/ListarClientes");
 
-    protected override void OnParametersSet() {
-        if (Id is > 0) {
+    protected override async Task OnParametersSetAsync() {
+        var authState = AuthenticationStateTask is null
+            ? null
+            : await AuthenticationStateTask;
+
+        var user = authState?.User;
+        UsuarioActual = user?.Identity?.Name ?? string.Empty;
+        var clienteActual = ClienteServiceClient.BuscarPorCuenta(UsuarioActual);
+
+        if (clienteActual != null) {
             try {
-                Cliente = ClienteServiceClient.Obtener(Id.Value) ?? throw new InvalidOperationException();
+                Cliente = ClienteServiceClient.Obtener(clienteActual.Id) ?? throw new InvalidOperationException();
             }
             catch {
                 OperacionExitosa = false;
