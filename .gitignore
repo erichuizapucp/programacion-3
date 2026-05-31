@@ -11,6 +11,7 @@
 *.jar
 *.dll
 target
+**/target
 bin
 .vs
 obj

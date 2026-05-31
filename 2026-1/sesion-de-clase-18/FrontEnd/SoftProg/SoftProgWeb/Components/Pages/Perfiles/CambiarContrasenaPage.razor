@@ -1,0 +1,46 @@
+@page "/CambiarContrasena"
+@attribute [Authorize(Roles = "Cliente,Empleado,Admin")]
+@using SoftProgWeb.ViewModels
+
+<div class="app-auth-shell" data-testid="change-password-page">
+    <div class="app-auth-card">
+        <h1 class="app-page-title text-center mb-4">Cambiar contrasena</h1>
+        <EditForm Model="@(Solicitud ??= new SolicitudCambioContrasenaViewModel())"
+                  OnValidSubmit="EjecutarCambioContrasena" FormName="CambiarContrasenaForm">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="mb-3">
+                <label for="contrasenaActual" class="form-label">Contrasena actual</label>
+                <InputText id="contrasenaActual" class="form-control" data-testid="change-password-current"
+                           type="password" @bind-Value="Solicitud.ContrasenaActual"
+                           placeholder="Ingresa tu contrasena actual" />
+                <ValidationMessage For="@(() => Solicitud.ContrasenaActual)" />
+            </div>
+
+            <div class="mb-3">
+                <label for="nuevaContrasena" class="form-label">Nueva contrasena</label>
+                <InputText id="nuevaContrasena" class="form-control" data-testid="change-password-new" type="password"
+                           @bind-Value="Solicitud.NuevaContrasena" placeholder="Ingresa tu nueva contrasena" />
+                <ValidationMessage For="@(() => Solicitud.NuevaContrasena)" />
+            </div>
+
+            <div class="mb-3">
+                <label for="confirmarContrasena" class="form-label">Confirmar nueva contrasena</label>
+                <InputText id="confirmarContrasena" class="form-control" data-testid="change-password-confirm"
+                           type="password" @bind-Value="Solicitud.ConfirmarContrasena"
+                           placeholder="Confirma tu nueva contrasena" />
+                <ValidationMessage For="@(() => Solicitud.ConfirmarContrasena)" />
+            </div>
+
+            <AlertaOperacionComponent Mensaje="@MensajeResultado" Exito="OperacionExitosa" />
+
+            <div class="d-flex gap-2 mt-3">
+                <button class="btn btn-outline-secondary w-50" type="button" @onclick="Volver"
+                        data-testid="change-password-back">Volver</button>
+                <button class="btn btn-primary w-50" type="submit" data-testid="change-password-submit">Cambiar
+                    contrasena</button>
+                </div>
+            </EditForm>
+        </div>
+    </div>

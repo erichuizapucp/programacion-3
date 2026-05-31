@@ -1,0 +1,52 @@
+@page "/Login"
+@attribute [AllowAnonymous]
+
+<div class="app-auth-shell" data-testid="login-page">
+    <div class="app-auth-card">
+        <h1 class="app-page-title text-center mb-4">Iniciar sesion</h1>
+        <form method="post" action="/auth/login" id="LoginForm" @formname="LoginForm">
+            <AntiforgeryToken />
+            <input type="hidden" name="returnUrl" value="@ReturnUrl" />
+            <div class="mb-3">
+                <label class="form-label">Tipo de usuario</label>
+                <div class="d-flex justify-content-around">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="cliente" data-testid="login-role-cliente"
+                               type="radio" name="tipoUsuario" value="Cliente" checked />
+                        <label class="form-check-label" for="cliente">Cliente</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="empleado" data-testid="login-role-empleado"
+                               type="radio" name="tipoUsuario" value="Empleado" />
+                        <label class="form-check-label" for="empleado">Empleado</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" id="admin" data-testid="login-role-admin"
+                               type="radio" name="tipoUsuario" value="Admin" />
+                        <label class="form-check-label" for="admin">Admin</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3">
+                <label for="usuario" class="form-label">Usuario</label>
+                <input id="usuario" class="form-control" data-testid="login-user-input"
+                       name="usuario" placeholder="Ingresa tu usuario" required />
+            </div>
+
+            <div class="mb-3">
+                <label for="contrasena" class="form-label">Contraseña</label>
+                <input id="contrasena" class="form-control" data-testid="login-password-input" type="password"
+                       name="contrasena" placeholder="Ingresa tu contrasena" required />
+            </div>
+
+            @if (!string.IsNullOrWhiteSpace(MensajeError))
+            {
+                <div class="alert app-alert alert-danger" role="alert" data-testid="login-error">@MensajeError</div>
+            }
+
+            <button class="btn btn-primary w-100" type="submit"
+                    data-testid="login-submit-btn">Iniciar sesion</button>
+        </form>
+    </div>
+</div>

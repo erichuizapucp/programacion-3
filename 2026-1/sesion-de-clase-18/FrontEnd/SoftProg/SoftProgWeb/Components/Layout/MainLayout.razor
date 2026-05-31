@@ -1,0 +1,19 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+    <header class="app-header" data-testid="app-header">
+        <NavMenu />
+    </header>
+
+    <main class="app-main">
+        <article class="content" data-testid="app-content">
+            @Body
+        </article>
+    </main>
+</div>
+
+<div id="blazor-error-ui" data-nosnippet>
+    Ocurrio un error no controlado.
+    <a href="." class="reload">Recargar</a>
+    <span class="dismiss">🗙</span>
+</div>

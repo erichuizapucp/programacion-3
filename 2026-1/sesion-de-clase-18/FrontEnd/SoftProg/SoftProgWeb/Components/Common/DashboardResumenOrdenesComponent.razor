@@ -1,0 +1,41 @@
+@using SoftProgWeb.ViewModels
+
+<div class="recent-summary app-panel @CssAdicional">
+    <h3>@Titulo</h3>
+    @if (Ordenes.Count == 0)
+    {
+        <p class="mb-0">Aun no hay datos disponibles para esta seccion.</p>
+    }
+    else
+    {
+        <div class="table-responsive">
+            <table class="table table-hover app-table mb-0">
+                <thead>
+                    <tr>
+                        <th>ID orden</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var orden in Ordenes)
+                    {
+                        <tr>
+                            <td>@orden.Id</td>
+                            <td>@orden.Cliente</td>
+                            <td>@orden.Total</td>
+                            <td><a class="btn btn-sm btn-outline-secondary" href="@orden.RutaDetalle">Ver detalle</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter] public string Titulo { get; set; } = "Detalle de órdenes";
+    [Parameter] public IReadOnlyList<DashboardOrderSummaryViewModel> Ordenes { get; set; } = [];
+    [Parameter] public string CssAdicional { get; set; } = string.Empty;
+}

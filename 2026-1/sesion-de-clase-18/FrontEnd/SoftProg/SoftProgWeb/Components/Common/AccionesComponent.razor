@@ -1,0 +1,35 @@
+<div class="app-row-actions">
+    @if (OnDetalle.HasDelegate)
+    {
+        <button class="btn btn-sm btn-outline-secondary" @onclick="() => OnDetalle.InvokeAsync(Id)">
+            @DetalleTexto
+        </button>
+    }
+
+    @if (OnModificar.HasDelegate)
+    {
+        <button class="btn btn-sm btn-outline-primary" @onclick="() => OnModificar.InvokeAsync(Id)">
+            @EditarTexto
+        </button>
+    }
+
+    @if (OnEliminar.HasDelegate)
+    {
+        <button class="btn btn-sm btn-outline-danger" @onclick="() => OnEliminar.InvokeAsync(Id)">
+            @EliminarTexto
+        </button>
+    }
+</div>
+
+@code {
+    [Parameter] public EventCallback<int> OnDetalle { get; set; }
+    [Parameter] public string DetalleTexto { get; set; } = "Ver detalle";
+
+    [Parameter] public int Id { get; set; }
+
+    [Parameter] public EventCallback<int> OnModificar { get; set; }
+    [Parameter] public string EditarTexto { get; set; } = "Modificar";
+
+    [Parameter] public EventCallback<int> OnEliminar { get; set; }
+    [Parameter] public string EliminarTexto { get; set; } = "Eliminar";
+}

@@ -1,0 +1,17 @@
+@using SoftProgWeb.ViewModels
+
+<div class="dashboard-grid @CssAdicional">
+    @foreach (var metrica in Metricas)
+    {
+        <article class="metric-card app-panel" data-testid="@metrica.DataTestId">
+            <h3>@metrica.Titulo</h3>
+            <p class="metric-value">@metrica.Valor</p>
+            <small>@metrica.Descripcion</small>
+        </article>
+    }
+</div>
+
+@code {
+    [Parameter] public IReadOnlyList<DashboardMetricViewModel> Metricas { get; set; } = [];
+    [Parameter] public string CssAdicional { get; set; } = string.Empty;
+}

@@ -1,0 +1,298 @@
+.page {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    min-height: 100vh;
+    background: radial-gradient(circle at 12% 12%, rgba(59, 130, 246, 0.12), transparent 45%),
+                radial-gradient(circle at 88% 2%, rgba(14, 116, 144, 0.16), transparent 42%),
+                #f8fafc;
+}
+
+:root {
+    --app-shell-max-width: 1280px;
+    --app-shell-gutter: 1rem;
+}
+
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+}
+
+.app-main {
+    flex: 1;
+}
+
+.content {
+    width: 100%;
+    max-width: var(--app-shell-max-width);
+    box-sizing: border-box;
+    padding-left: var(--app-shell-gutter);
+    padding-right: var(--app-shell-gutter);
+    margin: 0 auto;
+}
+
+.content > .container,
+.content > .container-fluid {
+    max-width: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.app-page-header {
+    margin: 1.75rem 0 1rem;
+}
+
+.app-page-title {
+    margin: 0;
+    font-size: clamp(2rem, 1.6rem + 1.8vw, 3rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: #1f2937;
+    font-weight: 700;
+}
+
+#blazor-error-ui {
+    color-scheme: light only;
+    background: #fff7ed;
+    border-top: 1px solid #fdba74;
+    box-shadow: 0 -1px 10px rgba(15, 23, 42, 0.12);
+    box-sizing: border-box;
+    display: none;
+    left: 0;
+    padding: 0.65rem 1rem;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+.app-nav {
+    position: relative;
+    z-index: 60;
+    background: linear-gradient(120deg, #0f172a 0%, #0b3f61 45%, #0a5d7a 100%);
+    border-bottom: 1px solid rgba(148, 163, 184, 0.28);
+    box-shadow: 0 10px 30px rgba(2, 6, 23, 0.22);
+}
+
+.app-nav-shell {
+    width: 100%;
+    max-width: var(--app-shell-max-width);
+    box-sizing: border-box;
+    margin: 0 auto;
+    min-height: 4rem;
+    padding: 0.4rem var(--app-shell-gutter);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+}
+
+.app-nav a,
+.app-nav a:visited,
+.app-nav a:hover,
+.app-nav a:focus,
+.app-nav a:active {
+    text-decoration: none;
+}
+
+.app-nav-brand {
+    color: #e2e8f0;
+    text-decoration: none;
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+    font-size: 1.8rem;
+    letter-spacing: -0.02em;
+}
+
+.app-nav-brand:hover,
+.app-nav-brand:focus-visible {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.app-nav-toggle {
+    margin-left: auto;
+    width: 2.8rem;
+    height: 2.5rem;
+    border: 1px solid rgba(226, 232, 240, 0.25);
+    border-radius: 10px;
+    background: rgba(15, 23, 42, 0.35);
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.27rem;
+    padding: 0.45rem 0.5rem;
+}
+
+.app-nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    border-radius: 999px;
+    background: #e2e8f0;
+}
+
+.app-nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    flex-basis: 100%;
+    padding: 0.85rem 0 0.45rem;
+}
+
+.app-nav-links.open {
+    display: flex;
+}
+
+.app-nav-link {
+    color: rgba(241, 245, 249, 0.9);
+    text-decoration: none;
+    padding: 0.55rem 0.7rem;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.app-nav-link.active {
+    background: rgba(255, 255, 255, 0.17);
+    color: #ffffff;
+}
+
+.app-nav-link:hover,
+.app-nav-link:focus-visible {
+    text-decoration: none;
+}
+
+.app-nav-dropdown {
+    position: relative;
+}
+
+.app-nav-dropdown-trigger {
+    border: 0;
+    background: transparent;
+    color: rgba(241, 245, 249, 0.95);
+    text-decoration: none;
+    border-radius: 10px;
+    padding: 0.55rem 0.7rem;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.app-nav-dropdown-trigger:hover,
+.app-nav-dropdown-trigger:focus-visible {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.app-nav-dropdown-menu {
+    display: grid;
+    gap: 0.3rem;
+    margin-top: 0.4rem;
+    padding: 0.45rem;
+    background: #ffffff;
+    border: 1px solid #d7e0ea;
+    border-radius: 12px;
+    box-shadow: 0 18px 30px rgba(2, 6, 23, 0.2);
+    z-index: 70;
+}
+
+.app-nav-dropdown-link {
+    color: #0f172a;
+    text-decoration: none;
+    padding: 0.45rem 0.65rem;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.app-nav-dropdown-link.active,
+.app-nav-dropdown-link:hover,
+.app-nav-dropdown-link:focus-visible {
+    background: #eff6ff;
+    color: #0b3f61;
+    text-decoration: none;
+}
+
+.app-nav-account-trigger {
+    padding-left: 0.5rem;
+}
+
+.app-nav-account-icon {
+    width: 1.55rem;
+    height: 1.55rem;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(226, 232, 240, 0.4);
+    background: rgba(15, 23, 42, 0.2);
+}
+
+.app-nav-account-icon svg {
+    width: 1rem;
+    height: 1rem;
+    fill: currentColor;
+}
+
+.app-nav-dropdown-menu-right {
+    right: 0;
+    left: auto;
+}
+
+.app-nav-backdrop {
+    position: fixed;
+    inset: 0;
+    border: 0;
+    background: transparent;
+    z-index: 50;
+}
+
+@media (max-width: 767.98px) {
+    .app-page-header {
+        margin-top: 1.2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    :root {
+        --app-shell-gutter: 1.5rem;
+    }
+
+    .app-nav-shell {
+        padding-top: 0.55rem;
+        padding-bottom: 0.55rem;
+        flex-wrap: nowrap;
+    }
+
+    .app-nav-toggle {
+        display: none;
+    }
+
+    .app-nav-links {
+        margin-left: auto;
+        display: inline-flex;
+        width: auto;
+        flex-basis: auto;
+        padding: 0;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.35rem;
+    }
+
+    .app-nav-dropdown-menu {
+        position: absolute;
+        top: calc(100% + 0.35rem);
+        left: 0;
+        min-width: 230px;
+        z-index: 70;
+    }
+
+}

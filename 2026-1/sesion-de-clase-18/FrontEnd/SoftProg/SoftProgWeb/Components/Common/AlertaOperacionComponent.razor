@@ -1,0 +1,10 @@
+@if (!string.IsNullOrWhiteSpace(Mensaje))
+{
+    <div class="alert app-alert @(Exito ? "alert-success" : "alert-danger") @CssAdicional" role="alert" data-testid="operation-alert">@Mensaje</div>
+}
+
+@code {
+    [Parameter] public string Mensaje { get; set; } = string.Empty;
+    [Parameter] public bool Exito { get; set; }
+    [Parameter] public string CssAdicional { get; set; } = string.Empty;
+}

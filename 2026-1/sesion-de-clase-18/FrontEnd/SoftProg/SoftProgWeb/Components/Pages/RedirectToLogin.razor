@@ -1,0 +1,19 @@
+@inject NavigationManager NavigationManager
+
+@code {
+    protected override void OnInitialized()
+    {
+        var rutaActual = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
+        if (!rutaActual.StartsWith('/'))
+        {
+            rutaActual = $"/{rutaActual}";
+        }
+
+        if (string.IsNullOrWhiteSpace(rutaActual) || rutaActual == "/")
+        {
+            rutaActual = "/";
+        }
+
+        NavigationManager.NavigateTo($"/Login?returnUrl={Uri.EscapeDataString(rutaActual)}", forceLoad: true);
+    }
+}
