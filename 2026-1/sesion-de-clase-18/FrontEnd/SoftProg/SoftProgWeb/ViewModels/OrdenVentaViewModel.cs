@@ -19,7 +19,16 @@ public class OrdenVentaViewModel {
     public List<LineaOrdenVentaViewModel> Lineas { get; set; } = new();
 
     public bool Activo { get; set; } = true;
+    public double TotalRegistrado { get; set; }
     public double Subtotal => Lineas.Sum(linea => linea.SubTotal);
-    public double Total => Math.Round(Subtotal * (1 + TasaIgv), 2, MidpointRounding.AwayFromZero);
+    public double Total {
+        get {
+            if (Lineas.Count == 0 && TotalRegistrado > 0) {
+                return TotalRegistrado;
+            }
+
+            return Math.Round(Subtotal * (1 + TasaIgv), 2, MidpointRounding.AwayFromZero);
+        }
+    }
     public double Igv => Math.Round(Total - Subtotal, 2, MidpointRounding.AwayFromZero);
 }

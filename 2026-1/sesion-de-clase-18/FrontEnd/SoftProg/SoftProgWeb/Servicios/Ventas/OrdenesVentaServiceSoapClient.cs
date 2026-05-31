@@ -71,6 +71,7 @@ public class OrdenesVentaServiceSoapClient : SoapServiceClient<OrdenVentaViewMod
             Id = source.id,
             Activo = source.activo,
             FechaRegistro = source.fechaSpecified ? source.fecha : DateTime.Today,
+            TotalRegistrado = source.total,
             Cliente = source.cliente is null ? null : ToViewModel(source.cliente),
             ClienteIdSeleccionado = source.cliente?.id ?? 0,
             Lineas = MapearLineas(source.lineas)

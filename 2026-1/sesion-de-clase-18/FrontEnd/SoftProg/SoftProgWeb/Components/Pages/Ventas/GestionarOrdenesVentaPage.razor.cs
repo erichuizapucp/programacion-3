@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using SoftProgWeb.Servicios.Almacen;
 using SoftProgWeb.Servicios.Clientes;
 using SoftProgWeb.Servicios.Ventas;
@@ -7,6 +8,7 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.Ventas;
 
 public partial class GestionarOrdenesVentaPage : ComponentBase {
+    [CascadingParameter] private Task<AuthenticationState>? AuthenticationStateTask { get; set; }
     [Inject] private IOrdenesVentaServiceClient OrdenVentaServiceClient { get; set; } = default!;
     [Inject] private IClientesServiceClient ClienteServiceClient { get; set; } = default!;
     [Inject] private IProductosServiceClient ProductoServiceClient { get; set; } = default!;
@@ -34,9 +36,13 @@ public partial class GestionarOrdenesVentaPage : ComponentBase {
     private LineaOrdenVentaViewModel NuevaLinea { get; set; } = new() { Cantidad = 1 };
     private string MensajeResultado { get; set; } = string.Empty;
     private bool OperacionExitosa { get; set; }
+    private bool EsClienteAutenticado { get; set; }
+    private int ClienteAutenticadoId { get; set; }
+    private bool ClienteBloqueado => EsClienteAutenticado && ClienteAutenticadoId > 0;
     private string RutaRetorno => ObtenerRutaRetorno("/ListarOrdenesVenta");
 
-    protected override void OnParametersSet() {
+    protected override async Task OnParametersSetAsync() {
+        await CargarContextoUsuarioAsync();
         CargarClientes();
         CargarProductos();
 
@@ -56,6 +62,43 @@ public partial class GestionarOrdenesVentaPage : ComponentBase {
             Orden = new OrdenVentaViewModel { FechaRegistro = DateTime.Now, Lineas = [] };
             ClienteIdSeleccionado = 0;
             Titulo = "Registrar orden de venta";
+        }
+
+        if (ClienteBloqueado) {
+            ClienteIdSeleccionado = ClienteAutenticadoId;
+        }
+    }
+
+    private async Task CargarContextoUsuarioAsync() {
+        EsClienteAutenticado = false;
+        ClienteAutenticadoId = 0;
+
+        var authState = AuthenticationStateTask is null
+            ? null
+            : await AuthenticationStateTask;
+        var user = authState?.User;
+
+        if (user?.IsInRole("Cliente") != true) {
+            return;
+        }
+
+        var usuarioActual = user.Identity?.Name ?? string.Empty;
+        if (string.IsNullOrWhiteSpace(usuarioActual)) {
+            return;
+        }
+
+        try {
+            var cliente = ClienteServiceClient.BuscarPorCuenta(usuarioActual);
+            if (cliente is null) {
+                return;
+            }
+
+            EsClienteAutenticado = true;
+            ClienteAutenticadoId = cliente.Id;
+        }
+        catch {
+            EsClienteAutenticado = false;
+            ClienteAutenticadoId = 0;
         }
     }
 
@@ -111,6 +154,10 @@ public partial class GestionarOrdenesVentaPage : ComponentBase {
     private void GuardarOrden() {
         MensajeResultado = string.Empty;
         OperacionExitosa = false;
+
+        if (ClienteBloqueado) {
+            Orden.ClienteIdSeleccionado = ClienteAutenticadoId;
+        }
 
         if (Orden.ClienteIdSeleccionado <= 0) {
             MensajeResultado = "Debe seleccionar un cliente.";

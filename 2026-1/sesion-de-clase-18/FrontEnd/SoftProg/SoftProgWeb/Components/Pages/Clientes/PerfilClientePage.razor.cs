@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.JSInterop;
 using SoftProgWeb.Servicios.Clientes;
 using SoftProgWeb.ViewModels;
 
@@ -9,6 +10,7 @@ public partial class PerfilClientePage : ComponentBase {
     [CascadingParameter] private Task<AuthenticationState>? AuthenticationStateTask { get; set; }
     [Inject] private IClientesServiceClient ClienteServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+    [Inject] private IJSRuntime JsRuntime { get; set; } = default!;
     [SupplyParameterFromQuery(Name = "returnUrl")]
     public string? ReturnUrl { get; set; }
 
@@ -16,7 +18,7 @@ public partial class PerfilClientePage : ComponentBase {
     private ClienteViewModel Cliente { get; set; } = new();
     private string MensajeResultado { get; set; } = string.Empty;
     private bool OperacionExitosa { get; set; }
-    private string RutaRetorno => ObtenerRutaRetorno("/ListarClientes");
+    private string RutaRetorno => ObtenerRutaRetorno("/Home");
 
     protected override async Task OnParametersSetAsync() {
         var authState = AuthenticationStateTask is null
@@ -57,8 +59,13 @@ public partial class PerfilClientePage : ComponentBase {
 
     }
 
-    private void Volver() {
-        NavigationManager.NavigateTo(RutaRetorno);
+    private async Task Volver() {
+        try {
+            await JsRuntime.InvokeVoidAsync("history.back");
+        }
+        catch {
+            NavigationManager.NavigateTo(RutaRetorno);
+        }
     }
 
     private string ObtenerRutaRetorno(string fallback) {

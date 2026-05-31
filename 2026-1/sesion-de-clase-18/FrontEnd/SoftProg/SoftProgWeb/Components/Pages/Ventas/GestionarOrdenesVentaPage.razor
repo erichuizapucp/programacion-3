@@ -11,7 +11,7 @@
         </div>
         <div class="card-body">
             <SelectorClienteOrdenComponent Clientes="Clientes" ClienteSeleccionado="Orden.Cliente"
-                                           @bind-ClienteIdSeleccionado="ClienteIdSeleccionado" />
+                                           @bind-ClienteIdSeleccionado="ClienteIdSeleccionado" Deshabilitado="ClienteBloqueado" />
 
             <EditorLineasOrdenComponent Lineas="Orden.Lineas" LineaTemporal="NuevaLinea" Productos="Productos"
                                         Total="Orden.Total" AgregarLinea="AgregarLinea" QuitarLinea="QuitarLinea" />

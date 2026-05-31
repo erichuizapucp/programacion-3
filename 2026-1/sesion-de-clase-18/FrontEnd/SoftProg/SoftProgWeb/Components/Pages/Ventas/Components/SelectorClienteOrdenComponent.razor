@@ -8,7 +8,8 @@
         <div class="mb-3 row">
             <label for="cliente" class="col-sm-2 col-form-label">Cliente:</label>
             <div class="col-sm-6">
-                <select id="cliente" class="form-control" data-testid="order-client-select" @bind="ClienteIdLocal">
+                <select id="cliente" class="form-control" data-testid="order-client-select" @bind="ClienteIdLocal"
+                        disabled="@Deshabilitado">
                     <option value="0">Seleccione un cliente</option>
                     @foreach (var cliente in Clientes)
                     {
@@ -32,13 +33,16 @@
     [Parameter] public ClienteViewModel? ClienteSeleccionado { get; set; }
     [Parameter] public int ClienteIdSeleccionado { get; set; }
     [Parameter] public EventCallback<int> ClienteIdSeleccionadoChanged { get; set; }
+    [Parameter] public bool Deshabilitado { get; set; }
 
     private int ClienteIdLocal
     {
-        get {
+        get
+        {
             return ClienteIdSeleccionado;
         }
-        set {
+        set
+        {
             ClienteIdSeleccionadoChanged.InvokeAsync(value);
         }
     }
