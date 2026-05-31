@@ -1,6 +1,6 @@
-﻿namespace SoftProgWeb.Servicios
+﻿namespace SoftProgWeb.Servicios.Ventas
 {
-    public class OrdenesVentaService
+    public class OrdenesVentaServiceImpl
     {
     }
 }

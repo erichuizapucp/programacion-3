@@ -1,6 +1,6 @@
-﻿namespace SoftProgWeb.Servicios
+﻿namespace SoftProgWeb.Servicios.Clientes
 {
-    public class ClientesServicecs
+    public class ClientesServicecsImpl
     {
     }
 }

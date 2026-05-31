@@ -1,4 +1,4 @@
-﻿namespace SoftProgWeb.Servicios
+﻿namespace SoftProgWeb.Servicios.Ventas
 {
     public interface IOrdenesVentaService
     {

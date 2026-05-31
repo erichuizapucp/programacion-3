@@ -1,6 +1,6 @@
-﻿namespace SoftProgWeb.Servicios
+﻿namespace SoftProgWeb.Servicios.Cuentas
 {
-    public class CuentasUsuarioService
+    public class CuentasUsuarioServiceImpl
     {
     }
 }

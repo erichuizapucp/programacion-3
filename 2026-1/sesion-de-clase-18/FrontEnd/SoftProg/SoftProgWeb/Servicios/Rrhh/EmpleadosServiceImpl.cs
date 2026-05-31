@@ -1,6 +1,6 @@
-﻿namespace SoftProgWeb.Servicios
+﻿namespace SoftProgWeb.Servicios.Rrhh
 {
-    public class EmpleadosService
+    public class EmpleadosServiceImpl
     {
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace SoftProgWeb.Servicios
+﻿namespace SoftProgWeb.Servicios.Almacen
 {
-    public class ProductosService
+    public class ProductosServiceImpl
     {
     }
 }
