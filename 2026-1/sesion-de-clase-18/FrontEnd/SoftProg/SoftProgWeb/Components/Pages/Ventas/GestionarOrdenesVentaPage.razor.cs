@@ -7,9 +7,9 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.Ventas;
 
 public partial class GestionarOrdenesVentaPage : ComponentBase {
-    [Inject] private IOrdenesVentaService OrdenVentaService { get; set; } = default!;
-    [Inject] private IClientesService ClienteService { get; set; } = default!;
-    [Inject] private IProductosService ProductoService { get; set; } = default!;
+    [Inject] private IOrdenesVentaServiceClient OrdenVentaServiceClient { get; set; } = default!;
+    [Inject] private IClientesServiceClient ClienteServiceClient { get; set; } = default!;
+    [Inject] private IProductosServiceClient ProductoServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -42,7 +42,7 @@ public partial class GestionarOrdenesVentaPage : ComponentBase {
 
         if (Id is > 0) {
             try {
-                Orden = OrdenVentaService.Obtener(Id.Value) ?? throw new InvalidOperationException();
+                Orden = OrdenVentaServiceClient.Obtener(Id.Value) ?? throw new InvalidOperationException();
                 Orden.Lineas ??= [];
                 ClienteIdSeleccionado = Orden.Cliente?.Id ?? 0;
                 Titulo = "Modificar orden de venta";
@@ -61,7 +61,7 @@ public partial class GestionarOrdenesVentaPage : ComponentBase {
 
     private void CargarClientes() {
         try {
-            Clientes = ClienteService.Listar();
+            Clientes = ClienteServiceClient.Listar();
         }
         catch {
             Clientes = [];
@@ -70,7 +70,7 @@ public partial class GestionarOrdenesVentaPage : ComponentBase {
 
     private void CargarProductos() {
         try {
-            Productos = ProductoService.Listar();
+            Productos = ProductoServiceClient.Listar();
         }
         catch {
             Productos = [];
@@ -134,7 +134,7 @@ public partial class GestionarOrdenesVentaPage : ComponentBase {
             }
 
             var estado = Orden.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
-            OrdenVentaService.Guardar(Orden, estado);
+            OrdenVentaServiceClient.Guardar(Orden, estado);
 
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";

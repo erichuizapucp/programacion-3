@@ -5,7 +5,7 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.Almacen;
 
 public partial class GestionarProductosPage : ComponentBase {
-    [Inject] private IProductosService ProductoService { get; set; } = default!;
+    [Inject] private IProductosServiceClient ProductoServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -23,7 +23,7 @@ public partial class GestionarProductosPage : ComponentBase {
     protected override void OnParametersSet() {
         if (Id is > 0) {
             try {
-                Producto = ProductoService.Obtener(Id.Value) ?? throw new InvalidOperationException();
+                Producto = ProductoServiceClient.Obtener(Id.Value) ?? throw new InvalidOperationException();
                 Titulo = "Modificar producto";
             }
             catch {
@@ -47,7 +47,7 @@ public partial class GestionarProductosPage : ComponentBase {
 
         try {
             var estado = Producto.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
-            ProductoService.Guardar(Producto, estado);
+            ProductoServiceClient.Guardar(Producto, estado);
 
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";

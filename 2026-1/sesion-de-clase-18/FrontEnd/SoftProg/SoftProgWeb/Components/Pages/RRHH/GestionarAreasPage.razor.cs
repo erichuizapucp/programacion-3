@@ -6,7 +6,7 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.RRHH;
 
 public partial class GestionarAreasPage : ComponentBase {
-    [Inject] private IAreaService AreaService { get; set; } = default!;
+    [Inject] private IAreaServiceClient AreaServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
     [Inject] private IJSRuntime Js { get; set; } = default!;
 
@@ -25,7 +25,7 @@ public partial class GestionarAreasPage : ComponentBase {
     protected override void OnParametersSet() {
         if (Id is > 0) {
             try {
-                Area = AreaService.Obtener(Id.Value) ?? throw new InvalidOperationException();
+                Area = AreaServiceClient.Obtener(Id.Value) ?? throw new InvalidOperationException();
                 Titulo = "Modificar area";
             }
             catch {
@@ -49,7 +49,7 @@ public partial class GestionarAreasPage : ComponentBase {
 
         try {
             var estado = Area.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
-            AreaService.Guardar(Area, estado);
+            AreaServiceClient.Guardar(Area, estado);
 
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
@@ -82,7 +82,7 @@ public partial class GestionarAreasPage : ComponentBase {
         }
 
         try {
-            AreaService.Eliminar(id);
+            AreaServiceClient.Eliminar(id);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
             NavigationManager.NavigateTo("/ListarAreas");

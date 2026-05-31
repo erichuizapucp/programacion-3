@@ -25,12 +25,12 @@ builder.Services.AddAuthorization();
 builder.Services.AddCascadingAuthenticationState();
 
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<ICuentasUsuarioService, CuentasUsuarioServiceImpl>();
-builder.Services.AddScoped<IAreaService, AreasServiceImpl>();
-builder.Services.AddScoped<IEmpleadosService, EmpleadosServiceImpl>();
-builder.Services.AddScoped<IOrdenesVentaService, OrdenesVentaServiceImpl>();
-builder.Services.AddScoped<IClientesService, ClientesServicecsImpl>();
-builder.Services.AddScoped<IProductosService, ProductosServiceImpl>();
+builder.Services.AddScoped<ICuentasUsuarioServiceClient, CuentasUsuarioSoapClient>();
+builder.Services.AddScoped<IAreaServiceClient, AreasServiceSoapClient>();
+builder.Services.AddScoped<IEmpleadosServiceClient, EmpleadosServiceSoapClient>();
+builder.Services.AddScoped<IOrdenesVentaServiceClient, OrdenesVentaServiceSoapClient>();
+builder.Services.AddScoped<IClientesServiceClient, ClientesServiceSoapClient>();
+builder.Services.AddScoped<IProductosServiceClient, ProductosServiceSoapClient>();
 
 var app = builder.Build();
 

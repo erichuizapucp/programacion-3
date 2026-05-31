@@ -14,11 +14,11 @@ public partial class Home : ComponentBase {
     private static readonly CultureInfo CulturaSoles = CultureInfo.GetCultureInfo("es-PE");
 
     [CascadingParameter] private Task<AuthenticationState>? AuthenticationStateTask { get; set; }
-    [Inject] private IProductosService ProductoService { get; set; } = default!;
-    [Inject] private IEmpleadosService EmpleadoService { get; set; } = default!;
-    [Inject] private IClientesService ClienteService { get; set; } = default!;
-    [Inject] private IOrdenesVentaService OrdenVentaService { get; set; } = default!;
-    [Inject] private ICuentasUsuarioService CuentaUsuarioService { get; set; } = default!;
+    [Inject] private IProductosServiceClient ProductoService { get; set; } = default!;
+    [Inject] private IEmpleadosServiceClient EmpleadoService { get; set; } = default!;
+    [Inject] private IClientesServiceClient ClienteService { get; set; } = default!;
+    [Inject] private IOrdenesVentaServiceClient OrdenVentaService { get; set; } = default!;
+    [Inject] private ICuentasUsuarioServiceClient CuentaUsuarioService { get; set; } = default!;
 
     private string RolActual { get; set; } = string.Empty;
     private string UsuarioActual { get; set; } = string.Empty;

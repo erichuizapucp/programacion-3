@@ -5,7 +5,7 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.RRHH;
 
 public partial class ListarAreasPage : ComponentBase {
-    [Inject] private IAreaService AreaService { get; set; } = default!;
+    [Inject] private IAreaServiceClient AreaServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private const int TamanoPagina = 5;
@@ -29,7 +29,7 @@ public partial class ListarAreasPage : ComponentBase {
 
     private void CargarAreas() {
         try {
-            Areas = AreaService.Listar();
+            Areas = AreaServiceClient.Listar();
             ReiniciarPaginacion();
         }
         catch {
@@ -45,7 +45,7 @@ public partial class ListarAreasPage : ComponentBase {
         }
 
         try {
-            AreaService.Eliminar(idArea);
+            AreaServiceClient.Eliminar(idArea);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
 

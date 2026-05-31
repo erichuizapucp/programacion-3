@@ -14,7 +14,7 @@ public static class AuthExtensions {
         return endpoints;
     }
 
-    private static async Task<IResult> IniciarSesionAsync(HttpContext context, ICuentasUsuarioService cuentaUsuarioService) {
+    private static async Task<IResult> IniciarSesionAsync(HttpContext context, ICuentasUsuarioServiceClient cuentaUsuarioServiceClient) {
         var form = await context.Request.ReadFormAsync();
 
         var usuario = form["usuario"].ToString();
@@ -30,11 +30,11 @@ public static class AuthExtensions {
             ? tipo
             : TipoUsuarioEnum.Cliente;
 
-        if (!cuentaUsuarioService.Login(usuario, contrasena)) {
+        if (!cuentaUsuarioServiceClient.Login(usuario, contrasena)) {
             return Results.LocalRedirect("/Login?error=1");
         }
 
-        var cuenta = cuentaUsuarioService.ObtenerPorUsername(usuario);
+        var cuenta = cuentaUsuarioServiceClient.ObtenerPorUsername(usuario);
 
         var claims = new List<Claim>
         {

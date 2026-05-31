@@ -1,13 +1,13 @@
-﻿using SoftProgWS.OrdenesVenta;
+﻿using SoftProgWS;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Ventas;
 
-public class OrdenesVentaServiceImpl : SoapServiceBase<OrdenVentaViewModel, ordenVenta>, IOrdenesVentaService {
+public class OrdenesVentaServiceSoapClient : SoapServiceClient<OrdenVentaViewModel, ordenVenta>, IOrdenesVentaServiceClient {
     private const string EndpointSetting = "SoapEndpoints:OrdenesVenta";
 
-    public OrdenesVentaServiceImpl(IConfiguration configuration)
+    public OrdenesVentaServiceSoapClient(IConfiguration configuration)
         : base(configuration) {
     }
 
@@ -182,18 +182,18 @@ public class OrdenesVentaServiceImpl : SoapServiceBase<OrdenVentaViewModel, orde
         };
     }
 
-    private static SoftProgWS.OrdenesVenta.lineaOrdenVenta[] ToSoapLineas(List<LineaOrdenVentaViewModel> lineasDomain) {
-        var lineasSoap = new List<SoftProgWS.OrdenesVenta.lineaOrdenVenta>();
+    private static lineaOrdenVenta[] ToSoapLineas(List<LineaOrdenVentaViewModel> lineasDomain) {
+        var lineasSoap = new List<lineaOrdenVenta>();
 
         foreach (var linea in lineasDomain) {
-            lineasSoap.Add(new SoftProgWS.OrdenesVenta.lineaOrdenVenta {
+            lineasSoap.Add(new lineaOrdenVenta {
                 id = linea.Id,
                 activo = true,
                 cantidad = linea.Cantidad,
                 subTotal = linea.SubTotal,
                 producto = linea.ProductoId <= 0
                     ? null
-                    : new SoftProgWS.OrdenesVenta.producto {
+                    : new producto {
                         id = linea.ProductoId,
                         activo = true,
                         nombre = linea.ProductoNombre,
@@ -204,6 +204,6 @@ public class OrdenesVentaServiceImpl : SoapServiceBase<OrdenVentaViewModel, orde
             });
         }
 
-        return lineasSoap.ToArray();
+        return [.. lineasSoap];
     }
 }

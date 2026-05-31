@@ -5,7 +5,7 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.Login;
 
 public partial class RecuperarContrasenaPage : ComponentBase {
-    [Inject] private ICuentasUsuarioService CuentaUsuarioService { get; set; } = default!;
+    [Inject] private ICuentasUsuarioServiceClient CuentaUsuarioServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private SolicitudRecuperarContrasenaViewModel? Solicitud { get; set; } = new SolicitudRecuperarContrasenaViewModel();

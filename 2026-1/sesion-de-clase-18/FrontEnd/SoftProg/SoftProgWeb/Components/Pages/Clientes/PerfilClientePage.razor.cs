@@ -5,7 +5,7 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.Clientes;
 
 public partial class PerfilClientePage : ComponentBase {
-    [Inject] private IClientesService ClienteService { get; set; } = default!;
+    [Inject] private IClientesServiceClient ClienteServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -22,7 +22,7 @@ public partial class PerfilClientePage : ComponentBase {
     protected override void OnParametersSet() {
         if (Id is > 0) {
             try {
-                Cliente = ClienteService.Obtener(Id.Value) ?? throw new InvalidOperationException();
+                Cliente = ClienteServiceClient.Obtener(Id.Value) ?? throw new InvalidOperationException();
             }
             catch {
                 OperacionExitosa = false;
@@ -39,7 +39,7 @@ public partial class PerfilClientePage : ComponentBase {
         }
 
         try {
-            ClienteService.Guardar(Cliente, Estado.Modificado);
+            ClienteServiceClient.Guardar(Cliente, Estado.Modificado);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
         }

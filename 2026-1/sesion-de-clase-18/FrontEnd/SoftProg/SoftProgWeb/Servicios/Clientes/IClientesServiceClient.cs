@@ -3,7 +3,7 @@ using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Clientes;
 
-public interface IClientesService : IServiceBase<ClienteViewModel> {
+public interface IClientesServiceClient : IServiceClient<ClienteViewModel> {
     ClienteViewModel? BuscarPorDni(string dni);
     ClienteViewModel? BuscarPorCuenta(string cuenta);
 }

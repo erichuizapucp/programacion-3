@@ -3,6 +3,6 @@ using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Ventas;
 
-public interface IOrdenesVentaService : IServiceBase<OrdenVentaViewModel> {
+public interface IOrdenesVentaServiceClient : IServiceClient<OrdenVentaViewModel> {
     List<OrdenVentaViewModel> ListarPorCuenta(string cuenta);
 }

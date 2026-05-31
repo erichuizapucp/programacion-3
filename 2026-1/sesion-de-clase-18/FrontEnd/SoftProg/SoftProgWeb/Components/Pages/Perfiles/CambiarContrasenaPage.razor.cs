@@ -6,7 +6,7 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.Perfiles;
 
 public partial class CambiarContrasenaPage : ComponentBase {
-    [Inject] private ICuentasUsuarioService CuentaUsuarioService { get; set; } = default!;
+    [Inject] private ICuentasUsuarioServiceClient CuentaUsuarioServiceClient { get; set; } = default!;
     [Inject] private AuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
@@ -43,18 +43,18 @@ public partial class CambiarContrasenaPage : ComponentBase {
             var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
             var usuario = authState.User.Identity?.Name ?? string.Empty;
 
-            var cuenta = CuentaUsuarioService.ObtenerPorUsername(usuario);
+            var cuenta = CuentaUsuarioServiceClient.ObtenerPorUsername(usuario);
 
             if (cuenta is null) {
                 throw new InvalidOperationException("No se encontro la cuenta del usuario autenticado.");
             }
 
-            if (!CuentaUsuarioService.Login(usuario, Solicitud.ContrasenaActual)) {
+            if (!CuentaUsuarioServiceClient.Login(usuario, Solicitud.ContrasenaActual)) {
                 throw new InvalidOperationException("La contrasena actual es incorrecta.");
             }
 
             cuenta.Password = Solicitud.NuevaContrasena;
-            CuentaUsuarioService.Guardar(cuenta, Estado.Modificado);
+            CuentaUsuarioServiceClient.Guardar(cuenta, Estado.Modificado);
             OperacionExitosa = true;
             MensajeResultado = "Contrasena actualizada correctamente.";
         }

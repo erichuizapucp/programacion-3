@@ -3,4 +3,4 @@ using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Almacen;
 
-public interface IProductosService : IServiceBase<ProductoViewModel>;
+public interface IProductosServiceClient : IServiceClient<ProductoViewModel>;

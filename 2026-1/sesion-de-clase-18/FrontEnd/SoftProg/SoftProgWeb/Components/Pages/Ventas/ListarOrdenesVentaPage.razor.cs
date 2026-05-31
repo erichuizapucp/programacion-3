@@ -11,7 +11,7 @@ public partial class ListarOrdenesVentaPage : ComponentBase {
     private const int TamanoPagina = 5;
 
     [CascadingParameter] private Task<AuthenticationState>? AuthenticationStateTask { get; set; }
-    [Inject] private IOrdenesVentaService OrdenVentaService { get; set; } = default!;
+    [Inject] private IOrdenesVentaServiceClient OrdenVentaServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private List<OrdenVentaViewModel> Ordenes { get; set; } = new();
@@ -42,8 +42,8 @@ public partial class ListarOrdenesVentaPage : ComponentBase {
     private void CargarOrdenes(bool esCliente, string usuarioActual) {
         try {
             Ordenes = esCliente
-                ? OrdenVentaService.ListarPorCuenta(usuarioActual)
-                : OrdenVentaService.Listar();
+                ? OrdenVentaServiceClient.ListarPorCuenta(usuarioActual)
+                : OrdenVentaServiceClient.Listar();
             ReiniciarPaginacion();
             MensajeResultado = string.Empty;
         }
@@ -68,7 +68,7 @@ public partial class ListarOrdenesVentaPage : ComponentBase {
 
     private void EliminarOrden(int id) {
         try {
-            OrdenVentaService.Eliminar(id);
+            OrdenVentaServiceClient.Eliminar(id);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
             NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);

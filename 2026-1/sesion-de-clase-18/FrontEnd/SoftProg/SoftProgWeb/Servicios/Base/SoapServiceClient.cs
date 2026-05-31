@@ -2,10 +2,10 @@ using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Base;
 
-public abstract class SoapServiceBase<TViewModel, TSoapModel> {
+public abstract class SoapServiceClient<TViewModel, TSoapModel> {
     protected IConfiguration Configuration { get; }
 
-    protected SoapServiceBase(IConfiguration configuration) {
+    protected SoapServiceClient(IConfiguration configuration) {
         Configuration = configuration;
     }
 

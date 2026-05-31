@@ -1,13 +1,13 @@
-﻿using SoftProgWS.Areas;
+﻿using SoftProgWS;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Rrhh;
 
-public class AreasServiceImpl : SoapServiceBase<AreaViewModel, area>, IAreaService {
+public class AreasServiceSoapClient : SoapServiceClient<AreaViewModel, area>, IAreaServiceClient {
     private const string EndpointSetting = "SoapEndpoints:Areas";
 
-    public AreasServiceImpl(IConfiguration configuration)
+    public AreasServiceSoapClient(IConfiguration configuration)
         : base(configuration) {
     }
 

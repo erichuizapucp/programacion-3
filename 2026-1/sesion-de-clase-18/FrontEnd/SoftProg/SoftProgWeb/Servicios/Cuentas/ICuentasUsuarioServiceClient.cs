@@ -3,7 +3,7 @@ using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Cuentas;
 
-public interface ICuentasUsuarioService : IServiceBase<CuentaUsuarioViewModel> {
+public interface ICuentasUsuarioServiceClient : IServiceClient<CuentaUsuarioViewModel> {
     bool Login(string username, string password);
     CuentaUsuarioViewModel? ObtenerPorUsername(string username);
 }

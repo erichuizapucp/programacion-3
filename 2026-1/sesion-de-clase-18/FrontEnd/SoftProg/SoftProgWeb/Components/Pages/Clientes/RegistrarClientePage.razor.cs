@@ -6,7 +6,7 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.Clientes;
 
 public partial class RegistrarClientePage : ComponentBase {
-    [Inject] private IClientesService ClienteService { get; set; } = default!;
+    [Inject] private IClientesServiceClient ClienteServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private const int TotalPasos = 3;
@@ -72,7 +72,7 @@ public partial class RegistrarClientePage : ComponentBase {
         };
 
         try {
-            ClienteService.Guardar(clienteViewModel, Estado.Nuevo);
+            ClienteServiceClient.Guardar(clienteViewModel, Estado.Nuevo);
             OperacionExitosa = true;
             MensajeResultado = "Registro completado";
             Enviando = false;

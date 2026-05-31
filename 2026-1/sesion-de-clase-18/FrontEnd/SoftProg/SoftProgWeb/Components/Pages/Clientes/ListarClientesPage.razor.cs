@@ -5,7 +5,7 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.Clientes;
 
 public partial class ListarClientesPage : ComponentBase {
-    [Inject] private IClientesService ClienteService { get; set; } = default!;
+    [Inject] private IClientesServiceClient ClienteServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private const int TamanoPagina = 5;
@@ -34,7 +34,7 @@ public partial class ListarClientesPage : ComponentBase {
 
     private void CargarClientes() {
         try {
-            Clientes = ClienteService.Listar();
+            Clientes = ClienteServiceClient.Listar();
             ReiniciarPaginacion();
             MensajeResultado = string.Empty;
         }
@@ -61,7 +61,7 @@ public partial class ListarClientesPage : ComponentBase {
 
     private void Eliminar(int id) {
         try {
-            ClienteService.Eliminar(id);
+            ClienteServiceClient.Eliminar(id);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
             AplicarFiltroPorDni();
@@ -89,7 +89,7 @@ public partial class ListarClientesPage : ComponentBase {
         }
 
         try {
-            var cliente = ClienteService.BuscarPorDni(DniBusqueda);
+            var cliente = ClienteServiceClient.BuscarPorDni(DniBusqueda);
             Clientes = cliente is null ? [] : [cliente];
             ReiniciarPaginacion();
         }

@@ -3,4 +3,4 @@ using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Rrhh;
 
-public interface IAreaService : IServiceBase<AreaViewModel>;
+public interface IAreaServiceClient : IServiceClient<AreaViewModel>;

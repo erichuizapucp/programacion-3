@@ -5,7 +5,7 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.Perfiles;
 
 public partial class GestionarCuentaPage : ComponentBase {
-    [Inject] private ICuentasUsuarioService CuentaUsuarioService { get; set; } = default!;
+    [Inject] private ICuentasUsuarioServiceClient CuentaUsuarioServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -24,7 +24,7 @@ public partial class GestionarCuentaPage : ComponentBase {
     protected override void OnParametersSet() {
         if (Id is > 0) {
             try {
-                var cuenta = CuentaUsuarioService.Obtener(Id.Value) ?? throw new InvalidOperationException();
+                var cuenta = CuentaUsuarioServiceClient.Obtener(Id.Value) ?? throw new InvalidOperationException();
                 CuentaViewModel = cuenta;
                 PasswordActual = cuenta.Password;
                 Titulo = "Modificar";
@@ -51,7 +51,7 @@ public partial class GestionarCuentaPage : ComponentBase {
 
         try {
             var estado = CuentaViewModel.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
-            CuentaUsuarioService.Guardar(CuentaViewModel, estado);
+            CuentaUsuarioServiceClient.Guardar(CuentaViewModel, estado);
 
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";

@@ -3,6 +3,6 @@ using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Rrhh;
 
-public interface IEmpleadosService : IServiceBase<EmpleadoViewModel> {
+public interface IEmpleadosServiceClient : IServiceClient<EmpleadoViewModel> {
     EmpleadoViewModel? BuscarPorDni(string dni);
 }

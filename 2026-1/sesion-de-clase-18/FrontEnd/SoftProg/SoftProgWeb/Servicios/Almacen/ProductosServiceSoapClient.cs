@@ -1,13 +1,13 @@
-﻿using SoftProgWS.Productos;
+﻿using SoftProgWS;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Almacen;
 
-public class ProductosServiceImpl : SoapServiceBase<ProductoViewModel, producto>, IProductosService {
+public class ProductosServiceSoapClient : SoapServiceClient<ProductoViewModel, producto>, IProductosServiceClient {
     private const string EndpointSetting = "SoapEndpoints:Productos";
 
-    public ProductosServiceImpl(IConfiguration configuration)
+    public ProductosServiceSoapClient(IConfiguration configuration)
         : base(configuration) {
     }
 

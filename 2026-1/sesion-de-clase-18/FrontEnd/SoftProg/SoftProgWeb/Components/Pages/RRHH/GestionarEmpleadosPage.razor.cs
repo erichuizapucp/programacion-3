@@ -5,8 +5,8 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.RRHH;
 
 public partial class GestionarEmpleadosPage : ComponentBase {
-    [Inject] private IEmpleadosService EmpleadoService { get; set; } = default!;
-    [Inject] private IAreaService AreaService { get; set; } = default!;
+    [Inject] private IEmpleadosServiceClient EmpleadoServiceClient { get; set; } = default!;
+    [Inject] private IAreaServiceClient AreaServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -29,7 +29,7 @@ public partial class GestionarEmpleadosPage : ComponentBase {
 
         if (Id is > 0) {
             try {
-                EmpleadoViewModel = EmpleadoService.Obtener(Id.Value) ?? throw new InvalidOperationException();
+                EmpleadoViewModel = EmpleadoServiceClient.Obtener(Id.Value) ?? throw new InvalidOperationException();
                 Titulo = "Modificar empleado";
             }
             catch {
@@ -45,7 +45,7 @@ public partial class GestionarEmpleadosPage : ComponentBase {
 
     private void CargarAreas() {
         try {
-            Areas = AreaService.Listar();
+            Areas = AreaServiceClient.Listar();
         }
         catch {
             Areas = [];
@@ -65,7 +65,7 @@ public partial class GestionarEmpleadosPage : ComponentBase {
 
         try {
             var estado = EmpleadoViewModel.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
-            EmpleadoService.Guardar(EmpleadoViewModel, estado);
+            EmpleadoServiceClient.Guardar(EmpleadoViewModel, estado);
 
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";

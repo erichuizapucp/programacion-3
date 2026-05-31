@@ -5,7 +5,7 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.RRHH;
 
 public partial class ListarEmpleadosPage : ComponentBase {
-    [Inject] private IEmpleadosService EmpleadoService { get; set; } = default!;
+    [Inject] private IEmpleadosServiceClient EmpleadoServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private const int TamanoPagina = 5;
@@ -34,7 +34,7 @@ public partial class ListarEmpleadosPage : ComponentBase {
 
     private void CargarEmpleados() {
         try {
-            Empleados = EmpleadoService.Listar();
+            Empleados = EmpleadoServiceClient.Listar();
             ReiniciarPaginacion();
             MensajeResultado = string.Empty;
         }
@@ -69,7 +69,7 @@ public partial class ListarEmpleadosPage : ComponentBase {
 
     private void EliminarEmpleado(int id) {
         try {
-            EmpleadoService.Eliminar(id);
+            EmpleadoServiceClient.Eliminar(id);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
             AplicarFiltroPorDni();
@@ -89,7 +89,7 @@ public partial class ListarEmpleadosPage : ComponentBase {
         }
 
         try {
-            var empleado = EmpleadoService.BuscarPorDni(DniBusqueda);
+            var empleado = EmpleadoServiceClient.BuscarPorDni(DniBusqueda);
             Empleados = empleado is null ? [] : [empleado];
             ReiniciarPaginacion();
         }

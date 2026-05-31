@@ -1,13 +1,13 @@
-﻿using SoftProgWS.CuentasUsuario;
+﻿using SoftProgWS;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Cuentas;
 
-public class CuentasUsuarioServiceImpl : SoapServiceBase<CuentaUsuarioViewModel, cuentaUsuario>, ICuentasUsuarioService {
+public class CuentasUsuarioSoapClient : SoapServiceClient<CuentaUsuarioViewModel, cuentaUsuario>, ICuentasUsuarioServiceClient {
     private const string EndpointSetting = "SoapEndpoints:CuentasUsuario";
 
-    public CuentasUsuarioServiceImpl(IConfiguration configuration)
+    public CuentasUsuarioSoapClient(IConfiguration configuration)
         : base(configuration) {
     }
 
@@ -102,5 +102,4 @@ public class CuentasUsuarioServiceImpl : SoapServiceBase<CuentaUsuarioViewModel,
             ConfirmarPassword = string.Empty
         };
     }
-
 }

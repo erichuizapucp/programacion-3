@@ -9,7 +9,7 @@ public partial class VerOrdenVentaPage : ComponentBase {
     private const double TasaIgv = 0.18;
     private static readonly CultureInfo CulturaSoles = CultureInfo.GetCultureInfo("es-PE");
 
-    [Inject] private IOrdenesVentaService OrdenVentaService { get; set; } = default!;
+    [Inject] private IOrdenesVentaServiceClient OrdenVentaServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -38,7 +38,7 @@ public partial class VerOrdenVentaPage : ComponentBase {
             return;
         }
 
-        var ordenViewModel = OrdenVentaService.Obtener(Id.Value) ?? throw new InvalidOperationException();
+        var ordenViewModel = OrdenVentaServiceClient.Obtener(Id.Value) ?? throw new InvalidOperationException();
 
         IdOrden = ordenViewModel.Id.ToString();
         Cliente = $"{ordenViewModel.Cliente?.Nombre} {ordenViewModel.Cliente?.ApellidoPaterno}".Trim();

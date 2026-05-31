@@ -1,13 +1,13 @@
-﻿using SoftProgWS.Clientes;
+﻿using SoftProgWS;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Clientes;
 
-public class ClientesServicecsImpl : SoapServiceBase<ClienteViewModel, cliente>, IClientesService {
+public class ClientesServiceSoapClient : SoapServiceClient<ClienteViewModel, cliente>, IClientesServiceClient {
     private const string EndpointSetting = "SoapEndpoints:Clientes";
 
-    public ClientesServicecsImpl(IConfiguration configuration)
+    public ClientesServiceSoapClient(IConfiguration configuration)
         : base(configuration) {
     }
 
@@ -115,7 +115,7 @@ public class ClientesServicecsImpl : SoapServiceBase<ClienteViewModel, cliente>,
             lineaCredito = Convert.ToDouble(source.LineaCredito),
             cuentaUsuario = source.CuentaUsuario is null
                 ? null
-                : new SoftProgWS.Clientes.cuentaUsuario {
+                : new cuentaUsuario {
                     id = source.CuentaUsuario.Id,
                     activo = source.CuentaUsuario.Activo,
                     userName = source.CuentaUsuario.UserName.Trim(),

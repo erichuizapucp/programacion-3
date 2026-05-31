@@ -5,7 +5,7 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.Perfiles;
 
 public partial class ListarCuentasPage : ComponentBase {
-    [Inject] private ICuentasUsuarioService CuentaUsuarioService { get; set; } = default!;
+    [Inject] private ICuentasUsuarioServiceClient CuentaUsuarioServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private const int TamanoPagina = 5;
@@ -29,7 +29,7 @@ public partial class ListarCuentasPage : ComponentBase {
 
     private void CargarCuentas() {
         try {
-            Cuentas = CuentaUsuarioService.Listar();
+            Cuentas = CuentaUsuarioServiceClient.Listar();
             ReiniciarPaginacion();
             MensajeResultado = string.Empty;
         }
@@ -50,7 +50,7 @@ public partial class ListarCuentasPage : ComponentBase {
 
     private void EliminarCuenta(int id) {
         try {
-            CuentaUsuarioService.Eliminar(id);
+            CuentaUsuarioServiceClient.Eliminar(id);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
             CargarCuentas();

@@ -1,13 +1,13 @@
-﻿using SoftProgWS.Empleados;
+﻿using SoftProgWS;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Rrhh;
 
-public class EmpleadosServiceImpl : SoapServiceBase<EmpleadoViewModel, empleado>, IEmpleadosService {
+public class EmpleadosServiceSoapClient : SoapServiceClient<EmpleadoViewModel, empleado>, IEmpleadosServiceClient {
     private const string EndpointSetting = "SoapEndpoints:Empleados";
 
-    public EmpleadosServiceImpl(IConfiguration configuration)
+    public EmpleadosServiceSoapClient(IConfiguration configuration)
         : base(configuration) {
     }
 
@@ -96,7 +96,7 @@ public class EmpleadosServiceImpl : SoapServiceBase<EmpleadoViewModel, empleado>
             sueldo = source.Sueldo,
             area = source.AreaIdSeleccionada <= 0
                 ? null
-                : new SoftProgWS.Empleados.area {
+                : new area {
                     id = source.AreaIdSeleccionada,
                     activo = true,
                     nombre = source.AreaNombre

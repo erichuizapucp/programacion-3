@@ -5,7 +5,7 @@ using SoftProgWeb.ViewModels;
 namespace SoftProgWeb.Components.Pages.Almacen;
 
 public partial class ListarProductosPage : ComponentBase {
-    [Inject] private IProductosService ProductoService { get; set; } = default!;
+    [Inject] private IProductosServiceClient ProductoService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private const int TamanoPagina = 5;
