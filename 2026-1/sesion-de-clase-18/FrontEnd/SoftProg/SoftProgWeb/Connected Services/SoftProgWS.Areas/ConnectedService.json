@@ -1,0 +1,52 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "http://172.16.70.1:8080/SoftProgWS-1.0-SNAPSHOT/AreasWS?wsdl"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, SoftProgWS.Areas"
+    ],
+    "references": [
+      "Azure.Core, {Azure.Core, 1.47.1}",
+      "Azure.Identity, {Azure.Identity, 1.14.2}",
+      "BouncyCastle.Cryptography, {BouncyCastle.Cryptography, 2.6.2}",
+      "E:\\dev\\2026-1\\sesion-de-clase-18\\FrontEnd\\SoftProg\\SoftProgWeb\\bin\\Debug\\net10.0\\SoftProgDBManager.dll",
+      "E:\\dev\\2026-1\\sesion-de-clase-18\\FrontEnd\\SoftProg\\SoftProgWeb\\bin\\Debug\\net10.0\\SoftProgModelo.dll",
+      "E:\\dev\\2026-1\\sesion-de-clase-18\\FrontEnd\\SoftProg\\SoftProgWeb\\bin\\Debug\\net10.0\\SoftProgNegocio.dll",
+      "E:\\dev\\2026-1\\sesion-de-clase-18\\FrontEnd\\SoftProg\\SoftProgWeb\\bin\\Debug\\net10.0\\SoftProgPersistencia.dll",
+      "Google.Protobuf, {Google.Protobuf, 3.32.0}",
+      "K4os.Compression.LZ4, {K4os.Compression.LZ4, 1.3.8}",
+      "K4os.Compression.LZ4.Streams, {K4os.Compression.LZ4.Streams, 1.3.8}",
+      "K4os.Hash.xxHash, {K4os.Hash.xxHash, 1.0.8}",
+      "Microsoft.Bcl.AsyncInterfaces, {Microsoft.Bcl.AsyncInterfaces, 8.0.0}",
+      "Microsoft.Bcl.Cryptography, {Microsoft.Bcl.Cryptography, 9.0.4}",
+      "Microsoft.Data.SqlClient, {Microsoft.Data.SqlClient, 6.1.1}",
+      "Microsoft.Identity.Client, {Microsoft.Identity.Client, 4.73.1}",
+      "Microsoft.Identity.Client.Extensions.Msal, {Microsoft.Identity.Client.Extensions.Msal, 4.73.1}",
+      "Microsoft.IdentityModel.Abstractions, {Microsoft.IdentityModel.Abstractions, 7.7.1}",
+      "Microsoft.IdentityModel.JsonWebTokens, {Microsoft.IdentityModel.JsonWebTokens, 7.7.1}",
+      "Microsoft.IdentityModel.Logging, {Microsoft.IdentityModel.Logging, 7.7.1}",
+      "Microsoft.IdentityModel.Protocols, {Microsoft.IdentityModel.Protocols, 7.7.1}",
+      "Microsoft.IdentityModel.Protocols.OpenIdConnect, {Microsoft.IdentityModel.Protocols.OpenIdConnect, 7.7.1}",
+      "Microsoft.IdentityModel.Tokens, {Microsoft.IdentityModel.Tokens, 7.7.1}",
+      "Microsoft.SqlServer.Server, {Microsoft.SqlServer.Server, 1.0.0}",
+      "MySql.Data, {MySql.Data, 9.7.0}",
+      "System.ClientModel, {System.ClientModel, 1.5.1}",
+      "System.Configuration.ConfigurationManager, {System.Configuration.ConfigurationManager, 9.0.4}",
+      "System.IdentityModel.Tokens.Jwt, {System.IdentityModel.Tokens.Jwt, 7.7.1}",
+      "System.Memory.Data, {System.Memory.Data, 8.0.1}",
+      "System.Security.Cryptography.Pkcs, {System.Security.Cryptography.Pkcs, 9.0.4}",
+      "System.Security.Cryptography.ProtectedData, {System.Security.Cryptography.ProtectedData, 9.0.4}",
+      "System.Security.Permissions, {System.Security.Permissions, 8.0.0}",
+      "System.Windows.Extensions, {System.Windows.Extensions, 8.0.0}",
+      "ZstdSharp, {ZstdSharp.Port, 0.8.6}"
+    ],
+    "sync": true,
+    "targetFramework": "net10.0",
+    "typeReuseMode": "All"
+  }
+}
