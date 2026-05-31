@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Components;
-using SoftProgNegocio.Bo.Rrhh;
+using SoftProgWeb.Servicios.Rrhh;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.RRHH;
 
 public partial class ListarAreasPage : ComponentBase {
-    [Inject] private IAreaBo AreaBo { get; set; } = default!;
+    [Inject] private IAreaService AreaService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private const int TamanoPagina = 5;
@@ -30,8 +29,7 @@ public partial class ListarAreasPage : ComponentBase {
 
     private void CargarAreas() {
         try {
-            var areas = AreaBo.Listar();
-            Areas = [.. areas.Select(AreaViewModelMapper.ToViewModel)];
+            Areas = AreaService.Listar();
             ReiniciarPaginacion();
         }
         catch {
@@ -47,7 +45,7 @@ public partial class ListarAreasPage : ComponentBase {
         }
 
         try {
-            AreaBo.Eliminar(idArea);
+            AreaService.Eliminar(idArea);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
 

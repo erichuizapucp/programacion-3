@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Components;
-using SoftProgNegocio.Bo.Almacen;
+using SoftProgWeb.Servicios.Almacen;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.Almacen;
 
 public partial class ListarProductosPage : ComponentBase {
-    [Inject] private IProductoBo ProductoBo { get; set; } = default!;
+    [Inject] private IProductosService ProductoService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private const int TamanoPagina = 5;
@@ -30,8 +29,7 @@ public partial class ListarProductosPage : ComponentBase {
 
     private void CargarProductos() {
         try {
-            var productos = ProductoBo.Listar();
-            Productos = [.. productos.Select(ProductoViewModelMapper.ToViewModel)];
+            Productos = ProductoService.Listar();
             ReiniciarPaginacion();
             MensajeResultado = string.Empty;
         }
@@ -52,7 +50,7 @@ public partial class ListarProductosPage : ComponentBase {
 
     private void EliminarProducto(int id) {
         try {
-            ProductoBo.Eliminar(id);
+            ProductoService.Eliminar(id);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
             CargarProductos();

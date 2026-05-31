@@ -1,17 +1,16 @@
 using Microsoft.AspNetCore.Components;
 using SoftProgModelo.Modelos;
-using SoftProgNegocio.Bo.Almacen;
-using SoftProgNegocio.Bo.Clientes;
-using SoftProgNegocio.Bo.Ventas;
+using SoftProgWeb.Servicios.Almacen;
+using SoftProgWeb.Servicios.Clientes;
+using SoftProgWeb.Servicios.Ventas;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.Ventas;
 
 public partial class GestionarOrdenesVentaPage : ComponentBase {
-    [Inject] private IOrdenVentaBo OrdenVentaBo { get; set; } = default!;
-    [Inject] private IClienteBo ClienteBo { get; set; } = default!;
-    [Inject] private IProductoBo ProductoBo { get; set; } = default!;
+    [Inject] private IOrdenesVentaService OrdenVentaService { get; set; } = default!;
+    [Inject] private IClientesService ClienteService { get; set; } = default!;
+    [Inject] private IProductosService ProductoService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -44,8 +43,7 @@ public partial class GestionarOrdenesVentaPage : ComponentBase {
 
         if (Id is > 0) {
             try {
-                var orden = OrdenVentaBo.Obtener(Id.Value) ?? throw new InvalidOperationException();
-                Orden = OrdenVentaViewModelMapper.ToViewModel(orden);
+                Orden = OrdenVentaService.Obtener(Id.Value) ?? throw new InvalidOperationException();
                 Orden.Lineas ??= [];
                 ClienteIdSeleccionado = Orden.Cliente?.Id ?? 0;
                 Titulo = "Modificar orden de venta";
@@ -64,7 +62,7 @@ public partial class GestionarOrdenesVentaPage : ComponentBase {
 
     private void CargarClientes() {
         try {
-            Clientes = [.. ClienteBo.Listar().Select(ClienteViewModelMapper.ToViewModel)];
+            Clientes = ClienteService.Listar();
         }
         catch {
             Clientes = [];
@@ -73,7 +71,7 @@ public partial class GestionarOrdenesVentaPage : ComponentBase {
 
     private void CargarProductos() {
         try {
-            Productos = [.. ProductoBo.Listar().Select(ProductoViewModelMapper.ToViewModel)];
+            Productos = ProductoService.Listar();
         }
         catch {
             Productos = [];
@@ -136,9 +134,8 @@ public partial class GestionarOrdenesVentaPage : ComponentBase {
                 return;
             }
 
-            var orden = OrdenVentaViewModelMapper.ToDomain(Orden);
-            var estado = orden.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
-            OrdenVentaBo.Guardar(orden, estado);
+            var estado = Orden.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
+            OrdenVentaService.Guardar(Orden, estado);
 
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";

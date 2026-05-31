@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using SoftProgModelo.Modelos;
-using SoftProgNegocio.Bo.Rrhh;
+using SoftProgWeb.Servicios.Rrhh;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.RRHH;
 
 public partial class GestionarAreasPage : ComponentBase {
-    [Inject] private IAreaBo AreaBo { get; set; } = default!;
+    [Inject] private IAreaService AreaService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
     [Inject] private IJSRuntime Js { get; set; } = default!;
 
@@ -27,8 +26,7 @@ public partial class GestionarAreasPage : ComponentBase {
     protected override void OnParametersSet() {
         if (Id is > 0) {
             try {
-                var area = AreaBo.Obtener(Id.Value) ?? throw new InvalidOperationException();
-                Area = AreaViewModelMapper.ToViewModel(area);
+                Area = AreaService.Obtener(Id.Value) ?? throw new InvalidOperationException();
                 Titulo = "Modificar area";
             }
             catch {
@@ -51,9 +49,8 @@ public partial class GestionarAreasPage : ComponentBase {
         }
 
         try {
-            var area = AreaViewModelMapper.ToDomain(Area);
-            var estado = area.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
-            AreaBo.Guardar(area, estado);
+            var estado = Area.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
+            AreaService.Guardar(Area, estado);
 
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
@@ -86,7 +83,7 @@ public partial class GestionarAreasPage : ComponentBase {
         }
 
         try {
-            AreaBo.Eliminar(id);
+            AreaService.Eliminar(id);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
             NavigationManager.NavigateTo("/ListarAreas");

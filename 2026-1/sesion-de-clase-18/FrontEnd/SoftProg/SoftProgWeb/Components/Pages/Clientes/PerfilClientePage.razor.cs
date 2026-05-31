@@ -1,13 +1,12 @@
 using Microsoft.AspNetCore.Components;
 using SoftProgModelo.Modelos;
-using SoftProgNegocio.Bo.Clientes;
+using SoftProgWeb.Servicios.Clientes;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.Clientes;
 
 public partial class PerfilClientePage : ComponentBase {
-    [Inject] private IClienteBo ClienteBo { get; set; } = default!;
+    [Inject] private IClientesService ClienteService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -24,8 +23,7 @@ public partial class PerfilClientePage : ComponentBase {
     protected override void OnParametersSet() {
         if (Id is > 0) {
             try {
-                var cliente = ClienteBo.Obtener(Id.Value) ?? throw new InvalidOperationException();
-                Cliente = ClienteViewModelMapper.ToViewModel(cliente);
+                Cliente = ClienteService.Obtener(Id.Value) ?? throw new InvalidOperationException();
             }
             catch {
                 OperacionExitosa = false;
@@ -42,8 +40,7 @@ public partial class PerfilClientePage : ComponentBase {
         }
 
         try {
-            var cliente = ClienteViewModelMapper.ToDomain(Cliente);
-            ClienteBo.Guardar(cliente, Estado.Modificado);
+            ClienteService.Guardar(Cliente, Estado.Modificado);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
         }

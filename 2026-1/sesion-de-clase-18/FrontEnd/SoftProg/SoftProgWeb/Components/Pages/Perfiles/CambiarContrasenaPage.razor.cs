@@ -1,13 +1,13 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using SoftProgModelo.Modelos;
-using SoftProgNegocio.Bo.Cuentas;
+using SoftProgWeb.Servicios.Cuentas;
 using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Components.Pages.Perfiles;
 
 public partial class CambiarContrasenaPage : ComponentBase {
-    [Inject] private ICuentaUsuarioBo CuentaUsuarioBo { get; set; } = default!;
+    [Inject] private ICuentasUsuarioService CuentaUsuarioService { get; set; } = default!;
     [Inject] private AuthenticationStateProvider AuthenticationStateProvider { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
@@ -44,20 +44,18 @@ public partial class CambiarContrasenaPage : ComponentBase {
             var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
             var usuario = authState.User.Identity?.Name ?? string.Empty;
 
-            var cuenta = CuentaUsuarioBo
-                .Listar()
-                .FirstOrDefault(actual => string.Equals(actual.UserName, usuario, StringComparison.OrdinalIgnoreCase));
+            var cuenta = CuentaUsuarioService.ObtenerPorUsername(usuario);
 
             if (cuenta is null) {
                 throw new InvalidOperationException("No se encontro la cuenta del usuario autenticado.");
             }
 
-            if (!CuentaUsuarioBo.Login(usuario, Solicitud.ContrasenaActual)) {
+            if (!CuentaUsuarioService.Login(usuario, Solicitud.ContrasenaActual)) {
                 throw new InvalidOperationException("La contrasena actual es incorrecta.");
             }
 
             cuenta.Password = Solicitud.NuevaContrasena;
-            CuentaUsuarioBo.Guardar(cuenta, Estado.Modificado);
+            CuentaUsuarioService.Guardar(cuenta, Estado.Modificado);
             OperacionExitosa = true;
             MensajeResultado = "Contrasena actualizada correctamente.";
         }

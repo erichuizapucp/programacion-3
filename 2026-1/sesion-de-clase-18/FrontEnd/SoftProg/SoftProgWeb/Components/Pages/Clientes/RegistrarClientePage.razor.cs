@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Components;
 using SoftProgModelo.Modelos;
-using SoftProgNegocio.Bo.Clientes;
+using SoftProgWeb.Servicios.Clientes;
 using SoftProgWeb.Components.Pages.Clientes.Components;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.Clientes;
 
 public partial class RegistrarClientePage : ComponentBase {
-    [Inject] private IClienteBo ClienteBo { get; set; } = default!;
+    [Inject] private IClientesService ClienteService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private const int TotalPasos = 3;
@@ -74,8 +73,7 @@ public partial class RegistrarClientePage : ComponentBase {
         };
 
         try {
-            var cliente = ClienteViewModelMapper.ToDomain(clienteViewModel);
-            ClienteBo.Guardar(cliente, Estado.Nuevo);
+            ClienteService.Guardar(clienteViewModel, Estado.Nuevo);
             OperacionExitosa = true;
             MensajeResultado = "Registro completado";
             Enviando = false;

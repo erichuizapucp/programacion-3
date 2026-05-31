@@ -1,8 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using System.Globalization;
-using SoftProgNegocio.Bo.Ventas;
+using SoftProgWeb.Servicios.Ventas;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.Ventas;
 
@@ -10,7 +9,7 @@ public partial class VerOrdenVentaPage : ComponentBase {
     private const double TasaIgv = 0.18;
     private static readonly CultureInfo CulturaSoles = CultureInfo.GetCultureInfo("es-PE");
 
-    [Inject] private IOrdenVentaBo OrdenVentaBo { get; set; } = default!;
+    [Inject] private IOrdenesVentaService OrdenVentaService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -39,8 +38,7 @@ public partial class VerOrdenVentaPage : ComponentBase {
             return;
         }
 
-        var orden = OrdenVentaBo.Obtener(Id.Value) ?? throw new InvalidOperationException();
-        var ordenViewModel = OrdenVentaViewModelMapper.ToViewModel(orden);
+        var ordenViewModel = OrdenVentaService.Obtener(Id.Value) ?? throw new InvalidOperationException();
 
         IdOrden = ordenViewModel.Id.ToString();
         Cliente = $"{ordenViewModel.Cliente?.Nombre} {ordenViewModel.Cliente?.ApellidoPaterno}".Trim();

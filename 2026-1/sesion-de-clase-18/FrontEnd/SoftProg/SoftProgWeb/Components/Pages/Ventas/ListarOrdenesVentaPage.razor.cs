@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
 using System.Globalization;
-using SoftProgNegocio.Bo.Ventas;
+using SoftProgWeb.Servicios.Ventas;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.Ventas;
 
@@ -10,7 +10,8 @@ public partial class ListarOrdenesVentaPage : ComponentBase {
     private static readonly CultureInfo CulturaSoles = CultureInfo.GetCultureInfo("es-PE");
     private const int TamanoPagina = 5;
 
-    [Inject] private IOrdenVentaBo OrdenVentaBo { get; set; } = default!;
+    [CascadingParameter] private Task<AuthenticationState>? AuthenticationStateTask { get; set; }
+    [Inject] private IOrdenesVentaService OrdenVentaService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private List<OrdenVentaViewModel> Ordenes { get; set; } = new();
@@ -26,14 +27,23 @@ public partial class ListarOrdenesVentaPage : ComponentBase {
     private int InicioRegistro => TotalRegistros == 0 ? 0 : ((PaginaActual - 1) * TamanoPagina) + 1;
     private int FinRegistro => Math.Min(PaginaActual * TamanoPagina, TotalRegistros);
 
-    protected override void OnInitialized() {
-        CargarOrdenes();
+    protected override async Task OnInitializedAsync() {
+        var authState = AuthenticationStateTask is null
+            ? null
+            : await AuthenticationStateTask;
+
+        var user = authState?.User;
+        var usuarioActual = user?.Identity?.Name ?? string.Empty;
+        var esCliente = user?.IsInRole("Cliente") == true;
+
+        CargarOrdenes(esCliente, usuarioActual);
     }
 
-    private void CargarOrdenes() {
+    private void CargarOrdenes(bool esCliente, string usuarioActual) {
         try {
-            var ordenes = OrdenVentaBo.Listar();
-            Ordenes = [.. ordenes.Select(OrdenVentaViewModelMapper.ToViewModel)];
+            Ordenes = esCliente
+                ? OrdenVentaService.ListarPorCuenta(usuarioActual)
+                : OrdenVentaService.Listar();
             ReiniciarPaginacion();
             MensajeResultado = string.Empty;
         }
@@ -58,10 +68,10 @@ public partial class ListarOrdenesVentaPage : ComponentBase {
 
     private void EliminarOrden(int id) {
         try {
-            OrdenVentaBo.Eliminar(id);
+            OrdenVentaService.Eliminar(id);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
-            CargarOrdenes();
+            NavigationManager.NavigateTo(NavigationManager.Uri, forceLoad: true);
         }
         catch {
             OperacionExitosa = false;

@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Components;
-using SoftProgNegocio.Bo.Rrhh;
+using SoftProgWeb.Servicios.Rrhh;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.RRHH;
 
 public partial class ListarEmpleadosPage : ComponentBase {
-    [Inject] private IEmpleadoBo EmpleadoBo { get; set; } = default!;
+    [Inject] private IEmpleadosService EmpleadoService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private const int TamanoPagina = 5;
@@ -35,8 +34,7 @@ public partial class ListarEmpleadosPage : ComponentBase {
 
     private void CargarEmpleados() {
         try {
-            var empleados = EmpleadoBo.Listar();
-            Empleados = [.. empleados.Select(empleado => EmpleadoViewModelMapper.ToViewModel(empleado))];
+            Empleados = EmpleadoService.Listar();
             ReiniciarPaginacion();
             MensajeResultado = string.Empty;
         }
@@ -71,7 +69,7 @@ public partial class ListarEmpleadosPage : ComponentBase {
 
     private void EliminarEmpleado(int id) {
         try {
-            EmpleadoBo.Eliminar(id);
+            EmpleadoService.Eliminar(id);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
             AplicarFiltroPorDni();
@@ -91,11 +89,8 @@ public partial class ListarEmpleadosPage : ComponentBase {
         }
 
         try {
-            var empleado = EmpleadoBo
-                .Listar()
-                .FirstOrDefault(actual => string.Equals(actual.Dni, DniBusqueda, StringComparison.OrdinalIgnoreCase));
-
-            Empleados = empleado is null ? [] : [EmpleadoViewModelMapper.ToViewModel(empleado)];
+            var empleado = EmpleadoService.BuscarPorDni(DniBusqueda);
+            Empleados = empleado is null ? [] : [empleado];
             ReiniciarPaginacion();
         }
         catch {

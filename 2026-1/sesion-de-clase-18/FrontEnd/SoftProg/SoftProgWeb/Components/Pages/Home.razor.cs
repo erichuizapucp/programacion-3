@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using SoftProgNegocio.Bo.Almacen;
-using SoftProgNegocio.Bo.Clientes;
-using SoftProgNegocio.Bo.Cuentas;
-using SoftProgNegocio.Bo.Rrhh;
-using SoftProgNegocio.Bo.Ventas;
+using SoftProgWeb.Servicios.Almacen;
+using SoftProgWeb.Servicios.Clientes;
+using SoftProgWeb.Servicios.Cuentas;
+using SoftProgWeb.Servicios.Rrhh;
+using SoftProgWeb.Servicios.Ventas;
 using SoftProgWeb.ViewModels;
 using System.Globalization;
 
@@ -14,11 +14,11 @@ public partial class Home : ComponentBase {
     private static readonly CultureInfo CulturaSoles = CultureInfo.GetCultureInfo("es-PE");
 
     [CascadingParameter] private Task<AuthenticationState>? AuthenticationStateTask { get; set; }
-    [Inject] private IProductoBo ProductoBo { get; set; } = default!;
-    [Inject] private IEmpleadoBo EmpleadoBo { get; set; } = default!;
-    [Inject] private IClienteBo ClienteBo { get; set; } = default!;
-    [Inject] private IOrdenVentaBo OrdenVentaBo { get; set; } = default!;
-    [Inject] private ICuentaUsuarioBo CuentaUsuarioBo { get; set; } = default!;
+    [Inject] private IProductosService ProductoService { get; set; } = default!;
+    [Inject] private IEmpleadosService EmpleadoService { get; set; } = default!;
+    [Inject] private IClientesService ClienteService { get; set; } = default!;
+    [Inject] private IOrdenesVentaService OrdenVentaService { get; set; } = default!;
+    [Inject] private ICuentasUsuarioService CuentaUsuarioService { get; set; } = default!;
 
     private string RolActual { get; set; } = string.Empty;
     private string UsuarioActual { get; set; } = string.Empty;
@@ -67,14 +67,14 @@ public partial class Home : ComponentBase {
         UltimasOrdenes.Clear();
         MensajeError = string.Empty;
 
-        var ordenes = new List<SoftProgModelo.Modelos.Ventas.OrdenVenta>();
+        var ordenes = new List<OrdenVentaViewModel>();
 
         if (RolActual == "Admin") {
-            var productos = LeerListaSegura(() => ProductoBo.Listar());
-            var empleados = LeerListaSegura(() => EmpleadoBo.Listar());
-            var clientes = LeerListaSegura(() => ClienteBo.Listar());
-            ordenes = LeerListaSegura(() => OrdenVentaBo.Listar());
-            var cuentas = LeerListaSegura(() => CuentaUsuarioBo.Listar());
+            var productos = LeerListaSegura(() => ProductoService.Listar());
+            var empleados = LeerListaSegura(() => EmpleadoService.Listar());
+            var clientes = LeerListaSegura(() => ClienteService.Listar());
+            ordenes = LeerListaSegura(() => OrdenVentaService.Listar());
+            var cuentas = LeerListaSegura(() => CuentaUsuarioService.Listar());
 
             TituloDashboard = "Panel de administración";
             DescripcionDashboard = "Resumen general del negocio, usuarios y operaciones.";
@@ -93,9 +93,9 @@ public partial class Home : ComponentBase {
             AccesosRapidos.Add(new DashboardQuickAccessViewModel("Listar ordenes de venta", "/ListarOrdenesVenta", "dashboard-quick-ordenes"));
         }
         else if (RolActual == "Empleado") {
-            var productos = LeerListaSegura(() => ProductoBo.Listar());
-            var clientes = LeerListaSegura(() => ClienteBo.Listar());
-            ordenes = LeerListaSegura(() => OrdenVentaBo.Listar());
+            var productos = LeerListaSegura(() => ProductoService.Listar());
+            var clientes = LeerListaSegura(() => ClienteService.Listar());
+            ordenes = LeerListaSegura(() => OrdenVentaService.Listar());
 
             TituloDashboard = "Panel de operaciones";
             DescripcionDashboard = "Vision rapida para gestion de ventas y atencion de clientes.";
@@ -112,25 +112,19 @@ public partial class Home : ComponentBase {
             AccesosRapidos.Add(new DashboardQuickAccessViewModel("Listar productos", "/ListarProductos", "dashboard-quick-productos"));
         }
         else {
-            var clientes = LeerListaSegura(() => ClienteBo.Listar());
-            ordenes = LeerListaSegura(() => OrdenVentaBo.Listar());
+            var clienteActual = LeerDatoSeguro(() => ClienteService.BuscarPorCuenta(UsuarioActual));
+            ordenes = LeerListaSegura(() => OrdenVentaService.ListarPorCuenta(UsuarioActual));
 
             TituloDashboard = "Mi resumen";
             DescripcionDashboard = "Estado de tu cuenta y actividad comercial reciente.";
 
-            var ordenesCliente = ordenes
-                .Where(orden => string.Equals(orden.Cliente?.CuentaUsuario?.UserName, UsuarioActual, StringComparison.OrdinalIgnoreCase))
-                .ToList();
-
-            Metricas.Add(new DashboardMetricViewModel("Mis ordenes", ordenesCliente.Count.ToString(), "Ordenes registradas a tu nombre", "dashboard-metric-mis-ordenes"));
-            Metricas.Add(new DashboardMetricViewModel("Total acumulado", FormatearMoneda(ordenesCliente.Sum(orden => (decimal)orden.Total)), "Acumulado con IGV incluido", "dashboard-metric-monto"));
-            Metricas.Add(new DashboardMetricViewModel("Categorias activas", clientes.Count(cliente => !string.IsNullOrWhiteSpace(cliente.Categoria.ToString())).ToString(), "Categorias disponibles para clientes", "dashboard-metric-categorias"));
+            Metricas.Add(new DashboardMetricViewModel("Mis ordenes", ordenes.Count.ToString(), "Ordenes registradas a tu nombre", "dashboard-metric-mis-ordenes"));
+            Metricas.Add(new DashboardMetricViewModel("Total acumulado", FormatearMoneda(ordenes.Sum(orden => (decimal)orden.Total)), "Acumulado con IGV incluido", "dashboard-metric-monto"));
+            Metricas.Add(new DashboardMetricViewModel("Categoria", string.IsNullOrWhiteSpace(clienteActual?.Categoria) ? "Sin categoria" : clienteActual.Categoria, "Categoria asignada a tu perfil", "dashboard-metric-categorias"));
 
             AccesosRapidos.Add(new DashboardQuickAccessViewModel("Ver perfil", "/PerfilCliente", "dashboard-quick-perfil"));
             AccesosRapidos.Add(new DashboardQuickAccessViewModel("Cambiar contrasena", "/CambiarContrasena", "dashboard-quick-password"));
             AccesosRapidos.Add(new DashboardQuickAccessViewModel("Listar ordenes de venta", "/ListarOrdenesVenta", "dashboard-quick-ordenes"));
-
-            ordenes = ordenesCliente;
         }
 
         foreach (var orden in ordenes
@@ -150,6 +144,15 @@ public partial class Home : ComponentBase {
         }
         catch {
             return [];
+        }
+    }
+
+    private static T? LeerDatoSeguro<T>(Func<T?> lector) where T : class {
+        try {
+            return lector();
+        }
+        catch {
+            return null;
         }
     }
 

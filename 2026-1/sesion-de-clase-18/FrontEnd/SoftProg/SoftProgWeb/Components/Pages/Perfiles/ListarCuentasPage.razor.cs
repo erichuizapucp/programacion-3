@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Components;
-using SoftProgNegocio.Bo.Cuentas;
+using SoftProgWeb.Servicios.Cuentas;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.Perfiles;
 
 public partial class ListarCuentasPage : ComponentBase {
-    [Inject] private ICuentaUsuarioBo CuentaUsuarioBo { get; set; } = default!;
+    [Inject] private ICuentasUsuarioService CuentaUsuarioService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private const int TamanoPagina = 5;
@@ -30,8 +29,7 @@ public partial class ListarCuentasPage : ComponentBase {
 
     private void CargarCuentas() {
         try {
-            var cuentas = CuentaUsuarioBo.Listar();
-            Cuentas = [.. cuentas.Select(cuenta => CuentaUsuarioViewModelMapper.ToViewModel(cuenta))];
+            Cuentas = CuentaUsuarioService.Listar();
             ReiniciarPaginacion();
             MensajeResultado = string.Empty;
         }
@@ -52,7 +50,7 @@ public partial class ListarCuentasPage : ComponentBase {
 
     private void EliminarCuenta(int id) {
         try {
-            CuentaUsuarioBo.Eliminar(id);
+            CuentaUsuarioService.Eliminar(id);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
             CargarCuentas();

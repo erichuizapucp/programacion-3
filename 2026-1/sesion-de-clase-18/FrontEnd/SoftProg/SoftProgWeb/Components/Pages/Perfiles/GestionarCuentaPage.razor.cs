@@ -1,14 +1,12 @@
 using Microsoft.AspNetCore.Components;
 using SoftProgModelo.Modelos;
-using SoftProgModelo.Modelos.Rrhh;
-using SoftProgNegocio.Bo.Cuentas;
+using SoftProgWeb.Servicios.Cuentas;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.Perfiles;
 
 public partial class GestionarCuentaPage : ComponentBase {
-    [Inject] private ICuentaUsuarioBo CuentaUsuarioBo { get; set; } = default!;
+    [Inject] private ICuentasUsuarioService CuentaUsuarioService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -27,8 +25,8 @@ public partial class GestionarCuentaPage : ComponentBase {
     protected override void OnParametersSet() {
         if (Id is > 0) {
             try {
-                var cuenta = CuentaUsuarioBo.Obtener(Id.Value) ?? throw new InvalidOperationException();
-                CuentaViewModel = CuentaUsuarioViewModelMapper.ToViewModel(cuenta);
+                var cuenta = CuentaUsuarioService.Obtener(Id.Value) ?? throw new InvalidOperationException();
+                CuentaViewModel = cuenta;
                 PasswordActual = cuenta.Password;
                 Titulo = "Modificar";
             }
@@ -53,10 +51,8 @@ public partial class GestionarCuentaPage : ComponentBase {
         }
 
         try {
-            var cuenta = CuentaUsuarioViewModelMapper.ToDomain(CuentaViewModel, PasswordActual);
-
-            var estado = cuenta.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
-            CuentaUsuarioBo.Guardar(cuenta, estado);
+            var estado = CuentaViewModel.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
+            CuentaUsuarioService.Guardar(CuentaViewModel, estado);
 
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";

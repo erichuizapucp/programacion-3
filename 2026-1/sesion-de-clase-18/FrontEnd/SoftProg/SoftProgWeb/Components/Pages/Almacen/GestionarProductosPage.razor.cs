@@ -1,13 +1,12 @@
 using Microsoft.AspNetCore.Components;
 using SoftProgModelo.Modelos;
-using SoftProgNegocio.Bo.Almacen;
+using SoftProgWeb.Servicios.Almacen;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.Almacen;
 
 public partial class GestionarProductosPage : ComponentBase {
-    [Inject] private IProductoBo ProductoBo { get; set; } = default!;
+    [Inject] private IProductosService ProductoService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -25,8 +24,7 @@ public partial class GestionarProductosPage : ComponentBase {
     protected override void OnParametersSet() {
         if (Id is > 0) {
             try {
-                var producto = ProductoBo.Obtener(Id.Value) ?? throw new InvalidOperationException();
-                Producto = ProductoViewModelMapper.ToViewModel(producto);
+                Producto = ProductoService.Obtener(Id.Value) ?? throw new InvalidOperationException();
                 Titulo = "Modificar producto";
             }
             catch {
@@ -49,9 +47,8 @@ public partial class GestionarProductosPage : ComponentBase {
         }
 
         try {
-            var producto = ProductoViewModelMapper.ToDomain(Producto);
-            var estado = producto.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
-            ProductoBo.Guardar(producto, estado);
+            var estado = Producto.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
+            ProductoService.Guardar(Producto, estado);
 
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";

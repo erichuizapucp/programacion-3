@@ -1,11 +1,11 @@
 using Microsoft.AspNetCore.Components;
-using SoftProgNegocio.Bo.Cuentas;
+using SoftProgWeb.Servicios.Cuentas;
 using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Components.Pages.Login;
 
 public partial class RecuperarContrasenaPage : ComponentBase {
-    [Inject] private ICuentaUsuarioBo CuentaUsuarioBo { get; set; } = default!;
+    [Inject] private ICuentasUsuarioService CuentaUsuarioService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private SolicitudRecuperarContrasenaViewModel? Solicitud { get; set; } = new SolicitudRecuperarContrasenaViewModel();

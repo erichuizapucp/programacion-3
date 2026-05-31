@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using SoftProgNegocio.Bo.Cuentas;
+using SoftProgWeb.Servicios.Cuentas;
 using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Extensiones;
@@ -14,7 +14,7 @@ public static class AuthExtensions {
         return endpoints;
     }
 
-    private static async Task<IResult> IniciarSesionAsync(HttpContext context, ICuentaUsuarioBo cuentaUsuarioBo) {
+    private static async Task<IResult> IniciarSesionAsync(HttpContext context, ICuentasUsuarioService cuentaUsuarioService) {
         var form = await context.Request.ReadFormAsync();
 
         var usuario = form["usuario"].ToString();
@@ -30,13 +30,11 @@ public static class AuthExtensions {
             ? tipo
             : TipoUsuarioEnum.Cliente;
 
-        if (!cuentaUsuarioBo.Login(usuario, contrasena)) {
+        if (!cuentaUsuarioService.Login(usuario, contrasena)) {
             return Results.LocalRedirect("/Login?error=1");
         }
 
-        var cuenta = cuentaUsuarioBo
-            .Listar()
-            .FirstOrDefault(cuentaActual => string.Equals(cuentaActual.UserName, usuario, StringComparison.OrdinalIgnoreCase));
+        var cuenta = cuentaUsuarioService.ObtenerPorUsername(usuario);
 
         var claims = new List<Claim>
         {

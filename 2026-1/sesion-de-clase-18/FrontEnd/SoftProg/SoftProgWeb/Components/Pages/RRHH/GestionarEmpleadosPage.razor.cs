@@ -1,14 +1,13 @@
 using Microsoft.AspNetCore.Components;
 using SoftProgModelo.Modelos;
-using SoftProgNegocio.Bo.Rrhh;
+using SoftProgWeb.Servicios.Rrhh;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.RRHH;
 
 public partial class GestionarEmpleadosPage : ComponentBase {
-    [Inject] private IEmpleadoBo EmpleadoBo { get; set; } = default!;
-    [Inject] private IAreaBo AreaBo { get; set; } = default!;
+    [Inject] private IEmpleadosService EmpleadoService { get; set; } = default!;
+    [Inject] private IAreaService AreaService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     [SupplyParameterFromQuery(Name = "id")]
@@ -31,8 +30,7 @@ public partial class GestionarEmpleadosPage : ComponentBase {
 
         if (Id is > 0) {
             try {
-                var empleado = EmpleadoBo.Obtener(Id.Value) ?? throw new InvalidOperationException();
-                EmpleadoViewModel = EmpleadoViewModelMapper.ToViewModel(empleado);
+                EmpleadoViewModel = EmpleadoService.Obtener(Id.Value) ?? throw new InvalidOperationException();
                 Titulo = "Modificar empleado";
             }
             catch {
@@ -48,10 +46,7 @@ public partial class GestionarEmpleadosPage : ComponentBase {
 
     private void CargarAreas() {
         try {
-            var areas = AreaBo.Listar();
-            Areas = areas
-                .Select(AreaViewModelMapper.ToViewModel)
-                .ToList();
+            Areas = AreaService.Listar();
         }
         catch {
             Areas = [];
@@ -70,11 +65,8 @@ public partial class GestionarEmpleadosPage : ComponentBase {
         }
 
         try {
-            var areaDominio = AreaViewModelMapper.ToDomain(areaSeleccionada);
-            var empleado = EmpleadoViewModelMapper.ToDomain(EmpleadoViewModel, areaDominio);
-
-            var estado = empleado.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
-            EmpleadoBo.Guardar(empleado, estado);
+            var estado = EmpleadoViewModel.Id <= 0 ? Estado.Nuevo : Estado.Modificado;
+            EmpleadoService.Guardar(EmpleadoViewModel, estado);
 
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";

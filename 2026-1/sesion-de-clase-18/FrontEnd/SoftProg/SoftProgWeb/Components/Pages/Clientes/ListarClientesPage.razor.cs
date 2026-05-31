@@ -1,12 +1,11 @@
 using Microsoft.AspNetCore.Components;
-using SoftProgNegocio.Bo.Clientes;
+using SoftProgWeb.Servicios.Clientes;
 using SoftProgWeb.ViewModels;
-using SoftProgWeb.ViewModels.Mappers;
 
 namespace SoftProgWeb.Components.Pages.Clientes;
 
 public partial class ListarClientesPage : ComponentBase {
-    [Inject] private IClienteBo ClienteBo { get; set; } = default!;
+    [Inject] private IClientesService ClienteService { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
 
     private const int TamanoPagina = 5;
@@ -35,8 +34,7 @@ public partial class ListarClientesPage : ComponentBase {
 
     private void CargarClientes() {
         try {
-            var clientes = ClienteBo.Listar();
-            Clientes = [.. clientes.Select(ClienteViewModelMapper.ToViewModel)];
+            Clientes = ClienteService.Listar();
             ReiniciarPaginacion();
             MensajeResultado = string.Empty;
         }
@@ -63,7 +61,7 @@ public partial class ListarClientesPage : ComponentBase {
 
     private void Eliminar(int id) {
         try {
-            ClienteBo.Eliminar(id);
+            ClienteService.Eliminar(id);
             OperacionExitosa = true;
             MensajeResultado = "Operacion realizada correctamente.";
             AplicarFiltroPorDni();
@@ -91,11 +89,8 @@ public partial class ListarClientesPage : ComponentBase {
         }
 
         try {
-            var cliente = ClienteBo
-                .Listar()
-                .FirstOrDefault(actual => string.Equals(actual.Dni, DniBusqueda, StringComparison.OrdinalIgnoreCase));
-
-            Clientes = cliente is null ? [] : [ClienteViewModelMapper.ToViewModel(cliente)];
+            var cliente = ClienteService.BuscarPorDni(DniBusqueda);
+            Clientes = cliente is null ? [] : [cliente];
             ReiniciarPaginacion();
         }
         catch {

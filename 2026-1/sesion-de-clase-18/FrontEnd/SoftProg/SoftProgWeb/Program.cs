@@ -1,12 +1,12 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using SoftProgDBManager.Db;
-using SoftProgNegocio.Bo.Almacen;
-using SoftProgNegocio.Bo.Clientes;
-using SoftProgNegocio.Bo.Cuentas;
-using SoftProgNegocio.Bo.Rrhh;
-using SoftProgNegocio.Bo.Ventas;
 using SoftProgWeb.Components;
 using SoftProgWeb.Extensiones;
+using SoftProgWeb.Servicios.Almacen;
+using SoftProgWeb.Servicios.Clientes;
+using SoftProgWeb.Servicios.Cuentas;
+using SoftProgWeb.Servicios.Rrhh;
+using SoftProgWeb.Servicios.Ventas;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,12 +28,12 @@ builder.Services.AddAuthorization();
 builder.Services.AddCascadingAuthenticationState();
 
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<ICuentaUsuarioBo, CuentaUsuarioBoImpl>();
-builder.Services.AddScoped<IAreaBo, AreaBoImpl>();
-builder.Services.AddScoped<IEmpleadoBo, EmpleadoBoImpl>();
-builder.Services.AddScoped<IOrdenVentaBo, OrdenVentaBoImpl>();
-builder.Services.AddScoped<IClienteBo, ClienteBoImpl>();
-builder.Services.AddScoped<IProductoBo, ProductoBoImpl>();
+builder.Services.AddScoped<ICuentasUsuarioService, CuentasUsuarioServiceImpl>();
+builder.Services.AddScoped<IAreaService, AreasServiceImpl>();
+builder.Services.AddScoped<IEmpleadosService, EmpleadosServiceImpl>();
+builder.Services.AddScoped<IOrdenesVentaService, OrdenesVentaServiceImpl>();
+builder.Services.AddScoped<IClientesService, ClientesServicecsImpl>();
+builder.Services.AddScoped<IProductosService, ProductosServiceImpl>();
 
 var app = builder.Build();
 
