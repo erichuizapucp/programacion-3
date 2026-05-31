@@ -1,7 +1,3 @@
-using SoftProgModelo.Modelos.Ventas;
-using SoftProgModelo.Modelos.Clientes;
-using SoftProgModelo.Modelos.Almacen;
-
 namespace SoftProgWeb.ViewModels.Mappers;
 
 public static class OrdenVentaViewModelMapper {

@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Components;
-using SoftProgModelo.Modelos;
 using SoftProgWeb.Servicios.Cuentas;
 using SoftProgWeb.ViewModels;
 

@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using SoftProgModelo.Modelos;
 using SoftProgWeb.Servicios.Cuentas;
 using SoftProgWeb.ViewModels;
 

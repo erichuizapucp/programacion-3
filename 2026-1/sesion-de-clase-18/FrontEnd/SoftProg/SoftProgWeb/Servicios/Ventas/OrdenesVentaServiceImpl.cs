@@ -1,10 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using SoftProgModelo.Modelos;
-using SoftProgModelo.Modelos.Almacen;
-using SoftProgModelo.Modelos.Clientes;
-using SoftProgModelo.Modelos.Rrhh;
-using SoftProgModelo.Modelos.Ventas;
-using SoftProgWS.OrdenesVenta;
+﻿using SoftProgWS.OrdenesVenta;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
 using SoftProgWeb.ViewModels.Mappers;

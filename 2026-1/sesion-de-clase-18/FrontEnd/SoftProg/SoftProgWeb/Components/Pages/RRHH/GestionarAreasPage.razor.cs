@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
-using SoftProgModelo.Modelos;
 using SoftProgWeb.Servicios.Rrhh;
 using SoftProgWeb.ViewModels;
 

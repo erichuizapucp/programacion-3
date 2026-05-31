@@ -1,5 +1,3 @@
-using SoftProgModelo.Modelos.Rrhh;
-
 namespace SoftProgWeb.ViewModels.Mappers;
 
 public static class CuentaUsuarioViewModelMapper {

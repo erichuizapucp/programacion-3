@@ -1,7 +1,3 @@
 <Solution>
-  <Project Path="SoftProgDBManager/SoftProgDBManager.csproj" />
-  <Project Path="SoftProgModelo/SoftProgModelo.csproj" />
-  <Project Path="SoftProgNegocio/SoftProgNegocio.csproj" />
-  <Project Path="SoftProgPersistencia/SoftProgPersistencia.csproj" />
   <Project Path="SoftProgWeb/SoftProgWeb.csproj" />
 </Solution>

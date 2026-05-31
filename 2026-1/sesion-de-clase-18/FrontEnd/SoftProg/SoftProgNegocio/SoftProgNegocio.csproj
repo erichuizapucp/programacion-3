@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <ProjectReference Include="..\SoftProgModelo\SoftProgModelo.csproj" />
     <ProjectReference Include="..\SoftProgPersistencia\SoftProgPersistencia.csproj" />
   </ItemGroup>
 

@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using SoftProgModelo.Modelos;
-using SoftProgModelo.Modelos.Rrhh;
-using SoftProgWS.Areas;
+﻿using SoftProgWS.Areas;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
 using SoftProgWeb.ViewModels.Mappers;

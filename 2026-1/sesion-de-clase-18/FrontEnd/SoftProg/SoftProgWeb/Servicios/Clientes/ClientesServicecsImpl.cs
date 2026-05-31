@@ -1,8 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using SoftProgModelo.Modelos;
-using SoftProgModelo.Modelos.Clientes;
-using SoftProgModelo.Modelos.Rrhh;
-using SoftProgWS.Clientes;
+﻿using SoftProgWS.Clientes;
 using SoftProgWeb.Servicios.Base;
 using SoftProgWeb.ViewModels;
 using SoftProgWeb.ViewModels.Mappers;
