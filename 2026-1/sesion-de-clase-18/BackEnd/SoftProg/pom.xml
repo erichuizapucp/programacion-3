@@ -15,5 +15,6 @@
     <module>SoftProgApp</module>
     <module>SoftProgNegocio</module>
     <module>SoftProgWS</module>
+    <module>SoftProgWS2</module>
   </modules>
 </project>
