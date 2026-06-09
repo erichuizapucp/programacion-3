@@ -1,0 +1,58 @@
+@page "/RegistrarCliente"
+@attribute [AllowAnonymous]
+@using SoftProgWeb.Components.Pages.Clientes.Components
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+            <div class="card app-panel app-wizard-card p-4" data-testid="register-client-page">
+                <CabeceraWizardRegistroComponent
+                    PasoActual="PasoActual"
+                    TotalPasos="TotalPasos"
+                    TituloPasoActual="TitulosPaso[PasoActual]" />
+
+                @if (RegistroCompletado)
+                {
+                    <div class="alert alert-success text-center mt-3" role="alert">
+                        <h5 class="fw-bold">Registro completado</h5>
+                        Su cuenta ha sido creada exitosamente.<br />
+                        Sera redirigido al inicio de sesion en unos segundos...
+                    </div>
+                }
+                else
+                {
+                    <ResumenErroresWizardComponent Errores="ErroresPaso" />
+
+                    @if (PasoActual == 0)
+                    {
+                        <PasoCuentaRegistroComponent Formulario="Formulario" />
+                    }
+                    else if (PasoActual == 1)
+                    {
+                        <PasoDatosRegistroComponent Formulario="Formulario" />
+                    }
+                    else
+                    {
+                        <PasoDetallesRegistroComponent Formulario="Formulario" />
+                    }
+
+                    <AlertaOperacionComponent Mensaje="MensajeResultado" Exito="OperacionExitosa" />
+
+                    <div class="d-flex justify-content-between">
+                        <button class="btn btn-outline-secondary" data-testid="register-prev-btn" @onclick="PasoAnterior" disabled="@(PasoActual == 0 || Enviando)">Anterior</button>
+
+                        @if (PasoActual < TotalPasos - 1)
+                        {
+                            <button class="btn btn-primary" data-testid="register-next-btn" @onclick="PasoSiguiente" disabled="Enviando">Siguiente</button>
+                        }
+                        else
+                        {
+                            <button class="btn btn-primary" data-testid="register-finish-btn" @onclick="FinalizarAsync" disabled="Enviando">@(Enviando ? "Finalizando..." : "Finalizar")</button>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

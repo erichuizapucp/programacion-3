@@ -1,0 +1,59 @@
+.home-hero {
+    padding: 2rem;
+    border-radius: 20px;
+}
+
+.home-hero h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.home-hero p {
+    color: #475569;
+    max-width: 62ch;
+}
+
+.hero-actions {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+}
+
+.dashboard-header {
+    border-radius: 16px;
+    padding: 1.25rem;
+}
+
+.dashboard-header p {
+    margin: 0;
+    color: #475569;
+}
+
+.quick-actions,
+.recent-summary {
+    border-radius: 16px;
+    padding: 1.1rem;
+}
+
+.quick-actions h3,
+.recent-summary h3 {
+    font-size: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.quick-actions-grid {
+    display: grid;
+    gap: 0.6rem;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+@media (max-width: 640.98px) {
+    .home-hero {
+        padding: 1.25rem;
+    }
+
+    .home-hero h2 {
+        font-size: 1.5rem;
+    }
+}

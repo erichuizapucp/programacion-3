@@ -1,0 +1,59 @@
+@page "/GestionarProductos"
+@attribute [Authorize(Roles = "Empleado,Admin")]
+@using SoftProgWeb.ViewModels
+
+<TituloPaginaComponent Texto="Gestionar productos" />
+
+<div class="container" data-testid="products-form-page">
+    <div class="card app-panel">
+        <div class="card-header">
+            <h2>@Titulo</h2>
+        </div>
+        <EditForm Model="Producto" OnValidSubmit="GuardarProducto" FormName="GestionarProductosForm">
+            <DataAnnotationsValidator />
+            <div class="card-body">
+                <ValidationSummary />
+
+                <div class="mb-3 row">
+                    <label for="idProducto" class="col-sm-2 col-form-label">ID producto:</label>
+                    <div class="col-sm-4">
+                        <InputNumber id="idProducto" class="form-control" @bind-Value="Producto.Id" disabled />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
+                    <div class="col-sm-8">
+                        <InputText id="nombre" class="form-control" data-testid="product-name-input"
+                                   @bind-Value="Producto.Nombre" />
+                        <ValidationMessage For="@(() => Producto.Nombre)" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="unidadMedida" class="col-sm-2 col-form-label">Unidad de medida:</label>
+                    <div class="col-sm-8">
+                        <InputSelect id="unidadMedida" class="form-control" data-testid="product-unit-select"
+                                     @bind-Value="Producto.UnidadMedida">
+                            <option value="@UnidadMedidaEnum.Unidad">Unidad</option>
+                            <option value="@UnidadMedidaEnum.Kilos">Kilos</option>
+                            <option value="@UnidadMedidaEnum.Onzas">Onzas</option>
+                            <option value="@UnidadMedidaEnum.Litros">Litros</option>
+                        </InputSelect>
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="precio" class="col-sm-2 col-form-label">Precio:</label>
+                    <div class="col-sm-4">
+                        <InputNumber id="precio" class="form-control" data-testid="product-price-input"
+                                     @bind-Value="Producto.Precio" step="0.01" />
+                        <ValidationMessage For="@(() => Producto.Precio)" />
+                    </div>
+                </div>
+                <AlertaOperacionComponent Mensaje="@MensajeResultado" Exito="OperacionExitosa" />
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-outline-secondary" href="@RutaRetorno" data-testid="product-back-btn">Volver</a>
+                <button class="btn btn-primary" type="submit" data-testid="product-save-btn">Guardar</button>
+            </div>
+        </EditForm>
+    </div>
+</div>

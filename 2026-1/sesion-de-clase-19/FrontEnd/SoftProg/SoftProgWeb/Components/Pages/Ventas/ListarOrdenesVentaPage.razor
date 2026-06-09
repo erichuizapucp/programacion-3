@@ -1,0 +1,82 @@
+@page "/ListarOrdenesVenta"
+@attribute [Authorize(Roles = "Empleado,Admin,Cliente")]
+
+<div class="container py-3" data-testid="orders-list-page">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <TituloPaginaComponent Texto="Listar ordenes de venta" />
+        <BotonVolverAtrasComponent />
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-semibold">Ordenes registradas</h5>
+            <button class="btn btn-primary" @onclick="RegistrarOrden" data-testid="order-create-btn">
+                Registrar orden de venta
+            </button>
+        </div>
+        <div class="card-body">
+            <AlertaOperacionComponent Mensaje="@MensajeResultado" Exito="OperacionExitosa" CssAdicional="mb-3" />
+
+            @if (Ordenes.Count == 0)
+            {
+                <div class="alert alert-secondary border text-center mb-0" data-testid="order-empty-state">
+                    <h6 class="fw-semibold">Sin registros por mostrar</h6>
+                    <p class="mb-2">Aun no hay datos disponibles para esta seccion.</p>
+                    <button class="btn btn-primary" @onclick="RegistrarOrden" data-testid="order-empty-create-btn">
+                        Registrar orden de venta
+                    </button>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive border rounded">
+                    <table class="table table-hover table-striped align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Cliente</th>
+                                <th>Total</th>
+                                <th>Activo</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var orden in OrdenesPaginadas)
+                            {
+                                <tr data-testid="@($"order-row-{orden.Id}")">
+                                    <td>@orden.Id</td>
+                                    <td>@($"{orden.Cliente?.Nombre} {orden.Cliente?.ApellidoPaterno}".Trim())</td>
+                                    <td>@FormatearMoneda(orden.Total)</td>
+                                    <td>
+                                        <input class="form-check-input" type="checkbox" disabled checked="@orden.Activo" />
+                                    </td>
+                                    <td>
+                                        <AccionesComponent Id="@orden.Id" OnDetalle="VerDetalleOrden"
+                                                           OnModificar="ModificarOrden" OnEliminar="EliminarOrden" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mt-3">
+                    <small class="text-muted">Mostrando @InicioRegistro-@FinRegistro de @TotalRegistros registros</small>
+                    <div class="btn-group" role="group" aria-label="Paginacion ordenes">
+                        <button class="btn btn-outline-secondary btn-sm" @onclick="PaginaAnterior"
+                                disabled="@(PaginaActual == 1)">
+                            Anterior
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" disabled>
+                            Pagina @PaginaActual de @TotalPaginas
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" @onclick="PaginaSiguiente"
+                                disabled="@(PaginaActual >= TotalPaginas)">
+                            Siguiente
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

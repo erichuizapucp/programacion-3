@@ -1,0 +1,17 @@
+<div class="text-center mb-3">
+    <h4 class="fw-bold">Registro de cliente</h4>
+    <span class="app-wizard-step small">Paso @(PasoActual + 1) de @TotalPasos: @TituloPasoActual</span>
+</div>
+
+<div class="progress app-wizard-progress mb-3" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="@PorcentajeProgreso">
+    <div class="progress-bar" style="@AnchoBarra"></div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public int PasoActual { get; set; }
+    [Parameter, EditorRequired] public int TotalPasos { get; set; }
+    [Parameter, EditorRequired] public string TituloPasoActual { get; set; } = string.Empty;
+
+    private int PorcentajeProgreso => (int)(((double)(PasoActual + 1) / TotalPasos) * 100);
+    private string AnchoBarra => $"width: {PorcentajeProgreso}%";
+}

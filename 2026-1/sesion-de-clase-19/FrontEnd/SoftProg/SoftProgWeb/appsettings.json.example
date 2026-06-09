@@ -1,0 +1,23 @@
+{
+  "ConnectionStrings": {
+    "SoftProgDb": "Server=<servidor>;Port=<puerto>;Database=<basedatos>;User Id=<usuario>;Password=<password-encriptado>"
+  },
+  "DbSettings": {
+    "Tipo": "MySQL"
+  },
+  "SoapEndpoints": {
+    "Areas": "http://<servidor>:<puerto>/<contexto>/AreasWS",
+    "Clientes": "http://<servidor>:<puerto>/<contexto>/ClientesWS",
+    "CuentasUsuario": "http://<servidor>:<puerto>/<contexto>/CuentasUsuarioWS",
+    "Empleados": "http://<servidor>:<puerto>/<contexto>/EmpleadosWS",
+    "OrdenesVenta": "http://<servidor>:<puerto>/<contexto>/OrdenesVentaWS",
+    "Productos": "http://<servidor>:<puerto>/<contexto>/ProductosWS"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning"
+    }
+  },
+  "AllowedHosts": "*"
+}
