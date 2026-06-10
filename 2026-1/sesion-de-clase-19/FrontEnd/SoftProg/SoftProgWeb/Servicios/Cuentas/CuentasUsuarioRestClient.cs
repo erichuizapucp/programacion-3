@@ -5,7 +5,8 @@ using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Cuentas;
 
-public class CuentasUsuarioRestClient : RestServiceClient<CuentaUsuarioViewModel, CuentasUsuarioRestClient.CuentaUsuarioRestDto>, ICuentasUsuarioServiceClient {
+public class CuentasUsuarioRestClient : RestServiceClient<CuentaUsuarioViewModel, CuentasUsuarioRestClient.CuentaUsuarioRestDto>, 
+    ICuentasUsuarioServiceClient {
     private const string ResourceConfig = "RestResources:CuentasUsuario";
 
     protected override string ResourceSetting => ResourceConfig;
@@ -16,7 +17,8 @@ public class CuentasUsuarioRestClient : RestServiceClient<CuentaUsuarioViewModel
 
     public bool Login(string username, string password) {
         using var client = CreateClient(ResourceSetting);
-        using var response = client.PostAsJsonAsync("login", new CuentaUsuarioRestDto {
+        using var response = client.PostAsJsonAsync("login", 
+            new CuentaUsuarioRestDto {
             UserName = username.Trim(),
             Password = password
         }).GetAwaiter().GetResult();

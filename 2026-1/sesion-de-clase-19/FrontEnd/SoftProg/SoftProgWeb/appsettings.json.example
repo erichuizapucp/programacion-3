@@ -13,6 +13,14 @@
     "OrdenesVenta": "http://<servidor>:<puerto>/<contexto>/OrdenesVentaWS",
     "Productos": "http://<servidor>:<puerto>/<contexto>/ProductosWS"
   },
+  "RestResources": {
+    "Areas": "http://<servidor>:<puerto>/<contexto>/api/v1/areas",
+    "Clientes": "http://<servidor>:<puerto>/<contexto>/api/v1/clientes",
+    "CuentasUsuario": "http://<servidor>:<puerto>/<contexto>/api/v1/cuentas",
+    "Empleados": "http://<servidor>:<puerto>/<contexto>/api/v1/empleados",
+    "OrdenesVenta": "http://<servidor>:<puerto>/<contexto>/api/v1/ordenes",
+    "Productos": "http://<servidor>:<puerto>/<contexto>/api/v1/productos"
+  },
   "Logging": {
     "LogLevel": {
       "Default": "Information",
