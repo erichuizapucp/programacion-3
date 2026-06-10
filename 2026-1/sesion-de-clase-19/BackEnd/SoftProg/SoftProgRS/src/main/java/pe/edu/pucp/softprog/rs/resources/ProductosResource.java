@@ -1,15 +1,14 @@
 package pe.edu.pucp.softprog.rs.resources;
 
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriInfo;
 import pe.edu.pucp.softprog.bo.almacen.ProductoBO;
 import pe.edu.pucp.softprog.bo.almacen.ProductoBOImpl;
-import pe.edu.pucp.softprog.bo.rrhh.AreaBO;
-import pe.edu.pucp.softprog.bo.rrhh.AreaBOImpl;
 import pe.edu.pucp.softprog.modelo.Estado;
 import pe.edu.pucp.softprog.modelo.almacen.Producto;
-import pe.edu.pucp.softprog.modelo.rrhh.Area;
 
 import java.net.URI;
 import java.util.List;
@@ -20,6 +19,9 @@ import java.util.Map;
 @Consumes(MediaType.APPLICATION_JSON)
 public class ProductosResource {
     private final ProductoBO productoBO;
+
+    @Context
+    private UriInfo uriInfo;
 
     public ProductosResource() {
         productoBO = new ProductoBOImpl();
@@ -63,7 +65,9 @@ public class ProductosResource {
         }
 
         productoBO.guardar(producto, Estado.Nuevo);
-        URI location = URI.create("/SoftProgRS-1.0-SNAPSHOT/api/v1/productos/" + producto.getId());
+        URI location = uriInfo.getAbsolutePathBuilder()
+                .path(String.valueOf(producto.getId()))
+                .build();
 
         return Response.created(location)
                 .entity(producto)

@@ -1,4 +1,4 @@
-package pe.edu.pucp.softprog.rs.resources;
+package pe.edu.pucp.softprog.rs;
 
 import jakarta.ws.rs.ApplicationPath;
 import jakarta.ws.rs.core.Application;

@@ -1,8 +1,10 @@
 package pe.edu.pucp.softprog.rs.resources;
 
 import jakarta.ws.rs.*;
+import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import jakarta.ws.rs.core.UriInfo;
 import pe.edu.pucp.softprog.bo.rrhh.AreaBO;
 import pe.edu.pucp.softprog.bo.rrhh.AreaBOImpl;
 import pe.edu.pucp.softprog.modelo.Estado;
@@ -17,6 +19,9 @@ import java.util.Map;
 @Consumes(MediaType.APPLICATION_JSON)
 public class AreasResource {
     private final AreaBO areaBO;
+
+    @Context
+    private UriInfo uriInfo;
 
     public AreasResource() {
         areaBO = new AreaBOImpl();
@@ -60,7 +65,9 @@ public class AreasResource {
         }
 
         areaBO.guardar(area, Estado.Nuevo);
-        URI location = URI.create("/SoftProgRS-1.0-SNAPSHOT/api/v1/areas/" + area.getId());
+        URI location = uriInfo.getAbsolutePathBuilder()
+                .path(String.valueOf(area.getId()))
+                .build();
 
         return Response.created(location)
                 .entity(area)
