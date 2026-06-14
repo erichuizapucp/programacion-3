@@ -68,7 +68,10 @@ public class AreasServiceRestClient : RestServiceClient<AreaViewModel, AreasServ
         }
 
         EnsureSuccess(response, "Obtener area");
-        return response.Content.ReadFromJsonAsync<AreaRestDto>().GetAwaiter().GetResult();
+        return response.Content.
+            ReadFromJsonAsync<AreaRestDto>().
+            GetAwaiter().
+            GetResult();
     }
 
     private void GuardarPayload(AreaRestDto payload, Estado estado, string idPath) {
