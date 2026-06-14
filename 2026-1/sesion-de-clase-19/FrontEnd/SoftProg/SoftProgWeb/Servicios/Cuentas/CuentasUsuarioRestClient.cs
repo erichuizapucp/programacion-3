@@ -53,13 +53,7 @@ public class CuentasUsuarioRestClient : BaseRestServiceClient<CuentaUsuarioViewM
     }
 
     public void Guardar(CuentaUsuarioViewModel modelo, Estado estado) {
-        var fallback = string.Empty;
-        if (modelo.Id > 0) {
-            var actual = Obtener(modelo.Id);
-            fallback = actual?.Password ?? string.Empty;
-        }
-
-        var payload = ToRest(modelo, fallback);
+        var payload = ToRest(modelo);
         switch (estado) {
             case Estado.Nuevo:
                 Api.Post("/cuentas", payload);
@@ -81,7 +75,12 @@ public class CuentasUsuarioRestClient : BaseRestServiceClient<CuentaUsuarioViewM
     }
 
     protected override CuentaUsuarioRestDto ToRest(CuentaUsuarioViewModel source) {
-        return ToRest(source, string.Empty);
+        return new CuentaUsuarioRestDto {
+            Id = source.Id,
+            Activo = source.Activo,
+            UserName = source.UserName.Trim(),
+            Password = source.Password
+        };
     }
 
     private static CuentaUsuarioViewModel ToViewModel(CuentaUsuarioRestDto source, bool includePassword) {
@@ -94,14 +93,4 @@ public class CuentasUsuarioRestClient : BaseRestServiceClient<CuentaUsuarioViewM
         };
     }
 
-    private static CuentaUsuarioRestDto ToRest(CuentaUsuarioViewModel source, string passwordFallback) {
-        var password = string.IsNullOrWhiteSpace(source.Password) ? passwordFallback : source.Password;
-
-        return new CuentaUsuarioRestDto {
-            Id = source.Id,
-            Activo = source.Activo,
-            UserName = source.UserName.Trim(),
-            Password = password
-        };
-    }
 }
