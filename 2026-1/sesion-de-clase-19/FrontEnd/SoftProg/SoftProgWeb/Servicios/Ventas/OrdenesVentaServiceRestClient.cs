@@ -1,22 +1,19 @@
 using System.Net;
-using System.Net.Http.Json;
 using SoftProgWeb.Servicios.Base;
+using SoftProgWeb.Servicios.Rest.Dtos.Ventas;
 using SoftProgWeb.ViewModels;
 
 namespace SoftProgWeb.Servicios.Ventas;
 
-public class OrdenesVentaServiceRestClient : RestServiceClient<OrdenVentaViewModel, OrdenesVentaServiceRestClient.OrdenVentaRestDto>, IOrdenesVentaServiceClient {
-    private const string ResourceConfig = "RestResources:OrdenesVenta";
-    private const string CuentasResourceSetting = "RestResources:CuentasUsuario";
-
-    protected override string ResourceSetting => ResourceConfig;
-
+public class OrdenesVentaServiceRestClient : BaseRestServiceClient<OrdenVentaViewModel, OrdenVentaRestDto>, IOrdenesVentaServiceClient {
     public OrdenesVentaServiceRestClient(IConfiguration configuration, IHttpClientFactory httpClientFactory)
         : base(configuration, httpClientFactory) {
+        // IConfiguration e IHttpClientFactory son inyectados por el contenedor de DI.
     }
 
     public List<OrdenVentaViewModel> Listar() {
-        var payload = ListarPayload();
+        var payload = Api.Get<List<OrdenVentaRestDto>>("/ordenes");
+
         var response = new List<OrdenVentaViewModel>(payload.Count);
         foreach (var item in payload) {
             response.Add(ToViewModel(item));
@@ -26,7 +23,16 @@ public class OrdenesVentaServiceRestClient : RestServiceClient<OrdenVentaViewMod
     }
 
     public List<OrdenVentaViewModel> ListarPorCuenta(string cuenta) {
-        var payload = ListarPayloadPorCuenta(cuenta);
+        var path = $"/cuentas/{Uri.EscapeDataString(cuenta)}/ordenes";
+
+        List<OrdenVentaRestDto> payload;
+        try {
+            payload = Api.Get<List<OrdenVentaRestDto>>(path);
+        } catch (HttpRequestException ex) when (
+            ex.StatusCode == HttpStatusCode.BadRequest ||
+            ex.StatusCode == HttpStatusCode.NotFound) {
+            payload = [];
+        }
 
         var response = new List<OrdenVentaViewModel>(payload.Count);
         foreach (var item in payload) {
@@ -37,16 +43,30 @@ public class OrdenesVentaServiceRestClient : RestServiceClient<OrdenVentaViewMod
     }
 
     public OrdenVentaViewModel? Obtener(int id) {
-        var payload = ObtenerPayload(id.ToString());
-        return payload is null ? null : ToViewModel(payload);
+        try {
+            var payload = Api.Get<OrdenVentaRestDto>($"/ordenes/{id}");
+            return ToViewModel(payload);
+        } catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.NotFound) {
+            return null;
+        }
     }
 
     public void Guardar(OrdenVentaViewModel modelo, Estado estado) {
-        GuardarPayload(ToRest(modelo), estado, modelo.Id.ToString());
+        var payload = ToRest(modelo);
+        switch (estado) {
+            case Estado.Nuevo:
+                Api.Post("/ordenes", payload);
+                break;
+            case Estado.Modificado:
+                Api.Put($"/ordenes/{modelo.Id}", payload);
+                break;
+            default:
+                throw new InvalidOperationException($"Estado no soportado: {estado}");
+        }
     }
 
     public void Eliminar(int id) {
-        EliminarPayload(id.ToString());
+        Api.Delete($"/ordenes/{id}");
     }
 
     protected override OrdenVentaViewModel ToViewModel(OrdenVentaRestDto source) {
@@ -85,22 +105,22 @@ public class OrdenesVentaServiceRestClient : RestServiceClient<OrdenVentaViewMod
         return new ClienteViewModel {
             Id = source.Id,
             Activo = source.Activo,
-            Dni = source.Dni ?? string.Empty,
-            Nombre = source.Nombre ?? string.Empty,
-            ApellidoPaterno = source.ApellidoPaterno ?? string.Empty,
+            Dni = source.Dni,
+            Nombre = source.Nombre,
+            ApellidoPaterno = source.ApellidoPaterno,
             ApellidoMaterno = source.ApellidoMaterno ?? string.Empty,
             Correo = source.Correo ?? string.Empty,
             Telefono = source.Telefono ?? string.Empty,
             Genero = ParseGenero(source.Genero),
             FechaNacimiento = ParseFecha(source.FechaNacimiento),
             Categoria = ParseCategoria(source.Categoria),
-            LineaCredito = Convert.ToDecimal(source.LineaCredito),
+            LineaCredito = Convert.ToDecimal(source.LineaCredito ?? 0),
             CuentaUsuario = source.CuentaUsuario is null
                 ? null
                 : new CuentaUsuarioViewModel {
                     Id = source.CuentaUsuario.Id,
                     Activo = source.CuentaUsuario.Activo,
-                    UserName = source.CuentaUsuario.UserName ?? string.Empty,
+                    UserName = source.CuentaUsuario.UserName,
                     Password = string.Empty,
                     ConfirmarPassword = string.Empty
                 }
@@ -125,54 +145,6 @@ public class OrdenesVentaServiceRestClient : RestServiceClient<OrdenVentaViewMod
             Cliente = cliente,
             Lineas = ToRest(source.Lineas)
         };
-    }
-
-    private List<OrdenVentaRestDto> ListarPayload() {
-        using var client = CreateClient(ResourceSetting);
-        using var response = client.GetAsync(string.Empty).GetAwaiter().GetResult();
-        EnsureSuccess(response, "Listar ordenes de venta");
-        return response.Content.ReadFromJsonAsync<List<OrdenVentaRestDto>>().GetAwaiter().GetResult() ?? [];
-    }
-
-    private List<OrdenVentaRestDto> ListarPayloadPorCuenta(string cuenta) {
-        using var client = CreateClient(CuentasResourceSetting);
-        var path = $"{Uri.EscapeDataString(cuenta)}/ordenes";
-        using var response = client.GetAsync(path).GetAwaiter().GetResult();
-        if (response.StatusCode == HttpStatusCode.BadRequest || response.StatusCode == HttpStatusCode.NotFound) {
-            return [];
-        }
-
-        EnsureSuccess(response, "Listar ordenes por cuenta");
-        return response.Content.ReadFromJsonAsync<List<OrdenVentaRestDto>>().GetAwaiter().GetResult() ?? [];
-    }
-
-    private OrdenVentaRestDto? ObtenerPayload(string path) {
-        using var client = CreateClient(ResourceSetting);
-        using var response = client.GetAsync(path).GetAwaiter().GetResult();
-        if (response.StatusCode == HttpStatusCode.NotFound) {
-            return null;
-        }
-
-        EnsureSuccess(response, "Obtener orden de venta");
-        return response.Content.ReadFromJsonAsync<OrdenVentaRestDto>().GetAwaiter().GetResult();
-    }
-
-    private void GuardarPayload(OrdenVentaRestDto payload, Estado estado, string idPath) {
-        using var client = CreateClient(ResourceSetting);
-        using var response = estado switch {
-            Estado.Nuevo => client.PostAsJsonAsync(string.Empty, payload).GetAwaiter().GetResult(),
-            Estado.Modificado => client.PutAsJsonAsync(idPath, payload).GetAwaiter().GetResult(),
-            Estado.Eliminado => client.DeleteAsync(idPath).GetAwaiter().GetResult(),
-            _ => throw new InvalidOperationException($"Estado no soportado: {estado}")
-        };
-
-        EnsureSuccess(response, "Guardar orden de venta");
-    }
-
-    private void EliminarPayload(string path) {
-        using var client = CreateClient(ResourceSetting);
-        using var response = client.DeleteAsync(path).GetAwaiter().GetResult();
-        EnsureSuccess(response, "Eliminar orden de venta");
     }
 
     private static ClienteRestDto ToRest(ClienteViewModel source) {
@@ -237,77 +209,4 @@ public class OrdenesVentaServiceRestClient : RestServiceClient<OrdenVentaViewMod
         return source.Trim().ToUpperInvariant();
     }
 
-    private static DateTime ParseFecha(string? source) {
-        if (string.IsNullOrWhiteSpace(source)) {
-            return DateTime.Today;
-        }
-
-        var normalized = source.Trim();
-        var bracketIndex = normalized.IndexOf('[');
-        if (bracketIndex >= 0) {
-            normalized = normalized[..bracketIndex];
-        }
-
-        if (DateTimeOffset.TryParse(normalized, out var dto)) {
-            return dto.LocalDateTime;
-        }
-
-        if (DateTime.TryParse(normalized, out var dt)) {
-            return dt;
-        }
-
-        return DateTime.Today;
-    }
-
-    private static string FormatFecha(DateTime source) {
-        return source.ToUniversalTime().ToString("yyyy-MM-dd'T'HH:mm:ss'Z'");
-    }
-
-    public sealed class OrdenVentaRestDto {
-        public int Id { get; set; }
-        public bool Activo { get; set; }
-        public string? Fecha { get; set; }
-        public double Total { get; set; }
-        public ClienteRestDto? Cliente { get; set; }
-        public List<LineaOrdenVentaRestDto>? Lineas { get; set; }
-    }
-
-    public sealed class LineaOrdenVentaRestDto {
-        public int Id { get; set; }
-        public bool Activo { get; set; }
-        public int Cantidad { get; set; }
-        public double SubTotal { get; set; }
-        public ProductoRestDto? Producto { get; set; }
-    }
-
-    public sealed class ProductoRestDto {
-        public int Id { get; set; }
-        public bool Activo { get; set; }
-        public string? Nombre { get; set; }
-        public double Precio { get; set; }
-        public string? UnidadMedida { get; set; }
-    }
-
-    public sealed class ClienteRestDto {
-        public int Id { get; set; }
-        public bool Activo { get; set; }
-        public string? Dni { get; set; }
-        public string? Nombre { get; set; }
-        public string? ApellidoPaterno { get; set; }
-        public string? ApellidoMaterno { get; set; }
-        public string? Correo { get; set; }
-        public string? Telefono { get; set; }
-        public string? Genero { get; set; }
-        public string? FechaNacimiento { get; set; }
-        public string? Categoria { get; set; }
-        public double LineaCredito { get; set; }
-        public CuentaUsuarioRestDto? CuentaUsuario { get; set; }
-    }
-
-    public sealed class CuentaUsuarioRestDto {
-        public int Id { get; set; }
-        public bool Activo { get; set; }
-        public string? UserName { get; set; }
-        public string? Password { get; set; }
-    }
 }
