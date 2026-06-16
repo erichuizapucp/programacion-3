@@ -1,0 +1,118 @@
+@page "/GestionarEmpleados"
+@attribute [Authorize(Roles = "Empleado,Admin")]
+
+<TituloPaginaComponent Texto="Gestionar empleados" />
+
+<div class="container" data-testid="employees-form-page">
+    <div class="card app-panel">
+        <div class="card-header">
+            <h2>@Titulo</h2>
+        </div>
+        <EditForm Model="EmpleadoViewModel" OnValidSubmit="GuardarEmpleado" FormName="GestionarEmpleadosForm">
+            <DataAnnotationsValidator />
+            <div class="card-body">
+                <ValidationSummary />
+
+                <div class="mb-3 row">
+                    <label for="idEmpleado" class="col-sm-2 col-form-label">ID:</label>
+                    <div class="col-sm-4">
+                        <InputNumber id="idEmpleado" class="form-control" @bind-Value="EmpleadoViewModel.Id" disabled />
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="dniEmpleado" class="col-sm-2 col-form-label">DNI:</label>
+                    <div class="col-sm-8">
+                        <InputText id="dniEmpleado" class="form-control" data-testid="employee-dni-input"
+                                   @bind-Value="EmpleadoViewModel.Dni" />
+                        <ValidationMessage For="@(() => EmpleadoViewModel.Dni)" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
+                    <div class="col-sm-8">
+                        <InputText id="nombre" class="form-control" data-testid="employee-name-input"
+                                   @bind-Value="EmpleadoViewModel.Nombre" />
+                        <ValidationMessage For="@(() => EmpleadoViewModel.Nombre)" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="apellidoPaterno" class="col-sm-2 col-form-label">Apellido paterno:</label>
+                    <div class="col-sm-8">
+                        <InputText id="apellidoPaterno" class="form-control" data-testid="employee-lastname-input"
+                                   @bind-Value="EmpleadoViewModel.ApellidoPaterno" />
+                        <ValidationMessage For="@(() => EmpleadoViewModel.ApellidoPaterno)" />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="area" class="col-sm-2 col-form-label">Area:</label>
+                    <div class="col-sm-8">
+                        <InputSelect id="area" class="form-control" data-testid="employee-area-select"
+                                     @bind-Value="EmpleadoViewModel.AreaIdSeleccionada">
+                            <option value="0">Seleccione un area</option>
+                            @foreach (var area in Areas)
+                            {
+                                <option value="@area.Id">@area.Nombre</option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="@(() => EmpleadoViewModel.AreaIdSeleccionada)" />
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="genero" class="col-sm-2 col-form-label">Genero:</label>
+                    <div class="col-sm-8">
+                        <InputSelect id="genero" class="form-control" @bind-Value="EmpleadoViewModel.Genero">
+                            <option value="@Genero.MASCULINO">Masculino</option>
+                            <option value="@Genero.FEMENINO">Femenino</option>
+                        </InputSelect>
+                        <ValidationMessage For="@(() => EmpleadoViewModel.Genero)" />
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="fechaNacimiento" class="col-sm-2 col-form-label">Fecha de nacimiento:</label>
+                    <div class="col-sm-8">
+                        <InputDate id="fechaNacimiento" class="form-control"
+                                   @bind-Value="EmpleadoViewModel.FechaNacimiento" />
+                        <ValidationMessage For="@(() => EmpleadoViewModel.FechaNacimiento)" />
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="cargo" class="col-sm-2 col-form-label">Cargo:</label>
+                    <div class="col-sm-8">
+                        <InputSelect id="cargo" class="form-control" @bind-Value="EmpleadoViewModel.Cargo">
+                            @foreach (var cargo in Enum.GetValues<Cargo>())
+                            {
+                                <option value="@cargo">@cargo</option>
+                            }
+                        </InputSelect>
+                        <ValidationMessage For="@(() => EmpleadoViewModel.Cargo)" />
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <label for="sueldo" class="col-sm-2 col-form-label">Sueldo:</label>
+                    <div class="col-sm-8">
+                        <InputNumber id="sueldo" class="form-control" step="0.01"
+                                     @bind-Value="EmpleadoViewModel.Sueldo" />
+                        <ValidationMessage For="@(() => EmpleadoViewModel.Sueldo)" />
+                    </div>
+                </div>
+
+                <div class="mb-3 row">
+                    <div class="col-sm-4 offset-sm-2 form-check">
+                        <InputCheckbox id="activo" class="form-check-input" @bind-Value="EmpleadoViewModel.Activo" />
+                        <label for="activo" class="form-check-label">Activo</label>
+                    </div>
+                </div>
+                <AlertaOperacionComponent Mensaje="@MensajeResultado" Exito="OperacionExitosa" />
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-outline-secondary" href="@RutaRetorno" data-testid="employee-back-btn">Volver</a>
+                <button class="btn btn-primary" type="submit" data-testid="employee-save-btn">Guardar</button>
+            </div>
+        </EditForm>
+    </div>
+</div>

@@ -1,0 +1,149 @@
+﻿<nav class="app-nav">
+    <div class="app-nav-shell">
+        <a class="app-nav-brand" href="/" data-testid="nav-brand">SoftProg</a>
+
+        <button class="app-nav-toggle" @onclick="ToggleMenu" title="Menu de navegacion" aria-expanded="@MenuAbierto"
+                aria-controls="main-navigation" data-testid="nav-toggle">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div id="main-navigation" class="app-nav-links @(MenuAbierto ? "open" : "")">
+            <NavLink class="app-nav-link" href="/" @onclick="CloseAllMenus" data-testid="nav-home">
+                Inicio
+            </NavLink>
+
+            <AuthorizeView Roles="Empleado,Admin">
+                <Authorized Context="gestionAuth">
+                    <div class="app-nav-dropdown">
+                        <button class="app-nav-dropdown-trigger" type="button" aria-haspopup="menu"
+                                aria-expanded="@MenuGestionAbierto" aria-controls="menu-gestion"
+                                @onclick="ToggleMenuGestion" data-testid="nav-gestion-toggle">
+                            Gestion
+                        </button>
+
+                        @if (MenuGestionAbierto)
+                        {
+                            <div id="menu-gestion" class="app-nav-dropdown-menu" role="menu">
+                                <NavLink class="app-nav-dropdown-link" href="/ListarAreas" @onclick="CloseAllMenus"
+                                         data-testid="nav-listar-areas">Listar areas</NavLink>
+                                <NavLink class="app-nav-dropdown-link" href="/ListarProductos" @onclick="CloseAllMenus"
+                                         data-testid="nav-listar-productos">Listar productos</NavLink>
+                                <NavLink class="app-nav-dropdown-link" href="/ListarEmpleados" @onclick="CloseAllMenus"
+                                         data-testid="nav-listar-empleados">Listar empleados</NavLink>
+                                <NavLink class="app-nav-dropdown-link" href="/ListarClientes" @onclick="CloseAllMenus"
+                                         data-testid="nav-listar-clientes">Listar clientes</NavLink>
+                                <NavLink class="app-nav-dropdown-link" href="/ListarOrdenesVenta" @onclick="CloseAllMenus"
+                                         data-testid="nav-listar-ordenes">Listar ordenes de venta</NavLink>
+
+                                <AuthorizeView Roles="Admin">
+                                    <Authorized Context="adminAuth">
+                                        <NavLink class="app-nav-dropdown-link" href="/ListarCuentas"
+                                                 @onclick="CloseAllMenus" data-testid="nav-listar-cuentas">Cuenta de usuario
+                                        </NavLink>
+                                    </Authorized>
+                                </AuthorizeView>
+                            </div>
+                        }
+                    </div>
+                </Authorized>
+            </AuthorizeView>
+
+            <div class="app-nav-dropdown app-nav-account">
+                <button class="app-nav-dropdown-trigger app-nav-account-trigger" type="button" aria-haspopup="menu"
+                        aria-expanded="@MenuCuentaAbierto" aria-controls="menu-cuenta" @onclick="ToggleMenuCuenta"
+                        data-testid="nav-account-toggle">
+                    <span class="app-nav-account-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24" role="img" aria-hidden="true">
+                            <path
+                                d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm0 2c-4.41 0-8 2.69-8 6v2h16v-2c0-3.31-3.59-6-8-6z">
+                            </path>
+                        </svg>
+                    </span>
+                    <span>Cuenta</span>
+                </button>
+
+                @if (MenuCuentaAbierto)
+                {
+                    <div id="menu-cuenta" class="app-nav-dropdown-menu app-nav-dropdown-menu-right" role="menu">
+                        <AuthorizeView>
+                            <Authorized Context="cuentaAuth">
+                                <AuthorizeView Roles="Cliente,Admin">
+                                    <Authorized Context="perfilAuth">
+                                        <NavLink class="app-nav-dropdown-link" href="/PerfilCliente"
+                                                 @onclick="CloseAllMenus" data-testid="nav-perfil-cliente">Ver perfil</NavLink>
+                                    </Authorized>
+                                </AuthorizeView>
+
+                                <NavLink class="app-nav-dropdown-link" href="/CambiarContrasena" @onclick="CloseAllMenus"
+                                         data-testid="nav-cambiar-contrasena">Cambiar contrasena</NavLink>
+                                <NavLink class="app-nav-dropdown-link" href="/Logout" @onclick="CloseAllMenus"
+                                         data-testid="nav-logout">Cerrar sesion</NavLink>
+                            </Authorized>
+                            <NotAuthorized>
+                                <NavLink class="app-nav-dropdown-link" href="/Login" @onclick="CloseAllMenus"
+                                         data-testid="nav-login">
+                                    Iniciar sesion
+                                </NavLink>
+                                <NavLink class="app-nav-dropdown-link" href="/RecuperarContrasena" @onclick="CloseAllMenus"
+                                         data-testid="nav-recuperar-contrasena">Recuperar contrasena</NavLink>
+                                <NavLink class="app-nav-dropdown-link" href="/RegistrarCliente" @onclick="CloseAllMenus"
+                                         data-testid="nav-registrar-cliente">Registrar cliente</NavLink>
+                            </NotAuthorized>
+                        </AuthorizeView>
+                    </div>
+                }
+            </div>
+
+        </div>
+    </div>
+
+    @if (MostrarBackdrop)
+    {
+        <button class="app-nav-backdrop" type="button" @onclick="CloseAllMenus" aria-label="Close menus"></button>
+    }
+</nav>
+
+@code {
+    private bool MenuAbierto { get; set; }
+    private bool MenuGestionAbierto { get; set; }
+    private bool MenuCuentaAbierto { get; set; }
+    private bool MostrarBackdrop => MenuAbierto || MenuGestionAbierto || MenuCuentaAbierto;
+
+    private void ToggleMenu()
+    {
+        MenuAbierto = !MenuAbierto;
+        if (!MenuAbierto)
+        {
+            MenuGestionAbierto = false;
+            MenuCuentaAbierto = false;
+        }
+    }
+
+    private void ToggleMenuGestion()
+    {
+        MenuGestionAbierto = !MenuGestionAbierto;
+        if (MenuGestionAbierto)
+        {
+            MenuCuentaAbierto = false;
+        }
+    }
+
+    private void ToggleMenuCuenta()
+    {
+        MenuCuentaAbierto = !MenuCuentaAbierto;
+        if (MenuCuentaAbierto)
+        {
+            MenuGestionAbierto = false;
+        }
+    }
+
+    private void CloseAllMenus()
+    {
+        MenuAbierto = false;
+        MenuGestionAbierto = false;
+        MenuCuentaAbierto = false;
+    }
+
+}

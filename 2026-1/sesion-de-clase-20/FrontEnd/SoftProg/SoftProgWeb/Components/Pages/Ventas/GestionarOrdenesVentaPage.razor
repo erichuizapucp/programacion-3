@@ -1,0 +1,28 @@
+@page "/GestionarOrdenesVenta"
+@attribute [Authorize(Roles = "Empleado,Admin,Cliente")]
+@using SoftProgWeb.Components.Pages.Ventas.Components
+
+<TituloPaginaComponent Texto="Gestionar ordenes de venta" />
+
+<div class="container" data-testid="orders-form-page">
+    <div class="card app-panel">
+        <div class="card-header">
+            <h2>@Titulo</h2>
+        </div>
+        <div class="card-body">
+            <SelectorClienteOrdenComponent Clientes="Clientes" ClienteSeleccionado="Orden.Cliente"
+                                           @bind-ClienteIdSeleccionado="ClienteIdSeleccionado" Deshabilitado="ClienteBloqueado" />
+
+            <EditorLineasOrdenComponent Lineas="Orden.Lineas" LineaTemporal="NuevaLinea" Productos="Productos"
+                                        Total="Orden.Total" AgregarLinea="AgregarLinea" QuitarLinea="QuitarLinea" />
+
+            <AlertaOperacionComponent Mensaje="@MensajeResultado" Exito="OperacionExitosa" CssAdicional="mt-3" />
+        </div>
+        <div
+            class="card-footer d-flex flex-column flex-sm-row justify-content-between align-items-stretch align-items-sm-center gap-2">
+            <a class="btn btn-outline-secondary" href="@RutaRetorno" data-testid="order-back-btn">Volver</a>
+            <button class="btn btn-primary" type="button" data-testid="order-save-btn" @onclick="GuardarOrden">Guardar
+                orden</button>
+            </div>
+        </div>
+    </div>

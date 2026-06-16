@@ -1,0 +1,32 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "http://172.16.70.1:8080/SoftProgWS-1.0-SNAPSHOT/servicios.wsdl"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, SoftProgWS"
+    ],
+    "references": [
+      "Microsoft.Bcl.AsyncInterfaces, {Microsoft.Bcl.AsyncInterfaces, 5.0.0}",
+      "Microsoft.IdentityModel.Logging, {Microsoft.IdentityModel.Logging, 6.8.0}",
+      "Microsoft.IdentityModel.Protocols.WsTrust, {Microsoft.IdentityModel.Protocols.WsTrust, 6.8.0}",
+      "Microsoft.IdentityModel.Tokens, {Microsoft.IdentityModel.Tokens, 6.8.0}",
+      "Microsoft.IdentityModel.Tokens.Saml, {Microsoft.IdentityModel.Tokens.Saml, 6.8.0}",
+      "Microsoft.IdentityModel.Xml, {Microsoft.IdentityModel.Xml, 6.8.0}",
+      "System.ServiceModel, {System.ServiceModel.Primitives, 4.10.3}",
+      "System.ServiceModel.Duplex, {System.ServiceModel.Duplex, 4.10.3}",
+      "System.ServiceModel.Federation, {System.ServiceModel.Federation, 4.10.3}",
+      "System.ServiceModel.Http, {System.ServiceModel.Http, 4.10.3}",
+      "System.ServiceModel.NetTcp, {System.ServiceModel.NetTcp, 4.10.3}",
+      "System.ServiceModel.Primitives, {System.ServiceModel.Primitives, 4.10.3}",
+      "System.ServiceModel.Security, {System.ServiceModel.Security, 4.10.3}"
+    ],
+    "sync": true,
+    "targetFramework": "net10.0",
+    "typeReuseMode": "All"
+  }
+}
