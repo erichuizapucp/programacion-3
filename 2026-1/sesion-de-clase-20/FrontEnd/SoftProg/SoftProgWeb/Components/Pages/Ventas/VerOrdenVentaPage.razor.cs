@@ -11,6 +11,7 @@ public partial class VerOrdenVentaPage : ComponentBase {
 
     [Inject] private IOrdenesVentaServiceClient OrdenVentaServiceClient { get; set; } = default!;
     [Inject] private NavigationManager NavigationManager { get; set; } = default!;
+    [Inject] private IConfiguration Configuration { get; set; } = default!;
 
     [SupplyParameterFromQuery(Name = "id")]
     public int? Id { get; set; }
@@ -24,6 +25,7 @@ public partial class VerOrdenVentaPage : ComponentBase {
 
     private List<LineaOrdenVentaViewModel> LineasOrden { get; set; } = new();
     private string RutaRetorno => ObtenerRutaRetorno("/ListarOrdenesVenta");
+    private string UrlReportePdf => $"{Configuration["ReportesBaseUrl"]}/ordenventa?id={Id}";
 
     private double SubtotalOrden => LineasOrden.Sum(linea => linea.SubTotal);
     private double TotalOrden => Math.Round(SubtotalOrden * (1 + TasaIgv), 2, MidpointRounding.AwayFromZero);
