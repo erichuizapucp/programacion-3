@@ -1,10 +1,4 @@
 {
-  "ConnectionStrings": {
-    "SoftProgDb": "Server=<servidor>;Port=<puerto>;Database=<basedatos>;User Id=<usuario>;Password=<password-encriptado>"
-  },
-  "DbSettings": {
-    "Tipo": "MySQL"
-  },
   "SoapEndpoints": {
     "Areas": "http://<servidor>:<puerto>/<contexto>/AreasWS",
     "Clientes": "http://<servidor>:<puerto>/<contexto>/ClientesWS",
@@ -14,6 +8,7 @@
     "Productos": "http://<servidor>:<puerto>/<contexto>/ProductosWS"
   },
   "RestApiBaseUrl": "http://<servidor>:<puerto>/<contexto>/api/v1",
+  "ReportesBaseUrl": "http://<servidor>:<puerto>/<contexto>/reportes",
   "Logging": {
     "LogLevel": {
       "Default": "Information",
