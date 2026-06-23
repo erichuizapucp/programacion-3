@@ -1,0 +1,45 @@
+<h5 class="mb-3">Datos personales</h5>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        <label class="form-label">DNI</label>
+        <input class="form-control" maxlength="8" data-testid="register-dni-input" @bind="Formulario.Dni" />
+    </div>
+    <div class="col-md-6 mb-3">
+        <label class="form-label">Nombre</label>
+        <input class="form-control" data-testid="register-nombre-input" @bind="Formulario.Nombre" />
+    </div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Apellido paterno</label>
+    <input class="form-control" data-testid="register-apellido-input" @bind="Formulario.ApellidoPaterno" />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Genero</label>
+    <div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="genero" id="genM" data-testid="register-genero-m" value="MASCULINO" checked="@(Formulario.Genero == "MASCULINO")" @onchange="OnGeneroChanged" />
+            <label class="form-check-label" for="genM">Masculino</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="genero" id="genF" data-testid="register-genero-f" value="FEMENINO" checked="@(Formulario.Genero == "FEMENINO")" @onchange="OnGeneroChanged" />
+            <label class="form-check-label" for="genF">Femenino</label>
+        </div>
+    </div>
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Fecha de nacimiento</label>
+    <input class="form-control" type="date" data-testid="register-fecha-input" @bind="Formulario.FechaNacimiento" />
+</div>
+
+@code {
+    [Parameter, EditorRequired] public RegistroClienteFormulario Formulario { get; set; } = default!;
+
+    private void OnGeneroChanged(ChangeEventArgs e)
+    {
+        Formulario.Genero = e.Value?.ToString() ?? string.Empty;
+    }
+}

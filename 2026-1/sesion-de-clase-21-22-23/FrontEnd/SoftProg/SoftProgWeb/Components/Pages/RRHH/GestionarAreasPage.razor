@@ -1,0 +1,44 @@
+@page "/GestionarAreas"
+@attribute [Authorize(Roles = "Empleado,Admin")]
+
+<TituloPaginaComponent Texto="Gestionar areas" />
+
+<div class="container" data-testid="areas-form-page">
+    <div class="card app-panel">
+        <div class="card-header">
+            <h2>@Titulo</h2>
+        </div>
+        <EditForm Model="Area" OnValidSubmit="Guardar" FormName="GestionarAreasForm">
+            <DataAnnotationsValidator />
+            <div class="card-body">
+                <ValidationSummary />
+
+                <div class="mb-3 row">
+                    <label for="idArea" class="col-sm-2 col-form-label">ID area:</label>
+                    <div class="col-sm-4">
+                        <InputNumber id="idArea" class="form-control" @bind-Value="Area.Id" disabled />
+                    </div>
+                </div>
+                <div class="mb-3 row">
+                    <label for="nombre" class="col-sm-2 col-form-label">Nombre:</label>
+                    <div class="col-sm-8">
+                        <InputText id="nombre" class="form-control" data-testid="area-name-input"
+                                   @bind-Value="Area.Nombre" />
+                        <ValidationMessage For="@(() => Area.Nombre)" />
+                    </div>
+                </div>
+                <AlertaOperacionComponent Mensaje="@MensajeResultado" Exito="OperacionExitosa" />
+            </div>
+            <div class="card-footer">
+                <a class="btn btn-outline-secondary" href="@RutaRetorno" data-testid="area-back-btn">Volver</a>
+                @if (Id is > 0)
+                {
+                    <button class="btn btn-danger" @onclick="EliminarArea" data-testid="area-delete-btn">
+                        Eliminar
+                    </button>
+                }
+                <button class="float-end btn btn-primary" type="submit" data-testid="area-save-btn">Guardar</button>
+            </div>
+        </EditForm>
+    </div>
+</div>

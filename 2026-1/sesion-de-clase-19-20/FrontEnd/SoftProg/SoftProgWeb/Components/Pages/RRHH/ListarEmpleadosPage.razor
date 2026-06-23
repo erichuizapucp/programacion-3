@@ -1,0 +1,97 @@
+@page "/ListarEmpleados"
+@attribute [Authorize(Roles = "Empleado,Admin")]
+
+<div class="container py-3" data-testid="employees-list-page">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <TituloPaginaComponent Texto="Listar empleados" />
+        <BotonVolverAtrasComponent />
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-semibold">Empleados registrados</h5>
+            <button class="btn btn-primary" @onclick="RegistrarEmpleado" data-testid="employee-create-btn">
+                Registrar empleado
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="row g-2 mb-3 align-items-end">
+                <div class="col-sm-8 col-md-4">
+                    <label for="nombreDNI" class="form-label">Ingrese el DNI:</label>
+                    <input id="nombreDNI" class="form-control" data-testid="employee-search-input"
+                           @bind="DniBusqueda" />
+                </div>
+                <div class="col-sm-auto">
+                    <button class="btn btn-outline-primary" @onclick="Buscar" data-testid="employee-search-btn">
+                        Buscar
+                    </button>
+                </div>
+                <div class="col-sm-auto">
+                    <button class="btn btn-outline-secondary" @onclick="LimpiarBusqueda"
+                            data-testid="employee-clear-search-btn">
+                        Limpiar
+                    </button>
+                </div>
+            </div>
+
+            <AlertaOperacionComponent Mensaje="@MensajeResultado" Exito="OperacionExitosa" CssAdicional="mb-3" />
+
+            @if (Empleados.Count == 0)
+            {
+                <div class="alert alert-secondary border text-center mb-0" data-testid="employee-empty-state">
+                    <h6 class="fw-semibold">Sin registros por mostrar</h6>
+                    <p class="mb-2">Aun no hay datos disponibles para esta seccion.</p>
+                    <button class="btn btn-primary" @onclick="RegistrarEmpleado" data-testid="employee-empty-create-btn">
+                        Registrar empleado
+                    </button>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive border rounded">
+                    <table class="table table-hover table-striped align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>DNI</th>
+                                <th>Nombre completo</th>
+                                <th>Area</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var empleado in EmpleadosPaginados)
+                            {
+                                <tr data-testid="@($"employee-row-{empleado.Id}")">
+                                    <td>@empleado.Dni</td>
+                                    <td>@empleado.NombreCompleto</td>
+                                    <td>@empleado.AreaNombre</td>
+                                    <td>
+                                        <AccionesComponent Id="@empleado.Id" OnModificar="ModificarEmpleado"
+                                                           OnEliminar="EliminarEmpleado" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mt-3">
+                    <small class="text-muted">Mostrando @InicioRegistro-@FinRegistro de @TotalRegistros registros</small>
+                    <div class="btn-group" role="group" aria-label="Paginacion empleados">
+                        <button class="btn btn-outline-secondary btn-sm" @onclick="PaginaAnterior"
+                                disabled="@(PaginaActual == 1)">
+                            Anterior
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" disabled>
+                            Pagina @PaginaActual de @TotalPaginas
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" @onclick="PaginaSiguiente"
+                                disabled="@(PaginaActual >= TotalPaginas)">
+                            Siguiente
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

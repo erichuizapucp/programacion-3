@@ -1,0 +1,30 @@
+@page "/RecuperarContrasena"
+@attribute [AllowAnonymous]
+@using SoftProgWeb.ViewModels
+
+<div class="app-auth-shell" data-testid="recover-password-page">
+    <div class="app-auth-card">
+        <h1 class="app-page-title text-center mb-4">Recuperar contrasena</h1>
+        <EditForm Model="@(Solicitud ??= new SolicitudRecuperarContrasenaViewModel())" OnValidSubmit="Enviar"
+                  FormName="RecuperarContrasenaForm">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="mb-3">
+                <label class="form-label">Correo electronico</label>
+                <InputText class="form-control" data-testid="recover-email-input" @bind-Value="Solicitud.Correo"
+                           placeholder="Ingrese su correo" />
+                <ValidationMessage For="@(() => Solicitud.Correo)" />
+            </div>
+
+            <AlertaOperacionComponent Mensaje="MensajeResultado" Exito="OperacionExitosa" />
+
+            <button class="btn btn-primary w-100" type="submit" data-testid="recover-submit-btn">Enviar</button>
+        </EditForm>
+
+        <div class="text-center mt-3">
+            <a href="/Login" class="text-decoration-none" data-testid="recover-back-login">Volver al inicio de
+                sesion</a>
+            </div>
+        </div>
+    </div>

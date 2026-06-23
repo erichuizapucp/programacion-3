@@ -1,0 +1,80 @@
+@page "/ListarProductos"
+@attribute [Authorize(Roles = "Empleado,Admin")]
+
+<div class="container py-3" data-testid="products-list-page">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <TituloPaginaComponent Texto="Listar productos" />
+        <BotonVolverAtrasComponent />
+    </div>
+
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white d-flex justify-content-between align-items-center">
+            <h5 class="mb-0 fw-semibold">Productos registrados</h5>
+            <button class="btn btn-primary" @onclick="RegistrarProducto" data-testid="product-create-btn">
+                Registrar producto
+            </button>
+        </div>
+        <div class="card-body">
+            <AlertaOperacionComponent Mensaje="@MensajeResultado" Exito="OperacionExitosa" CssAdicional="mb-3" />
+
+            @if (Productos.Count == 0)
+            {
+                <div class="alert alert-secondary border text-center mb-0" data-testid="product-empty-state">
+                    <h6 class="fw-semibold">Sin registros por mostrar</h6>
+                    <p class="mb-2">Aun no hay datos disponibles para esta seccion.</p>
+                    <button class="btn btn-primary" @onclick="RegistrarProducto" data-testid="product-empty-create-btn">
+                        Registrar producto
+                    </button>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive border rounded">
+                    <table class="table table-hover table-striped align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th>ID producto</th>
+                                <th>Producto</th>
+                                <th>Unidad de medida</th>
+                                <th>Precio</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var producto in ProductosPaginados)
+                            {
+                                <tr data-testid="@($"product-row-{producto.Id}")">
+                                    <td>@producto.Id</td>
+                                    <td>@producto.Nombre</td>
+                                    <td>@producto.UnidadMedida.ToLocalizedText()</td>
+                                    <td>@producto.Precio.ToString("C2")</td>
+                                    <td>
+                                        <AccionesComponent Id="@producto.Id" OnModificar="ModificarProducto"
+                                                           OnEliminar="EliminarProducto" />
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-2 mt-3">
+                    <small class="text-muted">Mostrando @InicioRegistro-@FinRegistro de @TotalRegistros registros</small>
+                    <div class="btn-group" role="group" aria-label="Paginacion productos">
+                        <button class="btn btn-outline-secondary btn-sm" @onclick="PaginaAnterior"
+                                disabled="@(PaginaActual == 1)">
+                            Anterior
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" disabled>
+                            Pagina @PaginaActual de @TotalPaginas
+                        </button>
+                        <button class="btn btn-outline-secondary btn-sm" @onclick="PaginaSiguiente"
+                                disabled="@(PaginaActual >= TotalPaginas)">
+                            Siguiente
+                        </button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

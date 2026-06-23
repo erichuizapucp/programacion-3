@@ -1,0 +1,29 @@
+<h5 class="mb-3">Detalles del cliente</h5>
+
+<div class="mb-3">
+    <label class="form-label">Linea de credito</label>
+    <input class="form-control" type="number" min="0" step="0.01" data-testid="register-linea-input" @bind="Formulario.LineaCredito" />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Categoria</label>
+    <div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="categoria" id="catE" data-testid="register-categoria-e" value="ESTANDARD" checked="@(Formulario.Categoria == "ESTANDARD")" @onchange="OnCategoriaChanged" />
+            <label class="form-check-label" for="catE">Estandar</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="categoria" id="catP" data-testid="register-categoria-p" value="PREMIUM" checked="@(Formulario.Categoria == "PREMIUM")" @onchange="OnCategoriaChanged" />
+            <label class="form-check-label" for="catP">Premium</label>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public RegistroClienteFormulario Formulario { get; set; } = default!;
+
+    private void OnCategoriaChanged(ChangeEventArgs e)
+    {
+        Formulario.Categoria = e.Value?.ToString() ?? string.Empty;
+    }
+}

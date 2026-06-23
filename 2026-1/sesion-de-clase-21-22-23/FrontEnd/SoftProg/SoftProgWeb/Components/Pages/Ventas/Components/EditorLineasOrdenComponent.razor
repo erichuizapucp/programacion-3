@@ -1,0 +1,77 @@
+@using SoftProgWeb.ViewModels
+
+<div class="card border">
+    <div class="card-header">
+        <h5 class="card-title mb-0">Detalle de la orden de venta</h5>
+    </div>
+    <div class="card-body">
+        <div class="row g-2 align-items-end mb-3">
+            <div class="col-12 col-md-6">
+                <label class="form-label">Producto</label>
+                <select class="form-select" data-testid="order-line-product-input" @bind="ProductoSeleccionadoId">
+                    <option value="0">Seleccione un producto</option>
+                    @foreach (var producto in Productos)
+                    {
+                        <option value="@producto.Id">@producto.Nombre</option>
+                    }
+                </select>
+            </div>
+            <div class="col-6 col-md-2">
+                <label class="form-label">Cantidad</label>
+                <input class="form-control" type="number" data-testid="order-line-quantity-input"
+                       @bind="LineaTemporal.Cantidad" />
+            </div>
+            <div class="col-6 col-md-2 d-grid">
+                <button class="btn btn-secondary" type="button" data-testid="order-line-add-btn"
+                        @onclick="AgregarLinea">Agregar</button>
+            </div>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th>Producto</th>
+                        <th class="text-end">Cantidad</th>
+                        <th class="text-end">Precio unitario</th>
+                        <th class="text-end">Subtotal</th>
+                        <th class="text-center">Accion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var linea in Lineas)
+                    {
+                        <tr data-testid="order-line-row">
+                            <td>@linea.ProductoNombre</td>
+                            <td class="text-end">@linea.Cantidad</td>
+                            <td class="text-end">@linea.PrecioUnitario.ToString("N2")</td>
+                            <td class="text-end">@linea.SubTotal.ToString("N2")</td>
+                            <td class="text-center">
+                                <button class="btn btn-link text-danger p-0" type="button"
+                                        data-testid="order-line-remove-btn"
+                                        @onclick="() => QuitarLinea.InvokeAsync(linea)">Quitar</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-end fw-bold mt-3">Total: S/. @Total.ToString("N2")</div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public List<LineaOrdenVentaViewModel> Lineas { get; set; } = [];
+    [Parameter] public LineaOrdenVentaViewModel LineaTemporal { get; set; } = new();
+    [Parameter] public IReadOnlyList<ProductoViewModel> Productos { get; set; } = [];
+    [Parameter] public EventCallback AgregarLinea { get; set; }
+    [Parameter] public EventCallback<LineaOrdenVentaViewModel> QuitarLinea { get; set; }
+    [Parameter] public double Total { get; set; }
+
+    private int ProductoSeleccionadoId
+    {
+        get => LineaTemporal.ProductoId;
+        set => LineaTemporal.ProductoId = value;
+    }
+}

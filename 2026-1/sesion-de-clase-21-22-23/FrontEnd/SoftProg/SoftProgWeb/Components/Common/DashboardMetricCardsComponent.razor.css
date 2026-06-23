@@ -1,0 +1,28 @@
+.dashboard-grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.metric-card {
+    border-radius: 16px;
+    padding: 1rem 1.1rem;
+}
+
+.metric-card h3 {
+    font-size: 0.95rem;
+    color: #0f172a;
+    margin-bottom: 0.35rem;
+}
+
+.metric-value {
+    margin: 0;
+    font-family: "Space Grotesk", sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0b4f63;
+}
+
+.metric-card small {
+    color: #64748b;
+}

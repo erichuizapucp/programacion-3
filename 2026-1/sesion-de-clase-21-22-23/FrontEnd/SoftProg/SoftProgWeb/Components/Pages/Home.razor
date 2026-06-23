@@ -1,0 +1,29 @@
+@page "/"
+@page "/Home"
+@attribute [Authorize]
+
+<section class="home-dashboard" data-testid="home-dashboard">
+    <div class="dashboard-header app-panel">
+        <h2>@TituloDashboard</h2>
+        <p>@DescripcionDashboard</p>
+    </div>
+
+    @if (!string.IsNullOrWhiteSpace(MensajeError))
+    {
+        <AlertaOperacionComponent Mensaje="@MensajeError" Exito="false" CssAdicional="mt-3" />
+    }
+
+    <DashboardMetricCardsComponent Metricas="Metricas" CssAdicional="mt-3" />
+
+    <div class="quick-actions app-panel mt-3">
+        <h3>Acciones</h3>
+        <div class="quick-actions-grid">
+            @foreach (var accion in AccesosRapidos)
+            {
+                <a class="btn btn-outline-primary" href="@accion.Ruta" data-testid="@accion.DataTestId">@accion.Texto</a>
+            }
+        </div>
+    </div>
+
+    <DashboardResumenOrdenesComponent Ordenes="UltimasOrdenes" CssAdicional="mt-3" />
+    </section>

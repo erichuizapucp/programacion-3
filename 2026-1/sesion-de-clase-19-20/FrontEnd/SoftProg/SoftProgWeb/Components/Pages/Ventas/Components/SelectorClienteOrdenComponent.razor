@@ -1,0 +1,49 @@
+@using SoftProgWeb.ViewModels
+
+<div class="card border">
+    <div class="card-header bg-light">
+        <h5 class="card-title mb-0">Informacion del cliente</h5>
+    </div>
+    <div class="card-body">
+        <div class="mb-3 row">
+            <label for="cliente" class="col-sm-2 col-form-label">Cliente:</label>
+            <div class="col-sm-6">
+                <select id="cliente" class="form-control" data-testid="order-client-select" @bind="ClienteIdLocal"
+                        disabled="@Deshabilitado">
+                    <option value="0">Seleccione un cliente</option>
+                    @foreach (var cliente in Clientes)
+                    {
+                        <option value="@cliente.Id">@($"{cliente.Nombre} {cliente.ApellidoPaterno}".Trim())</option>
+                    }
+                </select>
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="dniCliente" class="col-sm-2 col-form-label">DNI del cliente:</label>
+            <div class="col-sm-3">
+                <input id="dniCliente" class="form-control" value="@(ClienteSeleccionado?.Dni ?? string.Empty)"
+                       disabled />
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public IReadOnlyList<ClienteViewModel> Clientes { get; set; } = [];
+    [Parameter] public ClienteViewModel? ClienteSeleccionado { get; set; }
+    [Parameter] public int ClienteIdSeleccionado { get; set; }
+    [Parameter] public EventCallback<int> ClienteIdSeleccionadoChanged { get; set; }
+    [Parameter] public bool Deshabilitado { get; set; }
+
+    private int ClienteIdLocal
+    {
+        get
+        {
+            return ClienteIdSeleccionado;
+        }
+        set
+        {
+            ClienteIdSeleccionadoChanged.InvokeAsync(value);
+        }
+    }
+}

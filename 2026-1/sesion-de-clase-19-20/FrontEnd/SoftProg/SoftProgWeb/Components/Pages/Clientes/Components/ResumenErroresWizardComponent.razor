@@ -1,0 +1,16 @@
+@if (Errores.Count > 0)
+{
+    <div class="alert app-alert alert-danger" data-testid="register-errors-summary">
+        <div class="fw-semibold mb-1">Por favor corrige los siguientes errores:</div>
+        <ul class="mb-0">
+            @foreach (var error in Errores)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}
+
+@code {
+    [Parameter, EditorRequired] public IReadOnlyList<string> Errores { get; set; } = [];
+}

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+        xmlns:tns="http://services.softprog.pucp.edu.pe/"
+        targetNamespace="http://services.softprog.pucp.edu.pe/"
+        name="SoftProgServices">
+
+    <wsdl:import namespace="http://services.softprog.pucp.edu.pe/"
+                 location="http://<servidor>:<puerto>/SoftProgWS-1.0-SNAPSHOT/AreasWS?wsdl"/>
+    <wsdl:import namespace="http://services.softprog.pucp.edu.pe/"
+                 location="http://<servidor>:<puerto>/SoftProgWS-1.0-SNAPSHOT/ClientesWS?wsdl"/>
+    <wsdl:import namespace="http://services.softprog.pucp.edu.pe/"
+                 location="http://<servidor>:<puerto>/SoftProgWS-1.0-SNAPSHOT/CuentasUsuarioWS?wsdl"/>
+    <wsdl:import namespace="http://services.softprog.pucp.edu.pe/"
+                 location="http://<servidor>:<puerto>/SoftProgWS-1.0-SNAPSHOT/EmpleadosWS?wsdl"/>
+    <wsdl:import namespace="http://services.softprog.pucp.edu.pe/"
+                 location="http://<servidor>:<puerto>/SoftProgWS-1.0-SNAPSHOT/OrdenesVentaWS?wsdl"/>
+    <wsdl:import namespace="http://services.softprog.pucp.edu.pe/"
+                 location="http://<servidor>:<puerto>/SoftProgWS-1.0-SNAPSHOT/ProductosWS?wsdl"/>
+
+</wsdl:definitions>
