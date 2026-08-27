@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Created-By: openjdk version "25.0.2" 2026-01-20 LTS
+Class-Path: interfaces.jar examenes.jar preguntas.jar admin.jar
+Main-Class: pe/edu/pucp/lab/principales/Programa

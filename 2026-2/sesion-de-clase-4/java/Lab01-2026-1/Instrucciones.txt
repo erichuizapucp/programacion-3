@@ -1,0 +1,18 @@
+javac pe/edu/pucp/lab/interfaces/*.java
+javac pe/edu/pucp/lab/preguntas/*.java 
+javac pe/edu/pucp/lab/examenes/*.java 
+javac pe/edu/pucp/lab/admin/*.java 
+javac pe/edu/pucp/lab/principales/*.java
+
+
+jar cvf interfaces.jar pe/edu/pucp/lab/interfaces/*.class
+jar cvf examenes.jar pe/edu/pucp/lab/examenes/*.class
+jar cvf preguntas.jar pe/edu/pucp/lab/preguntas/*.class
+jar cvf admin.jar pe/edu/pucp/lab/admin/*.class
+jar cvf principales.jar pe/edu/pucp/lab/principales/*.class
+
+java -cp interfaces.jar:examenes.jar:preguntas.jar:admin.jar:principales.jar pe/edu/pucp/lab/principales/Programa
+
+jar cvfm lab.jar MANIFEST.MF pe/edu/pucp/lab/principales/Programa.class
+
+java -jar lab.jar
