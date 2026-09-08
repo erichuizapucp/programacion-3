@@ -46,7 +46,6 @@ public class DBManager {
     }
 
     public Connection getConnection() throws SQLException {
-//        Class.forName("com.mysql.cj.jdbc.Driver");
         return DriverManager.getConnection(
             "jdbc:mysql://" + servidor + ":" + puerto + "/" + esquema,
             usuario,
