@@ -12,13 +12,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductoDAOImpl implements ProductoDAO {
+public class ProductoDAOImpl extends RegistroDAOImpl<Producto> implements ProductoDAO {
     @Override
     public List<Producto> findAll() throws SQLException {
         String sql =
                 """
-                SELECT id, nombre, unidad_medida, precio, activo 
-                FROM producto
+                SELECT id, nombre, unidad_medida, precio, activo FROM producto
                 """;
         try (
             Connection conn = DBManager.getInstance().getConnection();
@@ -56,6 +55,28 @@ public class ProductoDAOImpl implements ProductoDAO {
     }
 
     @Override
+    public Producto findByName(String nombre) throws SQLException {
+        if (nombre == null) {
+            throw new IllegalArgumentException("El nombre no puede ser nulo");
+        }
+
+        String sql =
+                """
+                SELECT id, nombre, unidad_medida, precio, activo FROM producto WHERE nombre = ?
+                """;
+        try (
+            Connection conn = DBManager.getInstance().getConnection();
+            PreparedStatement cmd = conn.prepareStatement(sql)) {
+
+            cmd.setString(1, nombre);
+
+            try (ResultSet rs = cmd.executeQuery()) {
+                return rs.next() ? mapear(rs, new Producto()) : null;
+            }
+        }
+    }
+
+    @Override
     public void insert(Producto producto) throws SQLException {
         if (producto == null) {
             throw new IllegalArgumentException("El producto no puede ser nulo");
@@ -63,8 +84,7 @@ public class ProductoDAOImpl implements ProductoDAO {
 
         String sql =
                 """
-                INSERT INTO producto (nombre, unidad_medida, precio, activo) 
-                VALUES (?, ?, ?, ?)
+                INSERT INTO producto (nombre, unidad_medida, precio, activo) VALUES (?, ?, ?, ?)
                 """;
         try (
             Connection conn = DBManager.getInstance().getConnection();
@@ -138,9 +158,9 @@ public class ProductoDAOImpl implements ProductoDAO {
         }
     }
 
-    private Producto mapear(ResultSet rs, Producto producto) throws SQLException {
-        producto.setId(rs.getInt("id"));
-        producto.setActivo(rs.getBoolean("activo"));
+    @Override
+    protected Producto mapear(ResultSet rs, Producto producto) throws SQLException {
+        super.mapear(rs, producto);
         producto.setNombre(rs.getString("nombre"));
         producto.setUnidadMedida(
                 Enum.valueOf(UnidadMedida.class, rs.getString("unidad_medida")));

@@ -4,7 +4,7 @@ import pe.edu.pucp.softprog.modelo.seguridad.CuentaUsuario;
 import java.time.LocalDate;
 
 public abstract class Persona extends Registro {
-    protected CuentaUsuario cuentaUsuario;
+    private CuentaUsuario cuentaUsuario;
     private String dni;
     private String nombre;
     private String apellidoPaterno;

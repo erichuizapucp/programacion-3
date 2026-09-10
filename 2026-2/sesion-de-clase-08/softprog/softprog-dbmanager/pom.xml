@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>softprog-negocio</artifactId>
+    <artifactId>softprog-dbmanager</artifactId>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
@@ -19,9 +19,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>pe.edu.pucp.softprog</groupId>
-            <artifactId>softprog-accesodatos</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <version>26.7.0</version>
         </dependency>
     </dependencies>
 
