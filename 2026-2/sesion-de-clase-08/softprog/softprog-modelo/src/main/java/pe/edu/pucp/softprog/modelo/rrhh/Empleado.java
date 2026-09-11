@@ -1,7 +1,6 @@
 package pe.edu.pucp.softprog.modelo.rrhh;
 
 import pe.edu.pucp.softprog.modelo.Persona;
-import pe.edu.pucp.softprog.modelo.seguridad.CuentaUsuario;
 
 public class Empleado extends Persona {
     private Area area;
@@ -19,15 +18,6 @@ public class Empleado extends Persona {
         setArea(empleado.getArea());
         setCargo(empleado.getCargo());
         setSueldo(empleado.getSueldo());
-    }
-
-    @Override
-    public void setCuentaUsuario(CuentaUsuario cuentaUsuario) {
-        if (cuentaUsuario == null) {
-            this.cuentaUsuario = null;
-            return;
-        }
-        this.cuentaUsuario = new CuentaUsuario(cuentaUsuario);
     }
 
     public Area getArea() {

@@ -63,7 +63,8 @@ public class Empleado {
 
     public void setCuentaUsuario(CuentaUsuario cuentaUsuario) {
         if (cuentaUsuario == null) {
-            throw new IllegalArgumentException("cuentaUsuario no puede ser nulo");
+            this.cuentaUsuario = null;
+            return;
         }
         this.cuentaUsuario = new CuentaUsuario(cuentaUsuario);
     }

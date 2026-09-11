@@ -9,7 +9,7 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>softprog-negocio</artifactId>
+    <artifactId>softprog-app</artifactId>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
@@ -18,9 +18,10 @@
     </properties>
 
     <dependencies>
+
         <dependency>
             <groupId>pe.edu.pucp.softprog</groupId>
-            <artifactId>softprog-accesodatos</artifactId>
+            <artifactId>softprog-negocio</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>
