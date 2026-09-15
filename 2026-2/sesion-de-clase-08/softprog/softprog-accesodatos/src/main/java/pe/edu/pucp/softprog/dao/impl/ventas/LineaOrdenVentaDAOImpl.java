@@ -3,6 +3,7 @@ package pe.edu.pucp.softprog.dao.impl.ventas;
 import pe.edu.pucp.softprog.dao.impl.ProductoDAOImpl;
 import pe.edu.pucp.softprog.dao.impl.RegistroDAOImpl;
 import pe.edu.pucp.softprog.dao.transacciones.TransactionsManager;
+import pe.edu.pucp.softprog.db.DBManager;
 import pe.edu.pucp.softprog.modelo.ventas.LineaOrdenVenta;
 
 import java.sql.Connection;
@@ -12,7 +13,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-class LineaOrdenVentaDAOImpl extends RegistroDAOImpl<LineaOrdenVenta> implements LineaOrdenVentaDAO {
+class LineaOrdenVentaDAOImpl extends RegistroDAOImpl<LineaOrdenVenta>
+        implements LineaOrdenVentaDAO {
+
     @Override
     public void insertLineas(int idOrden, List<LineaOrdenVenta> lineasOrdenVenta) throws SQLException {
         Connection connection = TransactionsManager.getConnection();
@@ -54,15 +57,15 @@ class LineaOrdenVentaDAOImpl extends RegistroDAOImpl<LineaOrdenVenta> implements
 
     @Override
     public List<LineaOrdenVenta> findByOrderId(int idOrden) throws SQLException {
-        Connection connection = TransactionsManager.getConnection();
-
         String sql =
                 """
                 SELECT id, id_orden_venta, id_producto, cantidad, sub_total, activo
                 FROM linea_orden_venta
                 WHERE id_orden_venta = ?
                 """;
-        try (PreparedStatement cmd = connection.prepareStatement(sql)) {
+        try (Connection connection = DBManager.getInstance().getConnection();
+             PreparedStatement cmd = connection.prepareStatement(sql)) {
+
             cmd.setInt(1, idOrden);
             try (ResultSet rs = cmd.executeQuery()) {
                 List<LineaOrdenVenta> lineasOrdenVenta = new ArrayList<>();

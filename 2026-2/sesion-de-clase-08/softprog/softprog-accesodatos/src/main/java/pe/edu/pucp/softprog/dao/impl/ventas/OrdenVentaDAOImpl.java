@@ -5,6 +5,7 @@ import pe.edu.pucp.softprog.dao.impl.ClienteDAOImpl;
 import pe.edu.pucp.softprog.dao.impl.EmpleadoDAOImpl;
 import pe.edu.pucp.softprog.dao.impl.RegistroDAOImpl;
 import pe.edu.pucp.softprog.dao.transacciones.TransactionsManager;
+import pe.edu.pucp.softprog.db.DBManager;
 import pe.edu.pucp.softprog.modelo.ventas.LineaOrdenVenta;
 import pe.edu.pucp.softprog.modelo.ventas.OrdenVenta;
 
@@ -18,15 +19,14 @@ import java.util.List;
 public class OrdenVentaDAOImpl extends RegistroDAOImpl<OrdenVenta> implements OrdenVentaDAO {
     @Override
     public List<OrdenVenta> findAll() throws SQLException {
-        Connection conn = TransactionsManager.getConnection();
-
         String sql = """
                 SELECT
                     id, id_cliente, id_empleado, total, activo
                 FROM orden_venta
                 """;
 
-        try (PreparedStatement cmd = conn.prepareStatement(sql);
+        try (Connection conn = DBManager.getInstance().getConnection();
+             PreparedStatement cmd = conn.prepareStatement(sql);
              ResultSet rs = cmd.executeQuery()) {
 
             List<OrdenVenta> ordenes = new ArrayList<>();
@@ -39,8 +39,6 @@ public class OrdenVentaDAOImpl extends RegistroDAOImpl<OrdenVenta> implements Or
 
     @Override
     public OrdenVenta findById(Integer integer) throws SQLException {
-        Connection conn = TransactionsManager.getConnection();
-
         String sql = """
                 SELECT
                     id, id_cliente, id_empleado, total, activo
@@ -48,7 +46,8 @@ public class OrdenVentaDAOImpl extends RegistroDAOImpl<OrdenVenta> implements Or
                 WHERE id = ?
                 """;
 
-        try (PreparedStatement cmd = conn.prepareStatement(sql)) {
+        try (Connection conn = DBManager.getInstance().getConnection();
+             PreparedStatement cmd = conn.prepareStatement(sql)) {
             cmd.setInt(1, integer);
             try (ResultSet rs = cmd.executeQuery()) {
                 return rs.next() ? mapear(rs, new OrdenVenta()) : null;
@@ -65,7 +64,8 @@ public class OrdenVentaDAOImpl extends RegistroDAOImpl<OrdenVenta> implements Or
                 VALUES (?, ?, ?, ?)
                 """;
 
-        try (PreparedStatement cmd = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+        try (PreparedStatement cmd = conn.prepareStatement(sql,
+                PreparedStatement.RETURN_GENERATED_KEYS)) {
             if (ordenVenta.getCliente() != null) {
                 cmd.setInt(1, ordenVenta.getCliente().getId());
             } else {

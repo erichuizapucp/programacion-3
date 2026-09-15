@@ -21,26 +21,18 @@ public class OrdenVentaBLImpl implements OrdenVentaBL {
 
     @Override
     public List<OrdenVenta> findAll() throws BLException {
-        TransactionsManager.iniciar();
         try {
-            List<OrdenVenta> ordenes = ordenVentaDAO.findAll();
-            TransactionsManager.commit();
-            return ordenes;
+            return ordenVentaDAO.findAll();
         } catch (SQLException e) {
-            TransactionsManager.rollback();
             throw new BLException("No se pudo listar las órdenes de venta", e);
         }
     }
 
     @Override
     public OrdenVenta findById(Integer id) throws BLException {
-        TransactionsManager.iniciar();
         try {
-            OrdenVenta orden = ordenVentaDAO.findById(id);
-            TransactionsManager.commit();
-            return orden;
+            return ordenVentaDAO.findById(id);
         } catch (SQLException e) {
-            TransactionsManager.rollback();
             throw new BLException("No se pudo recuperar la orden de venta", e);
         }
     }
