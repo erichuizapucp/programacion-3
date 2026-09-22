@@ -9,7 +9,7 @@ namespace SoftProg.DbManager {
         private static DBManager? Instance { get; set; }
         private static readonly Lock Candado = new();
 
-        protected DBManager(string cadenaConexion) { 
+        protected DBManager(string? cadenaConexion) { 
             ArgumentNullException.ThrowIfNullOrEmpty(cadenaConexion, nameof(cadenaConexion));
             CadenaConexion = cadenaConexion;
         }
@@ -31,8 +31,7 @@ namespace SoftProg.DbManager {
                 .SetBasePath(AppContext.BaseDirectory)
                 .AddJsonFile("appsettings.json").Build();
 
-            string cadenaConexion = builder.GetConnectionString("softprog") ?? 
-                throw new InvalidOperationException("No se pudo encontrar la cadena de conexion");
+            string? cadenaConexion = builder.GetConnectionString("softprog");
 
             return new DBManager(cadenaConexion);
         }
