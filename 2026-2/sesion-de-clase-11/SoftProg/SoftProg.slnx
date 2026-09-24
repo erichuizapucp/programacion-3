@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="SoftProg.AccessoDatos/SoftProg.AccessoDatos.csproj" Id="17599ce4-300c-41b4-86b9-d7860e3264b5" />
+  <Project Path="SoftProg.App/SoftProg.App.csproj" />
+  <Project Path="SoftProg.DbManager/SoftProg.DbManager.csproj" />
+  <Project Path="SoftProg.Modelo/SoftProg.Modelo.csproj" />
+</Solution>
