@@ -1,0 +1,5 @@
+{
+    "ConnectionStrings": {
+        "softprog": "Server=;Port=3306;Database=softprog;User Id=;Password=;"
+    }
+}
