@@ -1,0 +1,22 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+}
+
+h1,
+h2 {
+  color: #042354;
+}
+
+.foto-perfil {
+  border-radius: 50%;
+}
+
+.navbar-brand {
+  font-weight: bold;
+}

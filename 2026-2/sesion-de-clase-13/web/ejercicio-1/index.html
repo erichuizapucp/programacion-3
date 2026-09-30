@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Perfil académico - Ana Torres</title>
+</head>
+<body>
+  <header>
+    <p>Pontificia Universidad Católica del Perú</p>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#presentacion">Presentación</a></li>
+      <li><a href="#cursos">Cursos</a></li>
+      <li><a href="#horario">Horario</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="presentacion">
+      <h1>Ana Torres</h1>
+      <p>
+        Soy estudiante de <strong>Ingeniería Informática</strong> en la PUCP.
+        Me interesa el <em>desarrollo de software</em> y la programación web.
+      </p>
+      <img src="img/perfil.svg" alt="Foto de perfil de Ana Torres" width="160" height="160">
+    </section>
+
+    <section id="cursos">
+      <h2>Cursos del semestre</h2>
+      <ul>
+        <li>Programación 3</li>
+        <li>Base de Datos</li>
+        <li>Ingeniería de Software</li>
+        <li>Redes de Computadoras</li>
+      </ul>
+    </section>
+
+    <section id="horario">
+      <h2>Horario</h2>
+      <table border="1">
+        <tr>
+          <th>Curso</th>
+          <th>Día</th>
+          <th>Hora</th>
+        </tr>
+        <tr>
+          <td>Programación 3</td>
+          <td>Lunes</td>
+          <td>08:00 - 11:00</td>
+        </tr>
+        <tr>
+          <td>Base de Datos</td>
+          <td>Martes</td>
+          <td>14:00 - 17:00</td>
+        </tr>
+        <tr>
+          <td>Ingeniería de Software</td>
+          <td>Miércoles</td>
+          <td>11:00 - 14:00</td>
+        </tr>
+        <tr>
+          <td>Redes de Computadoras</td>
+          <td>Jueves</td>
+          <td>08:00 - 11:00</td>
+        </tr>
+      </table>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <form action="/contacto" method="post">
+        <p>
+          <label for="nombre">Nombre</label>
+          <input id="nombre" name="nombre" type="text" required>
+        </p>
+        <p>
+          <label for="correo">Correo</label>
+          <input id="correo" name="correo" type="email" required>
+        </p>
+        <p>
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="4" required></textarea>
+        </p>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Ana Torres - Programación Web</p>
+  </footer>
+</body>
+</html>
