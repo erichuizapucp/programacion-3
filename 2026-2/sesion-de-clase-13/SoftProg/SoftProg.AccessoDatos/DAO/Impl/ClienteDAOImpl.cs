@@ -42,6 +42,22 @@ namespace SoftProg.AccessoDatos.DAO.Impl {
             return reader.Read() ? Mapear(reader, new Cliente()) : null;
         }
 
+        public List<Cliente> FilterByName(string nombre) {
+            using DbConnection conn = DBManager.GetInstance().GetConnection();
+            using DbCommand cmd = conn.CreateCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "filtrar_clientes_por_nombre";
+            cmd.AgregarParametroCadena("p_nombre", nombre);
+            using DbDataReader reader = cmd.ExecuteReader();
+
+            List<Cliente> clientes = [];
+            while (reader.Read()) {
+                clientes.Add(Mapear(reader, new Cliente()));
+            }
+
+            return clientes;
+        }
+
         public void Insert(Cliente cliente) {
             using DbConnection conn = DBManager.GetInstance().GetConnection();
             using DbCommand cmd = conn.CreateCommand();

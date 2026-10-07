@@ -7,6 +7,7 @@ DROP PROCEDURE IF EXISTS eliminar_producto;
 DROP PROCEDURE IF EXISTS buscar_producto_por_id;
 DROP PROCEDURE IF EXISTS buscar_producto_por_nombre;
 DROP PROCEDURE IF EXISTS listar_productos;
+DROP PROCEDURE IF EXISTS filtrar_productos_por_nombre;
 GO
 
 CREATE PROCEDURE insertar_producto(
@@ -75,5 +76,12 @@ CREATE PROCEDURE listar_productos
 AS
 BEGIN
 	SELECT * FROM producto;
+END
+GO
+
+CREATE PROCEDURE filtrar_productos_por_nombre(@p_nombre VARCHAR(100))
+AS
+BEGIN
+    SELECT * FROM producto WHERE nombre LIKE '%' + @p_nombre + '%';
 END
 GO

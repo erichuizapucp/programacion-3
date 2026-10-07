@@ -6,6 +6,7 @@ DROP PROCEDURE IF EXISTS eliminar_empleado;
 DROP PROCEDURE IF EXISTS buscar_empleado_por_id;
 DROP PROCEDURE IF EXISTS listar_empleados;
 DROP PROCEDURE IF EXISTS buscar_empleado_por_dni;
+DROP PROCEDURE IF EXISTS filtrar_empleados_por_nombre;
 
 DELIMITER //
 CREATE PROCEDURE insertar_empleado(
@@ -92,4 +93,9 @@ END //
 CREATE PROCEDURE buscar_empleado_por_dni(IN p_dni CHAR(8))
 BEGIN
 	SELECT * FROM empleado WHERE dni = p_dni;
+END //
+
+CREATE PROCEDURE filtrar_empleados_por_nombre(IN p_nombre VARCHAR(50))
+BEGIN
+    SELECT * FROM empleado WHERE nombre LIKE CONCAT('%', p_nombre, '%');
 END //

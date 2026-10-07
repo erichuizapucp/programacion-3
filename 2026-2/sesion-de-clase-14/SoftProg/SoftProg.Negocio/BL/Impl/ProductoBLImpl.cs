@@ -22,6 +22,14 @@ namespace SoftProg.Negocio.BL.Impl {
             }
         }
 
+        public List<Producto> FilterByName(string nombre) {
+            try {
+                return productoDAO.FilterByName(nombre);
+            } catch (Exception ex) {
+                throw new BLException("No se pudo filtrar los productos por nombre", ex);
+            }
+        }
+
         public void Insert(Producto producto) {
             ValidarPrecio(producto);
             ValidarNombreUnico(producto);

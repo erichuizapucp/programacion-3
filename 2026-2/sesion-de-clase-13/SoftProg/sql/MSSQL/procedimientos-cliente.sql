@@ -8,6 +8,7 @@ DROP PROCEDURE IF EXISTS buscar_cliente_por_id;
 DROP PROCEDURE IF EXISTS listar_clientes;
 DROP PROCEDURE IF EXISTS buscar_cliente_por_dni;
 DROP PROCEDURE IF EXISTS buscar_cliente_por_cuenta;
+DROP PROCEDURE IF EXISTS filtrar_clientes_por_nombre;
 GO
 
 CREATE PROCEDURE insertar_cliente(
@@ -111,5 +112,12 @@ BEGIN
     FROM cliente AS c
     INNER JOIN cuenta_usuario AS cu ON c.id_cuenta_usuario = cu.id
     WHERE cu.user_name = @p_cuenta;
+END
+GO
+
+CREATE PROCEDURE filtrar_clientes_por_nombre(@p_nombre VARCHAR(50))
+AS
+BEGIN
+	SELECT * FROM cliente WHERE nombre LIKE '%' + @p_nombre + '%';
 END
 GO

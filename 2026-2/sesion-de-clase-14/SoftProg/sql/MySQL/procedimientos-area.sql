@@ -6,6 +6,7 @@ DROP PROCEDURE IF EXISTS eliminar_area;
 DROP PROCEDURE IF EXISTS buscar_area_por_id;
 DROP PROCEDURE IF EXISTS listar_areas;
 DROP PROCEDURE IF EXISTS buscar_area_por_nombre;
+DROP PROCEDURE IF EXISTS filtrar_areas_por_nombre;
 
 DELIMITER //
 CREATE PROCEDURE insertar_area(IN p_nombre VARCHAR(50),
@@ -43,4 +44,9 @@ END //
 CREATE PROCEDURE listar_areas()
 BEGIN
 	SELECT * FROM area;
+END //
+
+CREATE PROCEDURE filtrar_areas_por_nombre(IN p_nombre VARCHAR(50))
+BEGIN
+    SELECT * FROM area WHERE nombre LIKE CONCAT('%', p_nombre, '%');
 END //

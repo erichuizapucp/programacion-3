@@ -7,6 +7,7 @@ DROP PROCEDURE IF EXISTS eliminar_empleado;
 DROP PROCEDURE IF EXISTS buscar_empleado_por_id;
 DROP PROCEDURE IF EXISTS listar_empleados;
 DROP PROCEDURE IF EXISTS buscar_empleado_por_dni;
+DROP PROCEDURE IF EXISTS filtrar_empleados_por_nombre;
 GO
 
 CREATE PROCEDURE insertar_empleado(
@@ -104,5 +105,12 @@ CREATE PROCEDURE buscar_empleado_por_dni(@p_dni CHAR(8))
 AS
 BEGIN
 	SELECT * FROM empleado WHERE dni = @p_dni;
+END
+GO
+
+CREATE PROCEDURE filtrar_empleados_por_nombre(@p_nombre VARCHAR(50))
+AS
+BEGIN
+    SELECT * FROM empleado WHERE nombre LIKE '%' + @p_nombre + '%';
 END
 GO

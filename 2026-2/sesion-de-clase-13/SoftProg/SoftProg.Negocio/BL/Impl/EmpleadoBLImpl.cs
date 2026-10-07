@@ -26,6 +26,14 @@ namespace SoftProg.Negocio.BL.Impl {
             }
         }
 
+        public List<Empleado> FilterByName(string nombre) {
+            try {
+                return empleadoDAO.FilterByName(nombre);
+            } catch (Exception ex) {
+                throw new BLException("No se pudo filtrar los empleados por nombre", ex);
+            }
+        }
+
         public void Insert(Empleado empleado) {
             ValidarDatos(empleado);
             ValidarDniUnico(empleado);

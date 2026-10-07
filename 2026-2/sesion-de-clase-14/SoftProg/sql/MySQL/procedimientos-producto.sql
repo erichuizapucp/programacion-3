@@ -6,6 +6,7 @@ DROP PROCEDURE IF EXISTS eliminar_producto;
 DROP PROCEDURE IF EXISTS buscar_producto_por_id;
 DROP PROCEDURE IF EXISTS buscar_producto_por_nombre;
 DROP PROCEDURE IF EXISTS listar_productos;
+DROP PROCEDURE IF EXISTS filtrar_productos_por_nombre;
 
 DELIMITER //
 CREATE PROCEDURE insertar_producto(
@@ -63,4 +64,9 @@ END //
 CREATE PROCEDURE listar_productos()
 BEGIN
 	SELECT * FROM producto;
+END //
+
+CREATE PROCEDURE filtrar_productos_por_nombre(IN p_nombre VARCHAR(100))
+BEGIN
+    SELECT * FROM producto WHERE nombre LIKE CONCAT('%', p_nombre, '%');
 END //

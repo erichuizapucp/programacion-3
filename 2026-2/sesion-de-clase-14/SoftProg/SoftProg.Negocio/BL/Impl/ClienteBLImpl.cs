@@ -25,6 +25,14 @@ namespace SoftProg.Negocio.BL.Impl {
             }
         }
 
+        public List<Cliente> FilterByName(string nombre) {
+            try {
+                return clienteDAO.FilterByName(nombre);
+            } catch (Exception ex) {
+                throw new BLException("No se pudo filtrar los clientes por nombre", ex);
+            }
+        }
+
         public void Insert(Cliente cliente) {
             ValidarDatos(cliente);
             ValidarLineaCredito(cliente);

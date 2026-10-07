@@ -7,6 +7,7 @@ DROP PROCEDURE IF EXISTS buscar_cliente_por_id;
 DROP PROCEDURE IF EXISTS listar_clientes;
 DROP PROCEDURE IF EXISTS buscar_cliente_por_dni;
 DROP PROCEDURE IF EXISTS buscar_cliente_por_cuenta;
+DROP PROCEDURE IF EXISTS filtrar_clientes_por_nombre;
 
 DELIMITER //
 CREATE PROCEDURE insertar_cliente(
@@ -97,4 +98,9 @@ BEGIN
     FROM cliente AS c
     INNER JOIN cuenta_usuario AS cu ON c.id_cuenta_usuario = cu.id
     WHERE cu.user_name = p_cuenta;
+END //
+
+CREATE PROCEDURE filtrar_clientes_por_nombre(IN p_nombre VARCHAR(50))
+BEGIN
+    SELECT * FROM cliente WHERE nombre LIKE CONCAT('%', p_nombre, '%');
 END //

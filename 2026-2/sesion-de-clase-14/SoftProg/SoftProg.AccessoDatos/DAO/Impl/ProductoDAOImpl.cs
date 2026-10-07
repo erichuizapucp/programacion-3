@@ -42,6 +42,22 @@ namespace SoftProg.AccessoDatos.DAO.Impl {
             return reader.Read() ? Mapear(reader, new Producto()) : null;
         }
 
+        public List<Producto> FilterByName(string nombre) {
+            using DbConnection conn = DBManager.GetInstance().GetConnection();
+            using DbCommand cmd = conn.CreateCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "filtrar_productos_por_nombre";
+            cmd.AgregarParametroCadena("p_nombre", nombre);
+            using DbDataReader reader = cmd.ExecuteReader();
+
+            List<Producto> productos = [];
+            while (reader.Read()) {
+                productos.Add(Mapear(reader, new Producto()));
+            }
+
+            return productos;
+        }
+
         public void Insert(Producto producto) {
             using DbConnection conn = DBManager.GetInstance().GetConnection();
             using DbCommand cmd = conn.CreateCommand();

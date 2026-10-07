@@ -22,6 +22,14 @@ namespace SoftProg.Negocio.BL.Impl {
             }
         }
 
+        public List<Area> FilterByName(string nombre) {
+            try {
+                return areaDAO.FilterByName(nombre);
+            } catch (Exception ex) {
+                throw new BLException("No se pudo filtrar las áreas por nombre", ex);
+            }
+        }
+
         public void Insert(Area area) {
             ValidarNombreUnico(area);
             try {
