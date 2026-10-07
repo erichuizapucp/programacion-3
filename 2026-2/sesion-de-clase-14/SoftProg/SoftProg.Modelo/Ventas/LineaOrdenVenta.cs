@@ -18,20 +18,8 @@ namespace SoftProg.Modelo.Ventas {
                 field = new(value);
             }
         }
-        public int Cantidad { 
-            get;
-            set {
-                ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0);
-                field = value;
-            }
-        }
-        public double SubTotal { 
-            get;
-            set {
-                //ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(value, 0);
-                field = value;
-            }
-        }
+        public int Cantidad { get; set; }
+        public double SubTotal { get; set; }
 
         public override string ToString() {
             return base.ToString() + $"Producto: {Producto.Nombre}, Cantidad: {Cantidad}, SubTotal: {SubTotal:F2}";

@@ -1,0 +1,10 @@
+﻿@page "/productos"
+@inject IProductoBL ProductoBL;
+
+<h3>ListarProductosPage</h3>
+
+@code {
+    void OnInitialized() {
+        var productos = ProductoBL.FindAll();    
+    }
+}

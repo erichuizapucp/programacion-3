@@ -150,8 +150,10 @@ namespace SoftProg.AccessoDatos.DAO.Impl {
 
         protected override Cliente Mapear(DbDataReader reader, Cliente cliente) {
             base.Mapear(reader, cliente);
-            cliente.Categoria = Enum.Parse<CategoriaCliente>(reader.GetString("categoria"));
-            cliente.LineaCredito = reader.IsDBNull("linea_credito") ? 0 : reader.GetDouble("linea_credito");
+            cliente.Categoria = 
+                Enum.Parse<CategoriaCliente>(reader.GetString("categoria"));
+            cliente.LineaCredito = 
+                reader.IsDBNull("linea_credito") ? 0 : reader.GetDouble("linea_credito");
             return cliente;
         }
     }

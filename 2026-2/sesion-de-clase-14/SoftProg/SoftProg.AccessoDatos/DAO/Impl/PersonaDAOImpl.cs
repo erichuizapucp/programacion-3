@@ -14,9 +14,7 @@ namespace SoftProg.AccessoDatos.DAO.Impl {
             persona.FechaNacimiento = reader.GetDateTime("fecha_nacimiento");
 
             if (!reader.IsDBNull("id_cuenta_usuario")) {
-                persona.CuentaUsuario = 
-                    new CuentaUsuarioDAOImpl().FindById(
-                        reader.GetInt32("id_cuenta_usuario"));
+                persona.CuentaUsuario = new CuentaUsuarioDAOImpl().FindById(reader.GetInt32("id_cuenta_usuario"));
             }
             else {
                 persona.CuentaUsuario = null;
