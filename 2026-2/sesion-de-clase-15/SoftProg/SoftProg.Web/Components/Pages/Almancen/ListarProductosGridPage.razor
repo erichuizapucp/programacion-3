@@ -1,0 +1,83 @@
+﻿@page "/productos-grid"
+@inject IProductoBL ProductoBL;
+@inject NavigationManager Nav;
+
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<PageTitle>Productos</PageTitle>
+
+<div class="d-flex justify-content-between mb-3">
+    <h3 class="mb-3">Productos</h3>
+    <button class="btn btn-success" @onclick="() => NuevoProducto()">
+        Nuevo producto
+    </button>
+
+</div>
+
+<div class="d-flex align-items-center gap-2 mb-3">
+    <label class="text-nowrap">Nombre:</label>
+    <input class="form-control" placeholder="Ingrese el nombre..." @bind="Filtro" />
+    <button class="btn btn-primary" @onclick="() => FiltrarProductos()">Filtrar</button>
+</div>
+
+
+@if (Productos.Count() == 0) {
+    <div class="alert alert-info">No hay productos registrados.</div>
+}
+else {
+    <QuickGrid Items="Productos" Pagination="Paginacion" Class="table table-striped table-hover">
+        <PropertyColumn Title="Id" Property="p => p.Id" Sortable="true" />
+        <PropertyColumn Title="Nombre" Property="p => p.Nombre" Sortable="true" />
+        <PropertyColumn Title="Unidad" Property="p => TextoUnidadMedida(p.UnidadMedida)" />
+        <PropertyColumn Title="Precio (S/)" Property="p => p.Precio" Format="N2"
+                        Sortable="true" Align="Align.Right" />
+        <TemplateColumn Title="Activo" Align="Align.Center">
+            <input type="checkbox" checked="@context.IsActivo" disabled />
+        </TemplateColumn>
+        <TemplateColumn Title="Acciones">
+            <button class="btn btn-primary btn-sm" @onclick="() => EditarProducto(context.Id)">
+                Editar
+            </button>
+            <button class="btn btn-danger btn-sm" @onclick="() => EliminarProducto(context.Id)">
+                Eliminar
+            </button>
+        </TemplateColumn>
+    </QuickGrid>
+    <Paginator State="Paginacion"></Paginator>
+}
+
+@code {
+    private IQueryable<Producto> Productos { get; set; } = Enumerable.Empty<Producto>().AsQueryable();
+    private string Filtro { get; set; } = string.Empty;
+    private PaginationState Paginacion { get; } = new() { ItemsPerPage = 5 };
+
+    protected override void OnInitialized() {
+        Productos = ProductoBL.FindAll().AsQueryable();
+    }
+
+    private string TextoUnidadMedida(UnidadMedida unidad) {
+        return unidad switch {
+            UnidadMedida.UND => "Unidad",
+            UnidadMedida.KG => "Kilogramo",
+            UnidadMedida.LITRO => "Litro",
+            _ => "Unidad"
+        };
+    }
+
+    private void NuevoProducto() {
+        Nav.NavigateTo("/productos/nuevo");
+    }
+
+    private void EditarProducto(int id) {
+        Nav.NavigateTo($"/productos/editar/{id}");
+    }
+
+    private void EliminarProducto(int id) {
+        ProductoBL.Delete(id);
+        Productos = ProductoBL.FindAll().AsQueryable();
+    }
+
+    private void FiltrarProductos() {
+        Productos = ProductoBL.FilterByName(Filtro).AsQueryable();
+    }
+}

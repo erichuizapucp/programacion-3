@@ -1,0 +1,94 @@
+﻿@page "/productos"
+@inject IProductoBL ProductoBL;
+@inject NavigationManager Nav;
+
+<PageTitle>Productos</PageTitle>
+
+<div class="d-flex justify-content-between mb-3">
+    <h3 class="mb-3">Productos</h3>
+    <button class="btn btn-success" @onclick="() => NuevoProducto()">
+        Nuevo producto
+    </button>
+
+</div>
+
+<div class="d-flex align-items-center gap-2 mb-3">
+    <label class="text-nowrap">Nombre:</label>
+    <input class="form-control" placeholder="Ingrese el nombre..." @bind="Filtro" />
+    <button class="btn btn-primary" @onclick="() => FiltrarProductos()">Filtrar</button>
+</div>
+
+
+@if (Productos.Count == 0) {
+    <div class="alert alert-info">No hay productos registrados.</div>
+}
+else {
+    <table class="table table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Unidad</th>
+                <th class="text-end">Precio</th>
+                <th>Activo</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(Producto producto in Productos) {
+                <tr>
+                    <td>@producto.Id</td>
+                    <td>@producto.Nombre</td>
+                    <td>@TextoUnidadMedida(producto.UnidadMedida)</td>
+                    <td class="text-end">@producto.Precio.ToString("N2")</td>
+                    <td>
+                        <input type="checkbox" checked="@producto.IsActivo" disabled />
+                    </td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" @onclick="() => EditarProducto(producto.Id)">
+                            Editar
+                        </button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => EliminarProducto(producto.Id)">
+                            Eliminar
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<Producto> Productos { get; set; } = [];
+    private string Filtro { get; set; } = string.Empty;
+
+    protected override void OnInitialized() {
+        Productos = ProductoBL.FindAll();
+    }
+
+    private string TextoUnidadMedida(UnidadMedida unidad) {
+        return unidad switch {
+            UnidadMedida.UND => "Unidad",
+            UnidadMedida.KG => "Kilogramo",
+            UnidadMedida.LITRO => "Litro",
+            _ => "Unidad"
+        };
+    }
+
+    private void NuevoProducto() {
+        Nav.NavigateTo("/productos/nuevo");
+    }
+
+    private void EditarProducto(int id) {
+        Nav.NavigateTo($"/productos/editar/{id}");
+    }
+
+    private void EliminarProducto(int id) {
+        ProductoBL.Delete(id);
+        Productos = ProductoBL.FindAll();
+    }
+
+    private void FiltrarProductos() {
+        Productos = ProductoBL.FilterByName(Filtro);
+    }
+}

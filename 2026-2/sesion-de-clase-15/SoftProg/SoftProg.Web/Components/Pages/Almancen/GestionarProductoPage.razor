@@ -1,0 +1,10 @@
+﻿@page "/productos/nuevo"
+@page "/productos/editar/{Id:int}"
+
+
+<h3>GestionarProductoPage</h3>
+
+@code {
+    [Parameter]
+    public int Id { get; set; } = -1;
+}

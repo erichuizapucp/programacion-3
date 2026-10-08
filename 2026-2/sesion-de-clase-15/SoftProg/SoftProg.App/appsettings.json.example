@@ -1,0 +1,7 @@
+{
+    "Motor": "MySQL",
+    "ConnectionStrings": {
+        "mysql": "Server=;Port=3306;Database=softprog;User Id=;Password=;",
+        "mssql": "Server=,1433;Database=softprog;User Id=;Password=;TrustServerCertificate=True;"
+    }
+}
