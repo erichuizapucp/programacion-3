@@ -1,0 +1,39 @@
+<div class="card">
+    <div class="card-header fw-bold">
+        Orden N.° @Orden.Id ·
+        @(Orden.Cliente?.Nombre) @(Orden.Cliente?.ApellidoPaterno)
+    </div>
+    <div class="card-body">
+        <p>Vendedor: @(Orden.Empleado != null ? $"{Orden.Empleado.Nombre} {Orden.Empleado.ApellidoPaterno}" : "Sin vendedor")</p>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th class="text-end">Cant.</th>
+                    <th class="text-end">Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (LineaOrdenVenta linea in Orden.Lineas) {
+                    <tr>
+                        <td>@linea.Producto.Nombre</td>
+                        <td class="text-end">@linea.Cantidad</td>
+                        <td class="text-end">@linea.SubTotal.ToString("N2")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <TotalesOrdenVenta SubTotal="OrdenViewModel.SubTotal" Igv="OrdenViewModel.Igv" Total="OrdenViewModel.Total" />
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public OrdenVenta Orden { get; set; } = default!;
+
+    private OrdenVentaViewModel OrdenViewModel { get; set; } = new();
+
+    protected override void OnParametersSet() {
+        OrdenViewModel = new OrdenVentaViewModel(Orden);
+    }
+}

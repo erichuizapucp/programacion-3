@@ -1,0 +1,65 @@
+@page "/areas/nuevo"
+@page "/areas/editar/{Id:int}"
+@attribute [Authorize(Policy = "Areas")]
+@inject IAreaBL AreaBL;
+@inject NavigationManager Nav;
+
+<PageTitle>Áreas</PageTitle>
+
+<h3 class="mb-3">@(Id == null ? "Nueva área" : "Editar área")</h3>
+
+@if (MensajeError != null) {
+    <div class="alert alert-danger">@MensajeError</div>
+}
+
+<EditForm Model="ViewModel" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <InputText tabindex="1" class="form-control" @bind-Value="ViewModel.Nombre" />
+        <ValidationMessage For="() => ViewModel.Nombre" />
+    </div>
+    <div class="form-check mb-3">
+        <InputCheckbox tabindex="2" class="form-check-input" @bind-Value="ViewModel.IsActivo" />
+        <label class="form-check-label">Activo</label>
+    </div>
+
+    <button tabindex="3" type="submit" class="btn btn-primary">Guardar</button>
+    <a tabindex="4" class="btn btn-outline-secondary" href="areas">Cancelar</a>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    private AreaViewModel ViewModel { get; set; } = new();
+    private string? MensajeError { get; set; }
+
+    protected override void OnParametersSet() {
+        if (Id == null) {
+            ViewModel = new AreaViewModel();
+            return;
+        }
+        Area? area = AreaBL.FindById(Id.Value);
+        if (area == null) {
+            Nav.NavigateTo("/areas");
+            return;
+        }
+        ViewModel = new AreaViewModel(area);
+    }
+
+    private void Guardar() {
+        try {
+            if (Id == null) {
+                AreaBL.Insert(ViewModel.ToModelo());
+            } else {
+                AreaBL.Update(ViewModel.ToModelo());
+            }
+            Nav.NavigateTo("/areas");
+        } catch (BLException ex) {
+            MensajeError = ex.Message;
+        }
+    }
+}

@@ -1,0 +1,71 @@
+@page "/mis-ordenes"
+@attribute [Authorize(Policy = "MisOrdenes")]
+@inject IOrdenVentaBL OrdenVentaBL;
+@inject NavigationManager Nav;
+@inject ISesionService SesionService;
+
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<PageTitle>Mis órdenes</PageTitle>
+
+<div class="d-flex justify-content-between mb-3">
+    <h3 class="mb-3">Mis órdenes</h3>
+    <button tabindex="1" class="btn btn-success" @onclick="() => NuevaOrden()">
+        Nueva orden
+    </button>
+</div>
+
+@if (!Ordenes.Any()) {
+    <div class="alert alert-info">Todavía no tiene órdenes de venta.</div>
+}
+else {
+    <div class="row">
+        <div class="col-lg-7">
+            <QuickGrid Items="Ordenes" Pagination="Paginacion" Class="table table-striped table-hover">
+                <PropertyColumn Title="N.°" Property="o => o.Id" Sortable="true" />
+                <PropertyColumn Title="Subtotal (S/)" Property="o => o.SubTotal" Format="N2"
+                                Sortable="true" Align="Align.Right" />
+                <PropertyColumn Title="IGV (S/)" Property="o => o.Igv" Format="N2"
+                                Sortable="true" Align="Align.Right" />
+                <PropertyColumn Title="Total (S/)" Property="o => o.Total" Format="N2"
+                                Sortable="true" Align="Align.Right" />
+                <TemplateColumn Title="Acciones">
+                    <button class="btn btn-outline-primary btn-sm" @onclick="() => SeleccionarOrden(context.Id)">
+                        Ver
+                    </button>
+                </TemplateColumn>
+            </QuickGrid>
+            <Paginator State="Paginacion"></Paginator>
+        </div>
+        <div class="col-lg-5">
+            @if (OrdenSeleccionada == null) {
+                <div class="alert alert-info">Seleccione una orden para ver su detalle.</div>
+            } else {
+                <DetalleOrdenVenta Orden="OrdenSeleccionada" />
+            }
+        </div>
+    </div>
+}
+
+@code {
+    private IQueryable<OrdenVentaViewModel> Ordenes { get; set; } = Enumerable.Empty<OrdenVentaViewModel>().AsQueryable();
+    private OrdenVenta? OrdenSeleccionada { get; set; }
+    private PaginationState Paginacion { get; } = new() { ItemsPerPage = 5 };
+
+    protected override void OnInitialized() {
+        string userName = SesionService.ObtenerUserName();
+        List<OrdenVentaViewModel> ordenes = [];
+        foreach (OrdenVenta orden in OrdenVentaBL.FindByCuenta(userName)) {
+            ordenes.Add(new OrdenVentaViewModel(orden));
+        }
+        Ordenes = ordenes.AsQueryable();
+    }
+
+    private void SeleccionarOrden(int id) {
+        OrdenSeleccionada = OrdenVentaBL.FindById(id);
+    }
+
+    private void NuevaOrden() {
+        Nav.NavigateTo("/mis-ordenes/nueva");
+    }
+}

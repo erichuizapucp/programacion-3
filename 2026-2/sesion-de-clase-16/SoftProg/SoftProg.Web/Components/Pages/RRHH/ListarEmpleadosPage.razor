@@ -1,0 +1,94 @@
+@page "/empleados"
+@inject IEmpleadoBL EmpleadoBL;
+@inject NavigationManager Nav;
+
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<PageTitle>Empleados</PageTitle>
+
+<div class="d-flex justify-content-between mb-3">
+    <h3 class="mb-3">Empleados</h3>
+    <button tabindex="4" class="btn btn-success" @onclick="() => NuevoEmpleado()">
+        Nuevo empleado
+    </button>
+
+</div>
+
+<div class="d-flex align-items-center gap-2 mb-3">
+    <label class="text-nowrap">Nombre:</label>
+    <input tabindex="1" class="form-control" placeholder="Ingrese el nombre..." @bind="Filtro" />
+    <button tabindex="2" class="btn btn-primary" @onclick="() => FiltrarEmpleados()">Filtrar</button>
+    <button tabindex="3" class="btn btn-secondary" @onclick="() => LimpiarFiltro()">Limpiar</button>
+</div>
+
+
+@if (!Empleados.Any()) {
+    <div class="alert alert-info">No hay empleados registrados.</div>
+}
+else {
+    <QuickGrid Items="Empleados" Pagination="Paginacion" Class="table table-striped table-hover">
+        <PropertyColumn Title="Id" Property="e => e.Id" Sortable="true" />
+        <PropertyColumn Title="DNI" Property="e => e.Dni" Sortable="true" />
+        <PropertyColumn Title="Nombre" Property="@(e => e.Nombre + " " + e.ApellidoPaterno)" Sortable="true" />
+        <PropertyColumn Title="Área" Property="e => e.Area.Nombre" Sortable="true" />
+        <PropertyColumn Title="Cargo" Property="e => TextoCargo(e.Cargo)" />
+        <PropertyColumn Title="Sueldo (S/)" Property="e => e.Sueldo" Format="N2"
+                        Sortable="true" Align="Align.Right" />
+        <TemplateColumn Title="Activo" Align="Align.Center">
+            <input type="checkbox" checked="@context.IsActivo" disabled />
+        </TemplateColumn>
+        <TemplateColumn Title="Acciones">
+            <button class="btn btn-primary btn-sm" @onclick="() => EditarEmpleado(context.Id)">
+                Editar
+            </button>
+            <button class="btn btn-danger btn-sm" @onclick="() => EliminarEmpleado(context.Id)">
+                Eliminar
+            </button>
+        </TemplateColumn>
+    </QuickGrid>
+    <Paginator State="Paginacion"></Paginator>
+}
+
+@code {
+    private IQueryable<Empleado> Empleados { get; set; } = Enumerable.Empty<Empleado>().AsQueryable();
+    private string Filtro { get; set; } = string.Empty;
+    private PaginationState Paginacion { get; } = new() { ItemsPerPage = 5 };
+
+    protected override void OnInitialized() {
+        Empleados = EmpleadoBL.FindAll().AsQueryable();
+    }
+
+    private string TextoCargo(Cargo cargo) {
+        return cargo switch {
+            Cargo.VENDEDOR_SENIOR => "Vendedor Senior",
+            Cargo.EJECUTIVO_COMERCIAL => "Ejecutivo Comercial",
+            Cargo.ANALISTA_RRHH => "Analista de RRHH",
+            Cargo.ENCARGADO_ALMACEN => "Encargado de Almacén",
+            Cargo.CONTADOR => "Contador",
+            Cargo.TECNICO => "Técnico",
+            _ => "Sin cargo"
+        };
+    }
+
+    private void NuevoEmpleado() {
+        Nav.NavigateTo("/empleados/nuevo");
+    }
+
+    private void EditarEmpleado(int id) {
+        Nav.NavigateTo($"/empleados/editar/{id}");
+    }
+
+    private void EliminarEmpleado(int id) {
+        EmpleadoBL.Delete(id);
+        Empleados = EmpleadoBL.FindAll().AsQueryable();
+    }
+
+    private void FiltrarEmpleados() {
+        Empleados = EmpleadoBL.FilterByName(Filtro).AsQueryable();
+    }
+
+    private void LimpiarFiltro() {
+        Filtro = string.Empty;
+        Empleados = EmpleadoBL.FindAll().AsQueryable();
+    }
+}

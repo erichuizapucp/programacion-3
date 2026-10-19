@@ -1,0 +1,121 @@
+﻿@page "/"
+@inject IProductoBL ProductoBL;
+@inject IClienteBL ClienteBL;
+@inject IEmpleadoBL EmpleadoBL;
+@inject IOrdenVentaBL OrdenVentaBL;
+
+<PageTitle>Inicio</PageTitle>
+
+<h3 class="mb-3">Resumen</h3>
+
+<div class="row g-3 mb-4">
+    <div class="col-md-3">
+        <TarjetaResumen Titulo="Productos"
+                        Valor="@Productos.Count.ToString()"
+                        Detalle="@($"{Productos.Count(p => p.IsActivo)} activos")"
+                        Enlace="productos"
+                        TextoEnlace="Ver productos" />
+    </div>
+    <div class="col-md-3">
+        <TarjetaResumen Titulo="Clientes"
+                        Valor="@Clientes.Count.ToString()"
+                        Detalle="@($"{Clientes.Count(c => c.IsActivo)} activos")"
+                        Enlace="clientes"
+                        TextoEnlace="Ver clientes" />
+    </div>
+    <div class="col-md-3">
+        <TarjetaResumen Titulo="Empleados"
+                        Valor="@Empleados.Count.ToString()"
+                        Detalle="@($"{Empleados.Count(e => e.IsActivo)} activos")"
+                        Enlace="empleados"
+                        TextoEnlace="Ver empleados" />
+    </div>
+    <div class="col-md-3">
+        <TarjetaResumen Titulo="Ventas"
+                        Valor="@($"S/ {TotalVendido:N2}")"
+                        Detalle="@($"{Ordenes.Count} órdenes · promedio S/ {PromedioPorOrden:N2}")"
+                        Enlace="ordenes-venta"
+                        TextoEnlace="Ver órdenes" />
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-md-6">
+        <TablaResumen Titulo="Últimas órdenes"
+                      ColumnaNombre="Orden"
+                      ColumnaValor="Total (S/)"
+                      Filas="UltimasOrdenes" />
+    </div>
+    <div class="col-md-6">
+        <TablaResumen Titulo="Productos más vendidos"
+                      ColumnaNombre="Producto"
+                      ColumnaValor="Unidades"
+                      Filas="ProductosMasVendidos" />
+    </div>
+    <div class="col-md-6">
+        <TablaResumen Titulo="Clientes por categoría"
+                      ColumnaNombre="Categoría"
+                      ColumnaValor="Clientes"
+                      Filas="ClientesPorCategoria" />
+    </div>
+    <div class="col-md-6">
+        <TablaResumen Titulo="Empleados por área"
+                      ColumnaNombre="Área"
+                      ColumnaValor="Empleados"
+                      Filas="EmpleadosPorArea" />
+    </div>
+</div>
+
+@code {
+    private List<Producto> Productos { get; set; } = [];
+    private List<Cliente> Clientes { get; set; } = [];
+    private List<Empleado> Empleados { get; set; } = [];
+    private List<OrdenVenta> Ordenes { get; set; } = [];
+
+    private double TotalVendido { get; set; }
+    private double PromedioPorOrden { get; set; }
+    private List<FilaResumen> UltimasOrdenes { get; set; } = [];
+    private List<FilaResumen> ProductosMasVendidos { get; set; } = [];
+    private List<FilaResumen> ClientesPorCategoria { get; set; } = [];
+    private List<FilaResumen> EmpleadosPorArea { get; set; } = [];
+
+    protected override void OnInitialized() {
+        Productos = ProductoBL.FindAll();
+        Clientes = ClienteBL.FindAll();
+        Empleados = EmpleadoBL.FindAll();
+        Ordenes = OrdenVentaBL.FindAll();
+
+        Dictionary<string, int> unidadesPorProducto = [];
+        foreach (OrdenVenta orden in Ordenes) {
+            TotalVendido += orden.Total;
+            foreach (LineaOrdenVenta linea in orden.Lineas) {
+                string nombre = linea.Producto.Nombre;
+                unidadesPorProducto[nombre] = unidadesPorProducto.GetValueOrDefault(nombre) + linea.Cantidad;
+            }
+        }
+        PromedioPorOrden = Ordenes.Count > 0 ? TotalVendido / Ordenes.Count : 0;
+
+        foreach (OrdenVenta orden in Ordenes.OrderByDescending(o => o.Id).Take(5)) {
+            string nombre = $"N.° {orden.Id} · {orden.Cliente?.Nombre} {orden.Cliente?.ApellidoPaterno}";
+            UltimasOrdenes.Add(new FilaResumen { Nombre = nombre, Valor = orden.Total.ToString("N2") });
+        }
+
+        foreach (string producto in unidadesPorProducto.Keys.OrderByDescending(p => unidadesPorProducto[p]).Take(5)) {
+            ProductosMasVendidos.Add(new FilaResumen { Nombre = producto, Valor = unidadesPorProducto[producto].ToString() });
+        }
+
+        foreach (CategoriaCliente categoria in Enum.GetValues<CategoriaCliente>()) {
+            int cantidad = Clientes.Count(c => c.Categoria == categoria);
+            ClientesPorCategoria.Add(new FilaResumen { Nombre = categoria.ToString(), Valor = cantidad.ToString() });
+        }
+
+        Dictionary<string, int> empleadosPorArea = [];
+        foreach (Empleado empleado in Empleados) {
+            string area = empleado.Area.Nombre;
+            empleadosPorArea[area] = empleadosPorArea.GetValueOrDefault(area) + 1;
+        }
+        foreach (string area in empleadosPorArea.Keys) {
+            EmpleadosPorArea.Add(new FilaResumen { Nombre = area, Valor = empleadosPorArea[area].ToString() });
+        }
+    }
+}

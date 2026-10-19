@@ -1,0 +1,77 @@
+@page "/areas"
+@inject IAreaBL AreaBL;
+@inject NavigationManager Nav;
+
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<PageTitle>Áreas</PageTitle>
+
+<div class="d-flex justify-content-between mb-3">
+    <h3 class="mb-3">Áreas</h3>
+    <button tabindex="4" class="btn btn-success" @onclick="() => NuevaArea()">
+        Nueva área
+    </button>
+
+</div>
+
+<div class="d-flex align-items-center gap-2 mb-3">
+    <label class="text-nowrap">Nombre:</label>
+    <input tabindex="1" class="form-control" placeholder="Ingrese el nombre..." @bind="Filtro" />
+    <button tabindex="2" class="btn btn-primary" @onclick="() => FiltrarAreas()">Filtrar</button>
+    <button tabindex="3" class="btn btn-secondary" @onclick="() => LimpiarFiltro()">Limpiar</button>
+</div>
+
+
+@if (!Areas.Any()) {
+    <div class="alert alert-info">No hay áreas registradas.</div>
+}
+else {
+    <QuickGrid Items="Areas" Pagination="Paginacion" Class="table table-striped table-hover">
+        <PropertyColumn Title="Id" Property="a => a.Id" Sortable="true" />
+        <PropertyColumn Title="Nombre" Property="a => a.Nombre" Sortable="true" />
+        <TemplateColumn Title="Activo" Align="Align.Center">
+            <input type="checkbox" checked="@context.IsActivo" disabled />
+        </TemplateColumn>
+        <TemplateColumn Title="Acciones">
+            <button class="btn btn-primary btn-sm" @onclick="() => EditarArea(context.Id)">
+                Editar
+            </button>
+            <button class="btn btn-danger btn-sm" @onclick="() => EliminarArea(context.Id)">
+                Eliminar
+            </button>
+        </TemplateColumn>
+    </QuickGrid>
+    <Paginator State="Paginacion"></Paginator>
+}
+
+@code {
+    private IQueryable<Area> Areas { get; set; } = Enumerable.Empty<Area>().AsQueryable();
+    private string Filtro { get; set; } = string.Empty;
+    private PaginationState Paginacion { get; } = new() { ItemsPerPage = 5 };
+
+    protected override void OnInitialized() {
+        Areas = AreaBL.FindAll().AsQueryable();
+    }
+
+    private void NuevaArea() {
+        Nav.NavigateTo("/areas/nuevo");
+    }
+
+    private void EditarArea(int id) {
+        Nav.NavigateTo($"/areas/editar/{id}");
+    }
+
+    private void EliminarArea(int id) {
+        AreaBL.Delete(id);
+        Areas = AreaBL.FindAll().AsQueryable();
+    }
+
+    private void FiltrarAreas() {
+        Areas = AreaBL.FilterByName(Filtro).AsQueryable();
+    }
+
+    private void LimpiarFiltro() {
+        Filtro = string.Empty;
+        Areas = AreaBL.FindAll().AsQueryable();
+    }
+}

@@ -1,0 +1,27 @@
+<table class="table table-sm w-auto ms-auto">
+    <tbody>
+        <tr>
+            <td>Subtotal</td>
+            <td class="text-end">S/ @SubTotal.ToString("N2")</td>
+        </tr>
+        <tr>
+            <td>IGV (@((OrdenVentaViewModel.TasaIgv * 100).ToString("N0"))%)</td>
+            <td class="text-end">S/ @Igv.ToString("N2")</td>
+        </tr>
+        <tr class="fw-bold">
+            <td>Total</td>
+            <td class="text-end">S/ @Total.ToString("N2")</td>
+        </tr>
+    </tbody>
+</table>
+
+@code {
+    [Parameter]
+    public double SubTotal { get; set; }
+
+    [Parameter]
+    public double Igv { get; set; }
+
+    [Parameter]
+    public double Total { get; set; }
+}

@@ -1,0 +1,87 @@
+@page "/ordenes-venta"
+@attribute [Authorize(Policy = "OrdenesVenta")]
+@inject IOrdenVentaBL OrdenVentaBL;
+@inject NavigationManager Nav;
+@inject IJSRuntime JS;
+
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<PageTitle>Órdenes de venta</PageTitle>
+
+<div class="d-flex justify-content-between mb-3">
+    <h3 class="mb-3">Órdenes de venta</h3>
+    <button tabindex="1" class="btn btn-success" @onclick="() => NuevaOrden()">
+        Nueva orden
+    </button>
+
+</div>
+
+@if (!Ordenes.Any()) {
+    <div class="alert alert-info">No hay órdenes de venta registradas.</div>
+}
+else {
+    <div class="row">
+        <div class="col-lg-7">
+            <QuickGrid Items="Ordenes" Pagination="Paginacion" Class="table table-striped table-hover">
+                <PropertyColumn Title="N.°" Property="o => o.Id" Sortable="true" />
+                <PropertyColumn Title="Cliente" Property="@(o => o.Cliente!.Nombre + " " + o.Cliente!.ApellidoPaterno)" Sortable="true" />
+                <PropertyColumn Title="Total (S/)" Property="o => o.Total" Format="N2"
+                                Sortable="true" Align="Align.Right" />
+                <TemplateColumn Title="Acciones">
+                    <button class="btn btn-outline-primary btn-sm" @onclick="() => SeleccionarOrden(context)">
+                        Ver
+                    </button>
+                    <button class="btn btn-primary btn-sm" @onclick="() => EditarOrden(context.Id)">
+                        Editar
+                    </button>
+                    <button class="btn btn-danger btn-sm" @onclick="() => EliminarOrden(context.Id)">
+                        Eliminar
+                    </button>
+                </TemplateColumn>
+            </QuickGrid>
+            <Paginator State="Paginacion"></Paginator>
+        </div>
+        <div class="col-lg-5">
+            @if (OrdenSeleccionada == null) {
+                <div class="alert alert-info">Seleccione una orden para ver su detalle.</div>
+            } else {
+                <DetalleOrdenVenta Orden="OrdenSeleccionada" />
+            }
+        </div>
+    </div>
+}
+
+@code {
+    private IQueryable<OrdenVenta> Ordenes { get; set; } = Enumerable.Empty<OrdenVenta>().AsQueryable();
+    private OrdenVenta? OrdenSeleccionada { get; set; }
+    private PaginationState Paginacion { get; } = new() { ItemsPerPage = 5 };
+
+    protected override void OnInitialized() {
+        Ordenes = OrdenVentaBL.FindAll().AsQueryable();
+    }
+
+    private void SeleccionarOrden(OrdenVenta orden) {
+        OrdenSeleccionada = orden;
+    }
+
+    private void NuevaOrden() {
+        Nav.NavigateTo("/ordenes-venta/nueva");
+    }
+
+    private void EditarOrden(int id) {
+        Nav.NavigateTo($"/ordenes-venta/editar/{id}");
+    }
+
+    private async Task EliminarOrden(int id) {
+        bool confirmado = await JS.InvokeAsync<bool>("confirmarEliminacion", "¿Está seguro de eliminar la orden de venta?");
+        if (!confirmado) {
+            return;
+        }
+
+        OrdenVentaBL.Delete(id);
+        Ordenes = OrdenVentaBL.FindAll().AsQueryable();
+        if (OrdenSeleccionada?.Id == id) {
+            OrdenSeleccionada = null;
+        }
+    }
+}
