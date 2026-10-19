@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Security.Cryptography.Pkcs" Version="10.0.13" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\SoftProg.AccessoDatos\SoftProg.AccessoDatos.csproj" />
     <ProjectReference Include="..\SoftProg.Modelo\SoftProg.Modelo.csproj" />
   </ItemGroup>
