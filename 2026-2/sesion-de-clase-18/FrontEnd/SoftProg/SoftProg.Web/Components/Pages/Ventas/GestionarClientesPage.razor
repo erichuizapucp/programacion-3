@@ -1,0 +1,143 @@
+@page "/clientes/nuevo"
+@page "/clientes/editar/{Id:int}"
+@attribute [Authorize(Policy = "Clientes")]
+@inject IClienteService ClienteService;
+@inject ICuentaUsuarioService CuentaUsuarioService;
+@inject NavigationManager Nav;
+
+<PageTitle>Clientes</PageTitle>
+
+<h3 class="mb-3">@(Id == null ? "Nuevo cliente" : "Editar cliente")</h3>
+
+@if (MensajeError != null) {
+    <div class="alert alert-danger">@MensajeError</div>
+}
+
+<EditForm Model="ViewModel" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label class="form-label">Cuenta de usuario</label>
+        <div class="d-flex gap-2">
+            <InputSelect tabindex="1" class="form-select" @bind-Value="ViewModel.IdCuentaUsuario">
+                <option value="0">Sin cuenta de usuario</option>
+                @foreach (CuentaUsuarioViewModel cuentaUsuario in CuentasUsuario) {
+                    <option value="@cuentaUsuario.Id">@cuentaUsuario.UserName</option>
+                }
+            </InputSelect>
+            <button tabindex="2" type="button" class="btn btn-outline-primary text-nowrap" @onclick="() => NuevaCuenta()">
+                Nueva cuenta
+            </button>
+        </div>
+        <div class="form-text">Si la cuenta no existe, créela primero.</div>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">DNI</label>
+        <InputText tabindex="3" class="form-control" @bind-Value="ViewModel.Dni" />
+        <ValidationMessage For="() => ViewModel.Dni" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <InputText tabindex="4" class="form-control" @bind-Value="ViewModel.Nombre" />
+        <ValidationMessage For="() => ViewModel.Nombre" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Apellido paterno</label>
+        <InputText tabindex="5" class="form-control" @bind-Value="ViewModel.ApellidoPaterno" />
+        <ValidationMessage For="() => ViewModel.ApellidoPaterno" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Género</label>
+        <InputSelect tabindex="6" class="form-select" @bind-Value="ViewModel.Genero">
+            @foreach (Genero genero in Generos) {
+                <option value="@genero">@genero</option>
+            }
+        </InputSelect>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Fecha de nacimiento</label>
+        <InputDate tabindex="7" class="form-control" @bind-Value="ViewModel.FechaNacimiento" />
+        <ValidationMessage For="() => ViewModel.FechaNacimiento" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Categoría</label>
+        <InputSelect tabindex="8" class="form-select" @bind-Value="ViewModel.Categoria"
+                     @bind-Value:after="CambiarCategoria">
+            @foreach (CategoriaCliente categoria in Categorias) {
+                <option value="@categoria">@categoria</option>
+            }
+        </InputSelect>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Línea de crédito (S/)</label>
+        <InputNumber tabindex="9" class="form-control" @bind-Value="ViewModel.LineaCredito" disabled="@(Id == null)" />
+        <ValidationMessage For="() => ViewModel.LineaCredito" />
+    </div>
+    <div class="form-check mb-3">
+        <InputCheckbox tabindex="10" class="form-check-input" @bind-Value="ViewModel.IsActivo" />
+        <label class="form-check-label">Activo</label>
+    </div>
+
+    <button tabindex="11" type="submit" class="btn btn-primary">Guardar</button>
+    <a tabindex="12" class="btn btn-outline-secondary" href="clientes">Cancelar</a>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    [SupplyParameterFromQuery(Name = "cuenta")]
+    public int? IdCuentaNueva { get; set; }
+
+    private ClienteViewModel ViewModel { get; set; } = new();
+    private string? MensajeError { get; set; }
+    private List<CuentaUsuarioViewModel> CuentasUsuario { get; set; } = [];
+    private Genero[] Generos { get; } = Enum.GetValues<Genero>();
+    private CategoriaCliente[] Categorias { get; } = Enum.GetValues<CategoriaCliente>();
+
+    protected override void OnInitialized() {
+        CuentasUsuario = CuentaUsuarioService.FindAll();
+    }
+
+    protected override void OnParametersSet() {
+        if (Id == null) {
+            ViewModel = new ClienteViewModel();
+            ViewModel.AsignarLineaCreditoInicial();
+        } else {
+            ClienteViewModel? cliente = ClienteService.FindById(Id.Value);
+            if (cliente == null) {
+                Nav.NavigateTo("/clientes");
+                return;
+            }
+            ViewModel = cliente;
+        }
+        if (IdCuentaNueva != null) {
+            ViewModel.IdCuentaUsuario = IdCuentaNueva.Value;
+        }
+    }
+
+    private void CambiarCategoria() {
+        if (Id == null) {
+            ViewModel.AsignarLineaCreditoInicial();
+        }
+    }
+
+    private void NuevaCuenta() {
+        string volver = Id == null ? "/clientes/nuevo" : $"/clientes/editar/{Id}";
+        Nav.NavigateTo($"/cuentas-usuario/nuevo?volver={volver}");
+    }
+
+    private void Guardar() {
+        try {
+            if (Id == null) {
+                ClienteService.Insert(ViewModel);
+            } else {
+                ClienteService.Update(ViewModel);
+            }
+            Nav.NavigateTo("/clientes");
+        } catch (ServicioException ex) {
+            MensajeError = ex.Message;
+        }
+    }
+}

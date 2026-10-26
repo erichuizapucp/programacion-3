@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SoftProg.DbManager\SoftProg.DbManager.csproj" />
+    <ProjectReference Include="..\SoftProg.Modelo\SoftProg.Modelo.csproj" />
+  </ItemGroup>
+
+</Project>

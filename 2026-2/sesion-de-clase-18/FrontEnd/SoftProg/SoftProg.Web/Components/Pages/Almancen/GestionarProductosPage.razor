@@ -1,0 +1,79 @@
+﻿@page "/productos/nuevo"
+@page "/productos/editar/{Id:int}"
+@attribute [Authorize(Policy = "Productos")]
+@inject IProductoService ProductoService;
+@inject NavigationManager Nav;
+
+<PageTitle>Productos</PageTitle>
+
+<h3 class="mb-3">@(Id == null ? "Nuevo producto" : "Editar producto")</h3>
+
+@if (MensajeError != null) {
+    <div class="alert alert-danger">@MensajeError</div>
+}
+
+<EditForm Model="ViewModel" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <InputText tabindex="1" class="form-control" @bind-Value="ViewModel.Nombre" />
+        <ValidationMessage For="() => ViewModel.Nombre" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Unidad de medida</label>
+        <InputSelect tabindex="2" class="form-select" @bind-Value="ViewModel.UnidadMedida">
+            @foreach (UnidadMedida unidad in Unidades) {
+                <option value="@unidad">@unidad</option>
+            }
+        </InputSelect>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Precio (S/)</label>
+        <InputNumber tabindex="3" class="form-control" @bind-Value="ViewModel.Precio" />
+        <ValidationMessage For="() => ViewModel.Precio" />
+    </div>
+    <div class="form-check mb-3">
+        <InputCheckbox tabindex="4" class="form-check-input" @bind-Value="ViewModel.IsActivo" />
+        <label class="form-check-label">Activo</label>
+    </div>
+
+    <button tabindex="5" type="submit" class="btn btn-primary">Guardar</button>
+    <a tabindex="6" class="btn btn-outline-secondary" href="productos">Cancelar</a>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    private ProductoViewModel ViewModel { get; set; } = new();
+    private string? MensajeError { get; set; }
+    private UnidadMedida[] Unidades { get; } = Enum.GetValues<UnidadMedida>();
+
+    protected override void OnParametersSet() {
+        if (Id == null) {
+            ViewModel = new ProductoViewModel();
+            return;
+        }
+        ProductoViewModel? producto = ProductoService.FindById(Id.Value);
+        if (producto == null) {
+            Nav.NavigateTo("/productos");
+            return;
+        }
+        ViewModel = producto;
+    }
+
+    private void Guardar() {
+        try {
+            if (Id == null) {
+                ProductoService.Insert(ViewModel);
+            } else {
+                ProductoService.Update(ViewModel);
+            }
+            Nav.NavigateTo("/productos");
+        } catch (ServicioException ex) {
+            MensajeError = ex.Message;
+        }
+    }
+}

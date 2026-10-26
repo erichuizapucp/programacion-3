@@ -1,0 +1,35 @@
+<div class="card h-100">
+    <div class="card-header fw-bold">@Titulo</div>
+    <div class="card-body">
+        <table class="table table-sm mb-0">
+            <thead>
+                <tr>
+                    <th>@ColumnaNombre</th>
+                    <th class="text-end">@ColumnaValor</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (FilaResumen fila in Filas) {
+                    <tr>
+                        <td>@fila.Nombre</td>
+                        <td class="text-end">@fila.Valor</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Titulo { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public string ColumnaNombre { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public string ColumnaValor { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public List<FilaResumen> Filas { get; set; } = default!;
+}

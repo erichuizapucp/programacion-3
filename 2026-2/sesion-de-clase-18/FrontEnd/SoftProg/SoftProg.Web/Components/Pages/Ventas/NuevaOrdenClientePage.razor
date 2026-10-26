@@ -1,0 +1,132 @@
+@page "/mis-ordenes/nueva"
+@attribute [Authorize(Policy = "MisOrdenes")]
+@inject IOrdenVentaService OrdenVentaService;
+@inject IClienteService ClienteService;
+@inject IProductoService ProductoService;
+@inject NavigationManager Nav;
+@inject ISesionService SesionService;
+
+<PageTitle>Nueva orden</PageTitle>
+
+<h3 class="mb-3">Nueva orden</h3>
+
+@if (MensajeError != null) {
+    <div class="alert alert-danger">@MensajeError</div>
+}
+
+<EditForm Model="ViewModel" OnValidSubmit="Guardar">
+    <div class="mb-3">
+        <label class="form-label">Cliente</label>
+        <input class="form-control" value="@($"{Cliente?.Nombre} {Cliente?.ApellidoPaterno}")" disabled />
+    </div>
+
+    <h5 class="mt-4">Productos</h5>
+    <div class="d-flex gap-2 mb-3">
+        <InputSelect tabindex="1" class="form-select" @bind-Value="IdProductoAgregar">
+            <option value="0">Seleccione un producto</option>
+            @foreach (ProductoViewModel producto in Productos) {
+                <option value="@producto.Id">@producto.Nombre (S/ @producto.Precio.ToString("N2"))</option>
+            }
+        </InputSelect>
+        <InputNumber tabindex="2" class="form-control w-auto" @bind-Value="CantidadAgregar" />
+        <button tabindex="3" type="button" class="btn btn-outline-primary" @onclick="() => AgregarLinea()">
+            Agregar
+        </button>
+    </div>
+
+    @if (ViewModel.Lineas.Count == 0) {
+        <div class="alert alert-info">Agregue al menos un producto.</div>
+    }
+    else {
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th class="text-end">Precio</th>
+                    <th class="text-end">Cant.</th>
+                    <th class="text-end">Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (LineaOrdenVentaViewModel linea in ViewModel.Lineas) {
+                    <tr>
+                        <td>@linea.NombreProducto</td>
+                        <td class="text-end">@linea.Precio.ToString("N2")</td>
+                        <td class="text-end">@linea.Cantidad</td>
+                        <td class="text-end">@linea.SubTotal.ToString("N2")</td>
+                        <td class="text-end">
+                            <button type="button" class="btn btn-outline-danger btn-sm" @onclick="() => QuitarLinea(linea)">
+                                Quitar
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <TotalesOrdenVenta SubTotal="ViewModel.SubTotal" Igv="ViewModel.Igv" Total="ViewModel.Total" />
+    }
+
+    <button tabindex="4" type="submit" class="btn btn-primary">Guardar</button>
+    <a tabindex="5" class="btn btn-outline-secondary" href="mis-ordenes">Cancelar</a>
+</EditForm>
+
+@code {
+    private OrdenVentaViewModel ViewModel { get; set; } = new();
+    private string? MensajeError { get; set; }
+    private ClienteViewModel? Cliente { get; set; }
+    private List<ProductoViewModel> Productos { get; set; } = [];
+    private int IdProductoAgregar { get; set; }
+    private int CantidadAgregar { get; set; } = 1;
+
+    protected override void OnInitialized() {
+        string userName = SesionService.ObtenerUserName();
+
+        Cliente = ClienteService.FindByCuenta(userName);
+        if (Cliente == null) {
+            Nav.NavigateTo("/");
+            return;
+        }
+        ViewModel.IdCliente = Cliente.Id;
+        Productos = ProductoService.FindAll();
+    }
+
+    private void AgregarLinea() {
+        ProductoViewModel? producto = Productos.Find(p => p.Id == IdProductoAgregar);
+        if (producto == null || CantidadAgregar < 1) {
+            MensajeError = "Seleccione un producto y una cantidad mayor a 0";
+            return;
+        }
+
+        LineaOrdenVentaViewModel? existente = ViewModel.Lineas.Find(l => l.IdProducto == producto.Id);
+        if (existente != null) {
+            existente.Cantidad += CantidadAgregar;
+            existente.SubTotal = producto.Precio * existente.Cantidad;
+        } else {
+            ViewModel.Lineas.Add(new LineaOrdenVentaViewModel {
+                IdProducto = producto.Id,
+                NombreProducto = producto.Nombre,
+                Precio = producto.Precio,
+                Cantidad = CantidadAgregar,
+                SubTotal = producto.Precio * CantidadAgregar
+            });
+        }
+
+        MensajeError = null;
+        IdProductoAgregar = 0;
+        CantidadAgregar = 1;
+    }
+
+    private void QuitarLinea(LineaOrdenVentaViewModel linea) {
+        ViewModel.Lineas.Remove(linea);
+    }
+
+    private void Guardar() {
+        try {
+            OrdenVentaService.Insert(ViewModel);
+            Nav.NavigateTo("/mis-ordenes");
+        } catch (ServicioException ex) {
+            MensajeError = ex.Message;
+        }
+    }
+}
