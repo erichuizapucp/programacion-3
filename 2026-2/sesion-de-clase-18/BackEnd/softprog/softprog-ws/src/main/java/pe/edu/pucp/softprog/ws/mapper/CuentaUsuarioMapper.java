@@ -35,10 +35,4 @@ public final class CuentaUsuarioMapper {
         cuentaUsuario.setPassword(dto.getPassword());
         return cuentaUsuario;
     }
-
-    public static CuentaUsuario toReferencia(CuentaUsuarioDTO dto) {
-        CuentaUsuario cuentaUsuario = new CuentaUsuario();
-        cuentaUsuario.setId(dto.getId());
-        return cuentaUsuario;
-    }
 }

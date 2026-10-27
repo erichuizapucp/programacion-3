@@ -33,10 +33,4 @@ public final class AreaMapper {
         area.setNombre(dto.getNombre());
         return area;
     }
-
-    public static Area toReferencia(AreaDTO dto) {
-        Area area = new Area();
-        area.setId(dto.getId());
-        return area;
-    }
 }

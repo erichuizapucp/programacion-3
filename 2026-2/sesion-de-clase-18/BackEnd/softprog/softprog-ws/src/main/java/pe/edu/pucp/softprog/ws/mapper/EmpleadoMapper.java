@@ -1,8 +1,15 @@
 package pe.edu.pucp.softprog.ws.mapper;
 
+import pe.edu.pucp.softprog.bl.AreaBL;
+import pe.edu.pucp.softprog.bl.BLException;
+import pe.edu.pucp.softprog.bl.CuentaUsuarioBL;
+import pe.edu.pucp.softprog.bl.impl.AreaBLImpl;
+import pe.edu.pucp.softprog.bl.impl.CuentaUsuarioBLImpl;
 import pe.edu.pucp.softprog.modelo.Genero;
+import pe.edu.pucp.softprog.modelo.rrhh.Area;
 import pe.edu.pucp.softprog.modelo.rrhh.Cargo;
 import pe.edu.pucp.softprog.modelo.rrhh.Empleado;
+import pe.edu.pucp.softprog.modelo.seguridad.CuentaUsuario;
 import pe.edu.pucp.softprog.ws.dto.EmpleadoDTO;
 
 import java.time.LocalDate;
@@ -10,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class EmpleadoMapper {
+    private static final AreaBL areaBL = new AreaBLImpl();
+    private static final CuentaUsuarioBL cuentaUsuarioBL = new CuentaUsuarioBLImpl();
+
     private EmpleadoMapper() {
     }
 
@@ -39,29 +49,33 @@ public final class EmpleadoMapper {
         return dtos;
     }
 
-    public static Empleado toModelo(EmpleadoDTO dto) {
+    public static Empleado toModelo(EmpleadoDTO dto) throws BLException {
+        if (dto.getArea() == null) {
+            throw new BLException("El empleado debe tener un área");
+        }
+        Area area = areaBL.findById(dto.getArea().getId());
+        if (area == null) {
+            throw new BLException("No existe el área con id " + dto.getArea().getId());
+        }
+
         Empleado empleado = new Empleado();
         empleado.setId(dto.getId());
         empleado.setActivo(dto.isActivo());
-        empleado.setCuentaUsuario(dto.getCuentaUsuario() != null
-                ? CuentaUsuarioMapper.toReferencia(dto.getCuentaUsuario())
-                : null);
+        if (dto.getCuentaUsuario() != null) {
+            CuentaUsuario cuentaUsuario = cuentaUsuarioBL.findById(dto.getCuentaUsuario().getId());
+            if (cuentaUsuario == null) {
+                throw new BLException("No existe la cuenta de usuario con id " + dto.getCuentaUsuario().getId());
+            }
+            empleado.setCuentaUsuario(cuentaUsuario);
+        }
         empleado.setDni(dto.getDni());
         empleado.setNombre(dto.getNombre());
         empleado.setApellidoPaterno(dto.getApellidoPaterno());
         empleado.setGenero(Genero.valueOf(dto.getGenero()));
         empleado.setFechaNacimiento(LocalDate.parse(dto.getFechaNacimiento()));
-        if (dto.getArea() != null) {
-            empleado.setArea(AreaMapper.toReferencia(dto.getArea()));
-        }
+        empleado.setArea(area);
         empleado.setCargo(Cargo.valueOf(dto.getCargo()));
         empleado.setSueldo(dto.getSueldo());
-        return empleado;
-    }
-
-    public static Empleado toReferencia(EmpleadoDTO dto) {
-        Empleado empleado = new Empleado();
-        empleado.setId(dto.getId());
         return empleado;
     }
 }

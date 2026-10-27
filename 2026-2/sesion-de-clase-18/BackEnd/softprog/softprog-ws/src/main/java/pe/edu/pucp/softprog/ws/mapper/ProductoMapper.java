@@ -38,10 +38,4 @@ public final class ProductoMapper {
         producto.setPrecio(dto.getPrecio());
         return producto;
     }
-
-    public static Producto toReferencia(ProductoDTO dto) {
-        Producto producto = new Producto();
-        producto.setId(dto.getId());
-        return producto;
-    }
 }

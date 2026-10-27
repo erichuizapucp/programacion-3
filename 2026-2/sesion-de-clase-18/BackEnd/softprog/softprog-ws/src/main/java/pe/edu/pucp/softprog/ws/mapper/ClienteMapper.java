@@ -1,6 +1,10 @@
 package pe.edu.pucp.softprog.ws.mapper;
 
+import pe.edu.pucp.softprog.bl.BLException;
+import pe.edu.pucp.softprog.bl.CuentaUsuarioBL;
+import pe.edu.pucp.softprog.bl.impl.CuentaUsuarioBLImpl;
 import pe.edu.pucp.softprog.modelo.Genero;
+import pe.edu.pucp.softprog.modelo.seguridad.CuentaUsuario;
 import pe.edu.pucp.softprog.modelo.ventas.CategoriaCliente;
 import pe.edu.pucp.softprog.modelo.ventas.Cliente;
 import pe.edu.pucp.softprog.ws.dto.ClienteDTO;
@@ -10,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ClienteMapper {
+    private static final CuentaUsuarioBL cuentaUsuarioBL = new CuentaUsuarioBLImpl();
+
     private ClienteMapper() {
     }
 
@@ -38,13 +44,17 @@ public final class ClienteMapper {
         return dtos;
     }
 
-    public static Cliente toModelo(ClienteDTO dto) {
+    public static Cliente toModelo(ClienteDTO dto) throws BLException {
         Cliente cliente = new Cliente();
         cliente.setId(dto.getId());
         cliente.setActivo(dto.isActivo());
-        cliente.setCuentaUsuario(dto.getCuentaUsuario() != null
-                ? CuentaUsuarioMapper.toReferencia(dto.getCuentaUsuario())
-                : null);
+        if (dto.getCuentaUsuario() != null) {
+            CuentaUsuario cuentaUsuario = cuentaUsuarioBL.findById(dto.getCuentaUsuario().getId());
+            if (cuentaUsuario == null) {
+                throw new BLException("No existe la cuenta de usuario con id " + dto.getCuentaUsuario().getId());
+            }
+            cliente.setCuentaUsuario(cuentaUsuario);
+        }
         cliente.setDni(dto.getDni());
         cliente.setNombre(dto.getNombre());
         cliente.setApellidoPaterno(dto.getApellidoPaterno());
@@ -52,12 +62,6 @@ public final class ClienteMapper {
         cliente.setFechaNacimiento(LocalDate.parse(dto.getFechaNacimiento()));
         cliente.setCategoria(CategoriaCliente.valueOf(dto.getCategoria()));
         cliente.setLineaCredito(dto.getLineaCredito());
-        return cliente;
-    }
-
-    public static Cliente toReferencia(ClienteDTO dto) {
-        Cliente cliente = new Cliente();
-        cliente.setId(dto.getId());
         return cliente;
     }
 }

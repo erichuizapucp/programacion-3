@@ -1,5 +1,12 @@
 package pe.edu.pucp.softprog.ws.mapper;
 
+import pe.edu.pucp.softprog.bl.BLException;
+import pe.edu.pucp.softprog.bl.ClienteBL;
+import pe.edu.pucp.softprog.bl.EmpleadoBL;
+import pe.edu.pucp.softprog.bl.impl.ClienteBLImpl;
+import pe.edu.pucp.softprog.bl.impl.EmpleadoBLImpl;
+import pe.edu.pucp.softprog.modelo.rrhh.Empleado;
+import pe.edu.pucp.softprog.modelo.ventas.Cliente;
 import pe.edu.pucp.softprog.modelo.ventas.LineaOrdenVenta;
 import pe.edu.pucp.softprog.modelo.ventas.OrdenVenta;
 import pe.edu.pucp.softprog.ws.dto.LineaOrdenVentaDTO;
@@ -9,6 +16,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class OrdenVentaMapper {
+    private static final ClienteBL clienteBL = new ClienteBLImpl();
+    private static final EmpleadoBL empleadoBL = new EmpleadoBLImpl();
+
     private OrdenVentaMapper() {
     }
 
@@ -36,7 +46,22 @@ public final class OrdenVentaMapper {
         return dtos;
     }
 
-    public static OrdenVenta toModelo(OrdenVentaDTO dto) {
+    public static OrdenVenta toModelo(OrdenVentaDTO dto) throws BLException {
+        Cliente cliente = null;
+        if (dto.getCliente() != null) {
+            cliente = clienteBL.findById(dto.getCliente().getId());
+            if (cliente == null) {
+                throw new BLException("No existe el cliente con id " + dto.getCliente().getId());
+            }
+        }
+        Empleado empleado = null;
+        if (dto.getEmpleado() != null) {
+            empleado = empleadoBL.findById(dto.getEmpleado().getId());
+            if (empleado == null) {
+                throw new BLException("No existe el empleado con id " + dto.getEmpleado().getId());
+            }
+        }
+
         List<LineaOrdenVenta> lineas = new ArrayList<>();
         for (LineaOrdenVentaDTO lineaDTO : dto.getLineas()) {
             lineas.add(LineaOrdenVentaMapper.toModelo(lineaDTO));
@@ -45,8 +70,8 @@ public final class OrdenVentaMapper {
         OrdenVenta ordenVenta = new OrdenVenta();
         ordenVenta.setId(dto.getId());
         ordenVenta.setActivo(dto.isActivo());
-        ordenVenta.setCliente(dto.getCliente() != null ? ClienteMapper.toReferencia(dto.getCliente()) : null);
-        ordenVenta.setEmpleado(dto.getEmpleado() != null ? EmpleadoMapper.toReferencia(dto.getEmpleado()) : null);
+        ordenVenta.setCliente(cliente);
+        ordenVenta.setEmpleado(empleado);
         ordenVenta.setLineas(lineas);
         return ordenVenta;
     }

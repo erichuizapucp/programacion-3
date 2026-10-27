@@ -102,10 +102,6 @@ public class EmpleadoBLImpl implements EmpleadoBL {
     }
 
     private void validarDatos(Empleado empleado) throws BLException {
-        if (empleado.getArea() == null) {
-            throw new BLException("El empleado debe tener un área");
-        }
-
         if (!empleado.getDni().matches("\\d{8}")) {
             throw new BLException("El DNI debe tener exactamente 8 dígitos");
         }
