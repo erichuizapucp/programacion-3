@@ -1,15 +1,8 @@
 package pe.edu.pucp.softprog.ws.mapper;
 
-import pe.edu.pucp.softprog.bl.AreaBL;
-import pe.edu.pucp.softprog.bl.BLException;
-import pe.edu.pucp.softprog.bl.CuentaUsuarioBL;
-import pe.edu.pucp.softprog.bl.impl.AreaBLImpl;
-import pe.edu.pucp.softprog.bl.impl.CuentaUsuarioBLImpl;
 import pe.edu.pucp.softprog.modelo.Genero;
-import pe.edu.pucp.softprog.modelo.rrhh.Area;
 import pe.edu.pucp.softprog.modelo.rrhh.Cargo;
 import pe.edu.pucp.softprog.modelo.rrhh.Empleado;
-import pe.edu.pucp.softprog.modelo.seguridad.CuentaUsuario;
 import pe.edu.pucp.softprog.ws.dto.EmpleadoDTO;
 
 import java.time.LocalDate;
@@ -17,9 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class EmpleadoMapper {
-    private static final AreaBL areaBL = new AreaBLImpl();
-    private static final CuentaUsuarioBL cuentaUsuarioBL = new CuentaUsuarioBLImpl();
-
     private EmpleadoMapper() {
     }
 
@@ -27,15 +17,15 @@ public final class EmpleadoMapper {
         EmpleadoDTO dto = new EmpleadoDTO();
         dto.setId(empleado.getId());
         dto.setActivo(empleado.isActivo());
-        CuentaUsuario cuentaUsuario = empleado.getCuentaUsuario();
-        dto.setIdCuentaUsuario(cuentaUsuario != null ? cuentaUsuario.getId() : 0);
+        dto.setCuentaUsuario(empleado.getCuentaUsuario() != null
+                ? CuentaUsuarioMapper.toDTO(empleado.getCuentaUsuario())
+                : null);
         dto.setDni(empleado.getDni());
         dto.setNombre(empleado.getNombre());
         dto.setApellidoPaterno(empleado.getApellidoPaterno());
         dto.setGenero(empleado.getGenero().name());
         dto.setFechaNacimiento(empleado.getFechaNacimiento().toString());
-        dto.setIdArea(empleado.getArea().getId());
-        dto.setNombreArea(empleado.getArea().getNombre());
+        dto.setArea(AreaMapper.toDTO(empleado.getArea()));
         dto.setCargo(empleado.getCargo().name());
         dto.setSueldo(empleado.getSueldo());
         return dto;
@@ -49,26 +39,20 @@ public final class EmpleadoMapper {
         return dtos;
     }
 
-    public static Empleado toModelo(EmpleadoDTO dto) throws BLException {
-        Area area = areaBL.findById(dto.getIdArea());
-        if (area == null) {
-            throw new BLException("No existe un área con id " + dto.getIdArea());
-        }
-        CuentaUsuario cuentaUsuario = dto.getIdCuentaUsuario() > 0
-                ? cuentaUsuarioBL.findById(dto.getIdCuentaUsuario())
-                : null;
-
+    public static Empleado toModelo(EmpleadoDTO dto) {
         Empleado empleado = new Empleado();
         empleado.setId(dto.getId());
         empleado.setActivo(dto.isActivo());
-        empleado.setCuentaUsuario(cuentaUsuario);
+        empleado.setCuentaUsuario(dto.getCuentaUsuario() != null
+                ? CuentaUsuarioMapper.toModelo(dto.getCuentaUsuario())
+                : null);
         empleado.setDni(dto.getDni());
         empleado.setNombre(dto.getNombre());
         empleado.setApellidoPaterno(dto.getApellidoPaterno());
-        empleado.setGenero(Genero.valueOf(dto.getGenero()));
-        empleado.setFechaNacimiento(LocalDate.parse(dto.getFechaNacimiento()));
-        empleado.setArea(area);
-        empleado.setCargo(Cargo.valueOf(dto.getCargo()));
+        empleado.setGenero(dto.getGenero() != null ? Genero.valueOf(dto.getGenero()) : null);
+        empleado.setFechaNacimiento(dto.getFechaNacimiento() != null ? LocalDate.parse(dto.getFechaNacimiento()) : null);
+        empleado.setArea(dto.getArea() != null ? AreaMapper.toModelo(dto.getArea()) : null);
+        empleado.setCargo(dto.getCargo() != null ? Cargo.valueOf(dto.getCargo()) : null);
         empleado.setSueldo(dto.getSueldo());
         return empleado;
     }

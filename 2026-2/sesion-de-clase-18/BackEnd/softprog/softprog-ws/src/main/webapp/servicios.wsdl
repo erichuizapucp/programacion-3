@@ -3,15 +3,15 @@
                   targetNamespace="http://ws.softprog.pucp.edu.pe/"
                   name="SoftProgWS">
     <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/area"
-                 location="http://localhost:8080/softprog-ws/AreaWS?wsdl"/>
+                 location="http://172.16.70.1:8080/softprog-ws/AreaWS?wsdl"/>
     <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/producto"
-                 location="http://localhost:8080/softprog-ws/ProductoWS?wsdl"/>
+                 location="http://172.16.70.1:8080/softprog-ws/ProductoWS?wsdl"/>
     <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/empleado"
-                 location="http://localhost:8080/softprog-ws/EmpleadoWS?wsdl"/>
+                 location="http://172.16.70.1:8080/softprog-ws/EmpleadoWS?wsdl"/>
     <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/cliente"
-                 location="http://localhost:8080/softprog-ws/ClienteWS?wsdl"/>
+                 location="http://172.16.70.1:8080/softprog-ws/ClienteWS?wsdl"/>
     <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/cuentausuario"
-                 location="http://localhost:8080/softprog-ws/CuentaUsuarioWS?wsdl"/>
+                 location="http://172.16.70.1:8080/softprog-ws/CuentaUsuarioWS?wsdl"/>
     <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/ordenventa"
-                 location="http://localhost:8080/softprog-ws/OrdenVentaWS?wsdl"/>
+                 location="http://172.16.70.1:8080/softprog-ws/OrdenVentaWS?wsdl"/>
 </wsdl:definitions>

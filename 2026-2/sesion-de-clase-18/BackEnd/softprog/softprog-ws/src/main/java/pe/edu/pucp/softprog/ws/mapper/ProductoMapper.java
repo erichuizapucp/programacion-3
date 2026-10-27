@@ -34,7 +34,7 @@ public final class ProductoMapper {
         producto.setId(dto.getId());
         producto.setActivo(dto.isActivo());
         producto.setNombre(dto.getNombre());
-        producto.setUnidadMedida(UnidadMedida.valueOf(dto.getUnidadMedida()));
+        producto.setUnidadMedida(dto.getUnidadMedida() != null ? UnidadMedida.valueOf(dto.getUnidadMedida()) : null);
         producto.setPrecio(dto.getPrecio());
         return producto;
     }

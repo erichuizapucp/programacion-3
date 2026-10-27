@@ -83,14 +83,14 @@ namespace SoftProg.Web.Servicios.Soap {
         private EmpleadoViewModel ToViewModel(empleadoDTO dto) {
             return new EmpleadoViewModel {
                 Id = dto.id,
-                IdCuentaUsuario = dto.idCuentaUsuario,
+                IdCuentaUsuario = dto.cuentaUsuario?.id ?? 0,
                 Dni = dto.dni,
                 Nombre = dto.nombre,
                 ApellidoPaterno = dto.apellidoPaterno,
                 Genero = Enum.Parse<Genero>(dto.genero),
                 FechaNacimiento = DateTime.ParseExact(dto.fechaNacimiento, FormatoFecha, CultureInfo.InvariantCulture),
-                IdArea = dto.idArea,
-                NombreArea = dto.nombreArea,
+                IdArea = dto.area.id,
+                NombreArea = dto.area.nombre,
                 Cargo = Enum.Parse<Cargo>(dto.cargo),
                 Sueldo = dto.sueldo,
                 IsActivo = dto.activo
@@ -100,13 +100,13 @@ namespace SoftProg.Web.Servicios.Soap {
         private empleadoDTO ToSoap(EmpleadoViewModel empleado) {
             return new empleadoDTO {
                 id = empleado.Id,
-                idCuentaUsuario = empleado.IdCuentaUsuario,
+                cuentaUsuario = empleado.IdCuentaUsuario > 0 ? new() { id = empleado.IdCuentaUsuario } : null,
                 dni = empleado.Dni,
                 nombre = empleado.Nombre,
                 apellidoPaterno = empleado.ApellidoPaterno,
                 genero = empleado.Genero.ToString(),
                 fechaNacimiento = empleado.FechaNacimiento!.Value.ToString(FormatoFecha, CultureInfo.InvariantCulture),
-                idArea = empleado.IdArea,
+                area = new() { id = empleado.IdArea },
                 cargo = empleado.Cargo.ToString(),
                 sueldo = empleado.Sueldo,
                 activo = empleado.IsActivo

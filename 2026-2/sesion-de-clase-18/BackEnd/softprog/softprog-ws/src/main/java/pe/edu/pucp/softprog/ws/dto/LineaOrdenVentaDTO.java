@@ -2,9 +2,7 @@ package pe.edu.pucp.softprog.ws.dto;
 
 public class LineaOrdenVentaDTO {
     private int id;
-    private int idProducto;
-    private String nombreProducto;
-    private double precio;
+    private ProductoDTO producto;
     private int cantidad;
     private double subTotal;
 
@@ -19,28 +17,12 @@ public class LineaOrdenVentaDTO {
         this.id = id;
     }
 
-    public int getIdProducto() {
-        return idProducto;
+    public ProductoDTO getProducto() {
+        return producto;
     }
 
-    public void setIdProducto(int idProducto) {
-        this.idProducto = idProducto;
-    }
-
-    public String getNombreProducto() {
-        return nombreProducto;
-    }
-
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setProducto(ProductoDTO producto) {
+        this.producto = producto;
     }
 
     public int getCantidad() {

@@ -3,14 +3,13 @@ package pe.edu.pucp.softprog.ws.dto;
 public class EmpleadoDTO {
     private int id;
     private boolean activo;
-    private int idCuentaUsuario;
+    private CuentaUsuarioDTO cuentaUsuario;
     private String dni;
     private String nombre;
     private String apellidoPaterno;
     private String genero;
     private String fechaNacimiento;
-    private int idArea;
-    private String nombreArea;
+    private AreaDTO area;
     private String cargo;
     private double sueldo;
 
@@ -33,12 +32,12 @@ public class EmpleadoDTO {
         this.activo = activo;
     }
 
-    public int getIdCuentaUsuario() {
-        return idCuentaUsuario;
+    public CuentaUsuarioDTO getCuentaUsuario() {
+        return cuentaUsuario;
     }
 
-    public void setIdCuentaUsuario(int idCuentaUsuario) {
-        this.idCuentaUsuario = idCuentaUsuario;
+    public void setCuentaUsuario(CuentaUsuarioDTO cuentaUsuario) {
+        this.cuentaUsuario = cuentaUsuario;
     }
 
     public String getDni() {
@@ -81,20 +80,12 @@ public class EmpleadoDTO {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public int getIdArea() {
-        return idArea;
+    public AreaDTO getArea() {
+        return area;
     }
 
-    public void setIdArea(int idArea) {
-        this.idArea = idArea;
-    }
-
-    public String getNombreArea() {
-        return nombreArea;
-    }
-
-    public void setNombreArea(String nombreArea) {
-        this.nombreArea = nombreArea;
+    public void setArea(AreaDTO area) {
+        this.area = area;
     }
 
     public String getCargo() {

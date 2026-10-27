@@ -1,10 +1,6 @@
 package pe.edu.pucp.softprog.ws.mapper;
 
-import pe.edu.pucp.softprog.bl.BLException;
-import pe.edu.pucp.softprog.bl.CuentaUsuarioBL;
-import pe.edu.pucp.softprog.bl.impl.CuentaUsuarioBLImpl;
 import pe.edu.pucp.softprog.modelo.Genero;
-import pe.edu.pucp.softprog.modelo.seguridad.CuentaUsuario;
 import pe.edu.pucp.softprog.modelo.ventas.CategoriaCliente;
 import pe.edu.pucp.softprog.modelo.ventas.Cliente;
 import pe.edu.pucp.softprog.ws.dto.ClienteDTO;
@@ -14,8 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ClienteMapper {
-    private static final CuentaUsuarioBL cuentaUsuarioBL = new CuentaUsuarioBLImpl();
-
     private ClienteMapper() {
     }
 
@@ -23,8 +17,9 @@ public final class ClienteMapper {
         ClienteDTO dto = new ClienteDTO();
         dto.setId(cliente.getId());
         dto.setActivo(cliente.isActivo());
-        CuentaUsuario cuentaUsuario = cliente.getCuentaUsuario();
-        dto.setIdCuentaUsuario(cuentaUsuario != null ? cuentaUsuario.getId() : 0);
+        dto.setCuentaUsuario(cliente.getCuentaUsuario() != null
+                ? CuentaUsuarioMapper.toDTO(cliente.getCuentaUsuario())
+                : null);
         dto.setDni(cliente.getDni());
         dto.setNombre(cliente.getNombre());
         dto.setApellidoPaterno(cliente.getApellidoPaterno());
@@ -43,21 +38,19 @@ public final class ClienteMapper {
         return dtos;
     }
 
-    public static Cliente toModelo(ClienteDTO dto) throws BLException {
-        CuentaUsuario cuentaUsuario = dto.getIdCuentaUsuario() > 0
-                ? cuentaUsuarioBL.findById(dto.getIdCuentaUsuario())
-                : null;
-
+    public static Cliente toModelo(ClienteDTO dto) {
         Cliente cliente = new Cliente();
         cliente.setId(dto.getId());
         cliente.setActivo(dto.isActivo());
-        cliente.setCuentaUsuario(cuentaUsuario);
+        cliente.setCuentaUsuario(dto.getCuentaUsuario() != null
+                ? CuentaUsuarioMapper.toModelo(dto.getCuentaUsuario())
+                : null);
         cliente.setDni(dto.getDni());
         cliente.setNombre(dto.getNombre());
         cliente.setApellidoPaterno(dto.getApellidoPaterno());
-        cliente.setGenero(Genero.valueOf(dto.getGenero()));
-        cliente.setFechaNacimiento(LocalDate.parse(dto.getFechaNacimiento()));
-        cliente.setCategoria(CategoriaCliente.valueOf(dto.getCategoria()));
+        cliente.setGenero(dto.getGenero() != null ? Genero.valueOf(dto.getGenero()) : null);
+        cliente.setFechaNacimiento(dto.getFechaNacimiento() != null ? LocalDate.parse(dto.getFechaNacimiento()) : null);
+        cliente.setCategoria(dto.getCategoria() != null ? CategoriaCliente.valueOf(dto.getCategoria()) : null);
         cliente.setLineaCredito(dto.getLineaCredito());
         return cliente;
     }

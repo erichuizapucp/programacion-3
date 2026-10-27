@@ -6,10 +6,8 @@ import java.util.List;
 public class OrdenVentaDTO {
     private int id;
     private boolean activo;
-    private int idCliente;
-    private String nombreCliente;
-    private int idEmpleado;
-    private String nombreEmpleado;
+    private ClienteDTO cliente;
+    private EmpleadoDTO empleado;
     private double total;
     private List<LineaOrdenVentaDTO> lineas = new ArrayList<>();
 
@@ -32,36 +30,20 @@ public class OrdenVentaDTO {
         this.activo = activo;
     }
 
-    public int getIdCliente() {
-        return idCliente;
+    public ClienteDTO getCliente() {
+        return cliente;
     }
 
-    public void setIdCliente(int idCliente) {
-        this.idCliente = idCliente;
+    public void setCliente(ClienteDTO cliente) {
+        this.cliente = cliente;
     }
 
-    public String getNombreCliente() {
-        return nombreCliente;
+    public EmpleadoDTO getEmpleado() {
+        return empleado;
     }
 
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
-    }
-
-    public int getIdEmpleado() {
-        return idEmpleado;
-    }
-
-    public void setIdEmpleado(int idEmpleado) {
-        this.idEmpleado = idEmpleado;
-    }
-
-    public String getNombreEmpleado() {
-        return nombreEmpleado;
-    }
-
-    public void setNombreEmpleado(String nombreEmpleado) {
-        this.nombreEmpleado = nombreEmpleado;
+    public void setEmpleado(EmpleadoDTO empleado) {
+        this.empleado = empleado;
     }
 
     public double getTotal() {

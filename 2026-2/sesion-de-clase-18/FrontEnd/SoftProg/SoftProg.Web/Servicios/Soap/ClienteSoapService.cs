@@ -102,7 +102,7 @@ namespace SoftProg.Web.Servicios.Soap {
         private ClienteViewModel ToViewModel(clienteDTO dto) {
             return new ClienteViewModel {
                 Id = dto.id,
-                IdCuentaUsuario = dto.idCuentaUsuario,
+                IdCuentaUsuario = dto.cuentaUsuario?.id ?? 0,
                 Dni = dto.dni,
                 Nombre = dto.nombre,
                 ApellidoPaterno = dto.apellidoPaterno,
@@ -117,7 +117,7 @@ namespace SoftProg.Web.Servicios.Soap {
         private clienteDTO ToSoap(ClienteViewModel cliente) {
             return new clienteDTO {
                 id = cliente.Id,
-                idCuentaUsuario = cliente.IdCuentaUsuario,
+                cuentaUsuario = cliente.IdCuentaUsuario > 0 ? new() { id = cliente.IdCuentaUsuario } : null,
                 dni = cliente.Dni,
                 nombre = cliente.Nombre,
                 apellidoPaterno = cliente.ApellidoPaterno,

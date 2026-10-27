@@ -3,7 +3,7 @@ package pe.edu.pucp.softprog.ws.dto;
 public class ClienteDTO {
     private int id;
     private boolean activo;
-    private int idCuentaUsuario;
+    private CuentaUsuarioDTO cuentaUsuario;
     private String dni;
     private String nombre;
     private String apellidoPaterno;
@@ -31,12 +31,12 @@ public class ClienteDTO {
         this.activo = activo;
     }
 
-    public int getIdCuentaUsuario() {
-        return idCuentaUsuario;
+    public CuentaUsuarioDTO getCuentaUsuario() {
+        return cuentaUsuario;
     }
 
-    public void setIdCuentaUsuario(int idCuentaUsuario) {
-        this.idCuentaUsuario = idCuentaUsuario;
+    public void setCuentaUsuario(CuentaUsuarioDTO cuentaUsuario) {
+        this.cuentaUsuario = cuentaUsuario;
     }
 
     public String getDni() {

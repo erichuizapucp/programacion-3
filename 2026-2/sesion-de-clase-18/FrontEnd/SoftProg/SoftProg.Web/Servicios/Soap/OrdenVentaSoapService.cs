@@ -71,19 +71,19 @@ namespace SoftProg.Web.Servicios.Soap {
         private OrdenVentaViewModel ToViewModel(ordenVentaDTO dto) {
             OrdenVentaViewModel ordenVenta = new() {
                 Id = dto.id,
-                IdCliente = dto.idCliente,
-                NombreCliente = dto.nombreCliente,
-                IdEmpleado = dto.idEmpleado,
-                NombreEmpleado = dto.nombreEmpleado,
+                IdCliente = dto.cliente?.id ?? 0,
+                NombreCliente = dto.cliente != null ? $"{dto.cliente.nombre} {dto.cliente.apellidoPaterno}" : "",
+                IdEmpleado = dto.empleado?.id ?? 0,
+                NombreEmpleado = dto.empleado != null ? $"{dto.empleado.nombre} {dto.empleado.apellidoPaterno}" : null,
                 IsActivo = dto.activo
             };
 
             foreach (lineaOrdenVentaDTO linea in dto.lineas ?? []) {
                 ordenVenta.Lineas.Add(new LineaOrdenVentaViewModel {
                     Id = linea.id,
-                    IdProducto = linea.idProducto,
-                    NombreProducto = linea.nombreProducto,
-                    Precio = linea.precio,
+                    IdProducto = linea.producto.id,
+                    NombreProducto = linea.producto.nombre,
+                    Precio = linea.producto.precio,
                     Cantidad = linea.cantidad,
                     SubTotal = linea.subTotal
                 });
@@ -96,7 +96,7 @@ namespace SoftProg.Web.Servicios.Soap {
             foreach (LineaOrdenVentaViewModel linea in ordenVenta.Lineas) {
                 lineas.Add(new lineaOrdenVentaDTO {
                     id = linea.Id,
-                    idProducto = linea.IdProducto,
+                    producto = new() { id = linea.IdProducto, nombre = linea.NombreProducto, precio = linea.Precio },
                     cantidad = linea.Cantidad,
                     subTotal = linea.SubTotal
                 });
@@ -104,8 +104,8 @@ namespace SoftProg.Web.Servicios.Soap {
 
             return new ordenVentaDTO {
                 id = ordenVenta.Id,
-                idCliente = ordenVenta.IdCliente,
-                idEmpleado = ordenVenta.IdEmpleado,
+                cliente = ordenVenta.IdCliente > 0 ? new() { id = ordenVenta.IdCliente } : null,
+                empleado = ordenVenta.IdEmpleado > 0 ? new() { id = ordenVenta.IdEmpleado } : null,
                 total = ordenVenta.Total,
                 lineas = lineas.ToArray(),
                 activo = ordenVenta.IsActivo
