@@ -45,8 +45,8 @@ public final class OrdenVentaMapper {
         OrdenVenta ordenVenta = new OrdenVenta();
         ordenVenta.setId(dto.getId());
         ordenVenta.setActivo(dto.isActivo());
-        ordenVenta.setCliente(dto.getCliente() != null ? ClienteMapper.toModelo(dto.getCliente()) : null);
-        ordenVenta.setEmpleado(dto.getEmpleado() != null ? EmpleadoMapper.toModelo(dto.getEmpleado()) : null);
+        ordenVenta.setCliente(dto.getCliente() != null ? ClienteMapper.toReferencia(dto.getCliente()) : null);
+        ordenVenta.setEmpleado(dto.getEmpleado() != null ? EmpleadoMapper.toReferencia(dto.getEmpleado()) : null);
         ordenVenta.setLineas(lineas);
         return ordenVenta;
     }

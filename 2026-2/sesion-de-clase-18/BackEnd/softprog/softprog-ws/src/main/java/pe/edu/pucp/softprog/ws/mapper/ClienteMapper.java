@@ -43,15 +43,21 @@ public final class ClienteMapper {
         cliente.setId(dto.getId());
         cliente.setActivo(dto.isActivo());
         cliente.setCuentaUsuario(dto.getCuentaUsuario() != null
-                ? CuentaUsuarioMapper.toModelo(dto.getCuentaUsuario())
+                ? CuentaUsuarioMapper.toReferencia(dto.getCuentaUsuario())
                 : null);
         cliente.setDni(dto.getDni());
         cliente.setNombre(dto.getNombre());
         cliente.setApellidoPaterno(dto.getApellidoPaterno());
-        cliente.setGenero(dto.getGenero() != null ? Genero.valueOf(dto.getGenero()) : null);
-        cliente.setFechaNacimiento(dto.getFechaNacimiento() != null ? LocalDate.parse(dto.getFechaNacimiento()) : null);
-        cliente.setCategoria(dto.getCategoria() != null ? CategoriaCliente.valueOf(dto.getCategoria()) : null);
+        cliente.setGenero(Genero.valueOf(dto.getGenero()));
+        cliente.setFechaNacimiento(LocalDate.parse(dto.getFechaNacimiento()));
+        cliente.setCategoria(CategoriaCliente.valueOf(dto.getCategoria()));
         cliente.setLineaCredito(dto.getLineaCredito());
+        return cliente;
+    }
+
+    public static Cliente toReferencia(ClienteDTO dto) {
+        Cliente cliente = new Cliente();
+        cliente.setId(dto.getId());
         return cliente;
     }
 }

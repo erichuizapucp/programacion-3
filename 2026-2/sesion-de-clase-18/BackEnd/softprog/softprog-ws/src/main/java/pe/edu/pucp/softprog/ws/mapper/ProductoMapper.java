@@ -34,8 +34,14 @@ public final class ProductoMapper {
         producto.setId(dto.getId());
         producto.setActivo(dto.isActivo());
         producto.setNombre(dto.getNombre());
-        producto.setUnidadMedida(dto.getUnidadMedida() != null ? UnidadMedida.valueOf(dto.getUnidadMedida()) : null);
+        producto.setUnidadMedida(UnidadMedida.valueOf(dto.getUnidadMedida()));
         producto.setPrecio(dto.getPrecio());
+        return producto;
+    }
+
+    public static Producto toReferencia(ProductoDTO dto) {
+        Producto producto = new Producto();
+        producto.setId(dto.getId());
         return producto;
     }
 }

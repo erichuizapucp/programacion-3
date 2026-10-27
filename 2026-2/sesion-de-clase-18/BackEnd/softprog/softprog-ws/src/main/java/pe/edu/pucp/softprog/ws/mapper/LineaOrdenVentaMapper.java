@@ -20,7 +20,9 @@ public final class LineaOrdenVentaMapper {
         LineaOrdenVenta linea = new LineaOrdenVenta();
         linea.setId(dto.getId());
         linea.setActivo(true);
-        linea.setProducto(dto.getProducto() != null ? ProductoMapper.toModelo(dto.getProducto()) : null);
+        if (dto.getProducto() != null) {
+            linea.setProducto(ProductoMapper.toReferencia(dto.getProducto()));
+        }
         linea.setCantidad(dto.getCantidad());
         linea.setSubTotal(dto.getSubTotal());
         return linea;

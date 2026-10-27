@@ -44,16 +44,24 @@ public final class EmpleadoMapper {
         empleado.setId(dto.getId());
         empleado.setActivo(dto.isActivo());
         empleado.setCuentaUsuario(dto.getCuentaUsuario() != null
-                ? CuentaUsuarioMapper.toModelo(dto.getCuentaUsuario())
+                ? CuentaUsuarioMapper.toReferencia(dto.getCuentaUsuario())
                 : null);
         empleado.setDni(dto.getDni());
         empleado.setNombre(dto.getNombre());
         empleado.setApellidoPaterno(dto.getApellidoPaterno());
-        empleado.setGenero(dto.getGenero() != null ? Genero.valueOf(dto.getGenero()) : null);
-        empleado.setFechaNacimiento(dto.getFechaNacimiento() != null ? LocalDate.parse(dto.getFechaNacimiento()) : null);
-        empleado.setArea(dto.getArea() != null ? AreaMapper.toModelo(dto.getArea()) : null);
-        empleado.setCargo(dto.getCargo() != null ? Cargo.valueOf(dto.getCargo()) : null);
+        empleado.setGenero(Genero.valueOf(dto.getGenero()));
+        empleado.setFechaNacimiento(LocalDate.parse(dto.getFechaNacimiento()));
+        if (dto.getArea() != null) {
+            empleado.setArea(AreaMapper.toReferencia(dto.getArea()));
+        }
+        empleado.setCargo(Cargo.valueOf(dto.getCargo()));
         empleado.setSueldo(dto.getSueldo());
+        return empleado;
+    }
+
+    public static Empleado toReferencia(EmpleadoDTO dto) {
+        Empleado empleado = new Empleado();
+        empleado.setId(dto.getId());
         return empleado;
     }
 }
