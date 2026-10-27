@@ -3,13 +3,16 @@ package pe.edu.pucp.softprog.bl.impl;
 import pe.edu.pucp.softprog.bl.BLException;
 import pe.edu.pucp.softprog.bl.OrdenVentaBL;
 import pe.edu.pucp.softprog.dao.ClienteDAO;
+import pe.edu.pucp.softprog.dao.EmpleadoDAO;
 import pe.edu.pucp.softprog.dao.OrdenVentaDAO;
 import pe.edu.pucp.softprog.dao.ProductoDAO;
 import pe.edu.pucp.softprog.dao.impl.ClienteDAOImpl;
+import pe.edu.pucp.softprog.dao.impl.EmpleadoDAOImpl;
 import pe.edu.pucp.softprog.dao.impl.ProductoDAOImpl;
 import pe.edu.pucp.softprog.dao.impl.ventas.OrdenVentaDAOImpl;
 import pe.edu.pucp.softprog.dao.transacciones.TransactionsManager;
 import pe.edu.pucp.softprog.modelo.almacen.Producto;
+import pe.edu.pucp.softprog.modelo.rrhh.Empleado;
 import pe.edu.pucp.softprog.modelo.ventas.Cliente;
 import pe.edu.pucp.softprog.modelo.ventas.LineaOrdenVenta;
 import pe.edu.pucp.softprog.modelo.ventas.OrdenVenta;
@@ -24,6 +27,7 @@ public class OrdenVentaBLImpl implements OrdenVentaBL {
     private final OrdenVentaDAO ordenVentaDAO = new OrdenVentaDAOImpl();
     private final ProductoDAO productoDAO = new ProductoDAOImpl();
     private final ClienteDAO clienteDAO = new ClienteDAOImpl();
+    private final EmpleadoDAO empleadoDAO = new EmpleadoDAOImpl();
 
     @Override
     public List<OrdenVenta> findAll() throws BLException {
@@ -56,6 +60,10 @@ public class OrdenVentaBLImpl implements OrdenVentaBL {
     public void insert(OrdenVenta ordenVenta) throws BLException {
         validarYCalcular(ordenVenta);
         Cliente cliente = buscarCliente(ordenVenta.getCliente().getId());
+        ordenVenta.setCliente(cliente);
+        if (ordenVenta.getEmpleado() != null) {
+            ordenVenta.setEmpleado(buscarEmpleado(ordenVenta.getEmpleado().getId()));
+        }
         validarLineaCredito(ordenVenta.getTotal(), cliente.getLineaCredito());
 
         TransactionsManager.iniciar();
@@ -75,6 +83,10 @@ public class OrdenVentaBLImpl implements OrdenVentaBL {
         OrdenVenta ordenAnterior = buscarOrden(ordenVenta.getId());
         Cliente clienteAnterior = buscarCliente(ordenAnterior.getCliente().getId());
         Cliente clienteNuevo = buscarCliente(ordenVenta.getCliente().getId());
+        ordenVenta.setCliente(clienteNuevo);
+        if (ordenVenta.getEmpleado() != null) {
+            ordenVenta.setEmpleado(buscarEmpleado(ordenVenta.getEmpleado().getId()));
+        }
 
         double lineaCreditoAnteriorDevuelta = clienteAnterior.getLineaCredito() + ordenAnterior.getTotal();
         double lineaCreditoDisponible;
@@ -133,6 +145,7 @@ public class OrdenVentaBLImpl implements OrdenVentaBL {
             double subTotal = producto.getPrecio() * linea.getCantidad();
 
             LineaOrdenVenta lineaCalculada = new LineaOrdenVenta(linea);
+            lineaCalculada.setProducto(producto);
             lineaCalculada.setSubTotal(subTotal);
             lineasCalculadas.add(lineaCalculada);
             subTotalOrden += subTotal;
@@ -174,6 +187,18 @@ public class OrdenVentaBLImpl implements OrdenVentaBL {
             return cliente;
         } catch (SQLException e) {
             throw new BLException("No se pudo recuperar el cliente", e);
+        }
+    }
+
+    private Empleado buscarEmpleado(int idEmpleado) throws BLException {
+        try {
+            Empleado empleado = empleadoDAO.findById(idEmpleado);
+            if (empleado == null) {
+                throw new BLException("No existe el empleado con id " + idEmpleado);
+            }
+            return empleado;
+        } catch (SQLException e) {
+            throw new BLException("No se pudo recuperar el empleado", e);
         }
     }
 

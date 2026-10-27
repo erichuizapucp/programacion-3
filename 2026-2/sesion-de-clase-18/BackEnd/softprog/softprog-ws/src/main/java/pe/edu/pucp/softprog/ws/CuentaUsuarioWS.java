@@ -12,7 +12,7 @@ import pe.edu.pucp.softprog.ws.mapper.CuentaUsuarioMapper;
 
 import java.util.List;
 
-@WebService(serviceName = "CuentaUsuarioWS", targetNamespace = "http://ws.softprog.pucp.edu.pe/cuentausuario")
+@WebService(serviceName = "CuentaUsuarioWS", targetNamespace = "http://ws.softprog.pucp.edu.pe/")
 public class CuentaUsuarioWS {
     private final CuentaUsuarioBL cuentaUsuarioBL = new CuentaUsuarioBLImpl();
 

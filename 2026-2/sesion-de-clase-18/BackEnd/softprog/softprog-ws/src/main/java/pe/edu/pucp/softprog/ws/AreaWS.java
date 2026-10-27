@@ -13,7 +13,7 @@ import pe.edu.pucp.softprog.ws.mapper.AreaMapper;
 import java.util.List;
 
 @WebService(serviceName = "AreaWS",
-        targetNamespace = "http://ws.softprog.pucp.edu.pe/area")
+        targetNamespace = "http://ws.softprog.pucp.edu.pe/")
 public class AreaWS {
     private final AreaBL areaBL = new AreaBLImpl();
 

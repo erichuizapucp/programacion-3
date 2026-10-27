@@ -12,7 +12,7 @@ import pe.edu.pucp.softprog.ws.mapper.OrdenVentaMapper;
 
 import java.util.List;
 
-@WebService(serviceName = "OrdenVentaWS", targetNamespace = "http://ws.softprog.pucp.edu.pe/ordenventa")
+@WebService(serviceName = "OrdenVentaWS", targetNamespace = "http://ws.softprog.pucp.edu.pe/")
 public class OrdenVentaWS {
     private final OrdenVentaBL ordenVentaBL = new OrdenVentaBLImpl();
 

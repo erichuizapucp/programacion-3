@@ -2,16 +2,16 @@
 <wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   targetNamespace="http://ws.softprog.pucp.edu.pe/"
                   name="SoftProgWS">
-    <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/area"
+    <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/"
                  location="http://172.16.70.1:8080/softprog-ws/AreaWS?wsdl"/>
-    <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/producto"
+    <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/"
                  location="http://172.16.70.1:8080/softprog-ws/ProductoWS?wsdl"/>
-    <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/empleado"
+    <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/"
                  location="http://172.16.70.1:8080/softprog-ws/EmpleadoWS?wsdl"/>
-    <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/cliente"
+    <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/"
                  location="http://172.16.70.1:8080/softprog-ws/ClienteWS?wsdl"/>
-    <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/cuentausuario"
+    <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/"
                  location="http://172.16.70.1:8080/softprog-ws/CuentaUsuarioWS?wsdl"/>
-    <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/ordenventa"
+    <wsdl:import namespace="http://ws.softprog.pucp.edu.pe/"
                  location="http://172.16.70.1:8080/softprog-ws/OrdenVentaWS?wsdl"/>
 </wsdl:definitions>

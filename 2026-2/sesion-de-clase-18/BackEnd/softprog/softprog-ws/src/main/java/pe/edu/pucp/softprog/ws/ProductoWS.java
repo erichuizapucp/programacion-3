@@ -12,7 +12,7 @@ import pe.edu.pucp.softprog.ws.mapper.ProductoMapper;
 
 import java.util.List;
 
-@WebService(serviceName = "ProductoWS", targetNamespace = "http://ws.softprog.pucp.edu.pe/producto")
+@WebService(serviceName = "ProductoWS", targetNamespace = "http://ws.softprog.pucp.edu.pe/")
 public class ProductoWS {
     private final ProductoBL productoBL = new ProductoBLImpl();
 

@@ -13,7 +13,7 @@ import pe.edu.pucp.softprog.ws.mapper.ClienteMapper;
 
 import java.util.List;
 
-@WebService(serviceName = "ClienteWS", targetNamespace = "http://ws.softprog.pucp.edu.pe/cliente")
+@WebService(serviceName = "ClienteWS", targetNamespace = "http://ws.softprog.pucp.edu.pe/")
 public class ClienteWS {
     private final ClienteBL clienteBL = new ClienteBLImpl();
 

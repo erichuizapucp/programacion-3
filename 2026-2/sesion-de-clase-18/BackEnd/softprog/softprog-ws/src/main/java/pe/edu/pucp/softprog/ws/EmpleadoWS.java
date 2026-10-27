@@ -12,7 +12,7 @@ import pe.edu.pucp.softprog.ws.mapper.EmpleadoMapper;
 
 import java.util.List;
 
-@WebService(serviceName = "EmpleadoWS", targetNamespace = "http://ws.softprog.pucp.edu.pe/empleado")
+@WebService(serviceName = "EmpleadoWS", targetNamespace = "http://ws.softprog.pucp.edu.pe/")
 public class EmpleadoWS {
     private final EmpleadoBL empleadoBL = new EmpleadoBLImpl();
 

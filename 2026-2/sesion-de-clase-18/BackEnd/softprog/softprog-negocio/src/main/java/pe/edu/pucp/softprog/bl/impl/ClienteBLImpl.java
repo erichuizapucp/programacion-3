@@ -4,7 +4,9 @@ import pe.edu.pucp.softprog.bl.BLException;
 import pe.edu.pucp.softprog.bl.ClienteBL;
 import pe.edu.pucp.softprog.bl.CuentaUsuarioBL;
 import pe.edu.pucp.softprog.dao.ClienteDAO;
+import pe.edu.pucp.softprog.dao.CuentaUsuarioDAO;
 import pe.edu.pucp.softprog.dao.impl.ClienteDAOImpl;
+import pe.edu.pucp.softprog.dao.impl.CuentaUsuarioDAOImpl;
 import pe.edu.pucp.softprog.modelo.seguridad.CuentaUsuario;
 import pe.edu.pucp.softprog.modelo.ventas.CategoriaCliente;
 import pe.edu.pucp.softprog.modelo.ventas.Cliente;
@@ -18,6 +20,7 @@ public class ClienteBLImpl implements ClienteBL {
     private static final int EDAD_MINIMA = 18;
 
     private final ClienteDAO clienteDAO = new ClienteDAOImpl();
+    private final CuentaUsuarioDAO cuentaUsuarioDAO = new CuentaUsuarioDAOImpl();
     private final CuentaUsuarioBL cuentaUsuarioBL = new CuentaUsuarioBLImpl();
 
     @Override
@@ -85,6 +88,9 @@ public class ClienteBLImpl implements ClienteBL {
         validarDatos(cliente);
         validarLineaCredito(cliente);
         validarDniUnico(cliente);
+        if (cliente.getCuentaUsuario() != null) {
+            cliente.setCuentaUsuario(buscarCuentaUsuario(cliente.getCuentaUsuario().getId()));
+        }
         try {
             clienteDAO.insert(cliente);
         } catch (SQLException e) {
@@ -98,6 +104,9 @@ public class ClienteBLImpl implements ClienteBL {
         validarDatos(cliente);
         validarLineaCredito(cliente);
         validarDniUnico(cliente);
+        if (cliente.getCuentaUsuario() != null) {
+            cliente.setCuentaUsuario(buscarCuentaUsuario(cliente.getCuentaUsuario().getId()));
+        }
         try {
             clienteDAO.update(cliente);
         } catch (SQLException e) {
@@ -170,6 +179,18 @@ public class ClienteBLImpl implements ClienteBL {
             }
         } catch (SQLException e) {
             throw new BLException("No se pudo verificar la unicidad del DNI", e);
+        }
+    }
+
+    private CuentaUsuario buscarCuentaUsuario(int idCuentaUsuario) throws BLException {
+        try {
+            CuentaUsuario cuentaUsuario = cuentaUsuarioDAO.findById(idCuentaUsuario);
+            if (cuentaUsuario == null) {
+                throw new BLException("No existe la cuenta de usuario con id " + idCuentaUsuario);
+            }
+            return cuentaUsuario;
+        } catch (SQLException e) {
+            throw new BLException("No se pudo recuperar la cuenta de usuario", e);
         }
     }
 }

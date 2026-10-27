@@ -96,7 +96,7 @@ namespace SoftProg.Web.Servicios.Soap {
             foreach (LineaOrdenVentaViewModel linea in ordenVenta.Lineas) {
                 lineas.Add(new lineaOrdenVentaDTO {
                     id = linea.Id,
-                    producto = new() { id = linea.IdProducto, nombre = linea.NombreProducto, precio = linea.Precio },
+                    producto = new() { id = linea.IdProducto },
                     cantidad = linea.Cantidad,
                     subTotal = linea.SubTotal
                 });
