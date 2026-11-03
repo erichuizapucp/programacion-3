@@ -1,0 +1,166 @@
+@page "/ordenes-venta/nueva"
+@page "/ordenes-venta/editar/{Id:int}"
+@attribute [Authorize(Policy = "OrdenesVenta")]
+@inject IOrdenVentaService OrdenVentaService;
+@inject IClienteService ClienteService;
+@inject IEmpleadoService EmpleadoService;
+@inject IProductoService ProductoService;
+@inject NavigationManager Nav;
+
+<PageTitle>Órdenes de venta</PageTitle>
+
+<h3 class="mb-3">@(Id == null ? "Nueva orden de venta" : "Editar orden de venta")</h3>
+
+@if (MensajeError != null) {
+    <div class="alert alert-danger">@MensajeError</div>
+}
+
+<EditForm Model="ViewModel" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label class="form-label">Cliente</label>
+        <InputSelect tabindex="1" class="form-select" @bind-Value="ViewModel.IdCliente">
+            <option value="0">Seleccione un cliente</option>
+            @foreach (ClienteViewModel cliente in Clientes) {
+                <option value="@cliente.Id">@cliente.Nombre @cliente.ApellidoPaterno</option>
+            }
+        </InputSelect>
+        <ValidationMessage For="() => ViewModel.IdCliente" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Vendedor</label>
+        <InputSelect tabindex="2" class="form-select" @bind-Value="ViewModel.IdEmpleado">
+            <option value="0">Sin vendedor</option>
+            @foreach (EmpleadoViewModel empleado in Empleados) {
+                <option value="@empleado.Id">@empleado.Nombre @empleado.ApellidoPaterno</option>
+            }
+        </InputSelect>
+    </div>
+
+    <h5 class="mt-4">Productos</h5>
+    <div class="d-flex gap-2 mb-3">
+        <InputSelect tabindex="3" class="form-select" @bind-Value="IdProductoAgregar">
+            <option value="0">Seleccione un producto</option>
+            @foreach (ProductoViewModel producto in Productos) {
+                <option value="@producto.Id">@producto.Nombre (S/ @producto.Precio.ToString("N2"))</option>
+            }
+        </InputSelect>
+        <InputNumber tabindex="4" class="form-control w-auto" @bind-Value="CantidadAgregar" />
+        <button tabindex="5" type="button" class="btn btn-outline-primary" @onclick="() => AgregarLinea()">
+            Agregar
+        </button>
+    </div>
+
+    @if (ViewModel.Lineas.Count == 0) {
+        <div class="alert alert-info">Agregue al menos un producto.</div>
+    }
+    else {
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Producto</th>
+                    <th class="text-end">Precio</th>
+                    <th class="text-end">Cant.</th>
+                    <th class="text-end">Subtotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (LineaOrdenVentaViewModel linea in ViewModel.Lineas) {
+                    <tr>
+                        <td>@linea.NombreProducto</td>
+                        <td class="text-end">@linea.Precio.ToString("N2")</td>
+                        <td class="text-end">@linea.Cantidad</td>
+                        <td class="text-end">@linea.SubTotal.ToString("N2")</td>
+                        <td class="text-end">
+                            <button type="button" class="btn btn-outline-danger btn-sm" @onclick="() => QuitarLinea(linea)">
+                                Quitar
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <TotalesOrdenVenta SubTotal="ViewModel.SubTotal" Igv="ViewModel.Igv" Total="ViewModel.Total" />
+    }
+
+    <button tabindex="6" type="submit" class="btn btn-primary">Guardar</button>
+    <a tabindex="7" class="btn btn-outline-secondary" href="ordenes-venta">Cancelar</a>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    private OrdenVentaViewModel ViewModel { get; set; } = new();
+    private string? MensajeError { get; set; }
+    private List<ClienteViewModel> Clientes { get; set; } = [];
+    private List<EmpleadoViewModel> Empleados { get; set; } = [];
+    private List<ProductoViewModel> Productos { get; set; } = [];
+    private int IdProductoAgregar { get; set; }
+    private int CantidadAgregar { get; set; } = 1;
+
+    protected override void OnInitialized() {
+        Clientes = ClienteService.FindAll();
+        Empleados = EmpleadoService.FindAll();
+        Productos = ProductoService.FindAll();
+    }
+
+    protected override void OnParametersSet() {
+        if (Id == null) {
+            ViewModel = new OrdenVentaViewModel();
+            return;
+        }
+        OrdenVentaViewModel? ordenVenta = OrdenVentaService.FindById(Id.Value);
+        if (ordenVenta == null) {
+            Nav.NavigateTo("/ordenes-venta");
+            return;
+        }
+        ViewModel = ordenVenta;
+    }
+
+    private void AgregarLinea() {
+        ProductoViewModel? producto = Productos.Find(p => p.Id == IdProductoAgregar);
+        if (producto == null || CantidadAgregar < 1) {
+            MensajeError = "Seleccione un producto y una cantidad mayor a 0";
+            return;
+        }
+
+        LineaOrdenVentaViewModel? existente = ViewModel.Lineas.Find(l => l.IdProducto == producto.Id);
+        if (existente != null) {
+            existente.Cantidad += CantidadAgregar;
+            existente.SubTotal = producto.Precio * existente.Cantidad;
+        } else {
+            ViewModel.Lineas.Add(new LineaOrdenVentaViewModel {
+                IdProducto = producto.Id,
+                NombreProducto = producto.Nombre,
+                Precio = producto.Precio,
+                Cantidad = CantidadAgregar,
+                SubTotal = producto.Precio * CantidadAgregar
+            });
+        }
+
+        MensajeError = null;
+        IdProductoAgregar = 0;
+        CantidadAgregar = 1;
+    }
+
+    private void QuitarLinea(LineaOrdenVentaViewModel linea) {
+        ViewModel.Lineas.Remove(linea);
+    }
+
+    private void Guardar() {
+        try {
+            if (Id == null) {
+                OrdenVentaService.Insert(ViewModel);
+            } else {
+                OrdenVentaService.Update(ViewModel);
+            }
+            Nav.NavigateTo("/ordenes-venta");
+        } catch (ServicioException ex) {
+            MensajeError = ex.Message;
+        }
+    }
+}

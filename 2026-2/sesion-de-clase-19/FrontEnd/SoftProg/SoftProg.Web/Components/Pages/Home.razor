@@ -1,0 +1,20 @@
+﻿@page "/"
+
+<PageTitle>Inicio</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        <h3 class="mb-3">Bienvenido, @context.User.Identity?.Name</h3>
+        <AuthorizeView Policy="Resumen" Context="resumen">
+            <PanelAdministrador />
+        </AuthorizeView>
+    </Authorized>
+    <NotAuthorized>
+        <h3 class="mb-3">Bienvenido a SoftProg</h3>
+        <p>Inicie sesión para continuar o regístrese como cliente.</p>
+        <div class="d-flex gap-2">
+            <a class="btn btn-primary" href="login">Iniciar sesión</a>
+            <a class="btn btn-outline-primary" href="registro">Registrarse</a>
+        </div>
+    </NotAuthorized>
+</AuthorizeView>
