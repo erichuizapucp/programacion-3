@@ -2,11 +2,11 @@ using SoftProg.Web.ViewModels;
 
 namespace SoftProg.Web.Servicios {
     public interface IProductoService {
-        List<ProductoViewModel> FindAll();
-        ProductoViewModel? FindById(int id);
-        void Insert(ProductoViewModel modelo);
-        void Update(ProductoViewModel modelo);
-        void Delete(int id);
-        List<ProductoViewModel> FilterByName(string nombre);
+        Task<List<ProductoViewModel>> FindAll();
+        Task<ProductoViewModel?> FindById(int id);
+        Task Insert(ProductoViewModel modelo);
+        Task Update(ProductoViewModel modelo);
+        Task Delete(int id);
+        Task<List<ProductoViewModel>> FilterByName(string nombre);
     }
 }

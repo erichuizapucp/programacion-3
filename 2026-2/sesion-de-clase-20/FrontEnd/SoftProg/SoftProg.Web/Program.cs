@@ -11,7 +11,7 @@ builder.Services.AddRazorComponents()
 
 builder.Services.AddSeguridad();
 
-builder.Services.AddScoped<IProductoService, ProductoSoapService>();
+builder.Services.AddScoped<IProductoService, ProductoService>();
 builder.Services.AddScoped<IAreaService, AreaSoapService>();
 builder.Services.AddScoped<IClienteService, ClienteSoapService>();
 builder.Services.AddScoped<IEmpleadoService, EmpleadoSoapService>();
