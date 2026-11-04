@@ -49,8 +49,8 @@ else {
     private PaginationState Paginacion { get; } = new() { ItemsPerPage = 5 };
     private int? IdPasswordVisible { get; set; }
 
-    protected override void OnInitialized() {
-        CuentasUsuario = CuentaUsuarioService.FindAll().AsQueryable();
+    protected override async Task OnInitializedAsync() {
+        CuentasUsuario = (await CuentaUsuarioService.FindAll()).AsQueryable();
     }
 
     private void VerPassword(int id) {
@@ -71,7 +71,7 @@ else {
             return;
         }
 
-        CuentaUsuarioService.Delete(id);
-        CuentasUsuario = CuentaUsuarioService.FindAll().AsQueryable();
+        await CuentaUsuarioService.Delete(id);
+        CuentasUsuario = (await CuentaUsuarioService.FindAll()).AsQueryable();
     }
 }

@@ -102,18 +102,18 @@
     private int IdProductoAgregar { get; set; }
     private int CantidadAgregar { get; set; } = 1;
 
-    protected override void OnInitialized() {
-        Clientes = ClienteService.FindAll();
-        Empleados = EmpleadoService.FindAll();
-        Productos = ProductoService.FindAll();
+    protected override async Task OnInitializedAsync() {
+        Clientes = await ClienteService.FindAll();
+        Empleados = await EmpleadoService.FindAll();
+        Productos = await ProductoService.FindAll();
     }
 
-    protected override void OnParametersSet() {
+    protected override async Task OnParametersSetAsync() {
         if (Id == null) {
             ViewModel = new OrdenVentaViewModel();
             return;
         }
-        OrdenVentaViewModel? ordenVenta = OrdenVentaService.FindById(Id.Value);
+        OrdenVentaViewModel? ordenVenta = await OrdenVentaService.FindById(Id.Value);
         if (ordenVenta == null) {
             Nav.NavigateTo("/ordenes-venta");
             return;
@@ -151,12 +151,12 @@
         ViewModel.Lineas.Remove(linea);
     }
 
-    private void Guardar() {
+    private async Task Guardar() {
         try {
             if (Id == null) {
-                OrdenVentaService.Insert(ViewModel);
+                await OrdenVentaService.Insert(ViewModel);
             } else {
-                OrdenVentaService.Update(ViewModel);
+                await OrdenVentaService.Update(ViewModel);
             }
             Nav.NavigateTo("/ordenes-venta");
         } catch (ServicioException ex) {

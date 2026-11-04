@@ -79,16 +79,16 @@
     private int IdProductoAgregar { get; set; }
     private int CantidadAgregar { get; set; } = 1;
 
-    protected override void OnInitialized() {
+    protected override async Task OnInitializedAsync() {
         string userName = SesionService.ObtenerUserName();
 
-        Cliente = ClienteService.FindByCuenta(userName);
+        Cliente = await ClienteService.FindByCuenta(userName);
         if (Cliente == null) {
             Nav.NavigateTo("/");
             return;
         }
         ViewModel.IdCliente = Cliente.Id;
-        Productos = ProductoService.FindAll();
+        Productos = await ProductoService.FindAll();
     }
 
     private void AgregarLinea() {
@@ -121,9 +121,9 @@
         ViewModel.Lineas.Remove(linea);
     }
 
-    private void Guardar() {
+    private async Task Guardar() {
         try {
-            OrdenVentaService.Insert(ViewModel);
+            await OrdenVentaService.Insert(ViewModel);
             Nav.NavigateTo("/mis-ordenes");
         } catch (ServicioException ex) {
             MensajeError = ex.Message;

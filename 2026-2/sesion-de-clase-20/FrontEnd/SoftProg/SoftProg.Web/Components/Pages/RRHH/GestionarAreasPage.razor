@@ -37,12 +37,12 @@
     private AreaViewModel ViewModel { get; set; } = new();
     private string? MensajeError { get; set; }
 
-    protected override void OnParametersSet() {
+    protected override async Task OnParametersSetAsync() {
         if (Id == null) {
             ViewModel = new AreaViewModel();
             return;
         }
-        AreaViewModel? area = AreaService.FindById(Id.Value);
+        AreaViewModel? area = await AreaService.FindById(Id.Value);
         if (area == null) {
             Nav.NavigateTo("/areas");
             return;
@@ -50,12 +50,12 @@
         ViewModel = area;
     }
 
-    private void Guardar() {
+    private async Task Guardar() {
         try {
             if (Id == null) {
-                AreaService.Insert(ViewModel);
+                await AreaService.Insert(ViewModel);
             } else {
-                AreaService.Update(ViewModel);
+                await AreaService.Update(ViewModel);
             }
             Nav.NavigateTo("/areas");
         } catch (ServicioException ex) {

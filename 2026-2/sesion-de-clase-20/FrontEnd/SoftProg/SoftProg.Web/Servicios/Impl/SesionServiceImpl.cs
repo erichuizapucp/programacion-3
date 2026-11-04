@@ -20,12 +20,12 @@ namespace SoftProg.Web.Servicios.Impl {
         }
 
         public async Task<string> IniciarSesion(HttpContext context, string userName, string password) {
-            if (!cuentaUsuarioService.Autenticar(userName, password)) {
+            if (!await cuentaUsuarioService.Autenticar(userName, password)) {
                 return "/login?error=true";
             }
 
-            CuentaUsuarioViewModel cuenta = cuentaUsuarioService.FindByUserName(userName)!;
-            string? rol = ObtenerRol(cuenta);
+            CuentaUsuarioViewModel cuenta = (await cuentaUsuarioService.FindByUserName(userName))!;
+            string? rol = await ObtenerRol(cuenta);
             if (rol == null) {
                 return "/login?sinRol=true";
             }
@@ -54,14 +54,14 @@ namespace SoftProg.Web.Servicios.Impl {
             return int.Parse(usuario.FindFirst(ClaimTypes.NameIdentifier)!.Value);
         }
 
-        private string? ObtenerRol(CuentaUsuarioViewModel cuenta) {
+        private async Task<string?> ObtenerRol(CuentaUsuarioViewModel cuenta) {
             if (cuenta.UserName == "administrador") {
                 return "Administrador";
             }
-            if (clienteService.FindByCuenta(cuenta.UserName) != null) {
+            if (await clienteService.FindByCuenta(cuenta.UserName) != null) {
                 return "Cliente";
             }
-            EmpleadoViewModel? empleado = empleadoService.FindByCuenta(cuenta.UserName);
+            EmpleadoViewModel? empleado = await empleadoService.FindByCuenta(cuenta.UserName);
             return empleado?.Cargo.ToString();
         }
     }

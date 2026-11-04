@@ -76,11 +76,11 @@
     private List<FilaResumen> ClientesPorCategoria { get; set; } = [];
     private List<FilaResumen> EmpleadosPorArea { get; set; } = [];
 
-    protected override void OnInitialized() {
-        Productos = ProductoService.FindAll();
-        Clientes = ClienteService.FindAll();
-        Empleados = EmpleadoService.FindAll();
-        Ordenes = OrdenVentaService.FindAll();
+    protected override async Task OnInitializedAsync() {
+        Productos = await ProductoService.FindAll();
+        Clientes = await ClienteService.FindAll();
+        Empleados = await EmpleadoService.FindAll();
+        Ordenes = await OrdenVentaService.FindAll();
 
         Dictionary<string, int> unidadesPorProducto = [];
         foreach (OrdenVentaViewModel orden in Ordenes) {

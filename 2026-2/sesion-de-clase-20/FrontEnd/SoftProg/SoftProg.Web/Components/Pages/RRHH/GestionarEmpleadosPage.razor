@@ -111,16 +111,16 @@
     private Genero[] Generos { get; } = Enum.GetValues<Genero>();
     private Cargo[] Cargos { get; } = Enum.GetValues<Cargo>();
 
-    protected override void OnInitialized() {
-        Areas = AreaService.FindAll();
-        CuentasUsuario = CuentaUsuarioService.FindAll();
+    protected override async Task OnInitializedAsync() {
+        Areas = await AreaService.FindAll();
+        CuentasUsuario = await CuentaUsuarioService.FindAll();
     }
 
-    protected override void OnParametersSet() {
+    protected override async Task OnParametersSetAsync() {
         if (Id == null) {
             ViewModel = new EmpleadoViewModel();
         } else {
-            EmpleadoViewModel? empleado = EmpleadoService.FindById(Id.Value);
+            EmpleadoViewModel? empleado = await EmpleadoService.FindById(Id.Value);
             if (empleado == null) {
                 Nav.NavigateTo("/empleados");
                 return;
@@ -137,12 +137,12 @@
         Nav.NavigateTo($"/cuentas-usuario/nuevo?volver={volver}");
     }
 
-    private void Guardar() {
+    private async Task Guardar() {
         try {
             if (Id == null) {
-                EmpleadoService.Insert(ViewModel);
+                await EmpleadoService.Insert(ViewModel);
             } else {
-                EmpleadoService.Update(ViewModel);
+                await EmpleadoService.Update(ViewModel);
             }
             Nav.NavigateTo("/empleados");
         } catch (ServicioException ex) {

@@ -52,13 +52,13 @@ else {
     private OrdenVentaViewModel? OrdenSeleccionada { get; set; }
     private PaginationState Paginacion { get; } = new() { ItemsPerPage = 5 };
 
-    protected override void OnInitialized() {
+    protected override async Task OnInitializedAsync() {
         string userName = SesionService.ObtenerUserName();
-        Ordenes = OrdenVentaService.FindByCuenta(userName).AsQueryable();
+        Ordenes = (await OrdenVentaService.FindByCuenta(userName)).AsQueryable();
     }
 
-    private void SeleccionarOrden(int id) {
-        OrdenSeleccionada = OrdenVentaService.FindById(id);
+    private async Task SeleccionarOrden(int id) {
+        OrdenSeleccionada = await OrdenVentaService.FindById(id);
     }
 
     private void NuevaOrden() {

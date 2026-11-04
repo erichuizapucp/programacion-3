@@ -3,76 +3,81 @@ using SoftProgWS;
 using System.Globalization;
 using System.ServiceModel;
 
-namespace SoftProg.Web.Servicios.Soap {
-    public class ClienteSoapService : IClienteService {
+namespace SoftProg.Web.Servicios.Ws {
+    public class ClienteService : IClienteService {
         private const string FormatoFecha = "yyyy-MM-dd";
 
         private readonly ClienteWSClient clienteWS;
 
-        public ClienteSoapService(IConfiguration configuration) {
+        public ClienteService(IConfiguration configuration) {
             string baseUrl = configuration["SoapWS:BaseUrl"]!;
             clienteWS = new ClienteWSClient(ClienteWSClient.EndpointConfiguration.ClienteWSPort, $"{baseUrl}/ClienteWS");
         }
 
-        public List<ClienteViewModel> FindAll() {
+        public async Task<List<ClienteViewModel>> FindAll() {
             try {
-                return ToViewModels(clienteWS.findAllClientes());
+                findAllClientesResponse respuesta = await clienteWS.findAllClientesAsync();
+                return ToViewModels(respuesta.@return);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public ClienteViewModel? FindById(int id) {
+        public async Task<ClienteViewModel?> FindById(int id) {
             try {
-                clienteDTO? dto = clienteWS.findClienteById(id);
+                findClienteByIdResponse respuesta = await clienteWS.findClienteByIdAsync(id);
+                clienteDTO? dto = respuesta.@return;
                 return dto == null ? null : ToViewModel(dto);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public void Insert(ClienteViewModel cliente) {
+        public async Task Insert(ClienteViewModel cliente) {
             try {
-                cliente.Id = clienteWS.insertCliente(ToSoap(cliente));
+                insertClienteResponse respuesta = await clienteWS.insertClienteAsync(ToDto(cliente));
+                cliente.Id = respuesta.@return;
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public void Update(ClienteViewModel cliente) {
+        public async Task Update(ClienteViewModel cliente) {
             try {
-                clienteWS.updateCliente(ToSoap(cliente));
+                await clienteWS.updateClienteAsync(ToDto(cliente));
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public void Delete(int id) {
+        public async Task Delete(int id) {
             try {
-                clienteWS.deleteCliente(id);
+                await clienteWS.deleteClienteAsync(id);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public List<ClienteViewModel> FilterByName(string nombre) {
+        public async Task<List<ClienteViewModel>> FilterByName(string nombre) {
             try {
-                return ToViewModels(clienteWS.filterClientesByName(nombre));
+                filterClientesByNameResponse respuesta = await clienteWS.filterClientesByNameAsync(nombre);
+                return ToViewModels(respuesta.@return);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public ClienteViewModel? FindByCuenta(string userName) {
+        public async Task<ClienteViewModel?> FindByCuenta(string userName) {
             try {
-                clienteDTO? dto = clienteWS.findClienteByCuenta(userName);
+                findClienteByCuentaResponse respuesta = await clienteWS.findClienteByCuentaAsync(userName);
+                clienteDTO? dto = respuesta.@return;
                 return dto == null ? null : ToViewModel(dto);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public void Registrar(RegistroClienteViewModel registro) {
+        public async Task Registrar(RegistroClienteViewModel registro) {
             clienteDTO dto = new() {
                 dni = registro.Dni,
                 nombre = registro.Nombre,
@@ -85,7 +90,7 @@ namespace SoftProg.Web.Servicios.Soap {
             };
 
             try {
-                clienteWS.registrar(dto, registro.UserName, registro.Password);
+                await clienteWS.registrarAsync(dto, registro.UserName, registro.Password);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
@@ -114,7 +119,7 @@ namespace SoftProg.Web.Servicios.Soap {
             };
         }
 
-        private clienteDTO ToSoap(ClienteViewModel cliente) {
+        private clienteDTO ToDto(ClienteViewModel cliente) {
             return new clienteDTO {
                 id = cliente.Id,
                 cuentaUsuario = cliente.IdCuentaUsuario > 0 ? new() { id = cliente.IdCuentaUsuario } : null,

@@ -78,10 +78,10 @@
     private string NombreArea { get; set; } = "";
     private Genero[] Generos { get; } = Enum.GetValues<Genero>();
 
-    protected override void OnInitialized() {
+    protected override async Task OnInitializedAsync() {
         UserName = SesionService.ObtenerUserName();
 
-        EmpleadoViewModel? empleado = EmpleadoService.FindByCuenta(UserName);
+        EmpleadoViewModel? empleado = await EmpleadoService.FindByCuenta(UserName);
         if (empleado == null) {
             Nav.NavigateTo("/");
             return;
@@ -90,9 +90,9 @@
         NombreArea = empleado.NombreArea;
     }
 
-    private void Guardar() {
+    private async Task Guardar() {
         try {
-            EmpleadoService.Update(ViewModel);
+            await EmpleadoService.Update(ViewModel);
             MensajeError = null;
             MensajeExito = "Sus datos se actualizaron correctamente";
         } catch (ServicioException ex) {

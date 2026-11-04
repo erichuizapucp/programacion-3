@@ -1,7 +1,7 @@
 using SoftProg.Web.Components;
 using SoftProg.Web.Seguridad;
 using SoftProg.Web.Servicios;
-using SoftProg.Web.Servicios.Soap;
+using SoftProg.Web.Servicios.Ws;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,11 +12,11 @@ builder.Services.AddRazorComponents()
 builder.Services.AddSeguridad();
 
 builder.Services.AddScoped<IProductoService, ProductoService>();
-builder.Services.AddScoped<IAreaService, AreaSoapService>();
-builder.Services.AddScoped<IClienteService, ClienteSoapService>();
-builder.Services.AddScoped<IEmpleadoService, EmpleadoSoapService>();
-builder.Services.AddScoped<ICuentaUsuarioService, CuentaUsuarioSoapService>();
-builder.Services.AddScoped<IOrdenVentaService, OrdenVentaSoapService>();
+builder.Services.AddScoped<IAreaService, AreaService>();
+builder.Services.AddScoped<IClienteService, ClienteService>();
+builder.Services.AddScoped<IEmpleadoService, EmpleadoService>();
+builder.Services.AddScoped<ICuentaUsuarioService, CuentaUsuarioService>();
+builder.Services.AddScoped<IOrdenVentaService, OrdenVentaService>();
 
 var app = builder.Build();
 

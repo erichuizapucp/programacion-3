@@ -51,8 +51,8 @@ else {
     private string Filtro { get; set; } = string.Empty;
     private PaginationState Paginacion { get; } = new() { ItemsPerPage = 5 };
 
-    protected override void OnInitialized() {
-        Areas = AreaService.FindAll().AsQueryable();
+    protected override async Task OnInitializedAsync() {
+        Areas = (await AreaService.FindAll()).AsQueryable();
     }
 
     private void NuevaArea() {
@@ -69,16 +69,16 @@ else {
             return;
         }
 
-        AreaService.Delete(id);
-        Areas = AreaService.FindAll().AsQueryable();
+        await AreaService.Delete(id);
+        Areas = (await AreaService.FindAll()).AsQueryable();
     }
 
-    private void FiltrarAreas() {
-        Areas = AreaService.FilterByName(Filtro).AsQueryable();
+    private async Task FiltrarAreas() {
+        Areas = (await AreaService.FilterByName(Filtro)).AsQueryable();
     }
 
-    private void LimpiarFiltro() {
+    private async Task LimpiarFiltro() {
         Filtro = string.Empty;
-        Areas = AreaService.FindAll().AsQueryable();
+        Areas = (await AreaService.FindAll()).AsQueryable();
     }
 }

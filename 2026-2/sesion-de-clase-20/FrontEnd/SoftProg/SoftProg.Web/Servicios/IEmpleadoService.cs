@@ -2,12 +2,12 @@ using SoftProg.Web.ViewModels;
 
 namespace SoftProg.Web.Servicios {
     public interface IEmpleadoService {
-        List<EmpleadoViewModel> FindAll();
-        EmpleadoViewModel? FindById(int id);
-        void Insert(EmpleadoViewModel modelo);
-        void Update(EmpleadoViewModel modelo);
-        void Delete(int id);
-        List<EmpleadoViewModel> FilterByName(string nombre);
-        EmpleadoViewModel? FindByCuenta(string userName);
+        Task<List<EmpleadoViewModel>> FindAll();
+        Task<EmpleadoViewModel?> FindById(int id);
+        Task Insert(EmpleadoViewModel modelo);
+        Task Update(EmpleadoViewModel modelo);
+        Task Delete(int id);
+        Task<List<EmpleadoViewModel>> FilterByName(string nombre);
+        Task<EmpleadoViewModel?> FindByCuenta(string userName);
     }
 }

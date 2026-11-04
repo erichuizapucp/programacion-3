@@ -2,13 +2,13 @@ using SoftProg.Web.ViewModels;
 
 namespace SoftProg.Web.Servicios {
     public interface IClienteService {
-        List<ClienteViewModel> FindAll();
-        ClienteViewModel? FindById(int id);
-        void Insert(ClienteViewModel modelo);
-        void Update(ClienteViewModel modelo);
-        void Delete(int id);
-        List<ClienteViewModel> FilterByName(string nombre);
-        ClienteViewModel? FindByCuenta(string userName);
-        void Registrar(RegistroClienteViewModel registro);
+        Task<List<ClienteViewModel>> FindAll();
+        Task<ClienteViewModel?> FindById(int id);
+        Task Insert(ClienteViewModel modelo);
+        Task Update(ClienteViewModel modelo);
+        Task Delete(int id);
+        Task<List<ClienteViewModel>> FilterByName(string nombre);
+        Task<ClienteViewModel?> FindByCuenta(string userName);
+        Task Registrar(RegistroClienteViewModel registro);
     }
 }

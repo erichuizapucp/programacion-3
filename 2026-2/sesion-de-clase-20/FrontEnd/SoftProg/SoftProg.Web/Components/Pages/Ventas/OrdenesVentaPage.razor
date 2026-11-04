@@ -56,8 +56,8 @@ else {
     private OrdenVentaViewModel? OrdenSeleccionada { get; set; }
     private PaginationState Paginacion { get; } = new() { ItemsPerPage = 5 };
 
-    protected override void OnInitialized() {
-        Ordenes = OrdenVentaService.FindAll().AsQueryable();
+    protected override async Task OnInitializedAsync() {
+        Ordenes = (await OrdenVentaService.FindAll()).AsQueryable();
     }
 
     private void SeleccionarOrden(OrdenVentaViewModel orden) {
@@ -78,8 +78,8 @@ else {
             return;
         }
 
-        OrdenVentaService.Delete(id);
-        Ordenes = OrdenVentaService.FindAll().AsQueryable();
+        await OrdenVentaService.Delete(id);
+        Ordenes = (await OrdenVentaService.FindAll()).AsQueryable();
         if (OrdenSeleccionada?.Id == id) {
             OrdenSeleccionada = null;
         }

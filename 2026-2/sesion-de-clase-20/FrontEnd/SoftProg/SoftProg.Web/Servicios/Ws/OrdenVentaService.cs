@@ -2,59 +2,63 @@ using SoftProg.Web.ViewModels;
 using SoftProgWS;
 using System.ServiceModel;
 
-namespace SoftProg.Web.Servicios.Soap {
-    public class OrdenVentaSoapService : IOrdenVentaService {
+namespace SoftProg.Web.Servicios.Ws {
+    public class OrdenVentaService : IOrdenVentaService {
         private readonly OrdenVentaWSClient ordenVentaWS;
 
-        public OrdenVentaSoapService(IConfiguration configuration) {
+        public OrdenVentaService(IConfiguration configuration) {
             string baseUrl = configuration["SoapWS:BaseUrl"]!;
             ordenVentaWS = new OrdenVentaWSClient(OrdenVentaWSClient.EndpointConfiguration.OrdenVentaWSPort, $"{baseUrl}/OrdenVentaWS");
         }
 
-        public List<OrdenVentaViewModel> FindAll() {
+        public async Task<List<OrdenVentaViewModel>> FindAll() {
             try {
-                return ToViewModels(ordenVentaWS.findAllOrdenesVenta());
+                findAllOrdenesVentaResponse respuesta = await ordenVentaWS.findAllOrdenesVentaAsync();
+                return ToViewModels(respuesta.@return);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public OrdenVentaViewModel? FindById(int id) {
+        public async Task<OrdenVentaViewModel?> FindById(int id) {
             try {
-                ordenVentaDTO? dto = ordenVentaWS.findOrdenVentaById(id);
+                findOrdenVentaByIdResponse respuesta = await ordenVentaWS.findOrdenVentaByIdAsync(id);
+                ordenVentaDTO? dto = respuesta.@return;
                 return dto == null ? null : ToViewModel(dto);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public void Insert(OrdenVentaViewModel ordenVenta) {
+        public async Task Insert(OrdenVentaViewModel ordenVenta) {
             try {
-                ordenVenta.Id = ordenVentaWS.insertOrdenVenta(ToSoap(ordenVenta));
+                insertOrdenVentaResponse respuesta = await ordenVentaWS.insertOrdenVentaAsync(ToDto(ordenVenta));
+                ordenVenta.Id = respuesta.@return;
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public void Update(OrdenVentaViewModel ordenVenta) {
+        public async Task Update(OrdenVentaViewModel ordenVenta) {
             try {
-                ordenVentaWS.updateOrdenVenta(ToSoap(ordenVenta));
+                await ordenVentaWS.updateOrdenVentaAsync(ToDto(ordenVenta));
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public void Delete(int id) {
+        public async Task Delete(int id) {
             try {
-                ordenVentaWS.deleteOrdenVenta(id);
+                await ordenVentaWS.deleteOrdenVentaAsync(id);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public List<OrdenVentaViewModel> FindByCuenta(string userName) {
+        public async Task<List<OrdenVentaViewModel>> FindByCuenta(string userName) {
             try {
-                return ToViewModels(ordenVentaWS.findOrdenesVentaByCuenta(userName));
+                findOrdenesVentaByCuentaResponse respuesta = await ordenVentaWS.findOrdenesVentaByCuentaAsync(userName);
+                return ToViewModels(respuesta.@return);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
@@ -91,7 +95,7 @@ namespace SoftProg.Web.Servicios.Soap {
             return ordenVenta;
         }
 
-        private ordenVentaDTO ToSoap(OrdenVentaViewModel ordenVenta) {
+        private ordenVentaDTO ToDto(OrdenVentaViewModel ordenVenta) {
             List<lineaOrdenVentaDTO> lineas = [];
             foreach (LineaOrdenVentaViewModel linea in ordenVenta.Lineas) {
                 lineas.Add(new lineaOrdenVentaDTO {

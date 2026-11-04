@@ -73,10 +73,10 @@
     private string UserName { get; set; } = "";
     private Genero[] Generos { get; } = Enum.GetValues<Genero>();
 
-    protected override void OnInitialized() {
+    protected override async Task OnInitializedAsync() {
         UserName = SesionService.ObtenerUserName();
 
-        ClienteViewModel? cliente = ClienteService.FindByCuenta(UserName);
+        ClienteViewModel? cliente = await ClienteService.FindByCuenta(UserName);
         if (cliente == null) {
             Nav.NavigateTo("/");
             return;
@@ -84,9 +84,9 @@
         ViewModel = cliente;
     }
 
-    private void Guardar() {
+    private async Task Guardar() {
         try {
-            ClienteService.Update(ViewModel);
+            await ClienteService.Update(ViewModel);
             MensajeError = null;
             MensajeExito = "Sus datos se actualizaron correctamente";
         } catch (ServicioException ex) {

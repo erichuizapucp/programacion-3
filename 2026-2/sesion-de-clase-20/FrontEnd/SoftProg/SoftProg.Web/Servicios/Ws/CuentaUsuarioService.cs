@@ -2,19 +2,20 @@ using SoftProg.Web.ViewModels;
 using SoftProgWS;
 using System.ServiceModel;
 
-namespace SoftProg.Web.Servicios.Soap {
-    public class CuentaUsuarioSoapService : ICuentaUsuarioService {
+namespace SoftProg.Web.Servicios.Ws {
+    public class CuentaUsuarioService : ICuentaUsuarioService {
         private readonly CuentaUsuarioWSClient cuentaUsuarioWS;
 
-        public CuentaUsuarioSoapService(IConfiguration configuration) {
+        public CuentaUsuarioService(IConfiguration configuration) {
             string baseUrl = configuration["SoapWS:BaseUrl"]!;
             cuentaUsuarioWS = new CuentaUsuarioWSClient(CuentaUsuarioWSClient.EndpointConfiguration.CuentaUsuarioWSPort, $"{baseUrl}/CuentaUsuarioWS");
         }
 
-        public List<CuentaUsuarioViewModel> FindAll() {
+        public async Task<List<CuentaUsuarioViewModel>> FindAll() {
             try {
+                findAllCuentasUsuarioResponse respuesta = await cuentaUsuarioWS.findAllCuentasUsuarioAsync();
                 List<CuentaUsuarioViewModel> cuentas = [];
-                foreach (cuentaUsuarioDTO dto in cuentaUsuarioWS.findAllCuentasUsuario() ?? []) {
+                foreach (cuentaUsuarioDTO dto in respuesta.@return ?? []) {
                     cuentas.Add(ToViewModel(dto));
                 }
                 return cuentas;
@@ -23,59 +24,63 @@ namespace SoftProg.Web.Servicios.Soap {
             }
         }
 
-        public CuentaUsuarioViewModel? FindById(int id) {
+        public async Task<CuentaUsuarioViewModel?> FindById(int id) {
             try {
-                cuentaUsuarioDTO? dto = cuentaUsuarioWS.findCuentaUsuarioById(id);
+                findCuentaUsuarioByIdResponse respuesta = await cuentaUsuarioWS.findCuentaUsuarioByIdAsync(id);
+                cuentaUsuarioDTO? dto = respuesta.@return;
                 return dto == null ? null : ToViewModel(dto);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public void Insert(CuentaUsuarioViewModel cuentaUsuario) {
+        public async Task Insert(CuentaUsuarioViewModel cuentaUsuario) {
             try {
-                cuentaUsuario.Id = cuentaUsuarioWS.insertCuentaUsuario(ToSoap(cuentaUsuario));
+                insertCuentaUsuarioResponse respuesta = await cuentaUsuarioWS.insertCuentaUsuarioAsync(ToDto(cuentaUsuario));
+                cuentaUsuario.Id = respuesta.@return;
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public void Update(CuentaUsuarioViewModel cuentaUsuario) {
+        public async Task Update(CuentaUsuarioViewModel cuentaUsuario) {
             try {
-                cuentaUsuarioWS.updateCuentaUsuario(ToSoap(cuentaUsuario));
+                await cuentaUsuarioWS.updateCuentaUsuarioAsync(ToDto(cuentaUsuario));
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public void Delete(int id) {
+        public async Task Delete(int id) {
             try {
-                cuentaUsuarioWS.deleteCuentaUsuario(id);
+                await cuentaUsuarioWS.deleteCuentaUsuarioAsync(id);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public CuentaUsuarioViewModel? FindByUserName(string userName) {
+        public async Task<CuentaUsuarioViewModel?> FindByUserName(string userName) {
             try {
-                cuentaUsuarioDTO? dto = cuentaUsuarioWS.findByUserName(userName);
+                findByUserNameResponse respuesta = await cuentaUsuarioWS.findByUserNameAsync(userName);
+                cuentaUsuarioDTO? dto = respuesta.@return;
                 return dto == null ? null : ToViewModel(dto);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public bool Autenticar(string userName, string password) {
+        public async Task<bool> Autenticar(string userName, string password) {
             try {
-                return cuentaUsuarioWS.autenticar(userName, password);
+                autenticarResponse respuesta = await cuentaUsuarioWS.autenticarAsync(userName, password);
+                return respuesta.@return;
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
         }
 
-        public void CambiarPassword(int id, string passwordActual, string passwordNueva) {
+        public async Task CambiarPassword(int id, string passwordActual, string passwordNueva) {
             try {
-                cuentaUsuarioWS.cambiarPassword(id, passwordActual, passwordNueva);
+                await cuentaUsuarioWS.cambiarPasswordAsync(id, passwordActual, passwordNueva);
             } catch (FaultException ex) {
                 throw new ServicioException(ex.Message, ex);
             }
@@ -90,7 +95,7 @@ namespace SoftProg.Web.Servicios.Soap {
             };
         }
 
-        private cuentaUsuarioDTO ToSoap(CuentaUsuarioViewModel cuentaUsuario) {
+        private cuentaUsuarioDTO ToDto(CuentaUsuarioViewModel cuentaUsuario) {
             return new cuentaUsuarioDTO {
                 id = cuentaUsuario.Id,
                 userName = cuentaUsuario.UserName,

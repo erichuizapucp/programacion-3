@@ -51,12 +51,12 @@
     private string? MensajeError { get; set; }
     private UnidadMedida[] Unidades { get; } = Enum.GetValues<UnidadMedida>();
 
-    protected override void OnParametersSet() {
+    protected override async Task OnParametersSetAsync() {
         if (Id == null) {
             ViewModel = new ProductoViewModel();
             return;
         }
-        ProductoViewModel? producto = ProductoService.FindById(Id.Value);
+        ProductoViewModel? producto = await ProductoService.FindById(Id.Value);
         if (producto == null) {
             Nav.NavigateTo("/productos");
             return;
@@ -64,12 +64,12 @@
         ViewModel = producto;
     }
 
-    private void Guardar() {
+    private async Task Guardar() {
         try {
             if (Id == null) {
-                ProductoService.Insert(ViewModel);
+                await ProductoService.Insert(ViewModel);
             } else {
-                ProductoService.Update(ViewModel);
+                await ProductoService.Update(ViewModel);
             }
             Nav.NavigateTo("/productos");
         } catch (ServicioException ex) {

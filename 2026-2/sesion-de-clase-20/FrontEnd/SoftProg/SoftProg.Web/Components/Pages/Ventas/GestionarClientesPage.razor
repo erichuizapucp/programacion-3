@@ -96,16 +96,16 @@
     private Genero[] Generos { get; } = Enum.GetValues<Genero>();
     private CategoriaCliente[] Categorias { get; } = Enum.GetValues<CategoriaCliente>();
 
-    protected override void OnInitialized() {
-        CuentasUsuario = CuentaUsuarioService.FindAll();
+    protected override async Task OnInitializedAsync() {
+        CuentasUsuario = await CuentaUsuarioService.FindAll();
     }
 
-    protected override void OnParametersSet() {
+    protected override async Task OnParametersSetAsync() {
         if (Id == null) {
             ViewModel = new ClienteViewModel();
             ViewModel.AsignarLineaCreditoInicial();
         } else {
-            ClienteViewModel? cliente = ClienteService.FindById(Id.Value);
+            ClienteViewModel? cliente = await ClienteService.FindById(Id.Value);
             if (cliente == null) {
                 Nav.NavigateTo("/clientes");
                 return;
@@ -128,12 +128,12 @@
         Nav.NavigateTo($"/cuentas-usuario/nuevo?volver={volver}");
     }
 
-    private void Guardar() {
+    private async Task Guardar() {
         try {
             if (Id == null) {
-                ClienteService.Insert(ViewModel);
+                await ClienteService.Insert(ViewModel);
             } else {
-                ClienteService.Update(ViewModel);
+                await ClienteService.Update(ViewModel);
             }
             Nav.NavigateTo("/clientes");
         } catch (ServicioException ex) {

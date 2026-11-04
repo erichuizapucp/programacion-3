@@ -55,8 +55,8 @@ else {
     private string Filtro { get; set; } = string.Empty;
     private PaginationState Paginacion { get; } = new() { ItemsPerPage = 5 };
 
-    protected override void OnInitialized() {
-        Clientes = ClienteService.FindAll().AsQueryable();
+    protected override async Task OnInitializedAsync() {
+        Clientes = (await ClienteService.FindAll()).AsQueryable();
     }
 
     private void NuevoCliente() {
@@ -73,16 +73,16 @@ else {
             return;
         }
 
-        ClienteService.Delete(id);
-        Clientes = ClienteService.FindAll().AsQueryable();
+        await ClienteService.Delete(id);
+        Clientes = (await ClienteService.FindAll()).AsQueryable();
     }
 
-    private void FiltrarClientes() {
-        Clientes = ClienteService.FilterByName(Filtro).AsQueryable();
+    private async Task FiltrarClientes() {
+        Clientes = (await ClienteService.FilterByName(Filtro)).AsQueryable();
     }
 
-    private void LimpiarFiltro() {
+    private async Task LimpiarFiltro() {
         Filtro = string.Empty;
-        Clientes = ClienteService.FindAll().AsQueryable();
+        Clientes = (await ClienteService.FindAll()).AsQueryable();
     }
 }

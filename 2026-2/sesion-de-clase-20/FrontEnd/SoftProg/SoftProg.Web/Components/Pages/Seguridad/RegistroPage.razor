@@ -82,9 +82,9 @@
     private string? MensajeError { get; set; }
     private Genero[] Generos { get; } = Enum.GetValues<Genero>();
 
-    private void Registrar() {
+    private async Task Registrar() {
         try {
-            ClienteService.Registrar(ViewModel);
+            await ClienteService.Registrar(ViewModel);
             Nav.NavigateTo("/login?registrado=true");
         } catch (ServicioException ex) {
             MensajeError = ex.Message;
