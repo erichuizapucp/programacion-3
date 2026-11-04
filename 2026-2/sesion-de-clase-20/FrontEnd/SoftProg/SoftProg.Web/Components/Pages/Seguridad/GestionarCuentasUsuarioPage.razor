@@ -1,0 +1,78 @@
+@page "/cuentas-usuario/nuevo"
+@page "/cuentas-usuario/editar/{Id:int}"
+@attribute [Authorize(Policy = "CuentasUsuario")]
+@inject ICuentaUsuarioService CuentaUsuarioService;
+@inject NavigationManager Nav;
+
+<PageTitle>Cuentas de usuario</PageTitle>
+
+<h3 class="mb-3">@(Id == null ? "Nueva cuenta de usuario" : "Editar cuenta de usuario")</h3>
+
+@if (MensajeError != null) {
+    <div class="alert alert-danger">@MensajeError</div>
+}
+
+<EditForm Model="ViewModel" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label class="form-label">Usuario (correo electrónico)</label>
+        <InputText tabindex="1" class="form-control" @bind-Value="ViewModel.UserName" />
+        <ValidationMessage For="() => ViewModel.UserName" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Contraseña</label>
+        <InputText tabindex="2" type="password" class="form-control" @bind-Value="ViewModel.Password" />
+        <ValidationMessage For="() => ViewModel.Password" />
+    </div>
+    <div class="form-check mb-3">
+        <InputCheckbox tabindex="3" class="form-check-input" @bind-Value="ViewModel.IsActivo" />
+        <label class="form-check-label">Activo</label>
+    </div>
+
+    <button tabindex="4" type="submit" class="btn btn-primary">Guardar</button>
+    <a tabindex="5" class="btn btn-outline-secondary" href="@(Volver ?? "cuentas-usuario")">Cancelar</a>
+</EditForm>
+
+@code {
+    [Parameter]
+    public int? Id { get; set; }
+
+    [SupplyParameterFromQuery(Name = "volver")]
+    public string? Volver { get; set; }
+
+    private CuentaUsuarioViewModel ViewModel { get; set; } = new();
+    private string? MensajeError { get; set; }
+
+    protected override void OnParametersSet() {
+        if (Id == null) {
+            ViewModel = new CuentaUsuarioViewModel();
+            return;
+        }
+        CuentaUsuarioViewModel? cuentaUsuario = CuentaUsuarioService.FindById(Id.Value);
+        if (cuentaUsuario == null) {
+            Nav.NavigateTo("/cuentas-usuario");
+            return;
+        }
+        ViewModel = cuentaUsuario;
+    }
+
+    private void Guardar() {
+        try {
+            if (Id == null) {
+                CuentaUsuarioService.Insert(ViewModel);
+            } else {
+                CuentaUsuarioService.Update(ViewModel);
+            }
+
+            if (Volver != null) {
+                Nav.NavigateTo($"{Volver}?cuenta={ViewModel.Id}");
+            } else {
+                Nav.NavigateTo("/cuentas-usuario");
+            }
+        } catch (ServicioException ex) {
+            MensajeError = ex.Message;
+        }
+    }
+}

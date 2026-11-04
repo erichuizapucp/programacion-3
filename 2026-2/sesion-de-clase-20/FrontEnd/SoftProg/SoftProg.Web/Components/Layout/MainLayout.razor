@@ -1,0 +1,64 @@
+﻿@inherits LayoutComponentBase
+
+<nav class="navbar navbar-expand navbar-dark bg-primary px-3">
+    <a class="navbar-brand" href="">SoftProg</a>
+
+    <ul class="navbar-nav me-auto">
+        <AuthorizeView>
+            @foreach (KeyValuePair<string, List<OpcionMenu>> grupo in Permisos.MenuDelUsuario(context.User)) {
+                <li class="nav-item dropdown">
+                    <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown">@grupo.Key</button>
+                    <ul class="dropdown-menu">
+                        @foreach (OpcionMenu opcion in grupo.Value) {
+                            <li><NavLink class="dropdown-item" href="@opcion.Href">@opcion.Texto</NavLink></li>
+                        }
+                    </ul>
+                </li>
+            }
+        </AuthorizeView>
+    </ul>
+
+    <ul class="navbar-nav">
+        <AuthorizeView>
+            <Authorized>
+                <li class="nav-item dropdown">
+                    <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        @context.User.Identity?.Name
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        @foreach (OpcionMenu opcion in Permisos.OpcionesDelUsuario(Permisos.MenuCuenta, context.User)) {
+                            <li><NavLink class="dropdown-item" href="@opcion.Href">@opcion.Texto</NavLink></li>
+                        }
+                        <li><NavLink class="dropdown-item" href="cambiar-password">Cambiar contraseña</NavLink></li>
+                        <li><hr class="dropdown-divider" /></li>
+                        <li>
+                            <form method="post" action="cuenta/logout">
+                                <AntiforgeryToken />
+                                <button type="submit" class="dropdown-item">Cerrar sesión</button>
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            </Authorized>
+            <NotAuthorized>
+                <li class="nav-item dropdown">
+                    <button class="nav-link dropdown-toggle" type="button" data-bs-toggle="dropdown">Mi cuenta</button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><NavLink class="dropdown-item" href="login">Iniciar sesión</NavLink></li>
+                        <li><NavLink class="dropdown-item" href="registro">Registrarse</NavLink></li>
+                    </ul>
+                </li>
+            </NotAuthorized>
+        </AuthorizeView>
+    </ul>
+</nav>
+
+<main class="container mt-4">
+    @Body
+</main>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>

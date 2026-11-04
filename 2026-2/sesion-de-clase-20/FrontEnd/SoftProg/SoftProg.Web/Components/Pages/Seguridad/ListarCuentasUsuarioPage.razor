@@ -1,0 +1,77 @@
+@page "/cuentas-usuario"
+@attribute [Authorize(Policy = "CuentasUsuario")]
+@inject ICuentaUsuarioService CuentaUsuarioService;
+@inject NavigationManager Nav;
+@inject IJSRuntime JS;
+
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<PageTitle>Cuentas de usuario</PageTitle>
+
+<div class="d-flex justify-content-between mb-3">
+    <h3 class="mb-3">Cuentas de usuario</h3>
+    <button tabindex="1" class="btn btn-success" @onclick="() => NuevaCuentaUsuario()">
+        Nueva cuenta
+    </button>
+
+</div>
+
+@if (!CuentasUsuario.Any()) {
+    <div class="alert alert-info">No hay cuentas de usuario registradas.</div>
+}
+else {
+    <QuickGrid Items="CuentasUsuario" Pagination="Paginacion" Class="table table-striped table-hover">
+        <PropertyColumn Title="Id" Property="c => c.Id" Sortable="true" />
+        <PropertyColumn Title="Usuario" Property="c => c.UserName" Sortable="true" />
+        <TemplateColumn Title="Contraseña">
+            <span class="me-2">@(IdPasswordVisible == context.Id ? context.Password : "******")</span>
+            <button class="btn btn-outline-secondary btn-sm" @onclick="() => VerPassword(context.Id)">
+                @(IdPasswordVisible == context.Id ? "Ocultar" : "Ver")
+            </button>
+        </TemplateColumn>
+        <TemplateColumn Title="Activo" Align="Align.Center">
+            <input type="checkbox" checked="@context.IsActivo" disabled />
+        </TemplateColumn>
+        <TemplateColumn Title="Acciones">
+            <button class="btn btn-primary btn-sm" @onclick="() => EditarCuentaUsuario(context.Id)">
+                Editar
+            </button>
+            <button class="btn btn-danger btn-sm" @onclick="() => EliminarCuentaUsuario(context.Id)">
+                Eliminar
+            </button>
+        </TemplateColumn>
+    </QuickGrid>
+    <Paginator State="Paginacion"></Paginator>
+}
+
+@code {
+    private IQueryable<CuentaUsuarioViewModel> CuentasUsuario { get; set; } = Enumerable.Empty<CuentaUsuarioViewModel>().AsQueryable();
+    private PaginationState Paginacion { get; } = new() { ItemsPerPage = 5 };
+    private int? IdPasswordVisible { get; set; }
+
+    protected override void OnInitialized() {
+        CuentasUsuario = CuentaUsuarioService.FindAll().AsQueryable();
+    }
+
+    private void VerPassword(int id) {
+        IdPasswordVisible = IdPasswordVisible == id ? null : id;
+    }
+
+    private void NuevaCuentaUsuario() {
+        Nav.NavigateTo("/cuentas-usuario/nuevo");
+    }
+
+    private void EditarCuentaUsuario(int id) {
+        Nav.NavigateTo($"/cuentas-usuario/editar/{id}");
+    }
+
+    private async Task EliminarCuentaUsuario(int id) {
+        bool confirmado = await JS.InvokeAsync<bool>("confirmarEliminacion", "¿Está seguro de eliminar la cuenta de usuario?");
+        if (!confirmado) {
+            return;
+        }
+
+        CuentaUsuarioService.Delete(id);
+        CuentasUsuario = CuentaUsuarioService.FindAll().AsQueryable();
+    }
+}

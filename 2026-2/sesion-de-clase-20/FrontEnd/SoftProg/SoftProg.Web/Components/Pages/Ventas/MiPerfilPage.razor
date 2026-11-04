@@ -1,0 +1,97 @@
+@page "/mi-perfil"
+@attribute [Authorize(Policy = "PerfilCliente")]
+@inject IClienteService ClienteService;
+@inject NavigationManager Nav;
+@inject ISesionService SesionService;
+
+<PageTitle>Mi perfil</PageTitle>
+
+<h3 class="mb-3">Mi perfil</h3>
+
+@if (MensajeError != null) {
+    <div class="alert alert-danger">@MensajeError</div>
+}
+@if (MensajeExito != null) {
+    <div class="alert alert-success">@MensajeExito</div>
+}
+
+<EditForm Model="ViewModel" OnValidSubmit="Guardar">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="mb-3">
+        <label class="form-label">Usuario</label>
+        <input class="form-control" value="@UserName" disabled />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">DNI</label>
+        <InputText tabindex="1" class="form-control" @bind-Value="ViewModel.Dni" />
+        <ValidationMessage For="() => ViewModel.Dni" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <InputText tabindex="2" class="form-control" @bind-Value="ViewModel.Nombre" />
+        <ValidationMessage For="() => ViewModel.Nombre" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Apellido paterno</label>
+        <InputText tabindex="3" class="form-control" @bind-Value="ViewModel.ApellidoPaterno" />
+        <ValidationMessage For="() => ViewModel.ApellidoPaterno" />
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Género</label>
+        <InputSelect tabindex="4" class="form-select" @bind-Value="ViewModel.Genero">
+            @foreach (Genero genero in Generos) {
+                <option value="@genero">@genero</option>
+            }
+        </InputSelect>
+    </div>
+    <div class="mb-3">
+        <label class="form-label">Fecha de nacimiento</label>
+        <InputDate tabindex="5" class="form-control" @bind-Value="ViewModel.FechaNacimiento" />
+        <ValidationMessage For="() => ViewModel.FechaNacimiento" />
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-label">Categoría</label>
+            <input class="form-control" value="@ViewModel.Categoria" disabled />
+        </div>
+        <div class="col">
+            <label class="form-label">Línea de crédito (S/)</label>
+            <input class="form-control" value="@ViewModel.LineaCredito.ToString("N2")" disabled />
+        </div>
+    </div>
+
+    <button tabindex="6" type="submit" class="btn btn-primary">Guardar</button>
+    <a tabindex="7" class="btn btn-outline-secondary" href="">Cancelar</a>
+</EditForm>
+
+@code {
+    private ClienteViewModel ViewModel { get; set; } = new();
+    private string? MensajeError { get; set; }
+    private string? MensajeExito { get; set; }
+    private string UserName { get; set; } = "";
+    private Genero[] Generos { get; } = Enum.GetValues<Genero>();
+
+    protected override void OnInitialized() {
+        UserName = SesionService.ObtenerUserName();
+
+        ClienteViewModel? cliente = ClienteService.FindByCuenta(UserName);
+        if (cliente == null) {
+            Nav.NavigateTo("/");
+            return;
+        }
+        ViewModel = cliente;
+    }
+
+    private void Guardar() {
+        try {
+            ClienteService.Update(ViewModel);
+            MensajeError = null;
+            MensajeExito = "Sus datos se actualizaron correctamente";
+        } catch (ServicioException ex) {
+            MensajeExito = null;
+            MensajeError = ex.Message;
+        }
+    }
+}

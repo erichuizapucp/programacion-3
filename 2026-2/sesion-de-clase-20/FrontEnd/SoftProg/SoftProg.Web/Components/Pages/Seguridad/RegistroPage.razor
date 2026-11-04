@@ -1,0 +1,93 @@
+@page "/registro"
+@inject IClienteService ClienteService;
+@inject NavigationManager Nav;
+
+<PageTitle>Registro</PageTitle>
+
+<div class="col-md-6 mx-auto">
+    <h3 class="mb-3">Registro de cliente</h3>
+
+    @if (MensajeError != null) {
+        <div class="alert alert-danger">@MensajeError</div>
+    }
+
+    <EditForm Model="ViewModel" OnValidSubmit="Registrar">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <h5>Cuenta de usuario</h5>
+        <div class="mb-3">
+            <label class="form-label">Usuario (correo electrónico)</label>
+            <InputText tabindex="1" class="form-control" @bind-Value="ViewModel.UserName" />
+            <ValidationMessage For="() => ViewModel.UserName" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <InputText tabindex="2" type="password" class="form-control" @bind-Value="ViewModel.Password" />
+            <ValidationMessage For="() => ViewModel.Password" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Confirmar contraseña</label>
+            <InputText tabindex="3" type="password" class="form-control" @bind-Value="ViewModel.ConfirmarPassword" />
+            <ValidationMessage For="() => ViewModel.ConfirmarPassword" />
+        </div>
+
+        <h5 class="mt-4">Datos personales</h5>
+        <div class="mb-3">
+            <label class="form-label">DNI</label>
+            <InputText tabindex="4" class="form-control" @bind-Value="ViewModel.Dni" />
+            <ValidationMessage For="() => ViewModel.Dni" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Nombre</label>
+            <InputText tabindex="5" class="form-control" @bind-Value="ViewModel.Nombre" />
+            <ValidationMessage For="() => ViewModel.Nombre" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Apellido paterno</label>
+            <InputText tabindex="6" class="form-control" @bind-Value="ViewModel.ApellidoPaterno" />
+            <ValidationMessage For="() => ViewModel.ApellidoPaterno" />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Género</label>
+            <InputSelect tabindex="7" class="form-select" @bind-Value="ViewModel.Genero">
+                @foreach (Genero genero in Generos) {
+                    <option value="@genero">@genero</option>
+                }
+            </InputSelect>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Fecha de nacimiento</label>
+            <InputDate tabindex="8" class="form-control" @bind-Value="ViewModel.FechaNacimiento" />
+            <ValidationMessage For="() => ViewModel.FechaNacimiento" />
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label class="form-label">Categoría</label>
+                <input class="form-control" value="@ViewModel.Categoria" disabled />
+            </div>
+            <div class="col">
+                <label class="form-label">Línea de crédito inicial (S/)</label>
+                <input class="form-control" value="@ViewModel.LineaCredito.ToString("N2")" disabled />
+            </div>
+        </div>
+
+        <button tabindex="9" type="submit" class="btn btn-primary">Registrarse</button>
+        <a tabindex="10" class="btn btn-outline-secondary" href="login">Cancelar</a>
+    </EditForm>
+</div>
+
+@code {
+    private RegistroClienteViewModel ViewModel { get; set; } = new();
+    private string? MensajeError { get; set; }
+    private Genero[] Generos { get; } = Enum.GetValues<Genero>();
+
+    private void Registrar() {
+        try {
+            ClienteService.Registrar(ViewModel);
+            Nav.NavigateTo("/login?registrado=true");
+        } catch (ServicioException ex) {
+            MensajeError = ex.Message;
+        }
+    }
+}
