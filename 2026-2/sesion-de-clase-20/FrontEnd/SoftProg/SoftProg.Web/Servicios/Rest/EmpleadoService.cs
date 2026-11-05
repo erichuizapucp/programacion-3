@@ -22,7 +22,7 @@ namespace SoftProg.Web.Servicios.Rest {
         }
 
         public async Task<List<EmpleadoViewModel>> FilterByName(string nombre) {
-            string url = QueryHelpers.AddQueryString(BaseUrlEmpleados, new Dictionary<string, string> {
+            string url = QueryHelpers.AddQueryString(BaseUrlEmpleados, new Dictionary<string, string?> {
                 { "nombre", nombre }
             });
             List<EmpleadoDTO> empleados = await HttpUtils.DoGet<List<EmpleadoDTO>>(url);
