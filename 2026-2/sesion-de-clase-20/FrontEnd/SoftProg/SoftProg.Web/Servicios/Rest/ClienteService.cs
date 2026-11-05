@@ -2,6 +2,7 @@
 using SoftProg.Web.DTOs;
 using SoftProg.Web.ViewModels;
 using System.Globalization;
+using System.Net;
 using System.Reflection;
 
 namespace SoftProg.Web.Servicios.Rest {
@@ -35,9 +36,13 @@ namespace SoftProg.Web.Servicios.Rest {
         }
 
         public async Task<ClienteViewModel?> FindByCuenta(string userName) {
-            string url = $"{BaseUrlMiCuenta}/{userName}/cliente";
-            ClienteDTO cliente = await HttpUtils.DoGet<ClienteDTO>(url);
-            return ToViewModel(cliente);
+            string url = $"{BaseUrlMiCuenta}/{Uri.EscapeDataString(userName)}/cliente";
+            try {
+                ClienteDTO cliente = await HttpUtils.DoGet<ClienteDTO>(url);
+                return ToViewModel(cliente);
+            } catch (HttpRequestException ex) when (ex.StatusCode == HttpStatusCode.NotFound) {
+                return null;
+            }
         }
 
         public async Task<ClienteViewModel?> FindById(int id) {
@@ -101,6 +106,10 @@ namespace SoftProg.Web.Servicios.Rest {
 
         private ClienteDTO ToDto(RegistroClienteViewModel cliente) {
             return new ClienteDTO {
+                CuentaUsuario = new() {
+                    UserName = cliente.UserName,
+                    Password = cliente.Password
+                },
                 Dni = cliente.Dni,
                 Nombre = cliente.Nombre,
                 ApellidoPaterno = cliente.ApellidoPaterno,

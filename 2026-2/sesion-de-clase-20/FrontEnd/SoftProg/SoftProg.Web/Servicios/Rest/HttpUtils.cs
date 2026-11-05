@@ -24,7 +24,12 @@ public static class HttpUtils {
         return await response.Content.ReadFromJsonAsync<TResponse>();
     }
 
-    public static async Task DoDelete(string url) { 
+    public static async Task DoPut<TRequest>(string url, TRequest payload) {
+        var response = await http.PutAsJsonAsync(url, payload);
+        response.EnsureSuccessStatusCode();
+    }
+
+    public static async Task DoDelete(string url) {
         var response = await http.DeleteAsync(url);
         response.EnsureSuccessStatusCode();
     }
