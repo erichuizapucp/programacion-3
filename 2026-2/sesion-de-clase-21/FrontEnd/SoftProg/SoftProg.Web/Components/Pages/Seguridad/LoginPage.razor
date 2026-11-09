@@ -1,0 +1,43 @@
+@page "/login"
+
+<PageTitle>Iniciar sesión</PageTitle>
+
+<div class="col-md-4 mx-auto">
+    <h3 class="mb-3">Iniciar sesión</h3>
+
+    @if (Error) {
+        <div class="alert alert-danger">Credenciales incorrectas</div>
+    }
+    @if (SinRol) {
+        <div class="alert alert-warning">La cuenta no tiene acceso al sistema</div>
+    }
+    @if (Registrado) {
+        <div class="alert alert-success">Registro exitoso. Ya puede iniciar sesión.</div>
+    }
+
+    <form method="post" action="cuenta/login">
+        <AntiforgeryToken />
+        <div class="mb-3">
+            <label class="form-label">Usuario</label>
+            <input tabindex="1" name="userName" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input tabindex="2" name="password" type="password" class="form-control" required />
+        </div>
+        <button tabindex="3" type="submit" class="btn btn-primary w-100">Ingresar</button>
+    </form>
+
+    <p class="mt-3 text-center">¿No tiene cuenta? <a href="registro">Regístrese</a></p>
+</div>
+
+@code {
+    [SupplyParameterFromQuery]
+    public bool Error { get; set; }
+
+    [SupplyParameterFromQuery]
+    public bool Registrado { get; set; }
+
+    [SupplyParameterFromQuery]
+    public bool SinRol { get; set; }
+}
