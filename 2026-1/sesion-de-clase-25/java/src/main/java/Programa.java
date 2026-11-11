@@ -5,7 +5,7 @@ import java.util.concurrent.Executors;
 
 public class Programa {
     public static void main(String[] args) {
-        Transaccionable cuenta = new CuentaBancaria(500.00);
+        Transaccionable cuenta = new CuentaBancariaSemaforo(500.00);
         
         Runnable retirar100 = new Retiro(cuenta, 100.00);
         Runnable retirar70 = new Retiro(cuenta, 70.00);

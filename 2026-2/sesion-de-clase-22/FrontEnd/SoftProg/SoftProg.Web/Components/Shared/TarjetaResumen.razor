@@ -1,0 +1,25 @@
+<div class="card text-center h-100">
+    <div class="card-body">
+        <h6 class="card-title text-muted">@Titulo</h6>
+        <p class="display-6 mb-0">@Valor</p>
+        <p class="small text-muted">@Detalle</p>
+        <a class="btn btn-outline-primary btn-sm" href="@Enlace">@TextoEnlace</a>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired]
+    public string Titulo { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public string Valor { get; set; } = default!;
+
+    [Parameter]
+    public string Detalle { get; set; } = "";
+
+    [Parameter, EditorRequired]
+    public string Enlace { get; set; } = default!;
+
+    [Parameter, EditorRequired]
+    public string TextoEnlace { get; set; } = default!;
+}

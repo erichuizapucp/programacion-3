@@ -1,0 +1,6 @@
+db.host=<endpoint>
+db.puerto=<puerto>
+db.esquema=<nombre base de datos>
+db.usuario=<usuario>
+db.password=<password>
+db.tipo=<tipo>

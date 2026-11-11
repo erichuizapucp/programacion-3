@@ -1,0 +1,20 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "http://172.16.70.1:8080/softprog-ws/servicios.wsdl"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, SoftProgWS"
+    ],
+    "references": [
+      "Microsoft.AspNetCore.Components.QuickGrid, {Microsoft.AspNetCore.Components.QuickGrid, 10.0.14}"
+    ],
+    "sync": true,
+    "targetFramework": "net10.0",
+    "typeReuseMode": "All"
+  }
+}

@@ -1,0 +1,50 @@
+REPORTE DETALLE ORDEN
+Parametro: 
+	Nombre: id_orden
+	Tipo de Dato: Integer
+
+Expresiones:
+ID: String.format("%04d", $F{id});
+
+Variables
+SUBTOTAL:
+	Tipo de dato: Big Decimal
+	Funcion de calculo: SUM
+	Campo a sumar: $F{subTotal}.setScale(2, java.math.RoundingMode.HALF_UP)
+
+IGV:
+	Tipo de dato: Big Decimal
+	Funcion de calculo: N/A
+	Expresion: $V{SUBTOTAL}.multiply(new java.math.BigDecimal("0.18")).setScale(2, java.math.RoundingMode.HALF_UP)
+
+TOTAL:
+	Tipo de dato: Big Decimal
+	Funcion de calculo: N/A
+	Expresion: $V{SUBTOTAL}.add($V{IGV}).setScale(2, java.math.RoundingMode.HALF_UP)
+
+Fuente de datos:
+call reporteDetalleOrdenVenta($P{id_orden})
+
+
+
+REPORTE ORDEN VENTA
+Parametro: 
+	Nombre: id_orden
+	Tipo de Dato: Integer
+
+	Nombre: subreporte
+	Tipo de Dato: String
+	Edit Parameters: id_orden -> P{id_orden}
+	
+	Nombre: logo
+	Tipo de Dato: java.awt.Image
+
+
+Numero: 
+	String.format("%04d", $F{id});
+
+Cliente: 
+	$F{apellidoPaterno} + ", " + $F{nombre}
+
+Fuente de datos:
+call reporteOrdenVenta($P{id_orden})
