@@ -17,6 +17,7 @@
         <module>softprog-negocio</module>
         <module>softprog-ws</module>
         <module>softprog-rest</module>
+        <module>softprog-reportes</module>
     </modules>
 
     <properties>
