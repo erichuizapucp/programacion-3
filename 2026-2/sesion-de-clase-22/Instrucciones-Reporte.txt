@@ -10,7 +10,7 @@ Variables
 SUBTOTAL:
 	Tipo de dato: Big Decimal
 	Funcion de calculo: SUM
-	Campo a sumar: $F{subTotal}.setScale(2, java.math.RoundingMode.HALF_UP)
+	Campo a sumar: $F{sub_total}.setScale(2, java.math.RoundingMode.HALF_UP)
 
 IGV:
 	Tipo de dato: Big Decimal
@@ -23,7 +23,7 @@ TOTAL:
 	Expresion: $V{SUBTOTAL}.add($V{IGV}).setScale(2, java.math.RoundingMode.HALF_UP)
 
 Fuente de datos:
-call reporteDetalleOrdenVenta($P{id_orden})
+call reporte_detalle_orden_venta($P{id_orden})
 
 
 
@@ -44,7 +44,7 @@ Numero:
 	String.format("%04d", $F{id});
 
 Cliente: 
-	$F{apellidoPaterno} + ", " + $F{nombre}
+	$F{apellido_paterno} + ", " + $F{nombre}
 
 Fuente de datos:
-call reporteOrdenVenta($P{id_orden})
+call reporte_orden_venta($P{id_orden})
